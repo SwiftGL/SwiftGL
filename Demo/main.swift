@@ -26,19 +26,18 @@ import CGLFW3
 let WIDTH:GLsizei = 800, HEIGHT:GLsizei = 600
 
 let vertexShaderSource =
-    "#version 150 core\n" +
-    "in vec3 position;\n" +
+    "#version 110\n" +
+    "attribute vec3 position;\n" +
     "void main()\n" +
     "{\n" +
     "gl_Position = vec4(position.x, position.y, position.z, 1.0);\n" +
     "}\n"
 
 let fragmentShaderSource =
-    "#version 150 core\n" +
-    "out vec4 color;\n" +
+    "#version 110\n" +
     "void main()\n" +
     "{\n" +
-    "color = vec4(0.3f, 0.6f, 0.6f, 1.0f);\n" +
+    "gl_FragColor = vec4(0.3, 0.6, 0.6, 1.0);\n" +
     "}\n"
 
 typealias vec3 = (GLfloat, GLfloat, GLfloat)
@@ -126,13 +125,14 @@ if glfwInit() != Int32(GL_TRUE) {
 }
 defer { glfwTerminate() }
 
-glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3)
-glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2)
-glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE)
+glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2)
+glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0)
+glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE)
 glfwWindowHint(GLFW_RESIZABLE, Int32(GL_FALSE))
-glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, Int32(GL_TRUE))
 
 let window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World", nil, nil)
+assert(window != nil, "glfwCreateWindow failed")
+
 glfwMakeContextCurrent(window)
 glfwSetKeyCallback(window, keyCallback)
 

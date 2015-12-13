@@ -105,9 +105,7 @@ class KhronosXmlDelegate : NSObject, NSXMLParserDelegate
                 name += "_" + api
             }
             assert(values[name] == nil)
-            var value = attributeDict["value"]!
-            if value == "0xFFFFFFFFFFFFFFFF" {value = "-1"}
-            values[name] = value
+            values[name] = attributeDict["value"]!
 
 
             if currentEnumIsBitmask {
@@ -288,16 +286,6 @@ func writeDocs(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate, _ cmd:St
 }
 
 
-func writeCepoxy(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
-{
-    writeLicense(outstream)
-    outstream.write("import Cepoxy\n\n")
-    for cmd in delegate.commands {
-        outstream.write("public let \(cmd) = Cepoxy.epoxy_\(cmd)!\n")
-    }
-}
-
-
 func writeConstants(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
 {
     writeLicense(outstream)
@@ -315,257 +303,192 @@ func writeConstants(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
         let s = "public let \(key) = GLuint(\(delegate.values[key]!))\n"
         outstream.write(s)
     }
-
 }
 
 
-// UNUSED: Part of an experiment with enums
-func writeGroups(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
+func paramType(x:KhronosXmlDelegate.paramTuple) -> String
 {
-    let sortedKeys = delegate.groups.keys.sort { $0 < $1 }
-    writeLicense(outstream)
-    outstream.write("public final class SwiftGL {\n")
-    for groupName in sortedKeys {
-        let groupEnums = delegate.groups[groupName]!
-        outstream.write("    public enum \(groupName) {\n")
-        for e in groupEnums {
-            outstream.write("        case \(e)\n")
-        }
-        outstream.write("        public var rawValue : GLuint { get { switch(self) {\n")
-        for e in groupEnums {
-            outstream.write("            case \(e): return \(delegate.values[e]!)\n")
-        }
-        outstream.write("        }}}\n")
-        outstream.write("    }\n")
+    var type = x.type
+
+    if type == "GLvoid" {type = "Void"}
+
+    if type == "struct _cl_context" {
+        type = "COpaquePointer"
+    } else if type == "struct _cl_event" {
+        type = "COpaquePointer"
+    } else if x.ptr == "const!*?" {
+        type = "UnsafePointer<\(type)>"
+    } else if x.ptr == "!*?" {
+        type = "UnsafeMutablePointer<\(type)>"
+    } else if x.ptr == "void*?" {
+        type = "UnsafeMutablePointer<Void>"
+    } else if x.ptr == "constvoid*?" {
+        type = "UnsafePointer<Void>"
+    } else if x.ptr == "constvoid**?" {
+        type = "UnsafeMutablePointer<UnsafePointer<Void>>"
+    } else if x.ptr == "const!*const*?" {
+        type = "UnsafePointer<UnsafePointer<\(type)>>"
+    } else if x.ptr == "const!**?" {
+        type = "UnsafeMutablePointer<UnsafePointer<\(type)>>"
+    } else if x.ptr == "void**?" {
+        type = "UnsafeMutablePointer<UnsafeMutablePointer<Void>>"
+    } else if x.ptr == "constvoid*const*?" {
+        type = "UnsafePointer<UnsafePointer<Void>>"
     }
-    outstream.write("}\n")
+    // Helper to find new pointer types
+    // else if x.ptr != "!?" {
+    //     print("\(cmd) \(count) \(x.ptr)")
+    // }
+
+    return type
+
 }
 
 
-// UNUSED: Part of an experiment with enums
-func writeGroupCommand(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate, _ cmd:String, _ bitFlag:[Bool]?)
+func returnType(cmd:String, _ delegate:KhronosXmlDelegate) -> String
 {
-    let params = delegate.commandParams[cmd]!
-    if params.count == 0 {return}
-
-    // This tracks recursive calls for bitfield variants
-    var bitFlags:[Bool]
-    if bitFlag == nil {
-        bitFlags = [Bool](count: params.count, repeatedValue: false)
+    let retValue = delegate.commandReturns[cmd]!
+    if retValue == "void" {
+        return "Void"
+    } else if retValue == "void *" {
+        return "UnsafeMutablePointer<Void>"
+    } else if retValue == "GLubyte*" {
+        return "UnsafePointer<GLubyte>"
     } else {
-        bitFlags = bitFlag!
+        return retValue
     }
+}
 
-    var s = "public func \(cmd) ("
-    var translations = [String](count: params.count, repeatedValue: "")
-    var count = 0
-    for x in params {
 
-        var type = x.type
+func writeDispatch(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
+{
+    var count:Int
+    writeLicense(outstream)
+    for cmd in delegate.commands {
+        let params = delegate.commandParams[cmd]!
 
-        if type == "GLvoid" {type = "Void"}
+        let types = params.map{($0.name,paramType($0))}
+        let returns = returnType(cmd, delegate)
 
-        if type == "struct _cl_context" {
-            type = "COpaquePointer"
-        } else if type == "struct _cl_event" {
-            type = "COpaquePointer"
-        } else if x.ptr == "const!*?" {
-            type = "UnsafePointer<\(type)>"
-        } else if x.ptr == "!*?" {
-            type = "UnsafeMutablePointer<\(type)>"
-        } else if x.ptr == "void*?" {
-            type = "UnsafeMutablePointer<Void>"
-        } else if x.ptr == "constvoid*?" {
-            type = "UnsafePointer<Void>"
-        } else if x.ptr == "constvoid**?" {
-            type = "UnsafeMutablePointer<UnsafePointer<Void>>"
-        } else if x.ptr == "const!*const*?" {
-            type = "UnsafePointer<UnsafePointer<\(type)>>"
-        } else if x.ptr == "const!**?" {
-            type = "UnsafeMutablePointer<UnsafePointer<\(type)>>"
-        } else if x.ptr == "void**?" {
-            type = "UnsafeMutablePointer<UnsafeMutablePointer<Void>>"
-        } else if x.ptr == "constvoid*const*?" {
-            type = "UnsafePointer<UnsafePointer<Void>>"
+        var body:String
+        if returns == "Void" {
+            body = " {\(cmd)_P("
+        } else {
+            body = " -> \(returns) {return \(cmd)_P("
         }
-        // Helper to find new pointer types
-        // else if x.ptr != "!?" {
-        //     print("\(cmd) \(count) \(x.ptr)")
-        // }
-
-        if type == "GLenum" {
-            if let _ = delegate.groups[x.group] {
-                type = "SwiftGL.\(x.group)"
-                translations[count] = "let \(x.name)_ = \(x.name).rawValue"
+        count = 0
+        for t in types {
+            body += t.0
+            if ++count < params.count {
+                body += ", "
             }
         }
+        body += ")}"
 
-        if type == "GLbitfield" {
-            if let _ = delegate.groups[x.group] {
-                if !bitFlags[count] {
-                    bitFlags[count] = true
-                    writeGroupCommand(outstream, delegate, cmd, bitFlags)
-                    type = "SwiftGL.\(x.group)"
-                    translations[count] = "let \(x.name)_ = \(x.name).rawValue"
-                } else {
-                    type = "[SwiftGL.\(x.group)]"
-                    translations[count] = "let \(x.name)_ = \(x.name).reduce(GLbitfield(0)) {$0 | $1.rawValue}"
+        outstream.write("public func \(cmd)(")
+        count = 0
+        for t in types {
+            if count > 0 {
+                outstream.write("_ ")
+            }
+            outstream.write("\(t.0):\(t.1)")
+            if ++count < params.count {
+                outstream.write(", ")
+            }
+        }
+        outstream.write(")\(body)\n")
+
+        if (params.count > 0) {
+            outstream.write("public func \(cmd)(")
+            count = 0
+            for t in types {
+                if count == 0 {
+                    outstream.write("\(t.0) ")
+                }
+                outstream.write("\(t.0):\(t.1)")
+                if ++count < params.count {
+                    outstream.write(", ")
                 }
             }
+            outstream.write(")\(body)\n")
         }
 
-        if count == 0 {
-            s += "\(x.name) \(x.name):\(type)"
-        } else {
-            s += "\(x.name):\(type)"
+        outstream.write("var \(cmd)_P:@convention(c)(")
+        count = 0
+        for t in types {
+            outstream.write(t.1)
+            if ++count < params.count {
+                outstream.write(", ")
+            }
         }
-        if ++count < params.count {
-            s += ", "
-        }
+        outstream.write(") -> \(returns) = \(cmd)_L\n")
+
     }
-
-    let retValue = delegate.commandReturns[cmd]!
-    if retValue == "void" {
-        s += ") {\n"
-    } else if retValue == "void *" {
-        s += ") -> UnsafeMutablePointer<Void> {\n"
-    } else if retValue == "GLubyte*" {
-        s += ") -> UnsafePointer<GLubyte> {\n"
-    } else {
-        s += ") -> \(retValue) {\n"
-    }
-
-    for t in translations {
-        if !t.isEmpty {
-            s += "    \(t)\n"
-        }
-    }
-
-    if retValue == "void" {
-        s += "    \(cmd)("
-    } else {
-        s += "    return \(cmd)("
-    }
-
-    count = 0
-    for x in params {
-        s += x.name
-        if !translations[count].isEmpty {
-            s += "_"
-        }
-        if ++count < params.count {
-            s += ", "
-        }
-    }
-
-    s += ")\n}\n"
-    writeDocs(outstream, delegate, cmd)
-    outstream.write(s)
 }
 
 
-func writeCommand(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate, _ cmd:String)
+func writeLoaders(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
 {
-    let params = delegate.commandParams[cmd]!
-    if params.count == 0 {return}
+    var count:Int, index = 0
+    writeLicense(outstream)
+    for cmd in delegate.commands {
+        let params = delegate.commandParams[cmd]!
 
-    var s = "public func \(cmd) ("
-    var count = 0
-    for x in params {
+        let types = params.map{($0.name,paramType($0))}
+        let returns = returnType(cmd, delegate)
 
-        var type = x.type
-
-        if type == "GLvoid" {type = "Void"}
-
-        if type == "struct _cl_context" {
-            type = "COpaquePointer"
-        } else if type == "struct _cl_event" {
-            type = "COpaquePointer"
-        } else if x.ptr == "const!*?" {
-            type = "UnsafePointer<\(type)>"
-        } else if x.ptr == "!*?" {
-            type = "UnsafeMutablePointer<\(type)>"
-        } else if x.ptr == "void*?" {
-            type = "UnsafeMutablePointer<Void>"
-        } else if x.ptr == "constvoid*?" {
-            type = "UnsafePointer<Void>"
-        } else if x.ptr == "constvoid**?" {
-            type = "UnsafeMutablePointer<UnsafePointer<Void>>"
-        } else if x.ptr == "const!*const*?" {
-            type = "UnsafePointer<UnsafePointer<\(type)>>"
-        } else if x.ptr == "const!**?" {
-            type = "UnsafeMutablePointer<UnsafePointer<\(type)>>"
-        } else if x.ptr == "void**?" {
-            type = "UnsafeMutablePointer<UnsafeMutablePointer<Void>>"
-        } else if x.ptr == "constvoid*const*?" {
-            type = "UnsafePointer<UnsafePointer<Void>>"
+        outstream.write("func \(cmd)_L(")
+        count = 0
+        for t in types {
+            if count > 0 {
+                outstream.write("_ ")
+            }
+            outstream.write("\(t.0):\(t.1)")
+            if ++count < params.count {
+                outstream.write(", ")
+            }
         }
-        // Helper to find new pointer types
-        // else if x.ptr != "!?" {
-        //     print("\(cmd) \(count) \(x.ptr)")
-        // }
-
-        if count == 0 {
-            s += "\(x.name) \(x.name):\(type)"
+        if returns == "Void" {
+            outstream.write(") {\n")
         } else {
-            s += "\(x.name):\(type)"
+            outstream.write(") -> \(returns) {\n")
         }
-        if ++count < params.count {
-            s += ", "
+
+        outstream.write("    \(cmd)_P = unsafeBitCast(getAddress(commandList[\(index)]), \(cmd)_P.dynamicType)\n")
+
+
+        if returns == "Void" {
+            outstream.write("    \(cmd)_P(")
+        } else {
+            outstream.write("    return \(cmd)_P(")
         }
-    }
-
-    let retValue = delegate.commandReturns[cmd]!
-    if retValue == "void" {
-        s += ") {\n"
-    } else if retValue == "void *" {
-        s += ") -> UnsafeMutablePointer<Void> {\n"
-    } else if retValue == "GLubyte*" {
-        s += ") -> UnsafePointer<GLubyte> {\n"
-    } else {
-        s += ") -> \(retValue) {\n"
-    }
-
-    if retValue == "void" {
-        s += "    \(cmd)("
-    } else {
-        s += "    return \(cmd)("
-    }
-
-    count = 0
-    for x in params {
-        s += x.name
-        if ++count < params.count {
-            s += ", "
+        count = 0
+        for t in types {
+            outstream.write(t.0)
+            if ++count < params.count {
+                outstream.write(", ")
+            }
         }
-    }
+        outstream.write(")\n}\n")
 
-    s += ")\n}\n"
-    writeDocs(outstream, delegate, cmd)
-    outstream.write(s)
+        index++
+    }
 }
 
 
 func writeCommands(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
 {
     writeLicense(outstream)
+    outstream.write("let commandList:[commandInfo] = [\n")
     for cmd in delegate.commands {
-        writeCommand(outstream, delegate, cmd)
+        outstream.write("    commandInfo(\"\(cmd)\", []),\n")
     }
+    outstream.write("]\n")
 }
 
 
 func tidyDelegate(delegate:KhronosXmlDelegate)
 {
-    // sorts
-    delegate.commands.sortInPlace()
-    delegate.enums.sortInPlace() {
-        strtoll(delegate.values[$0]!,nil,0) < strtoll(delegate.values[$1]!,nil,0)
-    }
-    delegate.bitfields.sortInPlace() {
-        strtoll(delegate.values[$0]!,nil,0) < strtoll(delegate.values[$1]!,nil,0)
-    }
-
     // remove group options without a value
     for (groupName, _) in delegate.groups {
         while let idx = delegate.groups[groupName]!.indexOf({delegate.values[$0] == nil}) {
@@ -597,7 +520,8 @@ func tidyDelegate(delegate:KhronosXmlDelegate)
 
     // normalize enums
     for key in delegate.enums {
-        let value = delegate.values[key]!
+        var value = delegate.values[key]!
+        if value == "0xFFFFFFFFFFFFFFFF" {value = "-1"}
         let valInt = strtoll(value,nil,0)
         if valInt < 0 {
             delegate.values[key] = "\(valInt)"
@@ -629,7 +553,14 @@ func tidyDelegate(delegate:KhronosXmlDelegate)
         delegate.values[key] = "0x\(valStr)"
     }
 
-
+    // sorts
+    delegate.commands.sortInPlace()
+    delegate.enums.sortInPlace() {
+        strtoll(delegate.values[$0]!,nil,0) < strtoll(delegate.values[$1]!,nil,0)
+    }
+    delegate.bitfields.sortInPlace() {
+        strtoll(delegate.values[$0]!,nil,0) < strtoll(delegate.values[$1]!,nil,0)
+    }
 }
 
 
@@ -644,17 +575,15 @@ func saneDelegate(delegate:KhronosXmlDelegate)
 }
 
 
-// To keep in sync with libepoxy, use the gl.xml from its latest version.
-// https://github.com/anholt/libepoxy
-// When changing anything, be sure to sort for sane version control.
 // pathPrefix is useful when working with an IDE
-let pathPrefix = ""
+let pathPrefix = "/Users/dturnbull/Desktop/SwiftGL/Utility/"
 var khronosDelegate = KhronosXmlDelegate()
 print("Working...")
 chomper(khronosDelegate, pathPrefix + "gl.xml")
 tidyDelegate(khronosDelegate)
 saneDelegate(khronosDelegate)
-spitter(khronosDelegate, pathPrefix + "../Sources/Cepoxy.swift", writeCepoxy)
 spitter(khronosDelegate, pathPrefix + "../Sources/Constants.swift", writeConstants)
 spitter(khronosDelegate, pathPrefix + "../Sources/Commands.swift", writeCommands)
+spitter(khronosDelegate, pathPrefix + "../Sources/Dispatch.swift", writeDispatch)
+spitter(khronosDelegate, pathPrefix + "../Sources/Loaders.swift", writeLoaders)
 print("Success")

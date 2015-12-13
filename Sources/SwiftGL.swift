@@ -63,3 +63,78 @@ public typealias GLDEBUGPROCKHR = @convention(c)
     (GLenum, GLenum, GLuint, GLenum, GLsizei, UnsafePointer<GLchar>, UnsafePointer<Void>) -> Void
 public typealias GLDEBUGPROCAMD = @convention(c)
     (GLuint, GLenum, GLenum, GLsizei, UnsafePointer<GLchar>, UnsafeMutablePointer<Void>) -> Void
+
+
+class commandInfo : CustomStringConvertible {
+    let name: String
+    let support: [String]
+    init(_ name: String, _ support: [String]) {
+        self.name = name
+        self.support = support
+    }
+    var description: String {
+        return "(\(name): \(support))"
+    }
+}
+
+private func failedToLoad(info: commandInfo) {
+    assert(false, "failed: \(info)")
+}
+
+// Platform specific sections below.
+// To support a new platform, implement getAddress.
+
+#if os(OSX)
+
+    import Darwin
+
+    let openGLframework = "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
+    var dlopenHandle = UnsafeMutablePointer<Void>()
+
+    func getAddress(info: commandInfo) -> UnsafeMutablePointer<Void> {
+        if dlopenHandle == nil {
+            dlopenHandle = dlopen(openGLframework, RTLD_LAZY)
+        }
+        assert(dlopenHandle != nil, "Failed to dlopen OpenGL.framework")
+        let fp = dlsym(dlopenHandle, info.name)
+        if (fp == nil) { failedToLoad(info) }
+        return fp
+    }
+
+#elseif os(Linux)
+
+    import Glibc
+
+    var dlopenHandle = UnsafeMutablePointer<Void>()
+    var glXGetProcAddress:(@convention(c) (UnsafePointer<GLchar>) -> UnsafeMutablePointer<Void>)? = nil
+    
+    func getAddress(info: commandInfo) -> UnsafeMutablePointer<Void> {
+        if dlopenHandle == nil {
+            dlopenHandle = dlopen(nil, RTLD_LAZY | RTLD_LOCAL)
+        }
+        assert(dlopenHandle != nil, "Failed to dlopen")
+        if glXGetProcAddress == nil {
+            let fp = dlsym(dlopenHandle, "glXGetProcAddressARB")
+            if fp != nil {
+                glXGetProcAddress = unsafeBitCast(fp, glXGetProcAddress.dynamicType)
+            }
+        }
+        if glXGetProcAddress == nil {
+            let fp = dlsym(dlopenHandle, "glXGetProcAddress")
+            if fp != nil {
+                glXGetProcAddress = unsafeBitCast(fp, glXGetProcAddress.dynamicType)
+            }
+        }
+        assert(glXGetProcAddress != nil, "Failed to find glXGetProcAddress")
+        let fp = glXGetProcAddress!(info.name)
+        if (fp == nil) { failedToLoad(info) }
+        return fp
+    }
+    
+#else
+
+    func getAddress(info: commandInfo) -> UnsafeMutablePointer<Void> {
+        assert(false, "Unsupported OS")
+    }
+
+#endif

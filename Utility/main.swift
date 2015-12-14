@@ -62,12 +62,65 @@ class KhronosXmlDelegate : NSObject, NSXMLParserDelegate
     var paramArr = [paramTuple]()
     var commandParams = [String: [paramTuple]]()
 
+    var currentVersion = ""
+    var commandVersions = [String: [String]]()
+
+    var currentExtension = ""
+    var commandExtensions = [String: [String]]()
+
 
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String])
     {
         if (elementName == "registry") {return}
         if (!path.isEmpty) {path += "."}
         path += elementName
+
+        if path == "extensions.extension" {
+            currentExtension = attributeDict["name"]!
+            assert(currentExtension.hasPrefix("GL_"))
+            currentExtension.removeRange(
+                currentExtension.startIndex..<currentExtension.startIndex.advancedBy(3)
+            )
+            return
+        }
+
+        if path == "extensions.extension.require.command" {
+            let name = attributeDict["name"]!
+            if commandExtensions[name] == nil {
+                commandExtensions[name] = [currentExtension]
+            } else {
+                commandExtensions[name]!.append(currentExtension)
+            }
+            return
+        }
+
+        if path == "feature" {
+            switch(attributeDict["api"]!) {
+            case "gl":
+                currentVersion = ""
+            case "gles1", "gles2":
+                currentVersion = "ES "
+            default:
+                assert(false)
+            }
+            currentVersion += attributeDict["number"]!
+            return
+        }
+
+        if path == "feature.require.command" {
+            let name = attributeDict["name"]!
+            if commandVersions[name] == nil {
+                commandVersions[name] = ["+\(currentVersion)"]
+            } else {
+                commandVersions[name]!.append("+\(currentVersion)")
+            }
+            return
+        }
+
+        if path == "feature.remove.command" {
+            commandVersions[attributeDict["name"]!]!.append("-\(currentVersion)")
+            return
+        }
 
         if path == "groups.group" {
             currentGroup = attributeDict["name"]!
@@ -360,7 +413,7 @@ func returnType(cmd:String, _ delegate:KhronosXmlDelegate) -> String
 }
 
 
-func writeDispatch(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
+func writeCommands(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
 {
     var count:Int
     writeLicense(outstream)
@@ -427,10 +480,36 @@ func writeDispatch(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
 }
 
 
+func buildStringLits(delegate:KhronosXmlDelegate) -> [String] {
+    var set = Set<String>()
+    for (_,values) in delegate.commandVersions {
+        for v in values {
+            set.insert(v)
+        }
+    }
+    for (_,values) in delegate.commandExtensions {
+        for v in values {
+            set.insert(v)
+        }
+    }
+    return set.sort()
+}
+
+
 func writeLoaders(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
 {
-    var count:Int, index = 0
+    var count:Int, index:Int
     writeLicense(outstream)
+
+    let strings = buildStringLits(delegate)
+    index = 0
+    for s in strings {
+        outstream.write("let S\(index) = \"\(s)\"\n")
+        index += 1
+    }
+    outstream.write("\n")
+
+    index = 0
     for cmd in delegate.commands {
         let params = delegate.commandParams[cmd]!
 
@@ -454,8 +533,29 @@ func writeLoaders(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
             outstream.write(") -> \(returns) {\n")
         }
 
-        outstream.write("    \(cmd)_P = unsafeBitCast(getAddress(commandList[\(index)]), \(cmd)_P.dynamicType)\n")
+        outstream.write("    \(cmd)_P = unsafeBitCast(getAddress(")
 
+        var strnums = Array<Int>()
+        if let vers = delegate.commandVersions[cmd] {
+            for v in vers {
+                strnums.append(strings.indexOf(v)!)
+            }
+        }
+        if let vers = delegate.commandExtensions[cmd] {
+            for v in vers {
+                strnums.append(strings.indexOf(v)!)
+            }
+        }
+        outstream.write("CommandInfo(\"\(cmd)\", [")
+        count = 0
+        for n in strnums {
+            outstream.write("S\(n)")
+            if ++count < strnums.count {
+                outstream.write(", ")
+            }
+        }
+
+        outstream.write("])), \(cmd)_P.dynamicType)\n")
 
         if returns == "Void" {
             outstream.write("    \(cmd)_P(")
@@ -473,17 +573,6 @@ func writeLoaders(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
 
         index++
     }
-}
-
-
-func writeCommands(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
-{
-    writeLicense(outstream)
-    outstream.write("let commandList:[commandInfo] = [\n")
-    for cmd in delegate.commands {
-        outstream.write("    commandInfo(\"\(cmd)\", []),\n")
-    }
-    outstream.write("]\n")
 }
 
 
@@ -553,6 +642,15 @@ func tidyDelegate(delegate:KhronosXmlDelegate)
         delegate.values[key] = "0x\(valStr)"
     }
 
+    // Remove ES redundancy
+    for (key,val) in delegate.commandVersions {
+        if val.contains("+ES 1.0") {
+            if let i = val.indexOf("+ES 2.0") {
+                delegate.commandVersions[key]?.removeAtIndex(i)
+            }
+        }
+    }
+
     // sorts
     delegate.commands.sortInPlace()
     delegate.enums.sortInPlace() {
@@ -576,7 +674,7 @@ func saneDelegate(delegate:KhronosXmlDelegate)
 
 
 // pathPrefix is useful when working with an IDE
-let pathPrefix = "/Users/dturnbull/Desktop/SwiftGL/Utility/"
+let pathPrefix = ""
 var khronosDelegate = KhronosXmlDelegate()
 print("Working...")
 chomper(khronosDelegate, pathPrefix + "gl.xml")
@@ -584,6 +682,5 @@ tidyDelegate(khronosDelegate)
 saneDelegate(khronosDelegate)
 spitter(khronosDelegate, pathPrefix + "../Sources/Constants.swift", writeConstants)
 spitter(khronosDelegate, pathPrefix + "../Sources/Commands.swift", writeCommands)
-spitter(khronosDelegate, pathPrefix + "../Sources/Dispatch.swift", writeDispatch)
 spitter(khronosDelegate, pathPrefix + "../Sources/Loaders.swift", writeLoaders)
 print("Success")

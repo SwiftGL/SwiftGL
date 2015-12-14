@@ -65,7 +65,7 @@ public typealias GLDEBUGPROCAMD = @convention(c)
     (GLuint, GLenum, GLenum, GLsizei, UnsafePointer<GLchar>, UnsafeMutablePointer<Void>) -> Void
 
 
-class commandInfo : CustomStringConvertible {
+class CommandInfo : CustomStringConvertible {
     let name: String
     let support: [String]
     init(_ name: String, _ support: [String]) {
@@ -77,12 +77,53 @@ class commandInfo : CustomStringConvertible {
     }
 }
 
-private func failedToLoad(info: commandInfo) {
-    assert(false, "failed: \(info)")
+private func buildError(info: CommandInfo) -> String {
+    var adds = ""
+    var rems = ""
+    var exts = ""
+    for support in info.support {
+        let short = support[support.startIndex.advancedBy(1)..<support.endIndex]
+        if support.hasPrefix("+") {
+            if adds.characters.count > 0 {
+                adds += ", "
+            }
+            adds += short
+        } else if support.hasPrefix("-") {
+            if rems.characters.count > 0 {
+                rems += ", "
+            }
+            rems += short
+        } else {
+            if exts.characters.count > 0 {
+                exts += ", "
+            }
+            exts += "GL_\(support)"
+        }
+    }
+    var s = "\(info.name) not found"
+    if info.support.count > 0 {
+        s += "\n"
+    }
+    if adds.characters.count > 0 {
+        s += "Added in OpenGL \(adds)\n"
+    }
+    if rems.characters.count > 0 {
+        s += "Removed in OpenGL \(rems)\n"
+    }
+    if exts.characters.count > 0 {
+        s += "Extensions: \(exts)\n"
+    }
+    return s
+}
+
+func getAddress(info: CommandInfo) -> UnsafeMutablePointer<Void> {
+    let fp = lookupAddress(info)
+    assert(fp != nil, buildError(info))
+    return fp
 }
 
 // Platform specific sections below.
-// To support a new platform, implement getAddress.
+// To support a new platform, implement lookupAddress.
 
 #if os(OSX)
 
@@ -91,14 +132,12 @@ private func failedToLoad(info: commandInfo) {
     let openGLframework = "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
     var dlopenHandle = UnsafeMutablePointer<Void>()
 
-    func getAddress(info: commandInfo) -> UnsafeMutablePointer<Void> {
+    func lookupAddress(info: CommandInfo) -> UnsafeMutablePointer<Void> {
         if dlopenHandle == nil {
             dlopenHandle = dlopen(openGLframework, RTLD_LAZY)
         }
         assert(dlopenHandle != nil, "Failed to dlopen OpenGL.framework")
-        let fp = dlsym(dlopenHandle, info.name)
-        if (fp == nil) { failedToLoad(info) }
-        return fp
+        return dlsym(dlopenHandle, info.name)
     }
 
 #elseif os(Linux)
@@ -108,7 +147,7 @@ private func failedToLoad(info: commandInfo) {
     var dlopenHandle = UnsafeMutablePointer<Void>()
     var glXGetProcAddress:(@convention(c) (UnsafePointer<GLchar>) -> UnsafeMutablePointer<Void>)? = nil
     
-    func getAddress(info: commandInfo) -> UnsafeMutablePointer<Void> {
+    func lookupAddress(info: CommandInfo) -> UnsafeMutablePointer<Void> {
         if dlopenHandle == nil {
             dlopenHandle = dlopen(nil, RTLD_LAZY | RTLD_LOCAL)
         }
@@ -126,14 +165,12 @@ private func failedToLoad(info: commandInfo) {
             }
         }
         assert(glXGetProcAddress != nil, "Failed to find glXGetProcAddress")
-        let fp = glXGetProcAddress!(info.name)
-        if (fp == nil) { failedToLoad(info) }
-        return fp
+        return glXGetProcAddress!(info.name)
     }
     
 #else
 
-    func getAddress(info: commandInfo) -> UnsafeMutablePointer<Void> {
+    func lookupAddress(info: commandInfo) -> UnsafeMutablePointer<Void> {
         assert(false, "Unsupported OS")
     }
 

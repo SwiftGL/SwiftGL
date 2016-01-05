@@ -1,7 +1,7 @@
 // WARNING: This file is generated. Modifications will be lost.
 
-// Copyright (c) 2015 David Turnbull
-// Copyright (c) 2013-2015 The Khronos Group Inc.
+// Copyright (c) 2015-2016 David Turnbull
+// Copyright (c) 2013-2016 The Khronos Group Inc.
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and/or associated documentation files (the

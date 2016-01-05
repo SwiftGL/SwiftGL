@@ -1,6 +1,6 @@
 #!/usr/bin/env swift
 
-// Copyright (c) 2015 David Turnbull
+// Copyright (c) 2015-2016 David Turnbull
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and/or associated documentation files (the
@@ -47,7 +47,7 @@ out.open()
 assert(out.streamStatus == .Open, "Unable to write \(filename)")
 
 var s = "// WARNING: This file is generated. Modifications will be lost.\n\n"
-s += "// Copyright (c) 2015 David Turnbull\n"
+s += "// Copyright (c) 2015-2016 David Turnbull\n"
 s += "// \n"
 s += "// Permission is hereby granted, free of charge, to any person obtaining a\n"
 s += "// copy of this software and/or associated documentation files (the\n"

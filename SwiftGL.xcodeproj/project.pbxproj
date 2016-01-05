@@ -67,33 +67,33 @@
 
 /* Begin PBXFileReference section */
 		3D28E9F71C3B34B90091E013 /* SwiftGLUtil */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGLUtil; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D28E9FE1C3B34ED0091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Utility/SwiftGL/main.swift; sourceTree = SOURCE_ROOT; };
+		3D28E9FE1C3B34ED0091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3D28EA061C3B35D90091E013 /* SwiftGLmathUtil */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGLmathUtil; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D28EA0D1C3B35F30091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Utility/SwiftGLmath/main.swift; sourceTree = SOURCE_ROOT; };
+		3D28EA0D1C3B35F30091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3D8F3D081C3B2892007C49E7 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D8F3D151C3B28B1007C49E7 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Demo/HelloWorld/main.swift; sourceTree = SOURCE_ROOT; };
+		3D8F3D151C3B28B1007C49E7 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3D91C3791C3B1FF700BA748A /* SwiftGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D91C3911C3B20C600BA748A /* Commands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Commands.swift; path = Sources/SwiftGL/Commands.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3921C3B20C600BA748A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/SwiftGL/Constants.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3941C3B20C600BA748A /* Loaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Loaders.swift; path = Sources/SwiftGL/Loaders.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3951C3B20C600BA748A /* SwiftGL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftGL.swift; path = Sources/SwiftGL/SwiftGL.swift; sourceTree = SOURCE_ROOT; };
+		3D91C3911C3B20C600BA748A /* Commands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
+		3D91C3921C3B20C600BA748A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3D91C3941C3B20C600BA748A /* Loaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaders.swift; sourceTree = "<group>"; };
+		3D91C3951C3B20C600BA748A /* SwiftGL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGL.swift; sourceTree = "<group>"; };
 		3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGLmath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D91C3BB1C3B21BE00BA748A /* SwiftGLmathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGLmathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D91C3C61C3B220E00BA748A /* Hasher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hasher.swift; path = Sources/SwiftGLmath/Hasher.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3C71C3B220E00BA748A /* Matrix2x2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix2x2.swift; path = Sources/SwiftGLmath/Matrix2x2.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3C81C3B220E00BA748A /* Matrix3x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix3x3.swift; path = Sources/SwiftGLmath/Matrix3x3.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3C91C3B220E00BA748A /* Matrix4x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix4x4.swift; path = Sources/SwiftGLmath/Matrix4x4.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3CA1C3B220E00BA748A /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swizzle.swift; path = Sources/SwiftGLmath/Swizzle.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3CB1C3B220E00BA748A /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Types.swift; path = Sources/SwiftGLmath/Types.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3CC1C3B220E00BA748A /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vector2.swift; path = Sources/SwiftGLmath/Vector2.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3CD1C3B220E00BA748A /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vector3.swift; path = Sources/SwiftGLmath/Vector3.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3CE1C3B220E00BA748A /* Vector4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vector4.swift; path = Sources/SwiftGLmath/Vector4.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3D81C3B224500BA748A /* EqualWithAccuracy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EqualWithAccuracy.swift; path = Tests/SwiftGLmath/EqualWithAccuracy.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3D91C3B224500BA748A /* Matrix2x2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix2x2Tests.swift; path = Tests/SwiftGLmath/Matrix2x2Tests.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3DA1C3B224500BA748A /* Matrix3x3Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix3x3Tests.swift; path = Tests/SwiftGLmath/Matrix3x3Tests.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix4x4Tests.swift; path = Tests/SwiftGLmath/Matrix4x4Tests.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwizzleTests.swift; path = Tests/SwiftGLmath/SwizzleTests.swift; sourceTree = SOURCE_ROOT; };
-		3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vector2Tests.swift; path = Tests/SwiftGLmath/Vector2Tests.swift; sourceTree = SOURCE_ROOT; };
+		3D91C3C61C3B220E00BA748A /* Hasher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hasher.swift; sourceTree = "<group>"; };
+		3D91C3C71C3B220E00BA748A /* Matrix2x2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix2x2.swift; sourceTree = "<group>"; };
+		3D91C3C81C3B220E00BA748A /* Matrix3x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix3x3.swift; sourceTree = "<group>"; };
+		3D91C3C91C3B220E00BA748A /* Matrix4x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix4x4.swift; sourceTree = "<group>"; };
+		3D91C3CA1C3B220E00BA748A /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
+		3D91C3CB1C3B220E00BA748A /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		3D91C3CC1C3B220E00BA748A /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
+		3D91C3CD1C3B220E00BA748A /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
+		3D91C3CE1C3B220E00BA748A /* Vector4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector4.swift; sourceTree = "<group>"; };
+		3D91C3D81C3B224500BA748A /* EqualWithAccuracy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualWithAccuracy.swift; sourceTree = "<group>"; };
+		3D91C3D91C3B224500BA748A /* Matrix2x2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix2x2Tests.swift; sourceTree = "<group>"; };
+		3D91C3DA1C3B224500BA748A /* Matrix3x3Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix3x3Tests.swift; sourceTree = "<group>"; };
+		3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix4x4Tests.swift; sourceTree = "<group>"; };
+		3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwizzleTests.swift; sourceTree = "<group>"; };
+		3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

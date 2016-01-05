@@ -83,12 +83,12 @@ private func buildError(info: CommandInfo) -> String {
     var exts = ""
     for support in info.support {
         let short = support[support.startIndex.advancedBy(1)..<support.endIndex]
-        if support.hasPrefix("+") {
+        if support[support.startIndex] == "+" {
             if adds.characters.count > 0 {
                 adds += ", "
             }
             adds += short
-        } else if support.hasPrefix("-") {
+        } else if support[support.startIndex] == "-" {
             if rems.characters.count > 0 {
                 rems += ", "
             }

@@ -46,7 +46,12 @@ public struct Matrix4x4<T:FloatingPointScalarType> : Hashable, Equatable, Custom
     }
 
     public subscript(i: Int, j: Int) -> T {
-        return self[i][j]
+        get {
+            return self[i][j]
+        }
+        set {
+            self[i][j] = newValue
+        }
     }
 
     public var description: String {

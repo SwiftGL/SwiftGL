@@ -80,4 +80,25 @@ class Matrix4x4Tests: XCTestCase {
         XCTAssertEqualWithAccuracy(v0 * m0, v2, accuracy: 0.00001)
     }
 
+    func testMultiArray() {
+        var m0 = mat4(
+            vec4(0, 1, 2, 3),
+            vec4(4, 5, 6, 7),
+            vec4(8, 9, 10, 11),
+            vec4(12, 13, 14, 15)
+        )
+        let m1 = mat4(
+            vec4(0, 1, 2, 3),
+            vec4(4, 99, 6, 7),
+            vec4(8, 9, 88, 11),
+            vec4(12, 13, 14, 15)
+        )
+        XCTAssertEqual(m0[1,2], m1[1,2])
+        XCTAssertNotEqual(m0[1,1], m1[1,1])
+        m0[1,1] = 99
+        m0[2,2] = 88
+        XCTAssertEqual(m0[1,1], m1[1,1])
+        XCTAssertEqual(m0, m1)
+    }
+
 }

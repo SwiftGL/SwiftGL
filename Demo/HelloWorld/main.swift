@@ -21,6 +21,7 @@
 
 
 import SwiftGL
+import SwiftGLmath
 import CGLFW3
 
 let WIDTH:GLsizei = 800, HEIGHT:GLsizei = 600
@@ -40,13 +41,11 @@ let fragmentShaderSource =
     "gl_FragColor = vec4(0.3, 0.6, 0.6, 1.0);\n" +
     "}\n"
 
-typealias vec3 = (GLfloat, GLfloat, GLfloat)
-
 let vertices:[vec3] = [
-    (0.5, 0.5, 0.0),
-    (0.5, -0.5, 0.0),
-    (-0.5, -0.5, 0.0),
-    (-0.5, 0.5, 0.0),
+    vec3(0.5, 0.5, 0.0),
+    vec3(0.5, -0.5, 0.0),
+    vec3(-0.5, -0.5, 0.0),
+    vec3(-0.5, 0.5, 0.0),
 ]
 
 let indices:[GLuint] = [

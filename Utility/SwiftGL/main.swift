@@ -1,4 +1,4 @@
-#!/usr/bin/env xcrun swift
+#!/usr/bin/env swift
 
 // Copyright (c) 2015 David Turnbull
 //
@@ -673,14 +673,17 @@ func saneDelegate(delegate:KhronosXmlDelegate)
 }
 
 
-// pathPrefix is useful when working with an IDE
-let pathPrefix = ""
+if (Process.argc != 2) {
+    print("\nusage: main.swift path_to_root\n")
+    exit(1)
+}
+let pathPrefix = Process.arguments[1]
 var khronosDelegate = KhronosXmlDelegate()
 print("Working...")
-chomper(khronosDelegate, pathPrefix + "gl.xml")
+chomper(khronosDelegate, pathPrefix + "/Utility/SwiftGL/gl.xml")
 tidyDelegate(khronosDelegate)
 saneDelegate(khronosDelegate)
-spitter(khronosDelegate, pathPrefix + "../Sources/Constants.swift", writeConstants)
-spitter(khronosDelegate, pathPrefix + "../Sources/Commands.swift", writeCommands)
-spitter(khronosDelegate, pathPrefix + "../Sources/Loaders.swift", writeLoaders)
+spitter(khronosDelegate, pathPrefix + "/Sources/SwiftGL/Constants.swift", writeConstants)
+spitter(khronosDelegate, pathPrefix + "/Sources/SwiftGL/Commands.swift", writeCommands)
+spitter(khronosDelegate, pathPrefix + "/Sources/SwiftGL/Loaders.swift", writeLoaders)
 print("Success")

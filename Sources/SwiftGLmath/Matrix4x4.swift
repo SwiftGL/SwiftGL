@@ -332,10 +332,22 @@ public func *<T:FloatingPointScalarType>(m: Matrix4x4<T>, s: T) -> Matrix4x4<T> 
 
 
 public func *<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix4x4<T>) -> Vector4<T> {
-    let x:T = v.x * m.x.x + v.y * m.x.y + v.z * m.x.z + v.w * m.x.w
-    let y:T = v.x * m.y.x + v.y * m.y.y + v.z * m.y.z + v.w * m.y.w
-    let z:T = v.x * m.z.x + v.y * m.z.y + v.z * m.z.z + v.w * m.z.w
-    let w:T = v.x * m.w.x + v.y * m.w.y + v.z * m.w.z + v.w * m.w.w
+    var x:T = v.x * m.x.x
+        x = x + v.y * m.x.y
+        x = x + v.z * m.x.z
+        x = x + v.w * m.x.w
+    var y:T = v.x * m.y.x
+        y = y + v.y * m.y.y
+        y = y + v.z * m.y.z
+        y = y + v.w * m.y.w
+    var z:T = v.x * m.z.x
+        z = z + v.y * m.z.y
+        z = z + v.z * m.z.z
+        z = z + v.w * m.z.w
+    var w:T = v.x * m.w.x
+        w = w + v.y * m.w.y
+        w = w + v.z * m.w.z
+        w = w + v.w * m.w.w
     return Vector4<T>(x,y,z,w)
 }
 
@@ -350,14 +362,22 @@ public func *<T:FloatingPointScalarType>(m: Matrix4x4<T>, v: Vector4<T>) -> Vect
 
 
 public func *<T:FloatingPointScalarType>(a: Matrix4x4<T>, b: Matrix4x4<T>) -> Matrix4x4<T> {
-    var x:Vector4<T> = a.x * b.x.x + a.y * b.x.y
-    x = x + a.z * b.x.z + a.w * b.x.w
-    var y:Vector4<T> = a.x * b.y.x + a.y * b.y.y
-    y = y + a.z * b.y.z + a.w * b.y.w
-    var z:Vector4<T> = a.x * b.z.x + a.y * b.z.y
-    z = z + a.z * b.z.z + a.w * b.z.w
-    var w:Vector4<T> = a.x * b.w.x + a.y * b.w.y
-    w = w + a.z * b.w.z + a.w * b.w.w
+    var x:Vector4<T> = a.x * b.x.x
+        x = x + a.y * b.x.y
+        x = x + a.z * b.x.z
+        x = x + a.w * b.x.w
+    var y:Vector4<T> = a.x * b.y.x
+        y = y + a.y * b.y.y
+        y = y + a.z * b.y.z
+        y = y + a.w * b.y.w
+    var z:Vector4<T> = a.x * b.z.x
+        z = z + a.y * b.z.y
+        z = z + a.z * b.z.z
+        z = z + a.w * b.z.w
+    var w:Vector4<T> = a.x * b.w.x
+        w = w + a.y * b.w.y
+        w = w + a.z * b.w.z
+        w = w + a.w * b.w.w
     return Matrix4x4<T>(x, y, z, w)
 }
 
@@ -424,67 +444,131 @@ public func /=<T:FloatingPointScalarType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<
 
 
 public func inverse<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
-    let d00:T = m.x.x * m.y.y - m.y.x * m.x.y
-    let d01:T = m.x.x * m.y.z - m.y.x * m.x.z
-    let d02:T = m.x.x * m.y.w - m.y.x * m.x.w
-    let d03:T = m.x.y * m.y.z - m.y.y * m.x.z
-    let d04:T = m.x.y * m.y.w - m.y.y * m.x.w
-    let d05:T = m.x.z * m.y.w - m.y.z * m.x.w
+    var d00:T = m.x.x * m.y.y
+        d00 = d00 - m.y.x * m.x.y
+    var d01:T = m.x.x * m.y.z
+        d01 = d01 - m.y.x * m.x.z
+    var d02:T = m.x.x * m.y.w
+        d02 = d02 - m.y.x * m.x.w
+    var d03:T = m.x.y * m.y.z
+        d03 = d03 - m.y.y * m.x.z
+    var d04:T = m.x.y * m.y.w
+        d04 = d04 - m.y.y * m.x.w
+    var d05:T = m.x.z * m.y.w
+        d05 = d05 - m.y.z * m.x.w
 
-    let d10:T = m.z.x * m.w.y - m.w.x * m.z.y
-    let d11:T = m.z.x * m.w.z - m.w.x * m.z.z
-    let d12:T = m.z.x * m.w.w - m.w.x * m.z.w
-    let d13:T = m.z.y * m.w.z - m.w.y * m.z.z
-    let d14:T = m.z.y * m.w.w - m.w.y * m.z.w
-    let d15:T = m.z.z * m.w.w - m.w.z * m.z.w
+    var d10:T = m.z.x * m.w.y
+        d10 = d10 - m.w.x * m.z.y
+    var d11:T = m.z.x * m.w.z
+        d11 = d11 - m.w.x * m.z.z
+    var d12:T = m.z.x * m.w.w
+        d12 = d12 - m.w.x * m.z.w
+    var d13:T = m.z.y * m.w.z
+        d13 = d13 - m.w.y * m.z.z
+    var d14:T = m.z.y * m.w.w
+        d14 = d14 - m.w.y * m.z.w
+    var d15:T = m.z.z * m.w.w
+        d15 = d15 - m.w.z * m.z.w
 
-    var det:T = d00 * d15 - d01 * d14 + d02 * d13
-    det = det + d03 * d12 - d04 * d11 + d05 * d10
+    var det:T = d00 * d15
+        det = det - d01 * d14
+        det = det + d02 * d13
+    det = det + d03 * d12
+        det = det - d04 * d11
+        det = det + d05 * d10
     let invdet : T = T(1) / det
 
     var mm = Matrix4x4<T>()
 
-    mm.x.x =  m.y.y * d15 - m.y.z * d14 + m.y.w * d13
-    mm.x.y = -m.x.y * d15 + m.x.z * d14 - m.x.w * d13
-    mm.x.z =  m.w.y * d05 - m.w.z * d04 + m.w.w * d03
-    mm.x.w = -m.z.y * d05 + m.z.z * d04 - m.z.w * d03
+    mm.x.x =  m.y.y * d15
+    mm.x.x = mm.x.x - m.y.z * d14
+    mm.x.x = mm.x.x + m.y.w * d13
+    mm.x.y = -m.x.y * d15
+    mm.x.y = mm.x.y + m.x.z * d14
+    mm.x.y = mm.x.y - m.x.w * d13
+    mm.x.z =  m.w.y * d05
+    mm.x.z = mm.x.z - m.w.z * d04
+    mm.x.z = mm.x.z + m.w.w * d03
+    mm.x.w = -m.z.y * d05
+    mm.x.w = mm.x.w + m.z.z * d04
+    mm.x.w = mm.x.w - m.z.w * d03
 
-    mm.y.x = -m.y.x * d15 + m.y.z * d12 - m.y.w * d11
-    mm.y.y =  m.x.x * d15 - m.x.z * d12 + m.x.w * d11
-    mm.y.z = -m.w.x * d05 + m.w.z * d02 - m.w.w * d01
-    mm.y.w =  m.z.x * d05 - m.z.z * d02 + m.z.w * d01
+    mm.y.x = -m.y.x * d15
+    mm.y.x = mm.y.x + m.y.z * d12
+    mm.y.x = mm.y.x - m.y.w * d11
+    mm.y.y =  m.x.x * d15
+    mm.y.y = mm.y.y - m.x.z * d12
+    mm.y.y = mm.y.y + m.x.w * d11
+    mm.y.z = -m.w.x * d05
+    mm.y.z = mm.y.z + m.w.z * d02
+    mm.y.z = mm.y.z - m.w.w * d01
+    mm.y.w =  m.z.x * d05
+    mm.y.w = mm.y.w - m.z.z * d02
+    mm.y.w = mm.y.w + m.z.w * d01
 
-    mm.z.x =  m.y.x * d14 - m.y.y * d12 + m.y.w * d10
-    mm.z.y = -m.x.x * d14 + m.x.y * d12 - m.x.w * d10
-    mm.z.z =  m.w.x * d04 - m.w.y * d02 + m.w.w * d00
-    mm.z.w = -m.z.x * d04 + m.z.y * d02 - m.z.w * d00
+    mm.z.x =  m.y.x * d14
+    mm.z.x = mm.z.x - m.y.y * d12
+    mm.z.x = mm.z.x + m.y.w * d10
+    mm.z.y = -m.x.x * d14
+    mm.z.y = mm.z.y + m.x.y * d12
+    mm.z.y = mm.z.y - m.x.w * d10
+    mm.z.z =  m.w.x * d04
+    mm.z.z = mm.z.z - m.w.y * d02
+    mm.z.z = mm.z.z + m.w.w * d00
+    mm.z.w = -m.z.x * d04
+    mm.z.w = mm.z.w + m.z.y * d02
+    mm.z.w = mm.z.w - m.z.w * d00
 
-    mm.w.x = -m.y.x * d13 + m.y.y * d11 - m.y.z * d10
-    mm.w.y =  m.x.x * d13 - m.x.y * d11 + m.x.z * d10
-    mm.w.z = -m.w.x * d03 + m.w.y * d01 - m.w.z * d00
-    mm.w.w =  m.z.x * d03 - m.z.y * d01 + m.z.z * d00
-    
+    mm.w.x = -m.y.x * d13
+    mm.w.x = mm.w.x + m.y.y * d11
+    mm.w.x = mm.w.x - m.y.z * d10
+    mm.w.y =  m.x.x * d13
+    mm.w.y = mm.w.y - m.x.y * d11
+    mm.w.y = mm.w.y + m.x.z * d10
+    mm.w.z = -m.w.x * d03
+    mm.w.z = mm.w.z + m.w.y * d01
+    mm.w.z = mm.w.z - m.w.z * d00
+    mm.w.w =  m.z.x * d03
+    mm.w.w = mm.w.w - m.z.y * d01
+    mm.w.w = mm.w.w + m.z.z * d00
+
     return mm * invdet
 }
 
 
 public func determinant<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> T {
-    let d00:T = m.x.x * m.y.y - m.y.x * m.x.y
-    let d01:T = m.x.x * m.y.z - m.y.x * m.x.z
-    let d02:T = m.x.x * m.y.w - m.y.x * m.x.w
-    let d03:T = m.x.y * m.y.z - m.y.y * m.x.z
-    let d04:T = m.x.y * m.y.w - m.y.y * m.x.w
-    let d05:T = m.x.z * m.y.w - m.y.z * m.x.w
+    var d00:T = m.x.x * m.y.y
+        d00 = d00 - m.y.x * m.x.y
+    var d01:T = m.x.x * m.y.z
+        d01 = d01 - m.y.x * m.x.z
+    var d02:T = m.x.x * m.y.w
+        d02 = d02 - m.y.x * m.x.w
+    var d03:T = m.x.y * m.y.z
+        d03 = d03 - m.y.y * m.x.z
+    var d04:T = m.x.y * m.y.w
+        d04 = d04 - m.y.y * m.x.w
+    var d05:T = m.x.z * m.y.w
+        d05 = d05 - m.y.z * m.x.w
 
-    let d10:T = m.z.x * m.w.y - m.w.x * m.z.y
-    let d11:T = m.z.x * m.w.z - m.w.x * m.z.z
-    let d12:T = m.z.x * m.w.w - m.w.x * m.z.w
-    let d13:T = m.z.y * m.w.z - m.w.y * m.z.z
-    let d14:T = m.z.y * m.w.w - m.w.y * m.z.w
-    let d15:T = m.z.z * m.w.w - m.w.z * m.z.w
+    var d10:T = m.z.x * m.w.y
+        d10 = d10 - m.w.x * m.z.y
+    var d11:T = m.z.x * m.w.z
+        d11 = d11 - m.w.x * m.z.z
+    var d12:T = m.z.x * m.w.w
+        d12 = d12 - m.w.x * m.z.w
+    var d13:T = m.z.y * m.w.z
+        d13 = d13 - m.w.y * m.z.z
+    var d14:T = m.z.y * m.w.w
+        d14 = d14 - m.w.y * m.z.w
+    var d15:T = m.z.z * m.w.w
+        d15 = d15 - m.w.z * m.z.w
 
-    var det:T = d00 * d15 - d01 * d14 + d02 * d13
-    det = det + d03 * d12 - d04 * d11 + d05 * d10
+    var det:T = d00 * d15
+    det = det - d01 * d14
+    det = det + d02 * d13
+    det = det + d03 * d12
+    det = det - d04 * d11
+    det = det + d05 * d10
 
     return det
 }

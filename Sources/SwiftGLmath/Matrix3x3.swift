@@ -301,9 +301,15 @@ public func *<T:FloatingPointScalarType>(m: Matrix3x3<T>, s: T) -> Matrix3x3<T> 
 
 
 public func *<T:FloatingPointScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
-    let x:T = v.x * m.x.x + v.y * m.x.y + v.z * m.x.z
-    let y:T = v.x * m.y.x + v.y * m.y.y + v.z * m.y.z
-    let z:T = v.x * m.z.x + v.y * m.z.y + v.z * m.z.z
+    var x:T = v.x * m.x.x
+    x = x + v.y * m.x.y
+    x = x + v.z * m.x.z
+    var y:T = v.x * m.y.x
+    y = y + v.y * m.y.y
+    y = y + v.z * m.y.z
+    var z:T = v.x * m.z.x
+    z = z + v.y * m.z.y
+    z = z + v.z * m.z.z
     return Vector3<T>(x,y,z)
 }
 
@@ -381,16 +387,16 @@ public func /=<T:FloatingPointScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<
 public func inverse<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
     let invdet:T = T(1) / determinant(m)
     var mm = Matrix3x3<T>()
-    mm.x.x =  (m.y.y * m.z.z - m.y.z * m.z.y) * invdet
-    mm.y.x = -(m.y.x * m.z.z - m.y.z * m.z.x) * invdet
-    mm.z.x =  (m.y.x * m.z.y - m.y.y * m.z.x) * invdet
-    mm.x.y = -(m.x.y * m.z.z - m.x.z * m.z.y) * invdet
-    mm.y.y =  (m.x.x * m.z.z - m.x.z * m.z.x) * invdet
-    mm.z.y = -(m.x.x * m.z.y - m.x.y * m.z.x) * invdet
-    mm.x.z =  (m.x.y * m.y.z - m.x.z * m.y.y) * invdet
-    mm.y.z = -(m.x.x * m.y.z - m.x.z * m.y.x) * invdet
-    mm.z.z =  (m.x.x * m.y.y - m.x.y * m.y.x) * invdet
-    return mm
+    mm.x.x =  (m.y.y * m.z.z - m.y.z * m.z.y)
+    mm.y.x = -(m.y.x * m.z.z - m.y.z * m.z.x)
+    mm.z.x =  (m.y.x * m.z.y - m.y.y * m.z.x)
+    mm.x.y = -(m.x.y * m.z.z - m.x.z * m.z.y)
+    mm.y.y =  (m.x.x * m.z.z - m.x.z * m.z.x)
+    mm.z.y = -(m.x.x * m.z.y - m.x.y * m.z.x)
+    mm.x.z =  (m.x.y * m.y.z - m.x.z * m.y.y)
+    mm.y.z = -(m.x.x * m.y.z - m.x.z * m.y.x)
+    mm.z.z =  (m.x.x * m.y.y - m.x.y * m.y.x)
+    return mm * invdet
 }
 
 

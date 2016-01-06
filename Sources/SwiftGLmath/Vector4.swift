@@ -183,11 +183,13 @@ public func ==<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Bool {
 }
 
 
+@warn_unused_result
 public prefix func +<T:SignedScalarType>(v: Vector4<T>) -> Vector4<T> {
     return v
 }
 
 
+@warn_unused_result
 public prefix func -<T:SignedScalarType>(v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(-v.x, -v.y, -v.z, -v.w)
 }
@@ -231,6 +233,7 @@ public postfix func --<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func +<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         s + v.x,
@@ -241,6 +244,7 @@ public func +<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func +<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(
         v.x + s,
@@ -251,6 +255,7 @@ public func +<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func +<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         v1.x + v2.x,
@@ -277,6 +282,7 @@ public func +=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
 }
 
 
+@warn_unused_result
 public func -<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         s - v.x,
@@ -287,6 +293,7 @@ public func -<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func -<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(
         v.x - s,
@@ -297,6 +304,7 @@ public func -<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func -<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         v1.x - v2.x,
@@ -323,6 +331,7 @@ public func -=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
 }
 
 
+@warn_unused_result
 public func *<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         s * v.x,
@@ -333,6 +342,7 @@ public func *<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func *<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(
         v.x * s,
@@ -343,6 +353,7 @@ public func *<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func *<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         v1.x * v2.x,
@@ -369,6 +380,7 @@ public func *=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
 }
 
 
+@warn_unused_result
 public func /<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         s / v.x,
@@ -379,6 +391,7 @@ public func /<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func /<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(
         v.x / s,
@@ -389,6 +402,7 @@ public func /<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
 }
 
 
+@warn_unused_result
 public func /<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         v1.x / v2.x,

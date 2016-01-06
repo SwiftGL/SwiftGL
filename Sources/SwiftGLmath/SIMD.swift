@@ -26,6 +26,7 @@
 
 import simd
 
+@warn_unused_result
 public func * (a: Matrix4x4<Float>, b: Matrix4x4<Float>) -> Matrix4x4<Float> {
     return unsafeBitCast(
         unsafeBitCast(a, float4x4.self) * unsafeBitCast(b, float4x4.self),
@@ -33,6 +34,7 @@ public func * (a: Matrix4x4<Float>, b: Matrix4x4<Float>) -> Matrix4x4<Float> {
     )
 }
 
+@warn_unused_result
 public func * (a: Vector4<Float>, b: Matrix4x4<Float>) -> Vector4<Float> {
     return unsafeBitCast(
         unsafeBitCast(a, float4.self) * unsafeBitCast(b, float4x4.self),
@@ -40,6 +42,7 @@ public func * (a: Vector4<Float>, b: Matrix4x4<Float>) -> Vector4<Float> {
     )
 }
 
+@warn_unused_result
 public func * (a: Matrix4x4<Float>, b: Vector4<Float>) -> Vector4<Float> {
     return unsafeBitCast(
         unsafeBitCast(a, float4x4.self) * unsafeBitCast(b, float4.self),

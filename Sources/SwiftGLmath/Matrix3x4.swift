@@ -109,11 +109,13 @@ public func ==<T:FloatingPointScalarType>(m1: Matrix3x4<T>, m2: Matrix3x4<T>) ->
 }
 
 
+@warn_unused_result
 public prefix func +<T:FloatingPointScalarType>(m: Matrix3x4<T>) -> Matrix3x4<T> {
     return m
 }
 
 
+@warn_unused_result
 public prefix func -<T:FloatingPointScalarType>(m: Matrix3x4<T>) -> Matrix3x4<T> {
     return Matrix3x4<T>(-m.x, -m.y, -m.z)
 }
@@ -153,6 +155,7 @@ public postfix func --<T:FloatingPointScalarType>(inout m: Matrix3x4<T>) -> Matr
 }
 
 
+@warn_unused_result
 public func +<T:FloatingPointScalarType>(s: T, m: Matrix3x4<T>) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         s + m.x,
@@ -162,6 +165,7 @@ public func +<T:FloatingPointScalarType>(s: T, m: Matrix3x4<T>) -> Matrix3x4<T> 
 }
 
 
+@warn_unused_result
 public func +<T:FloatingPointScalarType>(m: Matrix3x4<T>, s: T) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         m.x + s,
@@ -171,6 +175,7 @@ public func +<T:FloatingPointScalarType>(m: Matrix3x4<T>, s: T) -> Matrix3x4<T> 
 }
 
 
+@warn_unused_result
 public func +<T:FloatingPointScalarType>(m1: Matrix3x4<T>, m2: Matrix3x4<T>) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         m1.x + m2.x,
@@ -194,6 +199,7 @@ public func +=<T:FloatingPointScalarType>(inout m1: Matrix3x4<T>, m2: Matrix3x4<
 }
 
 
+@warn_unused_result
 public func -<T:FloatingPointScalarType>(s: T, m: Matrix3x4<T>) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         s - m.x,
@@ -203,6 +209,7 @@ public func -<T:FloatingPointScalarType>(s: T, m: Matrix3x4<T>) -> Matrix3x4<T> 
 }
 
 
+@warn_unused_result
 public func -<T:FloatingPointScalarType>(m: Matrix3x4<T>, s: T) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         m.x - s,
@@ -211,6 +218,7 @@ public func -<T:FloatingPointScalarType>(m: Matrix3x4<T>, s: T) -> Matrix3x4<T> 
     )
 }
 
+@warn_unused_result
 public func -<T:FloatingPointScalarType>(m1: Matrix3x4<T>, m2: Matrix3x4<T>) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         m1.x - m2.x,
@@ -234,6 +242,7 @@ public func -=<T:FloatingPointScalarType>(inout m1: Matrix3x4<T>, m2: Matrix3x4<
 }
 
 
+@warn_unused_result
 public func *<T:FloatingPointScalarType>(s: T, m: Matrix3x4<T>) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         m.x * s,
@@ -243,6 +252,7 @@ public func *<T:FloatingPointScalarType>(s: T, m: Matrix3x4<T>) -> Matrix3x4<T> 
 }
 
 
+@warn_unused_result
 public func *<T:FloatingPointScalarType>(m: Matrix3x4<T>, s: T) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         m.x * s,
@@ -252,6 +262,7 @@ public func *<T:FloatingPointScalarType>(m: Matrix3x4<T>, s: T) -> Matrix3x4<T> 
 }
 
 
+@warn_unused_result
 public func *<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix3x4<T>) -> Vector3<T> {
     var x:T = v.x * m.x.x
     x = x + v.y * m.x.y
@@ -269,6 +280,7 @@ public func *<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix3x4<T>) -> Vect
 }
 
 
+@warn_unused_result
 public func *<T:FloatingPointScalarType>(m: Matrix3x4<T>, v: Vector3<T>) -> Vector4<T> {
     var rv:Vector4<T> = m.x * v.x
     rv = rv + m.y * v.y
@@ -277,6 +289,7 @@ public func *<T:FloatingPointScalarType>(m: Matrix3x4<T>, v: Vector3<T>) -> Vect
 }
 
 
+@warn_unused_result
 public func *<T:FloatingPointScalarType>(a: Matrix3x4<T>, b: Matrix2x3<T>) -> Matrix2x4<T> {
     var x:Vector4<T> = a.x * b.x.x
     x = x + a.y * b.x.y
@@ -288,6 +301,7 @@ public func *<T:FloatingPointScalarType>(a: Matrix3x4<T>, b: Matrix2x3<T>) -> Ma
 }
 
 
+@warn_unused_result
 public func *<T:FloatingPointScalarType>(a: Matrix3x4<T>, b: Matrix3x3<T>) -> Matrix3x4<T> {
     var x:Vector4<T> = a.x * b.x.x
     x = x + a.y * b.x.y
@@ -302,6 +316,7 @@ public func *<T:FloatingPointScalarType>(a: Matrix3x4<T>, b: Matrix3x3<T>) -> Ma
 }
 
 
+@warn_unused_result
 public func *<T:FloatingPointScalarType>(a: Matrix3x4<T>, b: Matrix4x3<T>) -> Matrix4x4<T> {
     var x:Vector4<T> = a.x * b.x.x
     x = x + a.y * b.x.y
@@ -326,6 +341,7 @@ public func *=<T:FloatingPointScalarType>(inout m: Matrix3x4<T>, s: T) {
 }
 
 
+@warn_unused_result
 public func /<T:FloatingPointScalarType>(s: T, m: Matrix3x4<T>) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         s / m.x,
@@ -335,6 +351,7 @@ public func /<T:FloatingPointScalarType>(s: T, m: Matrix3x4<T>) -> Matrix3x4<T> 
 }
 
 
+@warn_unused_result
 public func /<T:FloatingPointScalarType>(m: Matrix3x4<T>, s: T) -> Matrix3x4<T> {
     return Matrix3x4<T>(
         m.x / s,

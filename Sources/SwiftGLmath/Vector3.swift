@@ -139,11 +139,13 @@ public func ==<T:ScalarType>(v1: Vector3<T>, v2: Vector3<T>) -> Bool {
 }
 
 
+@warn_unused_result
 public prefix func +<T:SignedScalarType>(v: Vector3<T>) -> Vector3<T> {
     return v
 }
 
 
+@warn_unused_result
 public prefix func -<T:SignedScalarType>(v: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(-v.x, -v.y, -v.z)
 }
@@ -183,6 +185,7 @@ public postfix func --<T:ScalarType>(inout v: Vector3<T>) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func +<T:ScalarType>(s: T, v: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(
         s + v.x,
@@ -192,6 +195,7 @@ public func +<T:ScalarType>(s: T, v: Vector3<T>) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func +<T:ScalarType>(v: Vector3<T>, s: T) -> Vector3<T> {
     return Vector3<T>(
         v.x + s,
@@ -201,6 +205,7 @@ public func +<T:ScalarType>(v: Vector3<T>, s: T) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func +<T:ScalarType>(v1: Vector3<T>, v2: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(
         v1.x + v2.x,
@@ -224,6 +229,7 @@ public func +=<T:ScalarType>(inout v1: Vector3<T>, v2: Vector3<T>) {
 }
 
 
+@warn_unused_result
 public func -<T:ScalarType>(s: T, v: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(
         s - v.x,
@@ -233,6 +239,7 @@ public func -<T:ScalarType>(s: T, v: Vector3<T>) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func -<T:ScalarType>(v: Vector3<T>, s: T) -> Vector3<T> {
     return Vector3<T>(
         v.x - s,
@@ -242,6 +249,7 @@ public func -<T:ScalarType>(v: Vector3<T>, s: T) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func -<T:ScalarType>(v1: Vector3<T>, v2: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(
         v1.x - v2.x,
@@ -265,6 +273,7 @@ public func -=<T:ScalarType>(inout v1: Vector3<T>, v2: Vector3<T>) {
 }
 
 
+@warn_unused_result
 public func *<T:ScalarType>(s: T, v: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(
         s * v.x,
@@ -274,6 +283,7 @@ public func *<T:ScalarType>(s: T, v: Vector3<T>) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func *<T:ScalarType>(v: Vector3<T>, s: T) -> Vector3<T> {
     return Vector3<T>(
         v.x * s,
@@ -283,6 +293,7 @@ public func *<T:ScalarType>(v: Vector3<T>, s: T) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func *<T:ScalarType>(v1: Vector3<T>, v2: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(
         v1.x * v2.x,
@@ -306,6 +317,7 @@ public func *=<T:ScalarType>(inout v1: Vector3<T>, v2: Vector3<T>) {
 }
 
 
+@warn_unused_result
 public func /<T:ScalarType>(s: T, v: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(
         s / v.x,
@@ -315,6 +327,7 @@ public func /<T:ScalarType>(s: T, v: Vector3<T>) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func /<T:ScalarType>(v: Vector3<T>, s: T) -> Vector3<T> {
     return Vector3<T>(
         v.x / s,
@@ -324,6 +337,7 @@ public func /<T:ScalarType>(v: Vector3<T>, s: T) -> Vector3<T> {
 }
 
 
+@warn_unused_result
 public func /<T:ScalarType>(v1: Vector3<T>, v2: Vector3<T>) -> Vector3<T> {
     return Vector3<T>(
         v1.x / v2.x,

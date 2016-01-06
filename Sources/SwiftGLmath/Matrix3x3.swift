@@ -20,7 +20,7 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Matrix3x3<T:FloatingPointScalarType> : Hashable, Equatable, CustomStringConvertible {
+public struct Matrix3x3<T:FloatingPointScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
 
     public var x:Vector3<T>, y:Vector3<T>, z:Vector3<T>
 
@@ -52,8 +52,10 @@ public struct Matrix3x3<T:FloatingPointScalarType> : Hashable, Equatable, Custom
         }
     }
 
-    public var description: String {
-        return "(\(x), \(y), \(z))"
+    public var debugDescription: String {
+        return String(self.dynamicType) + "(" + [x,y,z].map{ (v:Vector3<T>) -> String in
+            "[" + [v.x,v.y,v.z].map{ (n:T) -> String in String(n) }.joinWithSeparator(", ") + "]"
+            }.joinWithSeparator(", ") + ")"
     }
 
     public var hashValue: Int {
@@ -169,24 +171,6 @@ public func +<T:FloatingPointScalarType>(m: Matrix3x3<T>, s: T) -> Matrix3x3<T> 
 }
 
 
-public func +<T:FloatingPointScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        v + m.x,
-        v + m.y,
-        v + m.z
-    )
-}
-
-
-public func +<T:FloatingPointScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m.x + v,
-        m.y + v,
-        m.z + v
-    )
-}
-
-
 public func +<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
     return Matrix3x3<T>(
         m1.x + m2.x,
@@ -200,13 +184,6 @@ public func +=<T:FloatingPointScalarType>(inout m: Matrix3x3<T>, s: T) {
     m.x += s
     m.y += s
     m.z += s
-}
-
-
-public func +=<T:FloatingPointScalarType>(inout m: Matrix3x3<T>, v: Vector3<T>) {
-    m.x += v
-    m.y += v
-    m.z += v
 }
 
 
@@ -234,24 +211,6 @@ public func -<T:FloatingPointScalarType>(m: Matrix3x3<T>, s: T) -> Matrix3x3<T> 
     )
 }
 
-public func -<T:FloatingPointScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        v - m.x,
-        v - m.y,
-        v - m.z
-    )
-}
-
-
-public func -<T:FloatingPointScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m.x - v,
-        m.y - v,
-        m.z - v
-    )
-}
-
-
 public func -<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
     return Matrix3x3<T>(
         m1.x - m2.x,
@@ -265,13 +224,6 @@ public func -=<T:FloatingPointScalarType>(inout m: Matrix3x3<T>, s: T) {
     m.x -= s
     m.y -= s
     m.z -= s
-}
-
-
-public func -=<T:FloatingPointScalarType>(inout m: Matrix3x3<T>, v: Vector3<T>) {
-    m.x -= v
-    m.y -= v
-    m.z -= v
 }
 
 
@@ -315,15 +267,52 @@ public func *<T:FloatingPointScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vect
 
 
 public func *<T:FloatingPointScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
-    return m.x * v.x + m.y * v.y + m.z * v.z
+    var rv:Vector3<T> = m.x * v.x
+    rv = rv + m.y * v.y
+    rv = rv + m.z * v.z
+    return rv
+}
+
+
+public func *<T:FloatingPointScalarType>(a: Matrix3x3<T>, b: Matrix2x3<T>) -> Matrix2x3<T> {
+    var x:Vector3<T> = a.x * b.x.x
+    x = x + a.y * b.x.y
+    x = x + a.z * b.x.z
+    var y:Vector3<T> = a.x * b.y.x
+    y = y + a.y * b.y.y
+    y = y + a.z * b.y.z
+    return Matrix2x3<T>(x, y)
 }
 
 
 public func *<T:FloatingPointScalarType>(a: Matrix3x3<T>, b: Matrix3x3<T>) -> Matrix3x3<T> {
-    let x:Vector3<T> = a.x * b.x.x + a.y * b.x.y + a.z * b.x.z
-    let y:Vector3<T> = a.x * b.y.x + a.y * b.y.y + a.z * b.y.z
-    let z:Vector3<T> = a.x * b.z.x + a.y * b.z.y + a.z * b.z.z
+    var x:Vector3<T> = a.x * b.x.x
+    x = x + a.y * b.x.y
+    x = x + a.z * b.x.z
+    var y:Vector3<T> = a.x * b.y.x
+    y = y + a.y * b.y.y
+    y = y + a.z * b.y.z
+    var z:Vector3<T> = a.x * b.z.x
+    z = z + a.y * b.z.y
+    z = z + a.z * b.z.z
     return Matrix3x3<T>(x, y, z)
+}
+
+
+public func *<T:FloatingPointScalarType>(a: Matrix3x3<T>, b: Matrix4x3<T>) -> Matrix4x3<T> {
+    var x:Vector3<T> = a.x * b.x.x
+    x = x + a.y * b.x.y
+    x = x + a.z * b.x.z
+    var y:Vector3<T> = a.x * b.y.x
+    y = y + a.y * b.y.y
+    y = y + a.z * b.y.z
+    var z:Vector3<T> = a.x * b.z.x
+    z = z + a.y * b.z.y
+    z = z + a.z * b.z.z
+    var w:Vector3<T> = a.x * b.w.x
+    w = w + a.y * b.w.y
+    w = w + a.z * b.w.z
+    return Matrix4x3<T>(x, y, z, w)
 }
 
 
@@ -401,8 +390,11 @@ public func inverse<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> 
 
 
 public func determinant<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> T {
-    var det = m.x.x * (m.y.y * m.z.z - m.z.y * m.y.z)
-    det = det - m.y.x * (m.x.y * m.z.z - m.z.y * m.x.z)
-    det = det + m.z.x * (m.x.y * m.y.z - m.y.y * m.x.z)
+    let d1 = (m.y.y * m.z.z - m.z.y * m.y.z)
+    let d2 = (m.x.y * m.z.z - m.z.y * m.x.z)
+    let d3 = (m.x.y * m.y.z - m.y.y * m.x.z)
+    var det = m.x.x * d1
+    det = det - m.y.x * d2
+    det = det + m.z.x * d3
     return det
 }

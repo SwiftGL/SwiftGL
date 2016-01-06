@@ -20,7 +20,7 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Matrix4x4<T:FloatingPointScalarType> : Hashable, Equatable, CustomStringConvertible {
+public struct Matrix4x4<T:FloatingPointScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
 
     public var x:Vector4<T>, y:Vector4<T>, z:Vector4<T>, w:Vector4<T>
 
@@ -54,8 +54,10 @@ public struct Matrix4x4<T:FloatingPointScalarType> : Hashable, Equatable, Custom
         }
     }
 
-    public var description: String {
-        return "(\(x), \(y), \(z), \(w))"
+    public var debugDescription: String {
+        return String(self.dynamicType) + "(" + [x,y,z,w].map{ (v:Vector4<T>) -> String in
+            "[" + [v.x,v.y,v.z,v.w].map{ (n:T) -> String in String(n) }.joinWithSeparator(", ") + "]"
+        }.joinWithSeparator(", ") + ")"
     }
 
     public var hashValue: Int {
@@ -184,26 +186,6 @@ public func +<T:FloatingPointScalarType>(m: Matrix4x4<T>, s: T) -> Matrix4x4<T> 
 }
 
 
-public func +<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        v + m.x,
-        v + m.y,
-        v + m.z,
-        v + m.w
-    )
-}
-
-
-public func +<T:FloatingPointScalarType>(m: Matrix4x4<T>, v: Vector4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m.x + v,
-        m.y + v,
-        m.z + v,
-        m.w + v
-    )
-}
-
-
 public func +<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4<T> {
     return Matrix4x4<T>(
         m1.x + m2.x,
@@ -219,14 +201,6 @@ public func +=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
     m.y += s
     m.z += s
     m.w += s
-}
-
-
-public func +=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, v: Vector4<T>) {
-    m.x += v
-    m.y += v
-    m.z += v
-    m.w += v
 }
 
 
@@ -257,26 +231,6 @@ public func -<T:FloatingPointScalarType>(m: Matrix4x4<T>, s: T) -> Matrix4x4<T> 
     )
 }
 
-public func -<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        v - m.x,
-        v - m.y,
-        v - m.z,
-        v - m.w
-    )
-}
-
-
-public func -<T:FloatingPointScalarType>(m: Matrix4x4<T>, v: Vector4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m.x - v,
-        m.y - v,
-        m.z - v,
-        m.w - v
-    )
-}
-
-
 public func -<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4<T> {
     return Matrix4x4<T>(
         m1.x - m2.x,
@@ -292,14 +246,6 @@ public func -=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
     m.y -= s
     m.z -= s
     m.w -= s
-}
-
-
-public func -=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, v: Vector4<T>) {
-    m.x -= v
-    m.y -= v
-    m.z -= v
-    m.w -= v
 }
 
 
@@ -358,6 +304,36 @@ public func *<T:FloatingPointScalarType>(m: Matrix4x4<T>, v: Vector4<T>) -> Vect
     rv = rv + m.z * v.z
     rv = rv + m.w * v.w
     return rv
+}
+
+
+public func *<T:FloatingPointScalarType>(a: Matrix4x4<T>, b: Matrix2x4<T>) -> Matrix2x4<T> {
+    var x:Vector4<T> = a.x * b.x.x
+    x = x + a.y * b.x.y
+    x = x + a.z * b.x.z
+    x = x + a.w * b.x.w
+    var y:Vector4<T> = a.x * b.y.x
+    y = y + a.y * b.y.y
+    y = y + a.z * b.y.z
+    y = y + a.w * b.y.w
+    return Matrix2x4<T>(x, y)
+}
+
+
+public func *<T:FloatingPointScalarType>(a: Matrix4x4<T>, b: Matrix3x4<T>) -> Matrix3x4<T> {
+    var x:Vector4<T> = a.x * b.x.x
+    x = x + a.y * b.x.y
+    x = x + a.z * b.x.z
+    x = x + a.w * b.x.w
+    var y:Vector4<T> = a.x * b.y.x
+    y = y + a.y * b.y.y
+    y = y + a.z * b.y.z
+    y = y + a.w * b.y.w
+    var z:Vector4<T> = a.x * b.z.x
+    z = z + a.y * b.z.y
+    z = z + a.z * b.z.z
+    z = z + a.w * b.z.w
+    return Matrix3x4<T>(x, y, z)
 }
 
 

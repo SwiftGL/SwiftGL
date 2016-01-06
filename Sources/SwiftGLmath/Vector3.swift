@@ -20,7 +20,7 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Vector3<T:ScalarType> : Hashable, Equatable, CustomStringConvertible {
+public struct Vector3<T:ScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
 
     public var x:T, y:T, z:T
 
@@ -52,8 +52,8 @@ public struct Vector3<T:ScalarType> : Hashable, Equatable, CustomStringConvertib
         }
     }
 
-    public var description: String {
-        return "(\(x), \(y), \(z))"
+    public var debugDescription: String {
+        return String(self.dynamicType) + "(\(x), \(y), \(z))"
     }
 
     public var hashValue: Int {

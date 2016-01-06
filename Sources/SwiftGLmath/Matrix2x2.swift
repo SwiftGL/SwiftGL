@@ -20,7 +20,7 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Matrix2x2<T:FloatingPointScalarType> : Hashable, Equatable, CustomStringConvertible {
+public struct Matrix2x2<T:FloatingPointScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
 
     public var x:Vector2<T>, y:Vector2<T>
 
@@ -50,8 +50,10 @@ public struct Matrix2x2<T:FloatingPointScalarType> : Hashable, Equatable, Custom
         }
     }
 
-    public var description: String {
-        return "(\(x), \(y))"
+    public var debugDescription: String {
+        return String(self.dynamicType) + "(" + [x,y].map{ (v:Vector2<T>) -> String in
+            "[" + [v.x,v.y].map{ (n:T) -> String in String(n) }.joinWithSeparator(", ") + "]"
+            }.joinWithSeparator(", ") + ")"
     }
 
     public var hashValue: Int {
@@ -154,22 +156,6 @@ public func +<T:FloatingPointScalarType>(m: Matrix2x2<T>, s: T) -> Matrix2x2<T> 
 }
 
 
-public func +<T:FloatingPointScalarType>(v: Vector2<T>, m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        v + m.x,
-        v + m.y
-    )
-}
-
-
-public func +<T:FloatingPointScalarType>(m: Matrix2x2<T>, v: Vector2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m.x + v,
-        m.y + v
-    )
-}
-
-
 public func +<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> Matrix2x2<T> {
     return Matrix2x2<T>(
         m1.x + m2.x,
@@ -181,12 +167,6 @@ public func +<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> 
 public func +=<T:FloatingPointScalarType>(inout m: Matrix2x2<T>, s: T) {
     m.x += s
     m.y += s
-}
-
-
-public func +=<T:FloatingPointScalarType>(inout m: Matrix2x2<T>, v: Vector2<T>) {
-    m.x += v
-    m.y += v
 }
 
 
@@ -211,22 +191,6 @@ public func -<T:FloatingPointScalarType>(m: Matrix2x2<T>, s: T) -> Matrix2x2<T> 
     )
 }
 
-public func -<T:FloatingPointScalarType>(v: Vector2<T>, m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        v - m.x,
-        v - m.y
-    )
-}
-
-
-public func -<T:FloatingPointScalarType>(m: Matrix2x2<T>, v: Vector2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m.x - v,
-        m.y - v
-    )
-}
-
-
 public func -<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> Matrix2x2<T> {
     return Matrix2x2<T>(
         m1.x - m2.x,
@@ -238,12 +202,6 @@ public func -<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> 
 public func -=<T:FloatingPointScalarType>(inout m: Matrix2x2<T>, s: T) {
     m.x -= s
     m.y -= s
-}
-
-
-public func -=<T:FloatingPointScalarType>(inout m: Matrix2x2<T>, v: Vector2<T>) {
-    m.x -= v
-    m.y -= v
 }
 
 
@@ -282,9 +240,35 @@ public func *<T:FloatingPointScalarType>(m: Matrix2x2<T>, v: Vector2<T>) -> Vect
 
 
 public func *<T:FloatingPointScalarType>(a: Matrix2x2<T>, b: Matrix2x2<T>) -> Matrix2x2<T> {
-    let x:Vector2<T> = a.x * b.x.x + a.y * b.x.y
-    let y:Vector2<T> = a.x * b.y.x + a.y * b.y.y
+    var x:Vector2<T> = a.x * b.x.x
+    x = x + a.y * b.x.y
+    var y:Vector2<T> = a.x * b.y.x
+    y = y + a.y * b.y.y
     return Matrix2x2<T>(x, y)
+}
+
+
+public func *<T:FloatingPointScalarType>(a: Matrix2x2<T>, b: Matrix3x2<T>) -> Matrix3x2<T> {
+    var x:Vector2<T> = a.x * b.x.x
+    x = x + a.y * b.x.y
+    var y:Vector2<T> = a.x * b.y.x
+    y = y + a.y * b.y.y
+    var z:Vector2<T> = a.x * b.z.x
+    z = z + a.y * b.z.y
+    return Matrix3x2<T>(x, y, z)
+}
+
+
+public func *<T:FloatingPointScalarType>(a: Matrix2x2<T>, b: Matrix4x2<T>) -> Matrix4x2<T> {
+    var x:Vector2<T> = a.x * b.x.x
+    x = x + a.y * b.x.y
+    var y:Vector2<T> = a.x * b.y.x
+    y = y + a.y * b.y.y
+    var z:Vector2<T> = a.x * b.z.x
+    z = z + a.y * b.z.y
+    var w:Vector2<T> = a.x * b.w.x
+    w = w + a.y * b.w.y
+    return Matrix4x2<T>(x, y, z, w)
 }
 
 

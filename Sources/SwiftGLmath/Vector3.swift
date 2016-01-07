@@ -131,6 +131,19 @@ public struct Vector3<T:ScalarType> : Hashable, Equatable, CustomDebugStringConv
         self.y = T(v.y)
         self.z = T(v.z)
     }
+
+    public init (_ v:Vector3<T>) {
+        self.x = v.x
+        self.y = v.y
+        self.z = v.z
+    }
+
+    public init (_ v:Vector4<T>) {
+        self.x = v.x
+        self.y = v.y
+        self.z = v.z
+    }
+
 }
 
 

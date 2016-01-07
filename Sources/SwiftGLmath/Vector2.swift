@@ -105,6 +105,22 @@ public struct Vector2<T:ScalarType> : Hashable, Equatable, CustomDebugStringConv
         self.x = T(v.x)
         self.y = T(v.y)
     }
+
+    public init (_ v:Vector2<T>) {
+        self.x = v.x
+        self.y = v.y
+    }
+
+    public init (_ v:Vector3<T>) {
+        self.x = v.x
+        self.y = v.y
+    }
+
+    public init (_ v:Vector4<T>) {
+        self.x = v.x
+        self.y = v.y
+    }
+
 }
 
 

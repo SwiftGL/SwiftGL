@@ -90,6 +90,24 @@ public struct Matrix3x2<T:FloatingPointScalarType> : Hashable, Equatable, Custom
             self.z = Vector2<T>(x3, y3)
     }
 
+    public init(_ m:Matrix2x2<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(T(0), T(0))
+    }
+
+    public init(_ m:Matrix2x3<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(T(0), T(0))
+    }
+
+    public init(_ m:Matrix2x4<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(T(0), T(0))
+    }
+
     public init(_ m: Matrix3x2<Float>) {
         self.x = Vector2<T>(m.x)
         self.y = Vector2<T>(m.y)
@@ -101,6 +119,43 @@ public struct Matrix3x2<T:FloatingPointScalarType> : Hashable, Equatable, Custom
         self.y = Vector2<T>(m.y)
         self.z = Vector2<T>(m.z)
     }
+
+    public init(_ m: Matrix3x2<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(m.z)
+    }
+
+    public init(_ m:Matrix3x3<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(m.z)
+    }
+
+    public init(_ m:Matrix3x4<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(m.z)
+    }
+
+    public init(_ m:Matrix4x2<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(m.z)
+    }
+
+    public init(_ m:Matrix4x3<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(m.z)
+    }
+
+    public init(_ m:Matrix4x4<T>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+        self.z = Vector2<T>(m.z)
+    }
+
 }
 
 

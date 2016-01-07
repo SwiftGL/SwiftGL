@@ -67,17 +67,30 @@ public typealias dvec4 = Vector4<Double>
 public typealias ivec4 = Vector4<Int32>
 public typealias uvec4 = Vector4<UInt32>
 
-public typealias mat4 = Matrix4x4<Float>
-public typealias mat4x4 = Matrix4x4<Float>
-public typealias dmat4 = Matrix4x4<Double>
-public typealias dmat4x4 = Matrix4x4<Double>
-
-public typealias mat3 = Matrix3x3<Float>
-public typealias mat3x3 = Matrix3x3<Float>
-public typealias dmat3 = Matrix3x3<Double>
-public typealias dmat3x3 = Matrix3x3<Double>
-
 public typealias mat2 = Matrix2x2<Float>
-public typealias mat2x2 = Matrix2x2<Float>
 public typealias dmat2 = Matrix2x2<Double>
+public typealias mat3 = Matrix3x3<Float>
+public typealias dmat3 = Matrix3x3<Double>
+public typealias mat4 = Matrix4x4<Float>
+public typealias dmat4 = Matrix4x4<Double>
+
+public typealias mat2x2 = Matrix2x2<Float>
 public typealias dmat2x2 = Matrix2x2<Double>
+public typealias mat2x3 = Matrix2x3<Float>
+public typealias dmat2x3 = Matrix2x3<Double>
+public typealias mat2x4 = Matrix2x4<Float>
+public typealias dmat2x4 = Matrix2x4<Double>
+
+public typealias mat3x2 = Matrix3x2<Float>
+public typealias dmat3x2 = Matrix3x2<Double>
+public typealias mat3x3 = Matrix3x3<Float>
+public typealias dmat3x3 = Matrix3x3<Double>
+public typealias mat3x4 = Matrix3x4<Float>
+public typealias dmat3x4 = Matrix3x4<Double>
+
+public typealias mat4x2 = Matrix4x2<Float>
+public typealias dmat4x2 = Matrix4x2<Double>
+public typealias mat4x3 = Matrix4x3<Float>
+public typealias dmat4x3 = Matrix4x3<Double>
+public typealias mat4x4 = Matrix4x4<Float>
+public typealias dmat4x4 = Matrix4x4<Double>

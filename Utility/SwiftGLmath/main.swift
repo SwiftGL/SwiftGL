@@ -112,37 +112,55 @@ func writeSwizzle(out:NSOutputStream)
 }
 
 
-func writeMatrixNeg(out:NSOutputStream, _ T:String, _ col:Int, _ row:Int)
+func writeNeg(out:NSOutputStream, _ type:String, _ simd:String)
 {
-    let type = "Matrix\(col)x\(row)<\(T)>"
-    let simd = "\(T)\(col)x\(row)".lowercaseString
-    out.write("public prefix func -(m:\(type)) -> \(type) {\n")
+    out.write("@warn_unused_result\n")
+    out.write("public prefix func -(x:\(type)) -> \(type) {\n")
     out.write("    return unsafeBitCast(\n")
-    out.write("    -unsafeBitCast(m, \(simd).self)\n")
+    out.write("    -unsafeBitCast(x, \(simd).self)\n")
     out.write("    , \(type).self)\n")
     out.write("}\n")
 }
 
 
-func writeMatrixAddSub(out:NSOutputStream, _ T:String, _ col:Int, _ row:Int)
+func writeOp(out:NSOutputStream, _ type:String, _ simd:String, _ op:String)
 {
-    let type = "Matrix\(col)x\(row)<\(T)>"
-    let simd = "\(T)\(col)x\(row)".lowercaseString
-    for op in ["+", "-"] {
-        out.write("@warn_unused_result\n")
-        out.write("public func \(op)(m1:\(type), m2:\(type)) -> \(type) {\n")
-        out.write("    return unsafeBitCast(\n")
-        out.write("    unsafeBitCast(m1, \(simd).self) \(op) unsafeBitCast(m2, \(simd).self)\n")
-        out.write("    , \(type).self)\n")
-        out.write("}\n")
+    out.write("@warn_unused_result\n")
+    out.write("public func \(op)(x1:\(type), x2:\(type)) -> \(type) {\n")
+    out.write("    return unsafeBitCast(\n")
+    out.write("    unsafeBitCast(x1, \(simd).self) \(op) unsafeBitCast(x2, \(simd).self)\n")
+    out.write("    , \(type).self)\n")
+    out.write("}\n")
 
-        out.write("@warn_unused_result\n")
-        out.write("public func \(op)=(inout m1:\(type), m2:\(type)) {\n")
-        out.write("    m1 = unsafeBitCast(\n")
-        out.write("    unsafeBitCast(m1, \(simd).self) \(op) unsafeBitCast(m2, \(simd).self)\n")
-        out.write("    , \(type).self)\n")
-        out.write("}\n")
-    }
+    out.write("public func \(op)=(inout x1:\(type), x2:\(type)) {\n")
+    out.write("    x1 = unsafeBitCast(\n")
+    out.write("    unsafeBitCast(x1, \(simd).self) \(op) unsafeBitCast(x2, \(simd).self)\n")
+    out.write("    , \(type).self)\n")
+    out.write("}\n")
+}
+
+
+func writeScalarMul(out:NSOutputStream, _ T:String, _ type:String, _ simd:String)
+{
+    out.write("@warn_unused_result\n")
+    out.write("public func *(s:\(T), x:\(type)) -> \(type) {\n")
+    out.write("    return unsafeBitCast(\n")
+    out.write("    s * unsafeBitCast(x, \(simd).self)\n")
+    out.write("    , \(type).self)\n")
+    out.write("}\n")
+
+    out.write("@warn_unused_result\n")
+    out.write("public func *(x:\(type), s:\(T)) -> \(type) {\n")
+    out.write("    return unsafeBitCast(\n")
+    out.write("    unsafeBitCast(x, \(simd).self) * s\n")
+    out.write("    , \(type).self)\n")
+    out.write("}\n")
+
+    out.write("public func *=(inout x:\(type), s:\(T)) {\n")
+    out.write("    x = unsafeBitCast(\n")
+    out.write("    unsafeBitCast(x, \(simd).self) * s\n")
+    out.write("    , \(type).self)\n")
+    out.write("}\n")
 }
 
 
@@ -150,35 +168,12 @@ func writeMatrixMul(out:NSOutputStream, _ T:String, _ col:Int, _ row:Int)
 {
     let type = "Matrix\(col)x\(row)<\(T)>"
     let simd = "\(T)\(col)x\(row)".lowercaseString
-
-    // scalars
-    out.write("@warn_unused_result\n")
-    out.write("public func *(s:\(T), m:\(type)) -> \(type) {\n")
-    out.write("    return unsafeBitCast(\n")
-    out.write("    s * unsafeBitCast(m, \(simd).self)\n")
-    out.write("    , \(type).self)\n")
-    out.write("}\n")
-
-    out.write("@warn_unused_result\n")
-    out.write("public func *(m:\(type), s:\(T)) -> \(type) {\n")
-    out.write("    return unsafeBitCast(\n")
-    out.write("    unsafeBitCast(m, \(simd).self) * s\n")
-    out.write("    , \(type).self)\n")
-    out.write("}\n")
-
-    out.write("@warn_unused_result\n")
-    out.write("public func *=(inout m:\(type), s:\(T)) {\n")
-    out.write("    m = unsafeBitCast(\n")
-    out.write("    unsafeBitCast(m, \(simd).self) * s\n")
-    out.write("    , \(type).self)\n")
-    out.write("}\n")
-
-    // vectors
     let vecCol = "Vector\(col)<\(T)>"
     let vecRow = "Vector\(row)<\(T)>"
     let simdCol = "\(T)\(col)".lowercaseString
     let simdRow = "\(T)\(row)".lowercaseString
 
+    // vectors
     out.write("@warn_unused_result\n")
     out.write("public func *(v:\(vecRow), m:\(type)) -> \(vecCol) {\n")
     out.write("    return unsafeBitCast(\n")
@@ -210,7 +205,6 @@ func writeMatrixMul(out:NSOutputStream, _ T:String, _ col:Int, _ row:Int)
     }
 
     if (row == col) {
-        out.write("@warn_unused_result\n")
         out.write("public func *=(inout m1:\(type), m2:\(type)) {\n")
         out.write("    m1 = unsafeBitCast(\n")
         out.write("    unsafeBitCast(m1, \(simd).self) * unsafeBitCast(m2, \(simd).self)\n")
@@ -228,14 +222,17 @@ func writeMatrixDiv(out:NSOutputStream, _ T:String, _ col:Int, _ row:Int)
     let simd = "\(T)\(col)x\(row)".lowercaseString
     let vec = "Vector\(col)<\(T)>"
 
+    out.write("@warn_unused_result\n")
     out.write("public func /(v:\(vec), m:\(type)) -> \(vec) {\n")
     out.write("    return v * inverse(m)\n")
     out.write("}\n")
 
+    out.write("@warn_unused_result\n")
     out.write("public func /(m:\(type), v:\(vec)) -> \(vec) {\n")
     out.write("    return inverse(m) * v\n")
     out.write("}\n")
 
+    out.write("@warn_unused_result\n")
     out.write("public func /(m1:\(type), m2:\(type)) -> \(type) {\n")
     out.write("    return unsafeBitCast(\n")
     out.write("    unsafeBitCast(m1, \(simd).self) * unsafeBitCast(m2, \(simd).self).inverse\n")
@@ -264,14 +261,37 @@ func writeMatrixSIMD(out:NSOutputStream)
     for T in ["Float", "Double"] {
         for col in 2...4 {
             for row in [2,4] {
-
-                writeMatrixNeg(out, T, col, row)
-                writeMatrixAddSub(out, T, col, row)
+                let type = "Matrix\(col)x\(row)<\(T)>"
+                let simd = "\(T)\(col)x\(row)".lowercaseString
+                writeNeg(out, type, simd)
+                writeOp(out, type, simd, "+")
+                writeOp(out, type, simd, "-")
+                writeScalarMul(out, T, type, simd)
                 writeMatrixMul(out, T, col, row)
                 writeMatrixDiv(out, T, col, row)
-
                 out.write("\n")
             }
+        }
+    }
+    out.write("#endif\n")
+}
+
+
+func writeVectorSIMD(out:NSOutputStream)
+{
+    writeLicense(out)
+    out.write("#if !os(Linux)\n\nimport simd\n\n")
+    for T in ["Float", "Double"] {
+        for row in [2,4] {
+            let type = "Vector\(row)<\(T)>"
+            let simd = "\(T)\(row)".lowercaseString
+            writeNeg(out, type, simd)
+            writeOp(out, type, simd, "+")
+            writeOp(out, type, simd, "-")
+            writeScalarMul(out, T, type, simd)
+            writeOp(out, type, simd, "*")
+            writeOp(out, type, simd, "/")
+            out.write("\n")
         }
     }
     out.write("#endif\n")
@@ -297,4 +317,5 @@ let pathPrefix = Process.arguments[1]
 print("Working...")
 writer(pathPrefix + "/Sources/SwiftGLmath/Swizzle.swift", writeSwizzle)
 writer(pathPrefix + "/Sources/SwiftGLmath/MatrixSIMD.swift", writeMatrixSIMD)
+writer(pathPrefix + "/Sources/SwiftGLmath/VectorSIMD.swift", writeVectorSIMD)
 print("Success")

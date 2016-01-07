@@ -299,7 +299,7 @@ func writeLicense(outstream:NSOutputStream)
     var s = "// WARNING: This file is generated. Modifications will be lost.\n\n"
     s += "// Copyright (c) 2015-2016 David Turnbull\n"
     s += "// Copyright (c) 2013-2016 The Khronos Group Inc.\n"
-    s += "// \n"
+    s += "//\n"
     s += "// Permission is hereby granted, free of charge, to any person obtaining a\n"
     s += "// copy of this software and/or associated documentation files (the\n"
     s += "// \"Materials\"), to deal in the Materials without restriction, including\n"
@@ -307,10 +307,10 @@ func writeLicense(outstream:NSOutputStream)
     s += "// distribute, sublicense, and/or sell copies of the Materials, and to\n"
     s += "// permit persons to whom the Materials are furnished to do so, subject to\n"
     s += "// the following conditions:\n"
-    s += "// \n"
+    s += "//\n"
     s += "// The above copyright notice and this permission notice shall be included\n"
     s += "// in all copies or substantial portions of the Materials.\n"
-    s += "// \n"
+    s += "//\n"
     s += "// THE MATERIALS ARE PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n"
     s += "// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n"
     s += "// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\n"
@@ -674,6 +674,7 @@ func saneDelegate(delegate:KhronosXmlDelegate)
 
 
 if (Process.argc != 2) {
+    // Got this from Xcode? Add $(SRCROOT) to arguments in scheme.
     print("\nusage: main.swift path_to_root\n")
     exit(1)
 }

@@ -353,10 +353,18 @@ public func *<T:FloatingPointScalarType>(m: Matrix4x3<T>, s: T) -> Matrix4x3<T> 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(v: Vector3<T>, m: Matrix4x3<T>) -> Vector4<T> {
-    let x:T = v.x * m.x.x + v.y * m.x.y + v.z * m.x.z
-    let y:T = v.x * m.y.x + v.y * m.y.y + v.z * m.y.z
-    let z:T = v.x * m.z.x + v.y * m.z.y + v.z * m.z.z
-    let w:T = v.x * m.w.x + v.y * m.w.y + v.z * m.w.z
+    var x:T = v.x * m.x.x
+        x = x + v.y * m.x.y
+        x = x + v.z * m.x.z
+    var y:T = v.x * m.y.x
+        y = y + v.y * m.y.y
+        y = y + v.z * m.y.z
+    var z:T = v.x * m.z.x
+        z = z + v.y * m.z.y
+        z = z + v.z * m.z.z
+    var w:T = v.x * m.w.x
+        w = w + v.y * m.w.y
+        w = w + v.z * m.w.z
     return Vector4<T>(x,y,z,w)
 }
 

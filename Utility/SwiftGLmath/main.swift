@@ -277,6 +277,39 @@ func writeMatrixSIMD(out:NSOutputStream)
 }
 
 
+func writeIntegerMul(out:NSOutputStream, _ T:String, _ type:String, _ simd:String)
+{
+    var s = "Int32(bitPattern: s)"
+    if (T == "Int32") {s = "s"}
+
+    out.write("@warn_unused_result\n")
+    out.write("public func &*(s:\(T), v:\(type)) -> \(type) {\n")
+    out.write("    return unsafeBitCast(\n")
+    out.write("    \(s) &* unsafeBitCast(v, \(simd).self)\n")
+    out.write("    , \(type).self)\n")
+    out.write("}\n")
+
+    out.write("@warn_unused_result\n")
+    out.write("public func &*(v:\(type), s:\(T)) -> \(type) {\n")
+    out.write("    return unsafeBitCast(\n")
+    out.write("    unsafeBitCast(v, \(simd).self) &* \(s)\n")
+    out.write("    , \(type).self)\n")
+    out.write("}\n")
+
+    writeIntegerOp(out, type, simd, "*")
+}
+
+func writeIntegerOp(out:NSOutputStream, _ type:String, _ simd:String, _ op:String)
+{
+    out.write("@warn_unused_result\n")
+    out.write("public func &\(op)(v1:\(type), v2:\(type)) -> \(type) {\n")
+    out.write("    return unsafeBitCast(\n")
+    out.write("    unsafeBitCast(v1, \(simd).self) &\(op) unsafeBitCast(v2, \(simd).self)\n")
+    out.write("    , \(type).self)\n")
+    out.write("}\n")
+}
+
+
 func writeVectorSIMD(out:NSOutputStream)
 {
     writeLicense(out)
@@ -294,6 +327,18 @@ func writeVectorSIMD(out:NSOutputStream)
             out.write("\n")
         }
     }
+
+    for T in ["Int32", "UInt32"] {
+        for row in [2,4] {
+            let type = "Vector\(row)<\(T)>"
+            let simd = "int\(row)"
+            writeIntegerOp(out, type, simd, "+")
+            writeIntegerOp(out, type, simd, "-")
+            writeIntegerMul(out, T, type, simd)
+            out.write("\n")
+        }
+    }
+
     out.write("#endif\n")
 }
 

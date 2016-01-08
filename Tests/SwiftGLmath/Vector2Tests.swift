@@ -43,4 +43,12 @@ class Vector2Tests: XCTestCase {
         XCTAssertEqual(a.y, b.y)
     }
 
+    func test3() {
+        let a = ivec2(1)
+        let b = ivec2(1)
+        let c = ivec2(2)
+        XCTAssertEqual(a, b)
+        XCTAssertNotEqual(a, c)
+    }
+
 }

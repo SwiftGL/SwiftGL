@@ -20,9 +20,14 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
+#if !os(Linux)
+import simd
+#endif
+
+
 public struct Matrix4x4<T:FloatingPointScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
 
-    public var x:Vector4<T>, y:Vector4<T>, z:Vector4<T>, w:Vector4<T>
+    private var x:Vector4<T>, y:Vector4<T>, z:Vector4<T>, w:Vector4<T>
 
     public subscript(i: Int) -> Vector4<T> {
         get {
@@ -417,6 +422,14 @@ public func *<T:FloatingPointScalarType>(a: Matrix4x4<T>, b: Matrix3x4<T>) -> Ma
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(a: Matrix4x4<T>, b: Matrix4x4<T>) -> Matrix4x4<T> {
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(a, float4x4.self) * unsafeBitCast(b, float4x4.self), Matrix4x4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(a, double4x4.self) * unsafeBitCast(b, double4x4.self), Matrix4x4<T>.self)
+        }
+    #endif
     var x:Vector4<T> = a.x * b.x.x
         x = x + a.y * b.x.y
         x = x + a.z * b.x.z

@@ -168,10 +168,10 @@ public struct Matrix4x3<T:FloatingPointScalarType> : Hashable, Equatable, Custom
     }
 
     public init(_ m:Matrix4x4<T>) {
-        self.x = Vector3<T>(m.x)
-        self.y = Vector3<T>(m.y)
-        self.z = Vector3<T>(m.z)
-        self.w = Vector3<T>(m.w)
+        self.x = Vector3<T>(m[0])
+        self.y = Vector3<T>(m[1])
+        self.z = Vector3<T>(m[2])
+        self.w = Vector3<T>(m[3])
     }
 
 }
@@ -413,22 +413,22 @@ public func *<T:FloatingPointScalarType>(a: Matrix4x3<T>, b: Matrix3x4<T>) -> Ma
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(a: Matrix4x3<T>, b: Matrix4x4<T>) -> Matrix4x3<T> {
-    var x:Vector3<T> = a.x * b.x.x
-    x = x + a.y * b.x.y
-    x = x + a.z * b.x.z
-    x = x + a.w * b.x.w
-    var y:Vector3<T> = a.x * b.y.x
-    y = y + a.y * b.y.y
-    y = y + a.z * b.y.z
-    y = y + a.w * b.y.w
-    var z:Vector3<T> = a.x * b.z.x
-    z = z + a.y * b.z.y
-    z = z + a.z * b.z.z
-    z = z + a.w * b.z.w
-    var w:Vector3<T> = a.x * b.w.x
-    w = w + a.y * b.w.y
-    w = w + a.z * b.w.z
-    w = w + a.w * b.w.w
+    var x:Vector3<T> = a.x * b[0].x
+    x = x + a.y * b[0].y
+    x = x + a.z * b[0].z
+    x = x + a.w * b[0].w
+    var y:Vector3<T> = a.x * b[1].x
+    y = y + a.y * b[1].y
+    y = y + a.z * b[1].z
+    y = y + a.w * b[1].w
+    var z:Vector3<T> = a.x * b[2].x
+    z = z + a.y * b[2].y
+    z = z + a.z * b[2].z
+    z = z + a.w * b[2].w
+    var w:Vector3<T> = a.x * b[3].x
+    w = w + a.y * b[3].y
+    w = w + a.z * b[3].z
+    w = w + a.w * b[3].w
     return Matrix4x3<T>(x, y, z, w)
 }
 

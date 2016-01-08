@@ -151,9 +151,9 @@ public struct Matrix3x2<T:FloatingPointScalarType> : Hashable, Equatable, Custom
     }
 
     public init(_ m:Matrix4x4<T>) {
-        self.x = Vector2<T>(m.x)
-        self.y = Vector2<T>(m.y)
-        self.z = Vector2<T>(m.z)
+        self.x = Vector2<T>(m[0])
+        self.y = Vector2<T>(m[1])
+        self.z = Vector2<T>(m[2])
     }
 
 }

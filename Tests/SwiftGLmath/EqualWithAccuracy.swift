@@ -173,51 +173,51 @@ private func equalVector4<T: FloatingPointScalarType>(e1: Vector4<T>, _ e2: Vect
 private func equalMatrix2x2<T: FloatingPointScalarType>(e1: Matrix2x2<T>, _ e2: Matrix2x2<T>, _ dist: T.Stride) -> Bool
 {
     return
-        abs(e1.x.x.distanceTo(e2.x.x)) <= dist &&
-        abs(e1.x.y.distanceTo(e2.x.y)) <= dist &&
+        abs(e1[0].x.distanceTo(e2[0].x)) <= dist &&
+        abs(e1[0].y.distanceTo(e2[0].y)) <= dist &&
 
-        abs(e1.y.x.distanceTo(e2.y.x)) <= dist &&
-        abs(e1.y.y.distanceTo(e2.y.y)) <= dist
+        abs(e1[1].x.distanceTo(e2[1].x)) <= dist &&
+        abs(e1[1].y.distanceTo(e2[1].y)) <= dist
 }
 
 
 private func equalMatrix3x3<T: FloatingPointScalarType>(e1: Matrix3x3<T>, _ e2: Matrix3x3<T>, _ dist: T.Stride) -> Bool
 {
     return
-        abs(e1.x.x.distanceTo(e2.x.x)) <= dist &&
-        abs(e1.x.y.distanceTo(e2.x.y)) <= dist &&
-        abs(e1.x.z.distanceTo(e2.x.z)) <= dist &&
+        abs(e1[0].x.distanceTo(e2[0].x)) <= dist &&
+        abs(e1[0].y.distanceTo(e2[0].y)) <= dist &&
+        abs(e1[0].z.distanceTo(e2[0].z)) <= dist &&
 
-        abs(e1.y.x.distanceTo(e2.y.x)) <= dist &&
-        abs(e1.y.y.distanceTo(e2.y.y)) <= dist &&
-        abs(e1.y.z.distanceTo(e2.y.z)) <= dist &&
+        abs(e1[1].x.distanceTo(e2[1].x)) <= dist &&
+        abs(e1[1].y.distanceTo(e2[1].y)) <= dist &&
+        abs(e1[1].z.distanceTo(e2[1].z)) <= dist &&
 
-        abs(e1.z.x.distanceTo(e2.z.x)) <= dist &&
-        abs(e1.z.y.distanceTo(e2.z.y)) <= dist &&
-        abs(e1.z.z.distanceTo(e2.z.z)) <= dist
+        abs(e1[2].x.distanceTo(e2[2].x)) <= dist &&
+        abs(e1[2].y.distanceTo(e2[2].y)) <= dist &&
+        abs(e1[2].z.distanceTo(e2[2].z)) <= dist
 }
 
 
 private func equalMatrix4x4<T: FloatingPointScalarType>(e1: Matrix4x4<T>, _ e2: Matrix4x4<T>, _ dist: T.Stride) -> Bool
 {
     return
-        abs(e1.x.x.distanceTo(e2.x.x)) <= dist &&
-        abs(e1.x.y.distanceTo(e2.x.y)) <= dist &&
-        abs(e1.x.z.distanceTo(e2.x.z)) <= dist &&
-        abs(e1.x.w.distanceTo(e2.x.w)) <= dist &&
+        abs(e1[0].x.distanceTo(e2[0].x)) <= dist &&
+        abs(e1[0].y.distanceTo(e2[0].y)) <= dist &&
+        abs(e1[0].z.distanceTo(e2[0].z)) <= dist &&
+        abs(e1[0].w.distanceTo(e2[0].w)) <= dist &&
 
-        abs(e1.y.x.distanceTo(e2.y.x)) <= dist &&
-        abs(e1.y.y.distanceTo(e2.y.y)) <= dist &&
-        abs(e1.y.z.distanceTo(e2.y.z)) <= dist &&
-        abs(e1.y.w.distanceTo(e2.y.w)) <= dist &&
+        abs(e1[1].x.distanceTo(e2[1].x)) <= dist &&
+        abs(e1[1].y.distanceTo(e2[1].y)) <= dist &&
+        abs(e1[1].z.distanceTo(e2[1].z)) <= dist &&
+        abs(e1[1].w.distanceTo(e2[1].w)) <= dist &&
 
-        abs(e1.z.x.distanceTo(e2.z.x)) <= dist &&
-        abs(e1.z.y.distanceTo(e2.z.y)) <= dist &&
-        abs(e1.z.z.distanceTo(e2.z.z)) <= dist &&
-        abs(e1.z.w.distanceTo(e2.z.w)) <= dist &&
+        abs(e1[2].x.distanceTo(e2[2].x)) <= dist &&
+        abs(e1[2].y.distanceTo(e2[2].y)) <= dist &&
+        abs(e1[2].z.distanceTo(e2[2].z)) <= dist &&
+        abs(e1[2].w.distanceTo(e2[2].w)) <= dist &&
 
-        abs(e1.w.x.distanceTo(e2.w.x)) <= dist &&
-        abs(e1.w.y.distanceTo(e2.w.y)) <= dist &&
-        abs(e1.w.z.distanceTo(e2.w.z)) <= dist &&
-        abs(e1.w.w.distanceTo(e2.w.w)) <= dist
+        abs(e1[3].x.distanceTo(e2[3].x)) <= dist &&
+        abs(e1[3].y.distanceTo(e2[3].y)) <= dist &&
+        abs(e1[3].z.distanceTo(e2[3].z)) <= dist &&
+        abs(e1[3].w.distanceTo(e2[3].w)) <= dist
 }

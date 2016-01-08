@@ -20,9 +20,14 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
+#if !os(Linux)
+import simd
+#endif
+
+
 public struct Matrix4x3<T:FloatingPointScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
 
-    public var x:Vector3<T>, y:Vector3<T>, z:Vector3<T>, w:Vector3<T>
+    private var x:Vector3<T>, y:Vector3<T>, z:Vector3<T>, w:Vector3<T>
 
     public subscript(i: Int) -> Vector3<T> {
         get {
@@ -98,73 +103,73 @@ public struct Matrix4x3<T:FloatingPointScalarType> : Hashable, Equatable, Custom
     }
 
     public init(_ m:Matrix2x2<T>) {
-        self.x = Vector3<T>(m.x, T(0))
-        self.y = Vector3<T>(m.y, T(0))
+        self.x = Vector3<T>(m[0], T(0))
+        self.y = Vector3<T>(m[1], T(0))
         self.z = Vector3<T>(T(0), T(0), T(1))
         self.w = Vector3<T>(T(0), T(0), T(0))
     }
 
     public init(_ m:Matrix2x3<T>) {
-        self.x = Vector3<T>(m.x)
-        self.y = Vector3<T>(m.y)
+        self.x = Vector3<T>(m[0])
+        self.y = Vector3<T>(m[1])
         self.z = Vector3<T>(T(0), T(0), T(1))
         self.w = Vector3<T>(T(0), T(0), T(0))
     }
 
     public init(_ m:Matrix2x4<T>) {
-        self.x = Vector3<T>(m.x)
-        self.y = Vector3<T>(m.y)
+        self.x = Vector3<T>(m[0])
+        self.y = Vector3<T>(m[1])
         self.z = Vector3<T>(T(0), T(0), T(1))
         self.w = Vector3<T>(T(0), T(0), T(0))
     }
 
     public init(_ m:Matrix3x2<T>) {
-        self.x = Vector3<T>(m.x, T(0))
-        self.y = Vector3<T>(m.y, T(0))
-        self.z = Vector3<T>(m.z, T(1))
+        self.x = Vector3<T>(m[0], T(0))
+        self.y = Vector3<T>(m[1], T(0))
+        self.z = Vector3<T>(m[2], T(1))
         self.w = Vector3<T>(T(0), T(0), T(0))
     }
 
     public init(_ m:Matrix3x3<T>) {
-        self.x = Vector3<T>(m.x)
-        self.y = Vector3<T>(m.y)
-        self.z = Vector3<T>(m.z)
+        self.x = Vector3<T>(m[0])
+        self.y = Vector3<T>(m[1])
+        self.z = Vector3<T>(m[2])
         self.w = Vector3<T>(T(0), T(0), T(0))
     }
 
     public init(_ m:Matrix3x4<T>) {
-        self.x = Vector3<T>(m.x)
-        self.y = Vector3<T>(m.y)
-        self.z = Vector3<T>(m.z)
+        self.x = Vector3<T>(m[0])
+        self.y = Vector3<T>(m[1])
+        self.z = Vector3<T>(m[2])
         self.w = Vector3<T>(T(0), T(0), T(0))
     }
 
     public init(_ m:Matrix4x2<T>) {
-        self.x = Vector3<T>(m.x, T(0))
-        self.y = Vector3<T>(m.y, T(0))
-        self.z = Vector3<T>(m.z, T(1))
-        self.w = Vector3<T>(m.w, T(0))
+        self.x = Vector3<T>(m[0], T(0))
+        self.y = Vector3<T>(m[1], T(0))
+        self.z = Vector3<T>(m[2], T(1))
+        self.w = Vector3<T>(m[3], T(0))
     }
 
     public init(_ m: Matrix4x3<Float>) {
-        self.x = Vector3<T>(m.x)
-        self.y = Vector3<T>(m.y)
-        self.z = Vector3<T>(m.z)
-        self.w = Vector3<T>(m.w)
+        self.x = Vector3<T>(m[0])
+        self.y = Vector3<T>(m[1])
+        self.z = Vector3<T>(m[2])
+        self.w = Vector3<T>(m[3])
     }
 
     public init(_ m: Matrix4x3<Double>) {
-        self.x = Vector3<T>(m.x)
-        self.y = Vector3<T>(m.y)
-        self.z = Vector3<T>(m.z)
-        self.w = Vector3<T>(m.w)
+        self.x = Vector3<T>(m[0])
+        self.y = Vector3<T>(m[1])
+        self.z = Vector3<T>(m[2])
+        self.w = Vector3<T>(m[3])
     }
 
     public init(_ m: Matrix4x3<T>) {
-        self.x = Vector3<T>(m.x)
-        self.y = Vector3<T>(m.y)
-        self.z = Vector3<T>(m.z)
-        self.w = Vector3<T>(m.w)
+        self.x = Vector3<T>(m[0])
+        self.y = Vector3<T>(m[1])
+        self.z = Vector3<T>(m[2])
+        self.w = Vector3<T>(m[3])
     }
 
     public init(_ m:Matrix4x4<T>) {
@@ -380,55 +385,55 @@ public func *<T:FloatingPointScalarType>(m: Matrix4x3<T>, v: Vector4<T>) -> Vect
 
 
 @warn_unused_result
-public func *<T:FloatingPointScalarType>(a: Matrix4x3<T>, b: Matrix2x4<T>) -> Matrix2x3<T> {
-    var x:Vector3<T> = a.x * b.x.x
-    x = x + a.y * b.x.y
-    x = x + a.z * b.x.z
-    x = x + a.w * b.x.w
-    var y:Vector3<T> = a.x * b.y.x
-    y = y + a.y * b.y.y
-    y = y + a.z * b.y.z
-    y = y + a.w * b.y.w
+public func *<T:FloatingPointScalarType>(m1: Matrix4x3<T>, m2: Matrix2x4<T>) -> Matrix2x3<T> {
+    var x:Vector3<T> = m1.x * m2[0].x
+    x = x + m1.y * m2[0].y
+    x = x + m1.z * m2[0].z
+    x = x + m1.w * m2[0].w
+    var y:Vector3<T> = m1.x * m2[1].x
+    y = y + m1.y * m2[1].y
+    y = y + m1.z * m2[1].z
+    y = y + m1.w * m2[1].w
     return Matrix2x3<T>(x, y)
 }
 
 
 @warn_unused_result
-public func *<T:FloatingPointScalarType>(a: Matrix4x3<T>, b: Matrix3x4<T>) -> Matrix3x3<T> {
-    var x:Vector3<T> = a.x * b.x.x
-    x = x + a.y * b.x.y
-    x = x + a.z * b.x.z
-    x = x + a.w * b.x.w
-    var y:Vector3<T> = a.x * b.y.x
-    y = y + a.y * b.y.y
-    y = y + a.z * b.y.z
-    y = y + a.w * b.y.w
-    var z:Vector3<T> = a.x * b.z.x
-    z = z + a.y * b.z.y
-    z = z + a.z * b.z.z
-    z = z + a.w * b.z.w
+public func *<T:FloatingPointScalarType>(m1: Matrix4x3<T>, m2: Matrix3x4<T>) -> Matrix3x3<T> {
+    var x:Vector3<T> = m1.x * m2[0].x
+    x = x + m1.y * m2[0].y
+    x = x + m1.z * m2[0].z
+    x = x + m1.w * m2[0].w
+    var y:Vector3<T> = m1.x * m2[1].x
+    y = y + m1.y * m2[1].y
+    y = y + m1.z * m2[1].z
+    y = y + m1.w * m2[1].w
+    var z:Vector3<T> = m1.x * m2[2].x
+    z = z + m1.y * m2[2].y
+    z = z + m1.z * m2[2].z
+    z = z + m1.w * m2[2].w
     return Matrix3x3<T>(x, y, z)
 }
 
 
 @warn_unused_result
-public func *<T:FloatingPointScalarType>(a: Matrix4x3<T>, b: Matrix4x4<T>) -> Matrix4x3<T> {
-    var x:Vector3<T> = a.x * b[0].x
-    x = x + a.y * b[0].y
-    x = x + a.z * b[0].z
-    x = x + a.w * b[0].w
-    var y:Vector3<T> = a.x * b[1].x
-    y = y + a.y * b[1].y
-    y = y + a.z * b[1].z
-    y = y + a.w * b[1].w
-    var z:Vector3<T> = a.x * b[2].x
-    z = z + a.y * b[2].y
-    z = z + a.z * b[2].z
-    z = z + a.w * b[2].w
-    var w:Vector3<T> = a.x * b[3].x
-    w = w + a.y * b[3].y
-    w = w + a.z * b[3].z
-    w = w + a.w * b[3].w
+public func *<T:FloatingPointScalarType>(m1: Matrix4x3<T>, m2: Matrix4x4<T>) -> Matrix4x3<T> {
+    var x:Vector3<T> = m1.x * m2[0].x
+    x = x + m1.y * m2[0].y
+    x = x + m1.z * m2[0].z
+    x = x + m1.w * m2[0].w
+    var y:Vector3<T> = m1.x * m2[1].x
+    y = y + m1.y * m2[1].y
+    y = y + m1.z * m2[1].z
+    y = y + m1.w * m2[1].w
+    var z:Vector3<T> = m1.x * m2[2].x
+    z = z + m1.y * m2[2].y
+    z = z + m1.z * m2[2].z
+    z = z + m1.w * m2[2].w
+    var w:Vector3<T> = m1.x * m2[3].x
+    w = w + m1.y * m2[3].y
+    w = w + m1.z * m2[3].z
+    w = w + m1.w * m2[3].w
     return Matrix4x3<T>(x, y, z, w)
 }
 

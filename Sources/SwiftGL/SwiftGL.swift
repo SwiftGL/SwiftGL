@@ -77,6 +77,7 @@ class CommandInfo : CustomStringConvertible {
     }
 }
 
+@noreturn
 private func buildError(info: CommandInfo) -> String {
     var adds = ""
     var rems = ""
@@ -113,12 +114,12 @@ private func buildError(info: CommandInfo) -> String {
     if exts.characters.count > 0 {
         s += "Extensions: \(exts)\n"
     }
-    return s
+    fatalError(s)
 }
 
 func getAddress(info: CommandInfo) -> UnsafeMutablePointer<Void> {
     let fp = lookupAddress(info)
-    assert(fp != nil, buildError(info))
+    if (fp == nil) {buildError(info)}
     return fp
 }
 
@@ -136,7 +137,9 @@ func getAddress(info: CommandInfo) -> UnsafeMutablePointer<Void> {
         if dlopenHandle == nil {
             dlopenHandle = dlopen(openGLframework, RTLD_LAZY)
         }
-        assert(dlopenHandle != nil, "Failed to dlopen OpenGL.framework")
+        if dlopenHandle == nil {
+            fatalError("Failed to dlopen OpenGL.framework")
+        }
         return dlsym(dlopenHandle, info.name)
     }
 
@@ -151,7 +154,9 @@ func getAddress(info: CommandInfo) -> UnsafeMutablePointer<Void> {
         if dlopenHandle == nil {
             dlopenHandle = dlopen(nil, RTLD_LAZY | RTLD_LOCAL)
         }
-        assert(dlopenHandle != nil, "Failed to dlopen")
+        if dlopenHandle == nil {
+            fatalError("Failed to obtain dlopenHandle")
+        }
         if glXGetProcAddress == nil {
             let fp = dlsym(dlopenHandle, "glXGetProcAddressARB")
             if fp != nil {
@@ -164,14 +169,16 @@ func getAddress(info: CommandInfo) -> UnsafeMutablePointer<Void> {
                 glXGetProcAddress = unsafeBitCast(fp, glXGetProcAddress.dynamicType)
             }
         }
-        assert(glXGetProcAddress != nil, "Failed to find glXGetProcAddress")
+        if glXGetProcAddress == nil {
+            fatalError("Failed to find glXGetProcAddress")
+        }
         return glXGetProcAddress!(info.name)
     }
     
 #else
 
     func lookupAddress(info: commandInfo) -> UnsafeMutablePointer<Void> {
-        assert(false, "Unsupported OS")
+        fatalError("Unsupported OS")
     }
 
 #endif

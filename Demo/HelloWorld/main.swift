@@ -123,7 +123,7 @@ func validateProgram(program: GLuint)  -> String?
 }
 
 if glfwInit() != Int32(GL_TRUE) {
-    assert(false, "glfwInit() failed")
+    fatalError("glfwInit() failed")
 }
 defer { glfwTerminate() }
 
@@ -133,7 +133,9 @@ glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE)
 glfwWindowHint(GLFW_RESIZABLE, Int32(GL_FALSE))
 
 let window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World", nil, nil)
-assert(window != nil, "glfwCreateWindow failed")
+if (window == nil) {
+    fatalError("glfwCreateWindow failed")
+}
 
 glfwMakeContextCurrent(window)
 glfwSetKeyCallback(window, keyCallback)
@@ -142,19 +144,19 @@ glViewport(x: 0, y: 0, width: WIDTH, height: HEIGHT)
 
 let vertexShader = glCreateShader(type: GL_VERTEX_SHADER)
 if let errorMessage = compileShader(vertexShader, source: vertexShaderSource) {
-    assert(false, errorMessage)
+    fatalError(errorMessage)
 }
 defer { glDeleteShader(vertexShader) }
 
 let fragmentShader = glCreateShader(type: GL_FRAGMENT_SHADER)
 if let errorMessage = compileShader(fragmentShader, source: fragmentShaderSource) {
-    assert(false, errorMessage)
+    fatalError(errorMessage)
 }
 defer { glDeleteShader(fragmentShader) }
 
 let shaderProgram = glCreateProgram()
 if let errorMessage = linkProgram(shaderProgram, vertex: vertexShader, fragment: fragmentShader) {
-    assert(false, errorMessage)
+    fatalError(errorMessage)
 }
 defer { glDeleteProgram(shaderProgram) }
 
@@ -170,7 +172,7 @@ defer { glDeleteBuffers(n: 1, buffers: &EBO) }
 glBindVertexArray(VAO)
 
 if let errorMessage = validateProgram(shaderProgram) {
-    assert(false, errorMessage)
+    fatalError(errorMessage)
 }
 
 glBindBuffer(target: GL_ARRAY_BUFFER, buffer: VBO)

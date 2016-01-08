@@ -203,7 +203,7 @@ public prefix func -<T:SignedScalarType>(v: Vector4<T>) -> Vector4<T> {
 }
 
 
-public prefix func ++<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
+public prefix func ++<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
     v.x = v.x + T(1)
     v.y = v.y + T(1)
     v.z = v.z + T(1)
@@ -212,7 +212,7 @@ public prefix func ++<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
 }
 
 
-public postfix func ++<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
+public postfix func ++<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
     let r = v
     v.x = v.x + T(1)
     v.y = v.y + T(1)
@@ -222,7 +222,7 @@ public postfix func ++<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
 }
 
 
-public prefix func --<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
+public prefix func --<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
     v.x = v.x - T(1)
     v.y = v.y - T(1)
     v.z = v.z - T(1)
@@ -231,7 +231,7 @@ public prefix func --<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
 }
 
 
-public postfix func --<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
+public postfix func --<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
     let r = v
     v.x = v.x - T(1)
     v.y = v.y - T(1)
@@ -242,7 +242,7 @@ public postfix func --<T:ScalarType>(inout v: Vector4<T>) -> Vector4<T> {
 
 
 @warn_unused_result
-public func +<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
+public func +<T:FloatingPointType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         s + v.x,
         s + v.y,
@@ -253,7 +253,18 @@ public func +<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
 
 
 @warn_unused_result
-public func +<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
+public func &+<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> {
+    return Vector4<T>(
+        s &+ v.x,
+        s &+ v.y,
+        s &+ v.z,
+        s &+ v.w
+    )
+}
+
+
+@warn_unused_result
+public func +<T:FloatingPointType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(
         v.x + s,
         v.y + s,
@@ -264,7 +275,18 @@ public func +<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
 
 
 @warn_unused_result
-public func +<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+public func &+<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> {
+    return Vector4<T>(
+        v.x &+ s,
+        v.y &+ s,
+        v.z &+ s,
+        v.w &+ s
+    )
+}
+
+
+@warn_unused_result
+public func +<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         v1.x + v2.x,
         v1.y + v2.y,
@@ -274,7 +296,18 @@ public func +<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
 }
 
 
-public func +=<T:ScalarType>(inout v: Vector4<T>, s: T) {
+@warn_unused_result
+public func &+<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+    return Vector4<T>(
+        v1.x &+ v2.x,
+        v1.y &+ v2.y,
+        v1.z &+ v2.z,
+        v1.w &+ v2.w
+    )
+}
+
+
+public func +=<T:FloatingPointType>(inout v: Vector4<T>, s: T) {
     v.x = v.x + s
     v.y = v.y + s
     v.z = v.z + s
@@ -282,7 +315,7 @@ public func +=<T:ScalarType>(inout v: Vector4<T>, s: T) {
 }
 
 
-public func +=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
+public func +=<T:FloatingPointType>(inout v1: Vector4<T>, v2: Vector4<T>) {
     v1.x = v1.x + v2.x
     v1.y = v1.y + v2.y
     v1.z = v1.z + v2.z
@@ -291,7 +324,7 @@ public func +=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
 
 
 @warn_unused_result
-public func -<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
+public func -<T:FloatingPointType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         s - v.x,
         s - v.y,
@@ -302,7 +335,18 @@ public func -<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
 
 
 @warn_unused_result
-public func -<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
+public func &-<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> {
+    return Vector4<T>(
+        s &- v.x,
+        s &- v.y,
+        s &- v.z,
+        s &- v.w
+    )
+}
+
+
+@warn_unused_result
+public func -<T:FloatingPointType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(
         v.x - s,
         v.y - s,
@@ -313,7 +357,18 @@ public func -<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
 
 
 @warn_unused_result
-public func -<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+public func &-<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> {
+    return Vector4<T>(
+        v.x &- s,
+        v.y &- s,
+        v.z &- s,
+        v.w &- s
+    )
+}
+
+
+@warn_unused_result
+public func -<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         v1.x - v2.x,
         v1.y - v2.y,
@@ -323,7 +378,18 @@ public func -<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
 }
 
 
-public func -=<T:ScalarType>(inout v: Vector4<T>, s: T) {
+@warn_unused_result
+public func &-<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+    return Vector4<T>(
+        v1.x &- v2.x,
+        v1.y &- v2.y,
+        v1.z &- v2.z,
+        v1.w &- v2.w
+    )
+}
+
+
+public func -=<T:FloatingPointType>(inout v: Vector4<T>, s: T) {
     v.x = v.x - s
     v.y = v.y - s
     v.z = v.z - s
@@ -331,7 +397,7 @@ public func -=<T:ScalarType>(inout v: Vector4<T>, s: T) {
 }
 
 
-public func -=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
+public func -=<T:FloatingPointType>(inout v1: Vector4<T>, v2: Vector4<T>) {
     v1.x = v1.x - v2.x
     v1.y = v1.y - v2.y
     v1.z = v1.z - v2.z
@@ -340,7 +406,7 @@ public func -=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
+public func *<T:FloatingPointType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         s * v.x,
         s * v.y,
@@ -351,7 +417,18 @@ public func *<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
+public func &*<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> {
+    return Vector4<T>(
+        s &* v.x,
+        s &* v.y,
+        s &* v.z,
+        s &* v.w
+    )
+}
+
+
+@warn_unused_result
+public func *<T:FloatingPointType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(
         v.x * s,
         v.y * s,
@@ -362,7 +439,18 @@ public func *<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+public func &*<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> {
+    return Vector4<T>(
+        v.x &* s,
+        v.y &* s,
+        v.z &* s,
+        v.w &* s
+    )
+}
+
+
+@warn_unused_result
+public func *<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(
         v1.x * v2.x,
         v1.y * v2.y,
@@ -372,7 +460,18 @@ public func *<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
 }
 
 
-public func *=<T:ScalarType>(inout v: Vector4<T>, s: T) {
+@warn_unused_result
+public func &*<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+    return Vector4<T>(
+        v1.x &* v2.x,
+        v1.y &* v2.y,
+        v1.z &* v2.z,
+        v1.w &* v2.w
+    )
+}
+
+
+public func *=<T:FloatingPointType>(inout v: Vector4<T>, s: T) {
     v.x = v.x * s
     v.y = v.y * s
     v.z = v.z * s
@@ -380,7 +479,7 @@ public func *=<T:ScalarType>(inout v: Vector4<T>, s: T) {
 }
 
 
-public func *=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
+public func *=<T:FloatingPointType>(inout v1: Vector4<T>, v2: Vector4<T>) {
     v1.x = v1.x * v2.x
     v1.y = v1.y * v2.y
     v1.z = v1.z * v2.z
@@ -435,3 +534,34 @@ public func /=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
     v1.z = v1.z / v2.z
     v1.w = v1.w / v2.w
 }
+
+
+@available(*, unavailable, renamed="&+",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func +<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> { fatalError() }
+@available(*, unavailable, renamed="&+",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func +<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> { fatalError() }
+@available(*, unavailable, renamed="&+",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func +<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> { fatalError() }
+
+@available(*, unavailable, renamed="&-",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func -<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> { fatalError() }
+@available(*, unavailable, renamed="&-",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func -<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> { fatalError() }
+@available(*, unavailable, renamed="&-",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func -<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> { fatalError() }
+
+@available(*, unavailable, renamed="&*",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func *<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> { fatalError() }
+@available(*, unavailable, renamed="&*",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func *<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> { fatalError() }
+@available(*, unavailable, renamed="&*",
+message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
+public func *<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> { fatalError() }

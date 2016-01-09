@@ -36,7 +36,7 @@ public struct Matrix4x2<T:FloatingPointScalarType> : Hashable, Equatable, Custom
             case 1: return y
             case 2: return z
             case 3: return w
-            default: fatalError("Matrix index out of range")
+            default: preconditionFailure("Matrix index out of range")
             }
         }
         set {
@@ -45,7 +45,7 @@ public struct Matrix4x2<T:FloatingPointScalarType> : Hashable, Equatable, Custom
             case 1: y = newValue
             case 2: z = newValue
             case 3: w = newValue
-            default: fatalError("Matrix index out of range")
+            default: preconditionFailure("Matrix index out of range")
             }
         }
     }

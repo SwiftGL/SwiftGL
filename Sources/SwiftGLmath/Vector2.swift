@@ -36,14 +36,14 @@ public struct Vector2<T:ScalarType> : Hashable, Equatable, CustomDebugStringConv
             switch(i) {
             case 0: return x
             case 1: return y
-            default: fatalError("Vector index out of range")
+            default: preconditionFailure("Vector index out of range")
             }
         }
         set {
             switch(i) {
             case 0: x = newValue
             case 1: y = newValue
-            default: fatalError("Vector index out of range")
+            default: preconditionFailure("Vector index out of range")
             }
         }
     }

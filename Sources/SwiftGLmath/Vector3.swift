@@ -39,7 +39,7 @@ public struct Vector3<T:ScalarType> : Hashable, Equatable, CustomDebugStringConv
             case 0: return x
             case 1: return y
             case 2: return z
-            default: fatalError("Vector index out of range")
+            default: preconditionFailure("Vector index out of range")
             }
         }
         set {
@@ -47,7 +47,7 @@ public struct Vector3<T:ScalarType> : Hashable, Equatable, CustomDebugStringConv
             case 0: x = newValue
             case 1: y = newValue
             case 2: z = newValue
-            default: fatalError("Vector index out of range")
+            default: preconditionFailure("Vector index out of range")
             }
         }
     }

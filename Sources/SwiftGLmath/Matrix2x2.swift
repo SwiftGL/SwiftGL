@@ -34,14 +34,14 @@ public struct Matrix2x2<T:FloatingPointScalarType> : Hashable, Equatable, Custom
             switch(i) {
             case 0: return x
             case 1: return y
-            default: fatalError("Matrix index out of range")
+            default: preconditionFailure("Matrix index out of range")
             }
         }
         set {
             switch(i) {
             case 0: x = newValue
             case 1: y = newValue
-            default: fatalError("Matrix index out of range")
+            default: preconditionFailure("Matrix index out of range")
             }
         }
     }

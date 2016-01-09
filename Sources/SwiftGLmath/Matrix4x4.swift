@@ -36,7 +36,7 @@ public struct Matrix4x4<T:FloatingPointScalarType> : Hashable, Equatable, Custom
             case 1: return y
             case 2: return z
             case 3: return w
-            default: fatalError("Matrix index out of range")
+            default: preconditionFailure("Matrix index out of range")
             }
         }
         set {
@@ -45,7 +45,7 @@ public struct Matrix4x4<T:FloatingPointScalarType> : Hashable, Equatable, Custom
             case 1: y = newValue
             case 2: z = newValue
             case 3: w = newValue
-            default: fatalError("Matrix index out of range")
+            default: preconditionFailure("Matrix index out of range")
             }
         }
     }
@@ -202,7 +202,7 @@ public prefix func -<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T>
         if T.self == Double.self {
             return unsafeBitCast(-unsafeBitCast(m, double4x4.self), Matrix4x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         return Matrix4x4<T>(-m.x, -m.y, -m.z, -m.w)
     #endif
@@ -273,7 +273,7 @@ public func +<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> 
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) + unsafeBitCast(m2, double4x4.self), Matrix4x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         return Matrix4x4<T>(
             m1.x + m2.x,
@@ -316,7 +316,7 @@ public func -<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> 
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) - unsafeBitCast(m2, double4x4.self), Matrix4x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         return Matrix4x4<T>(m1.x - m2.x, m1.y - m2.y, m1.z - m2.z, m1.w - m2.w)
     #endif
@@ -337,7 +337,7 @@ public func *<T:FloatingPointScalarType>(s: T, m: Matrix4x4<T>) -> Matrix4x4<T> 
         if let x = s as? Double {
             return unsafeBitCast(x * unsafeBitCast(m, double4x4.self), Matrix4x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         return Matrix4x4<T>(s * m.x, s * m.y, s * m.z, s * m.w)
     #endif
@@ -353,7 +353,7 @@ public func *<T:FloatingPointScalarType>(m: Matrix4x4<T>, s: T) -> Matrix4x4<T> 
         if let x = s as? Double {
             return unsafeBitCast(unsafeBitCast(m, double4x4.self) * x, Matrix4x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         return Matrix4x4<T>(m.x * s, m.y * s, m.z * s, m.w * s)
     #endif
@@ -374,7 +374,7 @@ public func *<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix4x4<T>) -> Vect
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(v, double4.self) * unsafeBitCast(m, double4x4.self), Vector4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         var x:T = v.x * m.x.x
             x = x + v.y * m.x.y
@@ -406,7 +406,7 @@ public func *<T:FloatingPointScalarType>(m: Matrix4x4<T>, v: Vector4<T>) -> Vect
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m, double4x4.self) * unsafeBitCast(v, double4.self), Vector4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         var rv:Vector4<T> = m.x * v.x
             rv = rv + m.y * v.y
@@ -426,7 +426,7 @@ public func *<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix2x4<T>) -> 
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double2x4.self), Matrix2x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         var x:Vector4<T> = m1.x * m2[0].x
             x = x + m1.y * m2[0].y
@@ -450,7 +450,7 @@ public func *<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix3x4<T>) -> 
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double3x4.self), Matrix3x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         var x:Vector4<T> = m1.x * m2[0].x
             x = x + m1.y * m2[0].y
@@ -478,7 +478,7 @@ public func *<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> 
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double4x4.self), Matrix4x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         var x:Vector4<T> = m1.x * m2[0].x
             x = x + m1.y * m2[0].y
@@ -554,7 +554,7 @@ public func inverse<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T> 
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m, double4x4.self).inverse, Matrix4x4<T>.self)
         }
-        fatalError()
+        preconditionFailure()
     #else
         var d00:T = m.x.x * m.y.y
             d00 = d00 - m.y.x * m.x.y

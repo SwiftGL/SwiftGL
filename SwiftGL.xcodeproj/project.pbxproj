@@ -40,6 +40,7 @@
 		3D91C3E11C3B224500BA748A /* Matrix4x4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */; };
 		3D91C3E21C3B224500BA748A /* SwizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */; };
 		3D91C3E31C3B224500BA748A /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */; };
+		3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix4x4Tests.swift; sourceTree = "<group>"; };
 		3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwizzleTests.swift; sourceTree = "<group>"; };
 		3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2Tests.swift; sourceTree = "<group>"; };
+		3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector4Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +262,7 @@
 				3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */,
 				3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */,
 				3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */,
+				3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */,
 			);
 			name = SwiftGLmathTests;
 			path = Tests/SwiftGLmath;
@@ -544,6 +547,7 @@
 				3D91C3DF1C3B224500BA748A /* Matrix2x2Tests.swift in Sources */,
 				3D91C3E11C3B224500BA748A /* Matrix4x4Tests.swift in Sources */,
 				3D91C3E31C3B224500BA748A /* Vector2Tests.swift in Sources */,
+				3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

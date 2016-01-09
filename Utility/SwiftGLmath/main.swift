@@ -112,6 +112,13 @@ func writeSwizzle(out:NSOutputStream)
 }
 
 
+func writeSimdWarn(out:NSOutputStream)
+{
+    out.write("// This style of SIMD support is deprecated.\n")
+    out.write("// See Vector4 and Matrix4x4 for the new style.\n")
+    out.write("// As types are upgraded they will be removed here.\n\n")
+}
+
 func writeNeg(out:NSOutputStream, _ type:String, _ simd:String)
 {
     out.write("@warn_unused_result\n")
@@ -257,10 +264,12 @@ func writeMatrixDiv(out:NSOutputStream, _ T:String, _ col:Int, _ row:Int)
 func writeMatrixSIMD(out:NSOutputStream)
 {
     writeLicense(out)
+    writeSimdWarn(out)
     out.write("#if !os(Linux)\n\nimport simd\n\n")
     for T in ["Float", "Double"] {
         for col in 2...4 {
             for row in [2,4] {
+                if col == 4 && row == 4 {continue}
                 let type = "Matrix\(col)x\(row)<\(T)>"
                 let simd = "\(T)\(col)x\(row)".lowercaseString
                 writeNeg(out, type, simd)
@@ -313,9 +322,10 @@ func writeIntegerOp(out:NSOutputStream, _ type:String, _ simd:String, _ op:Strin
 func writeVectorSIMD(out:NSOutputStream)
 {
     writeLicense(out)
+    writeSimdWarn(out)
     out.write("#if !os(Linux)\n\nimport simd\n\n")
     for T in ["Float", "Double"] {
-        for row in [2,4] {
+        for row in [2] {
             let type = "Vector\(row)<\(T)>"
             let simd = "\(T)\(row)".lowercaseString
             writeNeg(out, type, simd)
@@ -329,7 +339,7 @@ func writeVectorSIMD(out:NSOutputStream)
     }
 
     for T in ["Int32", "UInt32"] {
-        for row in [2,4] {
+        for row in [2] {
             let type = "Vector\(row)<\(T)>"
             let simd = "int\(row)"
             writeIntegerOp(out, type, simd, "+")

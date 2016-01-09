@@ -22,6 +22,10 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
+// This style of SIMD support is deprecated.
+// See Vector4 and Matrix4x4 for the new style.
+// As types are upgraded they will be removed here.
+
 #if !os(Linux)
 
 import simd
@@ -95,74 +99,6 @@ public func /=(inout x1:Vector2<Float>, x2:Vector2<Float>) {
 }
 
 @warn_unused_result
-public prefix func -(x:Vector4<Float>) -> Vector4<Float> {
-    return unsafeBitCast(
-    -unsafeBitCast(x, float4.self)
-    , Vector4<Float>.self)
-}
-@warn_unused_result
-public func +(x1:Vector4<Float>, x2:Vector4<Float>) -> Vector4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, float4.self) + unsafeBitCast(x2, float4.self)
-    , Vector4<Float>.self)
-}
-public func +=(inout x1:Vector4<Float>, x2:Vector4<Float>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, float4.self) + unsafeBitCast(x2, float4.self)
-    , Vector4<Float>.self)
-}
-@warn_unused_result
-public func -(x1:Vector4<Float>, x2:Vector4<Float>) -> Vector4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, float4.self) - unsafeBitCast(x2, float4.self)
-    , Vector4<Float>.self)
-}
-public func -=(inout x1:Vector4<Float>, x2:Vector4<Float>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, float4.self) - unsafeBitCast(x2, float4.self)
-    , Vector4<Float>.self)
-}
-@warn_unused_result
-public func *(s:Float, x:Vector4<Float>) -> Vector4<Float> {
-    return unsafeBitCast(
-    s * unsafeBitCast(x, float4.self)
-    , Vector4<Float>.self)
-}
-@warn_unused_result
-public func *(x:Vector4<Float>, s:Float) -> Vector4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(x, float4.self) * s
-    , Vector4<Float>.self)
-}
-public func *=(inout x:Vector4<Float>, s:Float) {
-    x = unsafeBitCast(
-    unsafeBitCast(x, float4.self) * s
-    , Vector4<Float>.self)
-}
-@warn_unused_result
-public func *(x1:Vector4<Float>, x2:Vector4<Float>) -> Vector4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, float4.self) * unsafeBitCast(x2, float4.self)
-    , Vector4<Float>.self)
-}
-public func *=(inout x1:Vector4<Float>, x2:Vector4<Float>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, float4.self) * unsafeBitCast(x2, float4.self)
-    , Vector4<Float>.self)
-}
-@warn_unused_result
-public func /(x1:Vector4<Float>, x2:Vector4<Float>) -> Vector4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, float4.self) / unsafeBitCast(x2, float4.self)
-    , Vector4<Float>.self)
-}
-public func /=(inout x1:Vector4<Float>, x2:Vector4<Float>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, float4.self) / unsafeBitCast(x2, float4.self)
-    , Vector4<Float>.self)
-}
-
-@warn_unused_result
 public prefix func -(x:Vector2<Double>) -> Vector2<Double> {
     return unsafeBitCast(
     -unsafeBitCast(x, double2.self)
@@ -231,74 +167,6 @@ public func /=(inout x1:Vector2<Double>, x2:Vector2<Double>) {
 }
 
 @warn_unused_result
-public prefix func -(x:Vector4<Double>) -> Vector4<Double> {
-    return unsafeBitCast(
-    -unsafeBitCast(x, double4.self)
-    , Vector4<Double>.self)
-}
-@warn_unused_result
-public func +(x1:Vector4<Double>, x2:Vector4<Double>) -> Vector4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, double4.self) + unsafeBitCast(x2, double4.self)
-    , Vector4<Double>.self)
-}
-public func +=(inout x1:Vector4<Double>, x2:Vector4<Double>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, double4.self) + unsafeBitCast(x2, double4.self)
-    , Vector4<Double>.self)
-}
-@warn_unused_result
-public func -(x1:Vector4<Double>, x2:Vector4<Double>) -> Vector4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, double4.self) - unsafeBitCast(x2, double4.self)
-    , Vector4<Double>.self)
-}
-public func -=(inout x1:Vector4<Double>, x2:Vector4<Double>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, double4.self) - unsafeBitCast(x2, double4.self)
-    , Vector4<Double>.self)
-}
-@warn_unused_result
-public func *(s:Double, x:Vector4<Double>) -> Vector4<Double> {
-    return unsafeBitCast(
-    s * unsafeBitCast(x, double4.self)
-    , Vector4<Double>.self)
-}
-@warn_unused_result
-public func *(x:Vector4<Double>, s:Double) -> Vector4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(x, double4.self) * s
-    , Vector4<Double>.self)
-}
-public func *=(inout x:Vector4<Double>, s:Double) {
-    x = unsafeBitCast(
-    unsafeBitCast(x, double4.self) * s
-    , Vector4<Double>.self)
-}
-@warn_unused_result
-public func *(x1:Vector4<Double>, x2:Vector4<Double>) -> Vector4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, double4.self) * unsafeBitCast(x2, double4.self)
-    , Vector4<Double>.self)
-}
-public func *=(inout x1:Vector4<Double>, x2:Vector4<Double>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, double4.self) * unsafeBitCast(x2, double4.self)
-    , Vector4<Double>.self)
-}
-@warn_unused_result
-public func /(x1:Vector4<Double>, x2:Vector4<Double>) -> Vector4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, double4.self) / unsafeBitCast(x2, double4.self)
-    , Vector4<Double>.self)
-}
-public func /=(inout x1:Vector4<Double>, x2:Vector4<Double>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, double4.self) / unsafeBitCast(x2, double4.self)
-    , Vector4<Double>.self)
-}
-
-@warn_unused_result
 public func &+(v1:Vector2<Int32>, v2:Vector2<Int32>) -> Vector2<Int32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &+ unsafeBitCast(v2, int2.self)
@@ -330,37 +198,6 @@ public func &*(v1:Vector2<Int32>, v2:Vector2<Int32>) -> Vector2<Int32> {
 }
 
 @warn_unused_result
-public func &+(v1:Vector4<Int32>, v2:Vector4<Int32>) -> Vector4<Int32> {
-    return unsafeBitCast(
-    unsafeBitCast(v1, int4.self) &+ unsafeBitCast(v2, int4.self)
-    , Vector4<Int32>.self)
-}
-@warn_unused_result
-public func &-(v1:Vector4<Int32>, v2:Vector4<Int32>) -> Vector4<Int32> {
-    return unsafeBitCast(
-    unsafeBitCast(v1, int4.self) &- unsafeBitCast(v2, int4.self)
-    , Vector4<Int32>.self)
-}
-@warn_unused_result
-public func &*(s:Int32, v:Vector4<Int32>) -> Vector4<Int32> {
-    return unsafeBitCast(
-    s &* unsafeBitCast(v, int4.self)
-    , Vector4<Int32>.self)
-}
-@warn_unused_result
-public func &*(v:Vector4<Int32>, s:Int32) -> Vector4<Int32> {
-    return unsafeBitCast(
-    unsafeBitCast(v, int4.self) &* s
-    , Vector4<Int32>.self)
-}
-@warn_unused_result
-public func &*(v1:Vector4<Int32>, v2:Vector4<Int32>) -> Vector4<Int32> {
-    return unsafeBitCast(
-    unsafeBitCast(v1, int4.self) &* unsafeBitCast(v2, int4.self)
-    , Vector4<Int32>.self)
-}
-
-@warn_unused_result
 public func &+(v1:Vector2<UInt32>, v2:Vector2<UInt32>) -> Vector2<UInt32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &+ unsafeBitCast(v2, int2.self)
@@ -389,37 +226,6 @@ public func &*(v1:Vector2<UInt32>, v2:Vector2<UInt32>) -> Vector2<UInt32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &* unsafeBitCast(v2, int2.self)
     , Vector2<UInt32>.self)
-}
-
-@warn_unused_result
-public func &+(v1:Vector4<UInt32>, v2:Vector4<UInt32>) -> Vector4<UInt32> {
-    return unsafeBitCast(
-    unsafeBitCast(v1, int4.self) &+ unsafeBitCast(v2, int4.self)
-    , Vector4<UInt32>.self)
-}
-@warn_unused_result
-public func &-(v1:Vector4<UInt32>, v2:Vector4<UInt32>) -> Vector4<UInt32> {
-    return unsafeBitCast(
-    unsafeBitCast(v1, int4.self) &- unsafeBitCast(v2, int4.self)
-    , Vector4<UInt32>.self)
-}
-@warn_unused_result
-public func &*(s:UInt32, v:Vector4<UInt32>) -> Vector4<UInt32> {
-    return unsafeBitCast(
-    Int32(bitPattern: s) &* unsafeBitCast(v, int4.self)
-    , Vector4<UInt32>.self)
-}
-@warn_unused_result
-public func &*(v:Vector4<UInt32>, s:UInt32) -> Vector4<UInt32> {
-    return unsafeBitCast(
-    unsafeBitCast(v, int4.self) &* Int32(bitPattern: s)
-    , Vector4<UInt32>.self)
-}
-@warn_unused_result
-public func &*(v1:Vector4<UInt32>, v2:Vector4<UInt32>) -> Vector4<UInt32> {
-    return unsafeBitCast(
-    unsafeBitCast(v1, int4.self) &* unsafeBitCast(v2, int4.self)
-    , Vector4<UInt32>.self)
 }
 
 #endif

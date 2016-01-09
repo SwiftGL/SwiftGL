@@ -22,6 +22,10 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
+// This style of SIMD support is deprecated.
+// See Vector4 and Matrix4x4 for the new style.
+// As types are upgraded they will be removed here.
+
 #if !os(Linux)
 
 import simd
@@ -424,111 +428,6 @@ public func *(m1:Matrix4x2<Float>, m2:Matrix4x4<Float>) -> Matrix4x2<Float> {
 }
 
 @warn_unused_result
-public prefix func -(x:Matrix4x4<Float>) -> Matrix4x4<Float> {
-    return unsafeBitCast(
-    -unsafeBitCast(x, float4x4.self)
-    , Matrix4x4<Float>.self)
-}
-@warn_unused_result
-public func +(x1:Matrix4x4<Float>, x2:Matrix4x4<Float>) -> Matrix4x4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, float4x4.self) + unsafeBitCast(x2, float4x4.self)
-    , Matrix4x4<Float>.self)
-}
-public func +=(inout x1:Matrix4x4<Float>, x2:Matrix4x4<Float>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, float4x4.self) + unsafeBitCast(x2, float4x4.self)
-    , Matrix4x4<Float>.self)
-}
-@warn_unused_result
-public func -(x1:Matrix4x4<Float>, x2:Matrix4x4<Float>) -> Matrix4x4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, float4x4.self) - unsafeBitCast(x2, float4x4.self)
-    , Matrix4x4<Float>.self)
-}
-public func -=(inout x1:Matrix4x4<Float>, x2:Matrix4x4<Float>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, float4x4.self) - unsafeBitCast(x2, float4x4.self)
-    , Matrix4x4<Float>.self)
-}
-@warn_unused_result
-public func *(s:Float, x:Matrix4x4<Float>) -> Matrix4x4<Float> {
-    return unsafeBitCast(
-    s * unsafeBitCast(x, float4x4.self)
-    , Matrix4x4<Float>.self)
-}
-@warn_unused_result
-public func *(x:Matrix4x4<Float>, s:Float) -> Matrix4x4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(x, float4x4.self) * s
-    , Matrix4x4<Float>.self)
-}
-public func *=(inout x:Matrix4x4<Float>, s:Float) {
-    x = unsafeBitCast(
-    unsafeBitCast(x, float4x4.self) * s
-    , Matrix4x4<Float>.self)
-}
-@warn_unused_result
-public func *(v:Vector4<Float>, m:Matrix4x4<Float>) -> Vector4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(v, float4.self) * unsafeBitCast(m, float4x4.self)
-    , Vector4<Float>.self)
-}
-@warn_unused_result
-public func *(m:Matrix4x4<Float>, v:Vector4<Float>) -> Vector4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(m, float4x4.self) * unsafeBitCast(v, float4.self)
-    , Vector4<Float>.self)
-}
-@warn_unused_result
-public func *(m1:Matrix4x4<Float>, m2:Matrix2x4<Float>) -> Matrix2x4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(m1, float4x4.self) * unsafeBitCast(m2, float2x4.self)
-    , Matrix2x4<Float>.self)
-}
-@warn_unused_result
-public func *(m1:Matrix4x4<Float>, m2:Matrix3x4<Float>) -> Matrix3x4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(m1, float4x4.self) * unsafeBitCast(m2, float3x4.self)
-    , Matrix3x4<Float>.self)
-}
-@warn_unused_result
-public func *(m1:Matrix4x4<Float>, m2:Matrix4x4<Float>) -> Matrix4x4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(m1, float4x4.self) * unsafeBitCast(m2, float4x4.self)
-    , Matrix4x4<Float>.self)
-}
-public func *=(inout m1:Matrix4x4<Float>, m2:Matrix4x4<Float>) {
-    m1 = unsafeBitCast(
-    unsafeBitCast(m1, float4x4.self) * unsafeBitCast(m2, float4x4.self)
-    , Matrix4x4<Float>.self)
-}
-@warn_unused_result
-public func /(v:Vector4<Float>, m:Matrix4x4<Float>) -> Vector4<Float> {
-    return v * inverse(m)
-}
-@warn_unused_result
-public func /(m:Matrix4x4<Float>, v:Vector4<Float>) -> Vector4<Float> {
-    return inverse(m) * v
-}
-@warn_unused_result
-public func /(m1:Matrix4x4<Float>, m2:Matrix4x4<Float>) -> Matrix4x4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(m1, float4x4.self) * unsafeBitCast(m2, float4x4.self).inverse
-    , Matrix4x4<Float>.self)
-}
-public func /=(inout m1:Matrix4x4<Float>, m2:Matrix4x4<Float>) {
-    m1 = unsafeBitCast(
-    unsafeBitCast(m1, float4x4.self) * unsafeBitCast(m2, float4x4.self).inverse
-    , Matrix4x4<Float>.self)
-}
-public func inverse(m:Matrix4x4<Float>) -> Matrix4x4<Float> {
-    return unsafeBitCast(
-    unsafeBitCast(m, float4x4.self).inverse
-    , Matrix4x4<Float>.self)
-}
-
-@warn_unused_result
 public prefix func -(x:Matrix2x2<Double>) -> Matrix2x2<Double> {
     return unsafeBitCast(
     -unsafeBitCast(x, double2x2.self)
@@ -923,111 +822,6 @@ public func *(m1:Matrix4x2<Double>, m2:Matrix4x4<Double>) -> Matrix4x2<Double> {
     return unsafeBitCast(
     unsafeBitCast(m1, double4x2.self) * unsafeBitCast(m2, double4x4.self)
     , Matrix4x2<Double>.self)
-}
-
-@warn_unused_result
-public prefix func -(x:Matrix4x4<Double>) -> Matrix4x4<Double> {
-    return unsafeBitCast(
-    -unsafeBitCast(x, double4x4.self)
-    , Matrix4x4<Double>.self)
-}
-@warn_unused_result
-public func +(x1:Matrix4x4<Double>, x2:Matrix4x4<Double>) -> Matrix4x4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, double4x4.self) + unsafeBitCast(x2, double4x4.self)
-    , Matrix4x4<Double>.self)
-}
-public func +=(inout x1:Matrix4x4<Double>, x2:Matrix4x4<Double>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, double4x4.self) + unsafeBitCast(x2, double4x4.self)
-    , Matrix4x4<Double>.self)
-}
-@warn_unused_result
-public func -(x1:Matrix4x4<Double>, x2:Matrix4x4<Double>) -> Matrix4x4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(x1, double4x4.self) - unsafeBitCast(x2, double4x4.self)
-    , Matrix4x4<Double>.self)
-}
-public func -=(inout x1:Matrix4x4<Double>, x2:Matrix4x4<Double>) {
-    x1 = unsafeBitCast(
-    unsafeBitCast(x1, double4x4.self) - unsafeBitCast(x2, double4x4.self)
-    , Matrix4x4<Double>.self)
-}
-@warn_unused_result
-public func *(s:Double, x:Matrix4x4<Double>) -> Matrix4x4<Double> {
-    return unsafeBitCast(
-    s * unsafeBitCast(x, double4x4.self)
-    , Matrix4x4<Double>.self)
-}
-@warn_unused_result
-public func *(x:Matrix4x4<Double>, s:Double) -> Matrix4x4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(x, double4x4.self) * s
-    , Matrix4x4<Double>.self)
-}
-public func *=(inout x:Matrix4x4<Double>, s:Double) {
-    x = unsafeBitCast(
-    unsafeBitCast(x, double4x4.self) * s
-    , Matrix4x4<Double>.self)
-}
-@warn_unused_result
-public func *(v:Vector4<Double>, m:Matrix4x4<Double>) -> Vector4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(v, double4.self) * unsafeBitCast(m, double4x4.self)
-    , Vector4<Double>.self)
-}
-@warn_unused_result
-public func *(m:Matrix4x4<Double>, v:Vector4<Double>) -> Vector4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(m, double4x4.self) * unsafeBitCast(v, double4.self)
-    , Vector4<Double>.self)
-}
-@warn_unused_result
-public func *(m1:Matrix4x4<Double>, m2:Matrix2x4<Double>) -> Matrix2x4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double2x4.self)
-    , Matrix2x4<Double>.self)
-}
-@warn_unused_result
-public func *(m1:Matrix4x4<Double>, m2:Matrix3x4<Double>) -> Matrix3x4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double3x4.self)
-    , Matrix3x4<Double>.self)
-}
-@warn_unused_result
-public func *(m1:Matrix4x4<Double>, m2:Matrix4x4<Double>) -> Matrix4x4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double4x4.self)
-    , Matrix4x4<Double>.self)
-}
-public func *=(inout m1:Matrix4x4<Double>, m2:Matrix4x4<Double>) {
-    m1 = unsafeBitCast(
-    unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double4x4.self)
-    , Matrix4x4<Double>.self)
-}
-@warn_unused_result
-public func /(v:Vector4<Double>, m:Matrix4x4<Double>) -> Vector4<Double> {
-    return v * inverse(m)
-}
-@warn_unused_result
-public func /(m:Matrix4x4<Double>, v:Vector4<Double>) -> Vector4<Double> {
-    return inverse(m) * v
-}
-@warn_unused_result
-public func /(m1:Matrix4x4<Double>, m2:Matrix4x4<Double>) -> Matrix4x4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double4x4.self).inverse
-    , Matrix4x4<Double>.self)
-}
-public func /=(inout m1:Matrix4x4<Double>, m2:Matrix4x4<Double>) {
-    m1 = unsafeBitCast(
-    unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double4x4.self).inverse
-    , Matrix4x4<Double>.self)
-}
-public func inverse(m:Matrix4x4<Double>) -> Matrix4x4<Double> {
-    return unsafeBitCast(
-    unsafeBitCast(m, double4x4.self).inverse
-    , Matrix4x4<Double>.self)
 }
 
 #endif

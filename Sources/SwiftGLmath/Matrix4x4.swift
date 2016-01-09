@@ -210,39 +210,27 @@ public prefix func -<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T>
 
 
 public prefix func ++<T:FloatingPointScalarType>(inout m: Matrix4x4<T>) -> Matrix4x4<T> {
-    ++m.x
-    ++m.y
-    ++m.z
-    ++m.w
+    m = m + T(1)
     return m
 }
 
 
 public postfix func ++<T:FloatingPointScalarType>(inout m: Matrix4x4<T>) -> Matrix4x4<T> {
     let r = m
-    ++m.x
-    ++m.y
-    ++m.z
-    ++m.w
+    m = m + T(1)
     return r
 }
 
 
 public prefix func --<T:FloatingPointScalarType>(inout m: Matrix4x4<T>) -> Matrix4x4<T> {
-    --m.x
-    --m.y
-    --m.z
-    --m.w
+    m = m - T(1)
     return m
 }
 
 
 public postfix func --<T:FloatingPointScalarType>(inout m: Matrix4x4<T>) -> Matrix4x4<T> {
     let r = m
-    --m.x
-    --m.y
-    --m.z
-    --m.w
+    m = m - T(1)
     return r
 }
 

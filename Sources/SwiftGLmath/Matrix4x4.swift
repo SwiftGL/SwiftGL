@@ -195,7 +195,17 @@ public prefix func +<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T>
 
 @warn_unused_result
 public prefix func -<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(-m.x, -m.y, -m.z, -m.w)
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(-unsafeBitCast(m, float4x4.self), Matrix4x4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(-unsafeBitCast(m, double4x4.self), Matrix4x4<T>.self)
+        }
+        fatalError()
+    #else
+        return Matrix4x4<T>(-m.x, -m.y, -m.z, -m.w)
+    #endif
 }
 
 
@@ -239,184 +249,223 @@ public postfix func --<T:FloatingPointScalarType>(inout m: Matrix4x4<T>) -> Matr
 
 @warn_unused_result
 public func +<T:FloatingPointScalarType>(s: T, m: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        s + m.x,
-        s + m.y,
-        s + m.z,
-        s + m.w
-    )
+    return Matrix4x4<T>(s + m.x, s + m.y, s + m.z, s + m.w)
 }
 
 
 @warn_unused_result
 public func +<T:FloatingPointScalarType>(m: Matrix4x4<T>, s: T) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m.x + s,
-        m.y + s,
-        m.z + s,
-        m.w + s
-    )
+    return Matrix4x4<T>(m.x + s, m.y + s, m.z + s, m.w + s)
+}
+
+
+public func +=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
+    m = m + s
 }
 
 
 @warn_unused_result
 public func +<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m1.x + m2.x,
-        m1.y + m2.y,
-        m1.z + m2.z,
-        m1.w + m2.w
-    )
-}
-
-
-public func +=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
-    m.x += s
-    m.y += s
-    m.z += s
-    m.w += s
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m1, float4x4.self) + unsafeBitCast(m2, float4x4.self), Matrix4x4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m1, double4x4.self) + unsafeBitCast(m2, double4x4.self), Matrix4x4<T>.self)
+        }
+        fatalError()
+    #else
+        return Matrix4x4<T>(
+            m1.x + m2.x,
+            m1.y + m2.y,
+            m1.z + m2.z,
+            m1.w + m2.w
+        )
+    #endif
 }
 
 
 public func +=<T:FloatingPointScalarType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
-    m1.x += m2.x
-    m1.y += m2.y
-    m1.z += m2.z
-    m1.w += m2.w
+    m1 = m1 + m2
 }
 
 
 @warn_unused_result
 public func -<T:FloatingPointScalarType>(s: T, m: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        s - m.x,
-        s - m.y,
-        s - m.z,
-        s - m.w
-    )
+    return Matrix4x4<T>(s - m.x, s - m.y, s - m.z, s - m.w)
 }
 
 
 @warn_unused_result
 public func -<T:FloatingPointScalarType>(m: Matrix4x4<T>, s: T) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m.x - s,
-        m.y - s,
-        m.z - s,
-        m.w - s
-    )
-}
-
-@warn_unused_result
-public func -<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m1.x - m2.x,
-        m1.y - m2.y,
-        m1.z - m2.z,
-        m1.w - m2.w
-    )
+    return Matrix4x4<T>(m.x - s, m.y - s, m.z - s, m.w - s)
 }
 
 
 public func -=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
-    m.x -= s
-    m.y -= s
-    m.z -= s
-    m.w -= s
+    m = m - s
+}
+
+
+@warn_unused_result
+public func -<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4<T> {
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m1, float4x4.self) - unsafeBitCast(m2, float4x4.self), Matrix4x4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m1, double4x4.self) - unsafeBitCast(m2, double4x4.self), Matrix4x4<T>.self)
+        }
+        fatalError()
+    #else
+        return Matrix4x4<T>(m1.x - m2.x, m1.y - m2.y, m1.z - m2.z, m1.w - m2.w)
+    #endif
 }
 
 
 public func -=<T:FloatingPointScalarType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
-    m1.x -= m2.x
-    m1.y -= m2.y
-    m1.z -= m2.z
-    m1.w -= m2.w
+    m1 = m1 - m2
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(s: T, m: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m.x * s,
-        m.y * s,
-        m.z * s,
-        m.w * s
-    )
+    #if !os(Linux)
+        if let x = s as? Float {
+            return unsafeBitCast(x * unsafeBitCast(m, float4x4.self), Matrix4x4<T>.self)
+        }
+        if let x = s as? Double {
+            return unsafeBitCast(x * unsafeBitCast(m, double4x4.self), Matrix4x4<T>.self)
+        }
+        fatalError()
+    #else
+        return Matrix4x4<T>(s * m.x, s * m.y, s * m.z, s * m.w)
+    #endif
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(m: Matrix4x4<T>, s: T) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m.x * s,
-        m.y * s,
-        m.z * s,
-        m.w * s
-    )
+    #if !os(Linux)
+        if let x = s as? Float {
+            return unsafeBitCast(unsafeBitCast(m, float4x4.self) * x, Matrix4x4<T>.self)
+        }
+        if let x = s as? Double {
+            return unsafeBitCast(unsafeBitCast(m, double4x4.self) * x, Matrix4x4<T>.self)
+        }
+        fatalError()
+    #else
+        return Matrix4x4<T>(m.x * s, m.y * s, m.z * s, m.w * s)
+    #endif
+}
+
+
+public func *=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
+    m = m * s
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix4x4<T>) -> Vector4<T> {
-    var x:T = v.x * m.x.x
-        x = x + v.y * m.x.y
-        x = x + v.z * m.x.z
-        x = x + v.w * m.x.w
-    var y:T = v.x * m.y.x
-        y = y + v.y * m.y.y
-        y = y + v.z * m.y.z
-        y = y + v.w * m.y.w
-    var z:T = v.x * m.z.x
-        z = z + v.y * m.z.y
-        z = z + v.z * m.z.z
-        z = z + v.w * m.z.w
-    var w:T = v.x * m.w.x
-        w = w + v.y * m.w.y
-        w = w + v.z * m.w.z
-        w = w + v.w * m.w.w
-    return Vector4<T>(x,y,z,w)
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(v, float4.self) * unsafeBitCast(m, float4x4.self), Vector4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(v, double4.self) * unsafeBitCast(m, double4x4.self), Vector4<T>.self)
+        }
+        fatalError()
+    #else
+        var x:T = v.x * m.x.x
+            x = x + v.y * m.x.y
+            x = x + v.z * m.x.z
+            x = x + v.w * m.x.w
+        var y:T = v.x * m.y.x
+            y = y + v.y * m.y.y
+            y = y + v.z * m.y.z
+            y = y + v.w * m.y.w
+        var z:T = v.x * m.z.x
+            z = z + v.y * m.z.y
+            z = z + v.z * m.z.z
+            z = z + v.w * m.z.w
+        var w:T = v.x * m.w.x
+            w = w + v.y * m.w.y
+            w = w + v.z * m.w.z
+            w = w + v.w * m.w.w
+        return Vector4<T>(x,y,z,w)
+    #endif
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(m: Matrix4x4<T>, v: Vector4<T>) -> Vector4<T> {
-    var rv:Vector4<T> = m.x * v.x
-    rv = rv + m.y * v.y
-    rv = rv + m.z * v.z
-    rv = rv + m.w * v.w
-    return rv
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m, float4x4.self) * unsafeBitCast(v, float4.self), Vector4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m, double4x4.self) * unsafeBitCast(v, double4.self), Vector4<T>.self)
+        }
+        fatalError()
+    #else
+        var rv:Vector4<T> = m.x * v.x
+            rv = rv + m.y * v.y
+            rv = rv + m.z * v.z
+            rv = rv + m.w * v.w
+        return rv
+    #endif
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix2x4<T>) -> Matrix2x4<T> {
-    var x:Vector4<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
-    var y:Vector4<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
-    return Matrix2x4<T>(x, y)
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m1, float4x4.self) * unsafeBitCast(m2, float2x4.self), Matrix2x4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double2x4.self), Matrix2x4<T>.self)
+        }
+        fatalError()
+    #else
+        var x:Vector4<T> = m1.x * m2[0].x
+            x = x + m1.y * m2[0].y
+            x = x + m1.z * m2[0].z
+            x = x + m1.w * m2[0].w
+        var y:Vector4<T> = m1.x * m2[1].x
+            y = y + m1.y * m2[1].y
+            y = y + m1.z * m2[1].z
+            y = y + m1.w * m2[1].w
+        return Matrix2x4<T>(x, y)
+    #endif
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix3x4<T>) -> Matrix3x4<T> {
-    var x:Vector4<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
-    var y:Vector4<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
-    var z:Vector4<T> = m1.x * m2[2].x
-    z = z + m1.y * m2[2].y
-    z = z + m1.z * m2[2].z
-    z = z + m1.w * m2[2].w
-    return Matrix3x4<T>(x, y, z)
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m1, float4x4.self) * unsafeBitCast(m2, float3x4.self), Matrix3x4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double3x4.self), Matrix3x4<T>.self)
+        }
+        fatalError()
+    #else
+        var x:Vector4<T> = m1.x * m2[0].x
+            x = x + m1.y * m2[0].y
+            x = x + m1.z * m2[0].z
+            x = x + m1.w * m2[0].w
+        var y:Vector4<T> = m1.x * m2[1].x
+            y = y + m1.y * m2[1].y
+            y = y + m1.z * m2[1].z
+            y = y + m1.w * m2[1].w
+        var z:Vector4<T> = m1.x * m2[2].x
+            z = z + m1.y * m2[2].y
+            z = z + m1.z * m2[2].z
+            z = z + m1.w * m2[2].w
+        return Matrix3x4<T>(x, y, z)
+    #endif
 }
 
 
@@ -429,32 +478,26 @@ public func *<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> 
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double4x4.self), Matrix4x4<T>.self)
         }
+        fatalError()
+    #else
+        var x:Vector4<T> = m1.x * m2[0].x
+            x = x + m1.y * m2[0].y
+            x = x + m1.z * m2[0].z
+            x = x + m1.w * m2[0].w
+        var y:Vector4<T> = m1.x * m2[1].x
+            y = y + m1.y * m2[1].y
+            y = y + m1.z * m2[1].z
+            y = y + m1.w * m2[1].w
+        var z:Vector4<T> = m1.x * m2[2].x
+            z = z + m1.y * m2[2].y
+            z = z + m1.z * m2[2].z
+            z = z + m1.w * m2[2].w
+        var w:Vector4<T> = m1.x * m2.w.x
+            w = w + m1.y * m2[3].y
+            w = w + m1.z * m2[3].z
+            w = w + m1.w * m2[3].w
+        return Matrix4x4<T>(x, y, z, w)
     #endif
-    var x:Vector4<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
-    var y:Vector4<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
-    var z:Vector4<T> = m1.x * m2[2].x
-    z = z + m1.y * m2[2].y
-    z = z + m1.z * m2[2].z
-    z = z + m1.w * m2[2].w
-    var w:Vector4<T> = m1.x * m2.w.x
-    w = w + m1.y * m2[3].y
-    w = w + m1.z * m2[3].z
-    w = w + m1.w * m2[3].w
-    return Matrix4x4<T>(x, y, z, w)
-}
-
-
-public func *=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
-    m.x *= s
-    m.y *= s
-    m.z *= s
-    m.w *= s
 }
 
 
@@ -465,23 +508,18 @@ public func *=<T:FloatingPointScalarType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<
 
 @warn_unused_result
 public func /<T:FloatingPointScalarType>(s: T, m: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        s / m.x,
-        s / m.y,
-        s / m.z,
-        s / m.w
-    )
+    return Matrix4x4<T>(s / m.x, s / m.y, s / m.z, s / m.w)
 }
 
 
 @warn_unused_result
 public func /<T:FloatingPointScalarType>(m: Matrix4x4<T>, s: T) -> Matrix4x4<T> {
-    return Matrix4x4<T>(
-        m.x / s,
-        m.y / s,
-        m.z / s,
-        m.w / s
-    )
+    return Matrix4x4<T>(m.x / s, m.y / s, m.z / s, m.w / s)
+}
+
+
+public func /=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
+    m = m / s
 }
 
 
@@ -503,109 +541,111 @@ public func /<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> 
 }
 
 
-public func /=<T:FloatingPointScalarType>(inout m: Matrix4x4<T>, s: T) {
-    m.x /= s
-    m.y /= s
-    m.z /= s
-    m.w /= s
-}
-
-
 public func /=<T:FloatingPointScalarType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
     m1 = m1 / m2
 }
 
 
 public func inverse<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
-    var d00:T = m.x.x * m.y.y
-        d00 = d00 - m.y.x * m.x.y
-    var d01:T = m.x.x * m.y.z
-        d01 = d01 - m.y.x * m.x.z
-    var d02:T = m.x.x * m.y.w
-        d02 = d02 - m.y.x * m.x.w
-    var d03:T = m.x.y * m.y.z
-        d03 = d03 - m.y.y * m.x.z
-    var d04:T = m.x.y * m.y.w
-        d04 = d04 - m.y.y * m.x.w
-    var d05:T = m.x.z * m.y.w
-        d05 = d05 - m.y.z * m.x.w
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m, float4x4.self).inverse, Matrix4x4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m, double4x4.self).inverse, Matrix4x4<T>.self)
+        }
+        fatalError()
+    #else
+        var d00:T = m.x.x * m.y.y
+            d00 = d00 - m.y.x * m.x.y
+        var d01:T = m.x.x * m.y.z
+            d01 = d01 - m.y.x * m.x.z
+        var d02:T = m.x.x * m.y.w
+            d02 = d02 - m.y.x * m.x.w
+        var d03:T = m.x.y * m.y.z
+            d03 = d03 - m.y.y * m.x.z
+        var d04:T = m.x.y * m.y.w
+            d04 = d04 - m.y.y * m.x.w
+        var d05:T = m.x.z * m.y.w
+            d05 = d05 - m.y.z * m.x.w
 
-    var d10:T = m.z.x * m.w.y
-        d10 = d10 - m.w.x * m.z.y
-    var d11:T = m.z.x * m.w.z
-        d11 = d11 - m.w.x * m.z.z
-    var d12:T = m.z.x * m.w.w
-        d12 = d12 - m.w.x * m.z.w
-    var d13:T = m.z.y * m.w.z
-        d13 = d13 - m.w.y * m.z.z
-    var d14:T = m.z.y * m.w.w
-        d14 = d14 - m.w.y * m.z.w
-    var d15:T = m.z.z * m.w.w
-        d15 = d15 - m.w.z * m.z.w
+        var d10:T = m.z.x * m.w.y
+            d10 = d10 - m.w.x * m.z.y
+        var d11:T = m.z.x * m.w.z
+            d11 = d11 - m.w.x * m.z.z
+        var d12:T = m.z.x * m.w.w
+            d12 = d12 - m.w.x * m.z.w
+        var d13:T = m.z.y * m.w.z
+            d13 = d13 - m.w.y * m.z.z
+        var d14:T = m.z.y * m.w.w
+            d14 = d14 - m.w.y * m.z.w
+        var d15:T = m.z.z * m.w.w
+            d15 = d15 - m.w.z * m.z.w
 
-    var det:T = d00 * d15
-        det = det - d01 * d14
-        det = det + d02 * d13
-    det = det + d03 * d12
-        det = det - d04 * d11
-        det = det + d05 * d10
-    let invdet : T = T(1) / det
+        var det:T = d00 * d15
+            det = det - d01 * d14
+            det = det + d02 * d13
+        det = det + d03 * d12
+            det = det - d04 * d11
+            det = det + d05 * d10
+        let invdet : T = T(1) / det
 
-    var mm = Matrix4x4<T>()
+        var mm = Matrix4x4<T>()
 
-    mm.x.x =  m.y.y * d15
-    mm.x.x = mm.x.x - m.y.z * d14
-    mm.x.x = mm.x.x + m.y.w * d13
-    mm.x.y = -m.x.y * d15
-    mm.x.y = mm.x.y + m.x.z * d14
-    mm.x.y = mm.x.y - m.x.w * d13
-    mm.x.z =  m.w.y * d05
-    mm.x.z = mm.x.z - m.w.z * d04
-    mm.x.z = mm.x.z + m.w.w * d03
-    mm.x.w = -m.z.y * d05
-    mm.x.w = mm.x.w + m.z.z * d04
-    mm.x.w = mm.x.w - m.z.w * d03
+        mm.x.x =  m.y.y * d15
+        mm.x.x = mm.x.x - m.y.z * d14
+        mm.x.x = mm.x.x + m.y.w * d13
+        mm.x.y = -m.x.y * d15
+        mm.x.y = mm.x.y + m.x.z * d14
+        mm.x.y = mm.x.y - m.x.w * d13
+        mm.x.z =  m.w.y * d05
+        mm.x.z = mm.x.z - m.w.z * d04
+        mm.x.z = mm.x.z + m.w.w * d03
+        mm.x.w = -m.z.y * d05
+        mm.x.w = mm.x.w + m.z.z * d04
+        mm.x.w = mm.x.w - m.z.w * d03
 
-    mm.y.x = -m.y.x * d15
-    mm.y.x = mm.y.x + m.y.z * d12
-    mm.y.x = mm.y.x - m.y.w * d11
-    mm.y.y =  m.x.x * d15
-    mm.y.y = mm.y.y - m.x.z * d12
-    mm.y.y = mm.y.y + m.x.w * d11
-    mm.y.z = -m.w.x * d05
-    mm.y.z = mm.y.z + m.w.z * d02
-    mm.y.z = mm.y.z - m.w.w * d01
-    mm.y.w =  m.z.x * d05
-    mm.y.w = mm.y.w - m.z.z * d02
-    mm.y.w = mm.y.w + m.z.w * d01
+        mm.y.x = -m.y.x * d15
+        mm.y.x = mm.y.x + m.y.z * d12
+        mm.y.x = mm.y.x - m.y.w * d11
+        mm.y.y =  m.x.x * d15
+        mm.y.y = mm.y.y - m.x.z * d12
+        mm.y.y = mm.y.y + m.x.w * d11
+        mm.y.z = -m.w.x * d05
+        mm.y.z = mm.y.z + m.w.z * d02
+        mm.y.z = mm.y.z - m.w.w * d01
+        mm.y.w =  m.z.x * d05
+        mm.y.w = mm.y.w - m.z.z * d02
+        mm.y.w = mm.y.w + m.z.w * d01
 
-    mm.z.x =  m.y.x * d14
-    mm.z.x = mm.z.x - m.y.y * d12
-    mm.z.x = mm.z.x + m.y.w * d10
-    mm.z.y = -m.x.x * d14
-    mm.z.y = mm.z.y + m.x.y * d12
-    mm.z.y = mm.z.y - m.x.w * d10
-    mm.z.z =  m.w.x * d04
-    mm.z.z = mm.z.z - m.w.y * d02
-    mm.z.z = mm.z.z + m.w.w * d00
-    mm.z.w = -m.z.x * d04
-    mm.z.w = mm.z.w + m.z.y * d02
-    mm.z.w = mm.z.w - m.z.w * d00
+        mm.z.x =  m.y.x * d14
+        mm.z.x = mm.z.x - m.y.y * d12
+        mm.z.x = mm.z.x + m.y.w * d10
+        mm.z.y = -m.x.x * d14
+        mm.z.y = mm.z.y + m.x.y * d12
+        mm.z.y = mm.z.y - m.x.w * d10
+        mm.z.z =  m.w.x * d04
+        mm.z.z = mm.z.z - m.w.y * d02
+        mm.z.z = mm.z.z + m.w.w * d00
+        mm.z.w = -m.z.x * d04
+        mm.z.w = mm.z.w + m.z.y * d02
+        mm.z.w = mm.z.w - m.z.w * d00
 
-    mm.w.x = -m.y.x * d13
-    mm.w.x = mm.w.x + m.y.y * d11
-    mm.w.x = mm.w.x - m.y.z * d10
-    mm.w.y =  m.x.x * d13
-    mm.w.y = mm.w.y - m.x.y * d11
-    mm.w.y = mm.w.y + m.x.z * d10
-    mm.w.z = -m.w.x * d03
-    mm.w.z = mm.w.z + m.w.y * d01
-    mm.w.z = mm.w.z - m.w.z * d00
-    mm.w.w =  m.z.x * d03
-    mm.w.w = mm.w.w - m.z.y * d01
-    mm.w.w = mm.w.w + m.z.z * d00
+        mm.w.x = -m.y.x * d13
+        mm.w.x = mm.w.x + m.y.y * d11
+        mm.w.x = mm.w.x - m.y.z * d10
+        mm.w.y =  m.x.x * d13
+        mm.w.y = mm.w.y - m.x.y * d11
+        mm.w.y = mm.w.y + m.x.z * d10
+        mm.w.z = -m.w.x * d03
+        mm.w.z = mm.w.z + m.w.y * d01
+        mm.w.z = mm.w.z - m.w.z * d00
+        mm.w.w =  m.z.x * d03
+        mm.w.w = mm.w.w - m.z.y * d01
+        mm.w.w = mm.w.w + m.z.z * d00
 
-    return mm * invdet
+        return mm * invdet
+    #endif
 }
 
 

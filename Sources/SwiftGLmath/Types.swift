@@ -20,52 +20,20 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public protocol ScalarType {
-    init(_: Int)
-    init(_: Int32)
-    init(_: UInt32)
-    init(_: Float)
-    init(_: Double)
-    var hashValue: Int { get }
-    func ==(_: Self, _: Self) -> Bool
-    func +(_: Self, _: Self) -> Self
-    func -(_: Self, _: Self) -> Self
-    func *(_: Self, _: Self) -> Self
-    func /(_: Self, _: Self) -> Self
-}
-extension Float: ScalarType {}
-extension Double: ScalarType {}
-extension Int32: ScalarType {}
-extension UInt32: ScalarType {}
-
-public protocol SignedScalarType : ScalarType {
-    prefix func + (_: Self) -> Self
-    prefix func - (_: Self) -> Self
-}
-extension Float: SignedScalarType {}
-extension Double: SignedScalarType {}
-extension Int32: SignedScalarType {}
-
-public protocol FloatingPointScalarType : SignedScalarType, FloatingPointType {
-}
-extension Float: FloatingPointScalarType {}
-extension Double: FloatingPointScalarType {}
-
-
 public typealias vec2 = Vector2<Float>
 public typealias dvec2 = Vector2<Double>
-public typealias ivec2 = Vector2<Int32>
-public typealias uvec2 = Vector2<UInt32>
+public typealias ivec2 = Vector2i<Int32>
+public typealias uvec2 = Vector2i<UInt32>
 
 public typealias vec3 = Vector3<Float>
 public typealias dvec3 = Vector3<Double>
-public typealias ivec3 = Vector3<Int32>
-public typealias uvec3 = Vector3<UInt32>
+public typealias ivec3 = Vector3i<Int32>
+public typealias uvec3 = Vector3i<UInt32>
 
 public typealias vec4 = Vector4<Float>
 public typealias dvec4 = Vector4<Double>
-public typealias ivec4 = Vector4<Int32>
-public typealias uvec4 = Vector4<UInt32>
+public typealias ivec4 = Vector4i<Int32>
+public typealias uvec4 = Vector4i<UInt32>
 
 public typealias mat2 = Matrix2x2<Float>
 public typealias dmat2 = Matrix2x2<Double>
@@ -94,3 +62,75 @@ public typealias mat4x3 = Matrix4x3<Float>
 public typealias dmat4x3 = Matrix4x3<Double>
 public typealias mat4x4 = Matrix4x4<Float>
 public typealias dmat4x4 = Matrix4x4<Double>
+
+public protocol ScalarType {
+    init(_: Int)
+    init(_: Int32)
+    init(_: UInt32)
+    init(_: Float)
+    init(_: Double)
+    var hashValue: Int { get }
+    func ==(_: Self, _: Self) -> Bool
+    func >(_: Self, _: Self) -> Bool
+    func <(_: Self, _: Self) -> Bool
+    func /(_: Self, _: Self) -> Self
+}
+
+public protocol IntegerScalarType : ScalarType {
+    func &+(_: Self, _: Self) -> Self
+    func &-(_: Self, _: Self) -> Self
+    func &*(_: Self, _: Self) -> Self
+}
+extension UInt32: IntegerScalarType {}
+
+public protocol SignedIntegerScalarType : IntegerScalarType, SignedNumberType {}
+extension Int32: SignedIntegerScalarType {}
+
+public protocol FloatingPointScalarType : ScalarType, FloatingPointType, SignedNumberType {
+    func +(_: Self, _: Self) -> Self
+    func -(_: Self, _: Self) -> Self
+    func *(_: Self, _: Self) -> Self
+}
+extension Float: FloatingPointScalarType {}
+extension Double: FloatingPointScalarType {}
+
+
+public protocol GLmathType : Hashable, Equatable, CustomDebugStringConvertible {
+    typealias valueType
+    typealias elementType:ScalarType
+    subscript(_: Int, _: Int) -> elementType { get set }
+    init()
+    func +(_: Self, _: Self) -> Self
+    func +(_: elementType, _: Self) -> Self
+    func +(_: Self, _: elementType) -> Self
+    func -(_: Self, _: Self) -> Self
+    func -(_: elementType, _: Self) -> Self
+    func -(_: Self, _: elementType) -> Self
+    func *(_: elementType, _: Self) -> Self
+    func *(_: Self, _: elementType) -> Self
+    func /(_: elementType, _: Self) -> Self
+    func /(_: Self, _: elementType) -> Self
+}
+
+public protocol GLmathFloatingPointType : GLmathType {
+    typealias elementType:FloatingPointScalarType
+    prefix func -(_: Self) -> Self
+}
+
+public protocol VectorType : GLmathType {
+    func *(_: Self, _: Self) -> Self
+    func /(_: Self, _: Self) -> Self
+}
+
+public protocol IntegerVectorType : VectorType {
+    typealias valueType:IntegerScalarType
+    typealias elementType:IntegerScalarType
+}
+
+public protocol FloatingPointVectorType : VectorType, GLmathFloatingPointType {
+    typealias valueType:FloatingPointScalarType
+}
+
+public protocol MatrixType : GLmathFloatingPointType {
+    typealias valueType:FloatingPointVectorType
+}

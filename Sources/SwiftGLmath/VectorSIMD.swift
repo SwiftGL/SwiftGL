@@ -167,65 +167,65 @@ public func /=(inout x1:Vector2<Double>, x2:Vector2<Double>) {
 }
 
 @warn_unused_result
-public func &+(v1:Vector2<Int32>, v2:Vector2<Int32>) -> Vector2<Int32> {
+public func &+(v1:Vector2i<Int32>, v2:Vector2i<Int32>) -> Vector2i<Int32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &+ unsafeBitCast(v2, int2.self)
-    , Vector2<Int32>.self)
+    , Vector2i<Int32>.self)
 }
 @warn_unused_result
-public func &-(v1:Vector2<Int32>, v2:Vector2<Int32>) -> Vector2<Int32> {
+public func &-(v1:Vector2i<Int32>, v2:Vector2i<Int32>) -> Vector2i<Int32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &- unsafeBitCast(v2, int2.self)
-    , Vector2<Int32>.self)
+    , Vector2i<Int32>.self)
 }
 @warn_unused_result
-public func &*(s:Int32, v:Vector2<Int32>) -> Vector2<Int32> {
+public func &*(s:Int32, v:Vector2i<Int32>) -> Vector2i<Int32> {
     return unsafeBitCast(
     s &* unsafeBitCast(v, int2.self)
-    , Vector2<Int32>.self)
+    , Vector2i<Int32>.self)
 }
 @warn_unused_result
-public func &*(v:Vector2<Int32>, s:Int32) -> Vector2<Int32> {
+public func &*(v:Vector2i<Int32>, s:Int32) -> Vector2i<Int32> {
     return unsafeBitCast(
     unsafeBitCast(v, int2.self) &* s
-    , Vector2<Int32>.self)
+    , Vector2i<Int32>.self)
 }
 @warn_unused_result
-public func &*(v1:Vector2<Int32>, v2:Vector2<Int32>) -> Vector2<Int32> {
+public func &*(v1:Vector2i<Int32>, v2:Vector2i<Int32>) -> Vector2i<Int32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &* unsafeBitCast(v2, int2.self)
-    , Vector2<Int32>.self)
+    , Vector2i<Int32>.self)
 }
 
 @warn_unused_result
-public func &+(v1:Vector2<UInt32>, v2:Vector2<UInt32>) -> Vector2<UInt32> {
+public func &+(v1:Vector2i<UInt32>, v2:Vector2i<UInt32>) -> Vector2i<UInt32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &+ unsafeBitCast(v2, int2.self)
-    , Vector2<UInt32>.self)
+    , Vector2i<UInt32>.self)
 }
 @warn_unused_result
-public func &-(v1:Vector2<UInt32>, v2:Vector2<UInt32>) -> Vector2<UInt32> {
+public func &-(v1:Vector2i<UInt32>, v2:Vector2i<UInt32>) -> Vector2i<UInt32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &- unsafeBitCast(v2, int2.self)
-    , Vector2<UInt32>.self)
+    , Vector2i<UInt32>.self)
 }
 @warn_unused_result
-public func &*(s:UInt32, v:Vector2<UInt32>) -> Vector2<UInt32> {
+public func &*(s:UInt32, v:Vector2i<UInt32>) -> Vector2i<UInt32> {
     return unsafeBitCast(
     Int32(bitPattern: s) &* unsafeBitCast(v, int2.self)
-    , Vector2<UInt32>.self)
+    , Vector2i<UInt32>.self)
 }
 @warn_unused_result
-public func &*(v:Vector2<UInt32>, s:UInt32) -> Vector2<UInt32> {
+public func &*(v:Vector2i<UInt32>, s:UInt32) -> Vector2i<UInt32> {
     return unsafeBitCast(
     unsafeBitCast(v, int2.self) &* Int32(bitPattern: s)
-    , Vector2<UInt32>.self)
+    , Vector2i<UInt32>.self)
 }
 @warn_unused_result
-public func &*(v1:Vector2<UInt32>, v2:Vector2<UInt32>) -> Vector2<UInt32> {
+public func &*(v1:Vector2i<UInt32>, v2:Vector2i<UInt32>) -> Vector2i<UInt32> {
     return unsafeBitCast(
     unsafeBitCast(v1, int2.self) &* unsafeBitCast(v2, int2.self)
-    , Vector2<UInt32>.self)
+    , Vector2i<UInt32>.self)
 }
 
 #endif

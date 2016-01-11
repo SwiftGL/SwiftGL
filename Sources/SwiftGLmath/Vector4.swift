@@ -25,7 +25,10 @@
 #endif
 
 
-public struct Vector4<T:ScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
+public struct Vector4<T:FloatingPointScalarType> : FloatingPointVectorType {
+
+    public typealias valueType = T
+    public typealias elementType = T
 
     public var x:T, y:T, z:T, w:T
 
@@ -58,6 +61,17 @@ public struct Vector4<T:ScalarType> : Hashable, Equatable, CustomDebugStringConv
             case 3: w = newValue
             default: preconditionFailure("Vector index out of range")
             }
+        }
+    }
+
+    public subscript(i: Int, j:Int) -> T {
+        get {
+            precondition(j==0)
+            return self[i]
+        }
+        set {
+            precondition(j==0)
+            self[i] = newValue
         }
     }
 
@@ -167,14 +181,14 @@ public struct Vector4<T:ScalarType> : Hashable, Equatable, CustomDebugStringConv
         self.w = T(v.w)
     }
 
-    public init (_ v:Vector4<Int32>) {
+    public init (_ v:Vector4i<Int32>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
         self.w = T(v.w)
     }
 
-    public init (_ v:Vector4<UInt32>) {
+    public init (_ v:Vector4i<UInt32>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
@@ -191,19 +205,19 @@ public struct Vector4<T:ScalarType> : Hashable, Equatable, CustomDebugStringConv
 }
 
 
-public func ==<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Bool {
+public func ==<T:FloatingPointScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Bool {
     return v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w
 }
 
 
 @warn_unused_result
-public prefix func +<T:SignedScalarType>(v: Vector4<T>) -> Vector4<T> {
+public prefix func +<T:FloatingPointScalarType>(v: Vector4<T>) -> Vector4<T> {
     return v
 }
 
 
 @warn_unused_result
-public prefix func -<T:SignedScalarType>(v: Vector4<T>) -> Vector4<T> {
+public prefix func -<T:FloatingPointScalarType>(v: Vector4<T>) -> Vector4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(-unsafeBitCast(v, float4.self), Vector4<T>.self)
@@ -218,26 +232,26 @@ public prefix func -<T:SignedScalarType>(v: Vector4<T>) -> Vector4<T> {
 }
 
 
-public prefix func ++<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
+public prefix func ++<T:FloatingPointScalarType>(inout v: Vector4<T>) -> Vector4<T> {
     v = v + T(1)
     return v
 }
 
 
-public postfix func ++<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
+public postfix func ++<T:FloatingPointScalarType>(inout v: Vector4<T>) -> Vector4<T> {
     let r = v
     v = v + T(1)
     return r
 }
 
 
-public prefix func --<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
+public prefix func --<T:FloatingPointScalarType>(inout v: Vector4<T>) -> Vector4<T> {
     v = v - T(1)
     return v
 }
 
 
-public postfix func --<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
+public postfix func --<T:FloatingPointScalarType>(inout v: Vector4<T>) -> Vector4<T> {
     let r = v
     v = v - T(1)
     return r
@@ -245,36 +259,24 @@ public postfix func --<T:FloatingPointType>(inout v: Vector4<T>) -> Vector4<T> {
 
 
 @warn_unused_result
-public func +<T:FloatingPointType>(s: T, v: Vector4<T>) -> Vector4<T> {
+public func +<T:FloatingPointScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(s + v.x, s + v.y, s + v.z, s + v.w)
 }
 
 
 @warn_unused_result
-public func &+<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> {
-    return Vector4<T>(s &+ v.x, s &+ v.y, s &+ v.z, s &+ v.w)
-}
-
-
-@warn_unused_result
-public func +<T:FloatingPointType>(v: Vector4<T>, s: T) -> Vector4<T> {
+public func +<T:FloatingPointScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(v.x + s, v.y + s, v.z + s, v.w + s)
 }
 
 
-public func +=<T:FloatingPointType>(inout v: Vector4<T>, s: T) {
+public func +=<T:FloatingPointScalarType>(inout v: Vector4<T>, s: T) {
     v = v + s
 }
 
 
 @warn_unused_result
-public func &+<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> {
-    return Vector4<T>(v.x &+ s, v.y &+ s, v.z &+ s, v.w &+ s)
-}
-
-
-@warn_unused_result
-public func +<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+public func +<T:FloatingPointScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(v1, float4.self) + unsafeBitCast(v2, float4.self), Vector4<T>.self)
@@ -284,6 +286,7 @@ public func +<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T>
         }
         preconditionFailure()
     #else
+        if T.self != Float.self && T.self != Double.self { preconditionFailure() }
         return Vector4<T>(
             v1.x + v2.x,
             v1.y + v2.y,
@@ -294,60 +297,30 @@ public func +<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T>
 }
 
 
-public func +=<T:FloatingPointType>(inout v1: Vector4<T>, v2: Vector4<T>) {
+public func +=<T:FloatingPointScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
     v1 = v1 + v2
 }
 
 
 @warn_unused_result
-public func &+<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
-    #if !os(Linux)
-        if T.self == Int32.self || T.self == UInt32.self {
-            return unsafeBitCast(unsafeBitCast(v1, int4.self) &+ unsafeBitCast(v2, int4.self), Vector4<T>.self)
-        }
-        preconditionFailure()
-    #else
-        return Vector4<T>(
-            v1.x &+ v2.x,
-            v1.y &+ v2.y,
-            v1.z &+ v2.z,
-            v1.w &+ v2.w
-        )
-    #endif
-}
-
-
-@warn_unused_result
-public func -<T:FloatingPointType>(s: T, v: Vector4<T>) -> Vector4<T> {
+public func -<T:FloatingPointScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(s - v.x, s - v.y, s - v.z, s - v.w)
 }
 
 
 @warn_unused_result
-public func &-<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> {
-    return Vector4<T>(s &- v.x, s &- v.y, s &- v.z, s &- v.w)
-}
-
-
-@warn_unused_result
-public func -<T:FloatingPointType>(v: Vector4<T>, s: T) -> Vector4<T> {
+public func -<T:FloatingPointScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(v.x - s, v.y - s, v.z - s, v.w - s)
 }
 
 
-public func -=<T:FloatingPointType>(inout v: Vector4<T>, s: T) {
+public func -=<T:FloatingPointScalarType>(inout v: Vector4<T>, s: T) {
     v = v - s
 }
 
 
 @warn_unused_result
-public func &-<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> {
-    return Vector4<T>(v.x &- s, v.y &- s, v.z &- s, v.w &- s)
-}
-
-
-@warn_unused_result
-public func -<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+public func -<T:FloatingPointScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(v1, float4.self) - unsafeBitCast(v2, float4.self), Vector4<T>.self)
@@ -367,31 +340,13 @@ public func -<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T>
 }
 
 
-public func -=<T:FloatingPointType>(inout v1: Vector4<T>, v2: Vector4<T>) {
+public func -=<T:FloatingPointScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
     v1 = v1 - v2
 }
 
 
 @warn_unused_result
-public func &-<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
-    #if !os(Linux)
-        if T.self == Int32.self || T.self == UInt32.self {
-            return unsafeBitCast(unsafeBitCast(v1, int4.self) &- unsafeBitCast(v2, int4.self), Vector4<T>.self)
-        }
-        preconditionFailure()
-    #else
-        return Vector4<T>(
-            v1.x &- v2.x,
-            v1.y &- v2.y,
-            v1.z &- v2.z,
-            v1.w &- v2.w
-        )
-    #endif
-}
-
-
-@warn_unused_result
-public func *<T:FloatingPointType>(s: T, v: Vector4<T>) -> Vector4<T> {
+public func *<T:FloatingPointScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
     #if !os(Linux)
         if let x = s as? Float {
             return unsafeBitCast(x * unsafeBitCast(v, float4.self), Vector4<T>.self)
@@ -412,28 +367,7 @@ public func *<T:FloatingPointType>(s: T, v: Vector4<T>) -> Vector4<T> {
 
 
 @warn_unused_result
-public func &*<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> {
-    #if !os(Linux)
-        if let x = s as? Int32 {
-            return unsafeBitCast(x &* unsafeBitCast(v, int4.self), Vector4<T>.self)
-        }
-        if let x = s as? UInt32 {
-            return unsafeBitCast(Int32(bitPattern: x) &* unsafeBitCast(v, int4.self), Vector4<T>.self)
-        }
-        preconditionFailure()
-    #else
-        return Vector4<T>(
-            s &* v.x,
-            s &* v.y,
-            s &* v.z,
-            s &* v.w
-        )
-    #endif
-}
-
-
-@warn_unused_result
-public func *<T:FloatingPointType>(v: Vector4<T>, s: T) -> Vector4<T> {
+public func *<T:FloatingPointScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
     #if !os(Linux)
         if let x = s as? Float {
             return unsafeBitCast(unsafeBitCast(v, float4.self) * x, Vector4<T>.self)
@@ -453,34 +387,13 @@ public func *<T:FloatingPointType>(v: Vector4<T>, s: T) -> Vector4<T> {
 }
 
 
-public func *=<T:FloatingPointType>(inout v: Vector4<T>, s: T) {
+public func *=<T:FloatingPointScalarType>(inout v: Vector4<T>, s: T) {
     v = v * s
 }
 
 
 @warn_unused_result
-public func &*<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> {
-    #if !os(Linux)
-        if let x = s as? Int32 {
-            return unsafeBitCast(unsafeBitCast(v, int4.self) &* x, Vector4<T>.self)
-        }
-        if let x = s as? UInt32 {
-            return unsafeBitCast(unsafeBitCast(v, int4.self) &* Int32(bitPattern: x), Vector4<T>.self)
-        }
-        preconditionFailure()
-    #else
-        return Vector4<T>(
-            v.x &* s,
-            v.y &* s,
-            v.z &* s,
-            v.w &* s
-        )
-    #endif
-}
-
-
-@warn_unused_result
-public func *<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+public func *<T:FloatingPointScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(v1, float4.self) * unsafeBitCast(v2, float4.self), Vector4<T>.self)
@@ -500,48 +413,30 @@ public func *<T:FloatingPointType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T>
 }
 
 
-@warn_unused_result
-public func &*<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
-    #if !os(Linux)
-        if T.self == Int32.self || T.self == UInt32.self {
-            return unsafeBitCast(unsafeBitCast(v1, int4.self) &* unsafeBitCast(v2, int4.self), Vector4<T>.self)
-        }
-        preconditionFailure()
-    #else
-        return Vector4<T>(
-            v1.x &* v2.x,
-            v1.y &* v2.y,
-            v1.z &* v2.z,
-            v1.w &* v2.w
-        )
-    #endif
-}
-
-
-public func *=<T:FloatingPointType>(inout v1: Vector4<T>, v2: Vector4<T>) {
+public func *=<T:FloatingPointScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
     v1 = v1 * v2
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
+public func /<T:FloatingPointScalarType>(s: T, v: Vector4<T>) -> Vector4<T> {
     return Vector4<T>(s / v.x, s / v.y, s / v.z, s / v.w)
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
+public func /<T:FloatingPointScalarType>(v: Vector4<T>, s: T) -> Vector4<T> {
     return Vector4<T>(v.x / s, v.y / s, v.z / s, v.w / s)
 }
 
 
-public func /=<T:ScalarType>(inout v: Vector4<T>, s: T) {
+public func /=<T:FloatingPointScalarType>(inout v: Vector4<T>, s: T) {
     v = v / s
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
+public func /<T:FloatingPointScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(v1, float4.self) / unsafeBitCast(v2, float4.self), Vector4<T>.self)
@@ -564,37 +459,6 @@ public func /<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> {
 }
 
 
-public func /=<T:ScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
+public func /=<T:FloatingPointScalarType>(inout v1: Vector4<T>, v2: Vector4<T>) {
     v1 = v1 / v2
 }
-
-
-@available(*, unavailable, renamed="&+",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func +<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> { fatalError() }
-@available(*, unavailable, renamed="&+",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func +<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> { fatalError() }
-@available(*, unavailable, renamed="&+",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func +<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> { fatalError() }
-
-@available(*, unavailable, renamed="&-",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func -<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> { fatalError() }
-@available(*, unavailable, renamed="&-",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func -<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> { fatalError() }
-@available(*, unavailable, renamed="&-",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func -<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> { fatalError() }
-
-@available(*, unavailable, renamed="&*",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func *<T:IntegerType>(s: T, v: Vector4<T>) -> Vector4<T> { fatalError() }
-@available(*, unavailable, renamed="&*",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func *<T:IntegerType>(v: Vector4<T>, s: T) -> Vector4<T> { fatalError() }
-@available(*, unavailable, renamed="&*",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func *<T:IntegerType>(v1: Vector4<T>, v2: Vector4<T>) -> Vector4<T> { fatalError() }

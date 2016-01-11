@@ -340,7 +340,7 @@ func writeVectorSIMD(out:NSOutputStream)
 
     for T in ["Int32", "UInt32"] {
         for row in [2] {
-            let type = "Vector\(row)<\(T)>"
+            let type = "Vector\(row)i<\(T)>"
             let simd = "int\(row)"
             writeIntegerOp(out, type, simd, "+")
             writeIntegerOp(out, type, simd, "-")

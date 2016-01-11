@@ -25,7 +25,10 @@ import simd
 #endif
 
 
-public struct Matrix3x4<T:FloatingPointScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
+public struct Matrix3x4<T:FloatingPointScalarType> : MatrixType {
+
+    public typealias valueType = Vector4<T>
+    public typealias elementType = T
 
     private var x:Vector4<T>, y:Vector4<T>, z:Vector4<T>
 

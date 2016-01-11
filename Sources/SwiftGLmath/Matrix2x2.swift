@@ -25,7 +25,10 @@ import simd
 #endif
 
 
-public struct Matrix2x2<T:FloatingPointScalarType> : Hashable, Equatable, CustomDebugStringConvertible {
+public struct Matrix2x2<T:FloatingPointScalarType> : MatrixType {
+
+    public typealias valueType = Vector2<T>
+    public typealias elementType = T
 
     private var x:Vector2<T>, y:Vector2<T>
 

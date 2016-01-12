@@ -152,13 +152,3 @@ public func inversesqrt<T:FloatingPointScalarType>(v:T) -> T {
 
 
 
-//TODO switch to this math style
-//@warn_unused_result
-//public func /<T:FloatingPointVectorType>(v: T, s: T.Element) -> T {
-//    return T(v, s) {$0 / $1}
-//}
-//
-//public func /=<T:FloatingPointVectorType>(inout v: T, s: T.Element) {
-//    v = v / s
-//}
-

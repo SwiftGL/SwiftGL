@@ -64,6 +64,26 @@ class Matrix4x4Tests: XCTestCase {
         XCTAssertEqualWithAccuracy(m/m, mat4(), accuracy: 0.000001)
     }
 
+    func testMultiplyWith2x4() {
+        let m0 = mat4(
+            vec4(0, 1, 2, 3),
+            vec4(4, 5, 6, 7),
+            vec4(8, 9, 10, 11),
+            vec4(12, 13, 14, 15)
+        )
+        let m1 = mat2x4(
+            vec4(0.3, 0.5, 0.7, 0.2),
+            vec4(3, 5, 7, 2)
+        )
+
+        let m2 = mat2x4(
+            vec4(10.0, 11.7, 13.4, 15.1),
+            vec4(100.0, 117.0, 134.0, 151.0)
+        )
+        XCTAssertEqualWithAccuracy(m0 * m1, m2, accuracy: 0.00001)
+    }
+    
+
     func testMultiplyVector() {
         let m0 = mat4(
             vec4(0, 1, 2, 3),

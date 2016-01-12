@@ -173,143 +173,6 @@ public func ==<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) ->
 
 
 @warn_unused_result
-public prefix func +<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return m
-}
-
-
-@warn_unused_result
-public prefix func -<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(-m.x, -m.y)
-}
-
-
-public prefix func ++<T:FloatingPointScalarType>(inout m: Matrix2x2<T>) -> Matrix2x2<T> {
-    ++m.x
-    ++m.y
-    return m
-}
-
-
-public postfix func ++<T:FloatingPointScalarType>(inout m: Matrix2x2<T>) -> Matrix2x2<T> {
-    let r = m
-    ++m.x
-    ++m.y
-    return r
-}
-
-
-public prefix func --<T:FloatingPointScalarType>(inout m: Matrix2x2<T>) -> Matrix2x2<T> {
-    --m.x
-    --m.y
-    return m
-}
-
-
-public postfix func --<T:FloatingPointScalarType>(inout m: Matrix2x2<T>) -> Matrix2x2<T> {
-    let r = m
-    --m.x
-    --m.y
-    return r
-}
-
-
-@warn_unused_result
-public func +<T:FloatingPointScalarType>(s: T, m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        s + m.x,
-        s + m.y
-    )
-}
-
-
-@warn_unused_result
-public func +<T:FloatingPointScalarType>(m: Matrix2x2<T>, s: T) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m.x + s,
-        m.y + s
-    )
-}
-
-
-@warn_unused_result
-public func +<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m1.x + m2.x,
-        m1.y + m2.y
-    )
-}
-
-
-public func +=<T:FloatingPointScalarType>(inout m: Matrix2x2<T>, s: T) {
-    m.x += s
-    m.y += s
-}
-
-
-public func +=<T:FloatingPointScalarType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
-    m1.x += m2.x
-    m1.y += m2.y
-}
-
-
-@warn_unused_result
-public func -<T:FloatingPointScalarType>(s: T, m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        s - m.x,
-        s - m.y
-    )
-}
-
-
-@warn_unused_result
-public func -<T:FloatingPointScalarType>(m: Matrix2x2<T>, s: T) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m.x - s,
-        m.y - s
-    )
-}
-
-@warn_unused_result
-public func -<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m1.x - m2.x,
-        m1.y - m2.y
-    )
-}
-
-
-public func -=<T:FloatingPointScalarType>(inout m: Matrix2x2<T>, s: T) {
-    m.x -= s
-    m.y -= s
-}
-
-
-public func -=<T:FloatingPointScalarType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
-    m1.x -= m2.x
-    m1.y -= m2.y
-}
-
-
-@warn_unused_result
-public func *<T:FloatingPointScalarType>(s: T, m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m.x * s,
-        m.y * s
-    )
-}
-
-
-@warn_unused_result
-public func *<T:FloatingPointScalarType>(m: Matrix2x2<T>, s: T) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m.x * s,
-        m.y * s
-    )
-}
-
-
-@warn_unused_result
 public func *<T:FloatingPointScalarType>(v: Vector2<T>, m: Matrix2x2<T>) -> Vector2<T> {
     let x:T = v.x * m.x.x + v.y * m.x.y
     let y:T = v.x * m.y.x + v.y * m.y.y
@@ -359,32 +222,8 @@ public func *<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix4x2<T>) -> 
 }
 
 
-public func *=<T:FloatingPointScalarType>(inout m: Matrix2x2<T>, s: T) {
-    m.x *= s
-    m.y *= s
-}
-
-
 public func *=<T:FloatingPointScalarType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
     m1 = m1 * m2
-}
-
-
-@warn_unused_result
-public func /<T:FloatingPointScalarType>(s: T, m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        s / m.x,
-        s / m.y
-    )
-}
-
-
-@warn_unused_result
-public func /<T:FloatingPointScalarType>(m: Matrix2x2<T>, s: T) -> Matrix2x2<T> {
-    return Matrix2x2<T>(
-        m.x / s,
-        m.y / s
-    )
 }
 
 
@@ -406,20 +245,24 @@ public func /<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> 
 }
 
 
-public func /=<T:FloatingPointScalarType>(inout m: Matrix2x2<T>, s: T) {
-    m.x /= s
-    m.y /= s
-}
-
-
 public func /=<T:FloatingPointScalarType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
     m1 = m1 / m2
 }
 
 
 public func inverse<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
-    let invdet:T = T(1) / determinant(m)
-    return invdet * Matrix2x2<T>(m.y.y, -m.x.y, -m.y.x, m.x.x)
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m, float2x2.self).inverse, Matrix2x2<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m, double2x2.self).inverse, Matrix2x2<T>.self)
+        }
+        preconditionFailure()
+    #else
+        let invdet:T = T(1) / determinant(m)
+        return invdet * Matrix2x2<T>(m.y.y, -m.x.y, -m.y.x, m.x.x)
+    #endif
 }
 
 

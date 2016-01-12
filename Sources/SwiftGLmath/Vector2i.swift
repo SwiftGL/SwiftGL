@@ -20,6 +20,11 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
+#if !os(Linux)
+    import simd
+#endif
+
+
 public struct Vector2i<T:IntegerScalarType> : IntegerVectorType {
 
     public typealias Element = T
@@ -164,159 +169,12 @@ public prefix func +<T:IntegerScalarType where T:SignedIntegerType>(v: Vector2i<
     return v
 }
 
-
 @warn_unused_result
 public prefix func -<T:IntegerScalarType where T:SignedIntegerType>(v: Vector2i<T>) -> Vector2i<T> {
+    #if !os(Linux)
+        if T.self == Int32.self || T.self == UInt32.self {
+            return unsafeBitCast(-unsafeBitCast(v, int2.self), Vector2i<T>.self)
+        }
+    #endif
     return Vector2i<T>(-v.x, -v.y)
 }
-
-
-@warn_unused_result
-public func &+<T:IntegerScalarType>(s: T, v: Vector2i<T>) -> Vector2i<T> {
-    return Vector2i<T>(
-        s &+ v.x,
-        s &+ v.y
-    )
-}
-
-
-@warn_unused_result
-public func &+<T:IntegerScalarType>(v: Vector2i<T>, s: T) -> Vector2i<T> {
-    return Vector2i<T>(
-        v.x &+ s,
-        v.y &+ s
-    )
-}
-
-
-@warn_unused_result
-public func &+<T:IntegerScalarType>(v1: Vector2i<T>, v2: Vector2i<T>) -> Vector2i<T> {
-    return Vector2i<T>(
-        v1.x &+ v2.x,
-        v1.y &+ v2.y
-    )
-}
-
-
-@warn_unused_result
-public func &-<T:IntegerScalarType>(s: T, v: Vector2i<T>) -> Vector2i<T> {
-    return Vector2i<T>(
-        s &- v.x,
-        s &- v.y
-    )
-}
-
-
-@warn_unused_result
-public func &-<T:IntegerScalarType>(v: Vector2i<T>, s: T) -> Vector2i<T> {
-    return Vector2i<T>(
-        v.x &- s,
-        v.y &- s
-    )
-}
-
-
-@warn_unused_result
-public func &-<T:IntegerScalarType>(v1: Vector2i<T>, v2: Vector2i<T>) -> Vector2i<T> {
-    return Vector2i<T>(
-        v1.x &- v2.x,
-        v1.y &- v2.y
-    )
-}
-
-
-@warn_unused_result
-public func &*<T:IntegerScalarType>(s: T, v: Vector2i<T>) -> Vector2i<T> {
-    return Vector2i<T>(
-        s &* v.x,
-        s &* v.y
-    )
-}
-
-
-@warn_unused_result
-public func &*<T:IntegerScalarType>(v: Vector2i<T>, s: T) -> Vector2i<T> {
-    return Vector2i<T>(
-        v.x &* s,
-        v.y &* s
-    )
-}
-
-
-@warn_unused_result
-public func &*<T:IntegerScalarType>(v1: Vector2i<T>, v2: Vector2i<T>) -> Vector2i<T> {
-    return Vector2i<T>(
-        v1.x &* v2.x,
-        v1.y &* v2.y
-    )
-}
-
-
-@warn_unused_result
-public func /<T:IntegerScalarType>(s: T, v: Vector2i<T>) -> Vector2i<T> {
-    return Vector2i<T>(
-        s / v.x,
-        s / v.y
-    )
-}
-
-
-@warn_unused_result
-public func /<T:IntegerScalarType>(v: Vector2i<T>, s: T) -> Vector2i<T> {
-    return Vector2i<T>(
-        v.x / s,
-        v.y / s
-    )
-}
-
-
-@warn_unused_result
-public func /<T:IntegerScalarType>(v1: Vector2i<T>, v2: Vector2i<T>) -> Vector2i<T> {
-    return Vector2i<T>(
-        v1.x / v2.x,
-        v1.y / v2.y
-    )
-}
-
-
-public func /=<T:IntegerScalarType>(inout v: Vector2i<T>, s: T) {
-    v.x = v.x / s
-    v.y = v.y / s
-}
-
-
-public func /=<T:IntegerScalarType>(inout v1: Vector2i<T>, v2: Vector2i<T>) {
-    v1.x = v1.x / v2.x
-    v1.y = v1.y / v2.y
-}
-
-
-@available(*, deprecated, renamed="&+",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func +<T:IntegerScalarType>(s: T, v: Vector2i<T>) -> Vector2i<T> { fatalError() }
-@available(*, deprecated, renamed="&+",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func +<T:IntegerScalarType>(v: Vector2i<T>, s: T) -> Vector2i<T> { fatalError() }
-@available(*, deprecated, renamed="&+",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func +<T:IntegerScalarType>(v1: Vector2i<T>, v2: Vector2i<T>) -> Vector2i<T> { fatalError() }
-
-@available(*, unavailable, renamed="&-",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func -<T:IntegerScalarType>(s: T, v: Vector2i<T>) -> Vector2i<T> { fatalError() }
-@available(*, unavailable, renamed="&-",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func -<T:IntegerScalarType>(v: Vector2i<T>, s: T) -> Vector2i<T> { fatalError() }
-@available(*, unavailable, renamed="&-",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func -<T:IntegerScalarType>(v1: Vector2i<T>, v2: Vector2i<T>) -> Vector2i<T> { fatalError() }
-
-@available(*, unavailable, renamed="&*",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func *<T:IntegerScalarType>(s: T, v: Vector2i<T>) -> Vector2i<T> { fatalError() }
-@available(*, unavailable, renamed="&*",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func *<T:IntegerScalarType>(v: Vector2i<T>, s: T) -> Vector2i<T> { fatalError() }
-@available(*, unavailable, renamed="&*",
-message="integer vector types do not support checked arithmetic; use the wrapping operations instead")
-public func *<T:IntegerScalarType>(v1: Vector2i<T>, v2: Vector2i<T>) -> Vector2i<T> { fatalError() }

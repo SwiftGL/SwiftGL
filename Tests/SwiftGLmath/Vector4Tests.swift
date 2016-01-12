@@ -71,15 +71,32 @@ class Vector4Tests: XCTestCase {
         let v2 = vec4(10,20,30,40)
         let v3 = vec4(20,60,120,200)
         XCTAssertEqual(v1*v2, v3)
+        let v4 = vec4(4,6,8,10)
+        XCTAssertEqual(v1*2, v4)
     }
 
     func testMulInt() {
         let v1 = ivec4(2,3,4,5)
         let v2 = ivec4(10,20,30,40)
+
         let v3 = ivec4(20,60,120,200)
         XCTAssertEqual(v1&*v2, v3)
+
+        let v4 = ivec4(6,9,12,15)
+        XCTAssertEqual(3 &* v1, v4)
     }
 
+    func testMulUInt() {
+        let v1 = uvec4(2,3,4,5)
+        let v2 = uvec4(10,20,30,40)
+
+        let v3 = uvec4(20,60,120,200)
+        XCTAssertEqual(v1&*v2, v3)
+
+        let v4 = uvec4(6,9,12,15)
+        XCTAssertEqual(3 &* v1, v4)
+    }
+    
     func testDivFloat() {
         let v1 = vec4(20,60,120,200)
         let v2 = vec4(2,3,4,5)

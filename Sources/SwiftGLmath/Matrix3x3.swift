@@ -20,11 +20,6 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-#if !os(Linux)
-import simd
-#endif
-
-
 public struct Matrix3x3<T:FloatingPointScalarType> : MatrixType {
 
     public typealias Element = T
@@ -196,159 +191,6 @@ public func ==<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) ->
 
 
 @warn_unused_result
-public prefix func +<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return m
-}
-
-
-@warn_unused_result
-public prefix func -<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(-m.x, -m.y, -m.z)
-}
-
-
-public prefix func ++<T:FloatingPointScalarType>(inout m: Matrix3x3<T>) -> Matrix3x3<T> {
-    ++m.x
-    ++m.y
-    ++m.z
-    return m
-}
-
-
-public postfix func ++<T:FloatingPointScalarType>(inout m: Matrix3x3<T>) -> Matrix3x3<T> {
-    let r = m
-    ++m.x
-    ++m.y
-    ++m.z
-    return r
-}
-
-
-public prefix func --<T:FloatingPointScalarType>(inout m: Matrix3x3<T>) -> Matrix3x3<T> {
-    --m.x
-    --m.y
-    --m.z
-    return m
-}
-
-
-public postfix func --<T:FloatingPointScalarType>(inout m: Matrix3x3<T>) -> Matrix3x3<T> {
-    let r = m
-    --m.x
-    --m.y
-    --m.z
-    return r
-}
-
-
-@warn_unused_result
-public func +<T:FloatingPointScalarType>(s: T, m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        s + m.x,
-        s + m.y,
-        s + m.z
-    )
-}
-
-
-@warn_unused_result
-public func +<T:FloatingPointScalarType>(m: Matrix3x3<T>, s: T) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m.x + s,
-        m.y + s,
-        m.z + s
-    )
-}
-
-
-@warn_unused_result
-public func +<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m1.x + m2.x,
-        m1.y + m2.y,
-        m1.z + m2.z
-    )
-}
-
-
-public func +=<T:FloatingPointScalarType>(inout m: Matrix3x3<T>, s: T) {
-    m.x += s
-    m.y += s
-    m.z += s
-}
-
-
-public func +=<T:FloatingPointScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
-    m1.x += m2.x
-    m1.y += m2.y
-    m1.z += m2.z
-}
-
-
-@warn_unused_result
-public func -<T:FloatingPointScalarType>(s: T, m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        s - m.x,
-        s - m.y,
-        s - m.z
-    )
-}
-
-
-@warn_unused_result
-public func -<T:FloatingPointScalarType>(m: Matrix3x3<T>, s: T) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m.x - s,
-        m.y - s,
-        m.z - s
-    )
-}
-
-@warn_unused_result
-public func -<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m1.x - m2.x,
-        m1.y - m2.y,
-        m1.z - m2.z
-    )
-}
-
-
-public func -=<T:FloatingPointScalarType>(inout m: Matrix3x3<T>, s: T) {
-    m.x -= s
-    m.y -= s
-    m.z -= s
-}
-
-
-public func -=<T:FloatingPointScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
-    m1.x -= m2.x
-    m1.y -= m2.y
-    m1.z -= m2.z
-}
-
-
-@warn_unused_result
-public func *<T:FloatingPointScalarType>(s: T, m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m.x * s,
-        m.y * s,
-        m.z * s
-    )
-}
-
-
-@warn_unused_result
-public func *<T:FloatingPointScalarType>(m: Matrix3x3<T>, s: T) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m.x * s,
-        m.y * s,
-        m.z * s
-    )
-}
-
-
-@warn_unused_result
 public func *<T:FloatingPointScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
     var x:T = v.x * m.x.x
     x = x + v.y * m.x.y
@@ -417,35 +259,8 @@ public func *<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix4x3<T>) -> 
 }
 
 
-public func *=<T:FloatingPointScalarType>(inout m: Matrix3x3<T>, s: T) {
-    m.x *= s
-    m.y *= s
-    m.z *= s
-}
-
-
 public func *=<T:FloatingPointScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
     m1 = m1 * m2
-}
-
-
-@warn_unused_result
-public func /<T:FloatingPointScalarType>(s: T, m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        s / m.x,
-        s / m.y,
-        s / m.z
-    )
-}
-
-
-@warn_unused_result
-public func /<T:FloatingPointScalarType>(m: Matrix3x3<T>, s: T) -> Matrix3x3<T> {
-    return Matrix3x3<T>(
-        m.x / s,
-        m.y / s,
-        m.z / s
-    )
 }
 
 
@@ -464,13 +279,6 @@ public func /<T:FloatingPointScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vect
 @warn_unused_result
 public func /<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
     return m1 * inverse(m2)
-}
-
-
-public func /=<T:FloatingPointScalarType>(inout m: Matrix3x3<T>, s: T) {
-    m.x /= s
-    m.y /= s
-    m.z /= s
 }
 
 

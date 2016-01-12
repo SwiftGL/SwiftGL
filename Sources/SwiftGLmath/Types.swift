@@ -162,6 +162,10 @@ public protocol IntegerVectorType : ScalarVectorType {
 }
 
 public protocol FloatingPointVectorType : ScalarVectorType, GLmathFloatingPointType {
+    func *(_: Self, _: Self) -> Self
+    func *=(inout _: Self, _: Self)
+    func /(_: Self, _: Self) -> Self
+    func /=(inout _: Self, _: Self)
 }
 
 public protocol MatrixType : GLmathFloatingPointType {

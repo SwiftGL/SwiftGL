@@ -25,7 +25,48 @@
 #endif
 
 
-// Begin Floating Point Types
+// GLmathScalarType
+
+@warn_unused_result
+public func /<T:GLmathScalarType>(s: T.Element, x: T) -> T {
+    return T(s, x, /)
+}
+
+@warn_unused_result
+public func /<T:GLmathScalarType>(x: T, s: T.Element) -> T {
+    return T(x, s, /)
+}
+
+public func /=<T:GLmathScalarType>(inout x: T, s: T.Element) {
+    x = x / s
+}
+
+@warn_unused_result
+public func %<T:GLmathScalarType>(x1: T, x2: T) -> T {
+    return T(x1, x2, %)
+}
+
+public func %=<T:GLmathScalarType>(inout x1: T, x2: T) {
+    x1 = x1 % x2
+}
+
+@warn_unused_result
+public func %<T:GLmathScalarType>(s: T.Element, x: T) -> T {
+    return T(s, x, %)
+}
+
+@warn_unused_result
+public func %<T:GLmathScalarType>(x: T, s: T.Element) -> T {
+    return T(x, s, %)
+}
+
+
+public func %=<T:GLmathScalarType>(inout x: T, s: T.Element) {
+    x = x % s
+}
+
+
+// GLmathFloatingPointType
 
 @warn_unused_result
 public prefix func +<T:GLmathFloatingPointType>(v: T) -> T {
@@ -97,20 +138,6 @@ public postfix func --<T:GLmathFloatingPointType>(inout v: T) -> T {
 }
 
 @warn_unused_result
-public func +<T:GLmathFloatingPointType>(s: T.Element, x: T) -> T {
-    return T(s, x, +)
-}
-
-@warn_unused_result
-public func +<T:GLmathFloatingPointType>(x: T, s: T.Element) -> T {
-    return T(x, s, +)
-}
-
-public func +=<T:GLmathFloatingPointType>(inout x: T, s: T.Element) {
-    x = x + s
-}
-
-@warn_unused_result
 public func +<T:GLmathFloatingPointType>(x1: T, x2: T) -> T {
     #if !os(Linux)
         switch (x1) {
@@ -157,17 +184,17 @@ public func +=<T:GLmathFloatingPointType>(inout x1: T, x2: T) {
 }
 
 @warn_unused_result
-public func -<T:GLmathFloatingPointType>(s: T.Element, x: T) -> T {
-    return T(s, x, -)
+public func +<T:GLmathFloatingPointType>(s: T.Element, x: T) -> T {
+    return T(s, x, +)
 }
 
 @warn_unused_result
-public func -<T:GLmathFloatingPointType>(x: T, s: T.Element) -> T {
-    return T(x, s, -)
+public func +<T:GLmathFloatingPointType>(x: T, s: T.Element) -> T {
+    return T(x, s, +)
 }
 
-public func -=<T:GLmathFloatingPointType>(inout x: T, s: T.Element) {
-    x = x - s
+public func +=<T:GLmathFloatingPointType>(inout x: T, s: T.Element) {
+    x = x + s
 }
 
 @warn_unused_result
@@ -214,6 +241,20 @@ public func -<T:GLmathFloatingPointType>(x1: T, x2: T) -> T {
 
 public func -=<T:GLmathFloatingPointType>(inout x1: T, x2: T) {
     x1 = x1 - x2
+}
+
+@warn_unused_result
+public func -<T:GLmathFloatingPointType>(s: T.Element, x: T) -> T {
+    return T(s, x, -)
+}
+
+@warn_unused_result
+public func -<T:GLmathFloatingPointType>(x: T, s: T.Element) -> T {
+    return T(x, s, -)
+}
+
+public func -=<T:GLmathFloatingPointType>(inout x: T, s: T.Element) {
+    x = x - s
 }
 
 @warn_unused_result
@@ -304,6 +345,9 @@ public func *=<T:GLmathFloatingPointType>(inout x: T, s: T.Element) {
     x = x * s
 }
 
+
+// FloatingPointVectorType
+
 @warn_unused_result
 public func *<T:FloatingPointVectorType>(v1: T, v2: T) -> T {
     #if !os(Linux)
@@ -322,29 +366,21 @@ public func *<T:FloatingPointVectorType>(v1: T, v2: T) -> T {
     return T(v1, v2, /)
 }
 
-
 public func *=<T:FloatingPointVectorType>(inout v1: T, v2: T) {
     v1 = v1 * v2
 }
 
-@warn_unused_result
-public func /<T:GLmathFloatingPointType>(s: T.Element, x: T) -> T {
-    return T(s, x, /)
-}
+
+// ScalarVectorType
 
 @warn_unused_result
-public func /<T:GLmathFloatingPointType>(x: T, s: T.Element) -> T {
-    return T(x, s, /)
-}
-
-public func /=<T:GLmathFloatingPointType>(inout x: T, s: T.Element) {
-    x = x / s
-}
-
-@warn_unused_result
-public func /<T:FloatingPointVectorType>(v1: T, v2: T) -> T {
+public func /<T:ScalarVectorType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
+        case is Vector2i<Int32>, is Vector2i<UInt32> :
+            return unsafeBitCast(unsafeBitCast(v1, int2.self) / unsafeBitCast(v2, int2.self), T.self)
+        case is Vector4i<Int32>, is Vector4i<UInt32> :
+            return unsafeBitCast(unsafeBitCast(v1, int4.self) / unsafeBitCast(v2, int4.self), T.self)
         case is Vector2<Float> :
             return unsafeBitCast(unsafeBitCast(v1, float2.self) / unsafeBitCast(v2, float2.self), T.self)
         case is Vector2<Double> :
@@ -353,30 +389,19 @@ public func /<T:FloatingPointVectorType>(v1: T, v2: T) -> T {
             return unsafeBitCast(unsafeBitCast(v1, float4.self) / unsafeBitCast(v2, float4.self), T.self)
         case is Vector4<Double> :
             return unsafeBitCast(unsafeBitCast(v1, double4.self) / unsafeBitCast(v2, double4.self), T.self)
-        default: break
+        default:
+            break
         }
     #endif
     return T(v1, v2, /)
 }
 
-public func /=<T:FloatingPointVectorType>(inout v1: T, v2: T) {
+public func /=<T:ScalarVectorType>(inout v1: T, v2: T) {
     v1 = v1 / v2
 }
 
 
-// Begin Integer Types
-
-@warn_unused_result
-public func &+<T:IntegerVectorType>(s: T.Element, v: T) -> T {
-    return T(s, v, &+)
-}
-
-
-@warn_unused_result
-public func &+<T:IntegerVectorType>(v: T, s: T.Element) -> T {
-    return T(v, s, &+)
-}
-
+// IntegerVectorType
 
 @warn_unused_result
 public func &+<T:IntegerVectorType>(v1: T, v2: T) -> T {
@@ -393,18 +418,15 @@ public func &+<T:IntegerVectorType>(v1: T, v2: T) -> T {
     return T(v1, v2, &+)
 }
 
-
 @warn_unused_result
-public func &-<T:IntegerVectorType>(s: T.Element, v: T) -> T {
-    return T(s, v, &-)
+public func &+<T:IntegerVectorType>(s: T.Element, v: T) -> T {
+    return T(s, v, &+)
 }
 
-
 @warn_unused_result
-public func &-<T:IntegerVectorType>(v: T, s: T.Element) -> T {
-    return T(v, s, &-)
+public func &+<T:IntegerVectorType>(v: T, s: T.Element) -> T {
+    return T(v, s, &+)
 }
-
 
 @warn_unused_result
 public func &-<T:IntegerVectorType>(v1: T, v2: T) -> T {
@@ -421,38 +443,15 @@ public func &-<T:IntegerVectorType>(v1: T, v2: T) -> T {
     return T(v1, v2, &-)
 }
 
-
 @warn_unused_result
-public func &*<T:IntegerVectorType>(s: T.Element, v: T) -> T {
-    #if !os(Linux)
-        switch (v) {
-        case is Vector2i<Int32>, is Vector2i<UInt32> :
-            return unsafeBitCast(unsafeBitCast(s, Int32.self) &* unsafeBitCast(v, int2.self), T.self)
-        case is Vector4i<Int32>, is Vector4i<UInt32> :
-            return unsafeBitCast(unsafeBitCast(s, Int32.self) &* unsafeBitCast(v, int4.self), T.self)
-        default:
-            break
-        }
-    #endif
-    return T(s, v, &*)
+public func &-<T:IntegerVectorType>(s: T.Element, v: T) -> T {
+    return T(s, v, &-)
 }
 
-
 @warn_unused_result
-public func &*<T:IntegerVectorType>(v: T, s: T.Element) -> T {
-    #if !os(Linux)
-        switch (v) {
-        case is Vector2i<Int32>, is Vector2i<UInt32> :
-            return unsafeBitCast(unsafeBitCast(v, int2.self) &* unsafeBitCast(s, Int32.self), T.self)
-        case is Vector4i<Int32>, is Vector4i<UInt32> :
-            return unsafeBitCast(unsafeBitCast(v, int4.self) &* unsafeBitCast(s, Int32.self), T.self)
-        default:
-            break
-        }
-    #endif
-    return T(v, s, &*)
+public func &-<T:IntegerVectorType>(v: T, s: T.Element) -> T {
+    return T(v, s, &-)
 }
-
 
 @warn_unused_result
 public func &*<T:IntegerVectorType>(v1: T, v2: T) -> T {
@@ -469,44 +468,130 @@ public func &*<T:IntegerVectorType>(v1: T, v2: T) -> T {
     return T(v1, v2, &*)
 }
 
-
 @warn_unused_result
-public func /<T:IntegerVectorType>(s: T.Element, v: T) -> T {
-    return T(s, v, /)
-}
-
-
-@warn_unused_result
-public func /<T:IntegerVectorType>(v: T, s: T.Element) -> T {
-    return T(v, s, /)
-}
-
-
-public func /=<T:IntegerVectorType>(inout v: T, s: T.Element) {
-    v = v / s
-}
-
-
-@warn_unused_result
-public func /<T:IntegerVectorType>(v1: T, v2: T) -> T {
+public func &*<T:IntegerVectorType>(s: T.Element, v: T) -> T {
     #if !os(Linux)
-        switch (v1) {
+        switch (v) {
         case is Vector2i<Int32>, is Vector2i<UInt32> :
-            return unsafeBitCast(unsafeBitCast(v1, int2.self) / unsafeBitCast(v2, int2.self), T.self)
+            return unsafeBitCast(unsafeBitCast(s, Int32.self) &* unsafeBitCast(v, int2.self), T.self)
         case is Vector4i<Int32>, is Vector4i<UInt32> :
-            return unsafeBitCast(unsafeBitCast(v1, int4.self) / unsafeBitCast(v2, int4.self), T.self)
+            return unsafeBitCast(unsafeBitCast(s, Int32.self) &* unsafeBitCast(v, int4.self), T.self)
         default:
             break
         }
     #endif
-    return T(v1, v2, /)
+    return T(s, v, &*)
+}
+
+@warn_unused_result
+public func &*<T:IntegerVectorType>(v: T, s: T.Element) -> T {
+    #if !os(Linux)
+        switch (v) {
+        case is Vector2i<Int32>, is Vector2i<UInt32> :
+            return unsafeBitCast(unsafeBitCast(v, int2.self) &* unsafeBitCast(s, Int32.self), T.self)
+        case is Vector4i<Int32>, is Vector4i<UInt32> :
+            return unsafeBitCast(unsafeBitCast(v, int4.self) &* unsafeBitCast(s, Int32.self), T.self)
+        default:
+            break
+        }
+    #endif
+    return T(v, s, &*)
+}
+
+@warn_unused_result
+public func << <T:IntegerVectorType>(v: T, s: T.Element) -> T {
+    return T(v, s, <<)
+}
+
+public func <<= <T:IntegerVectorType>(inout v: T, s: T.Element) {
+    v = v << s
+}
+
+@warn_unused_result
+public func >> <T:IntegerVectorType>(v: T, s: T.Element) -> T {
+    return T(v, s, <<)
+}
+
+public func >>= <T:IntegerVectorType>(inout v: T, s: T.Element) {
+    v = v >> s
+}
+
+@warn_unused_result
+public func &<T:IntegerVectorType>(x1: T, x2: T) -> T {
+    return T(x1, x2, &)
+}
+
+public func &=<T:IntegerVectorType>(inout x1: T, x2: T) {
+    x1 = x1 & x2
+}
+
+@warn_unused_result
+public func &<T:IntegerVectorType>(s: T.Element, x: T) -> T {
+    return T(s, x, &)
+}
+
+@warn_unused_result
+public func &<T:IntegerVectorType>(x: T, s: T.Element) -> T {
+    return T(x, s, &)
+}
+
+public func &=<T:IntegerVectorType>(inout x: T, s: T.Element) {
+    x = x & s
+}
+
+@warn_unused_result
+public func |<T:IntegerVectorType>(x1: T, x2: T) -> T {
+    return T(x1, x2, |)
+}
+
+public func |=<T:IntegerVectorType>(inout x1: T, x2: T) {
+    x1 = x1 | x2
+}
+
+@warn_unused_result
+public func |<T:IntegerVectorType>(s: T.Element, x: T) -> T {
+    return T(s, x, |)
+}
+
+@warn_unused_result
+public func |<T:IntegerVectorType>(x: T, s: T.Element) -> T {
+    return T(x, s, |)
+}
+
+public func |=<T:IntegerVectorType>(inout x: T, s: T.Element) {
+    x = x | s
+}
+
+@warn_unused_result
+public func ^<T:IntegerVectorType>(v1: T, v2: T) -> T {
+    return T(v1, v2, ^)
+}
+
+public func ^=<T:IntegerVectorType>(inout x1: T, x2: T) {
+    x1 = x1 ^ x2
+}
+
+@warn_unused_result
+public func ^<T:IntegerVectorType>(s: T.Element, x: T) -> T {
+    return T(s, x, ^)
+}
+
+@warn_unused_result
+public func ^<T:IntegerVectorType>(x: T, s: T.Element) -> T {
+    return T(x, s, ^)
+}
+
+public func ^=<T:IntegerVectorType>(inout x: T, s: T.Element) {
+    x = x ^ s
+}
+
+@warn_unused_result
+public prefix func ~<T:IntegerVectorType>(v: T) -> T {
+    return T(v, ~)
 }
 
 
-public func /=<T:IntegerVectorType>(inout v1: T, v2: T) {
-    v1 = v1 / v2
-}
-
+// error helpers
 
 @available(*, unavailable, renamed="&+",
 message="integer vector types do not support checked arithmetic; use the wrapping operations instead")

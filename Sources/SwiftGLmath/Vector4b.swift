@@ -22,10 +22,9 @@
 
 public struct Vector4b : BooleanVectorType {
 
-    public typealias valueType = Int8
-    public typealias elementType = Bool
+    public typealias Element = Bool
 
-    private var b0:valueType, b1:valueType, b2:valueType, b3:valueType
+    private var b0:Int8, b1:Int8, b2:Int8, b3:Int8
 
     public var x:Bool { get {return b0 != 0} set {b0 = newValue ? 1 : 0} }
     public var y:Bool { get {return b1 != 0} set {b1 = newValue ? 1 : 0} }
@@ -41,6 +40,9 @@ public struct Vector4b : BooleanVectorType {
     public var t:Bool { get {return b1 != 0} set {b1 = newValue ? 1 : 0} }
     public var p:Bool { get {return b2 != 0} set {b2 = newValue ? 1 : 0} }
     public var q:Bool { get {return b3 != 0} set {b3 = newValue ? 1 : 0} }
+
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return 4 }
 
     public subscript(i: Int) -> Bool {
         get {
@@ -64,17 +66,6 @@ public struct Vector4b : BooleanVectorType {
         }
     }
 
-    public subscript(i: Int, j:Int) -> Bool {
-        get {
-            precondition(j==0)
-            return self[i]
-        }
-        set {
-            precondition(j==0)
-            self[i] = newValue
-        }
-    }
-
     public var debugDescription: String {
         return String(self.dynamicType) + "(\(x), \(y), \(z), \(w))"
     }
@@ -91,7 +82,7 @@ public struct Vector4b : BooleanVectorType {
     }
 
     public init (_ v:Bool) {
-        let b:valueType = v ? 1 : 0
+        let b:Int8 = v ? 1 : 0
         self.b0 = b
         self.b1 = b
         self.b2 = b

@@ -22,8 +22,7 @@
 
 public struct Vector2i<T:IntegerScalarType> : IntegerVectorType {
 
-    public typealias valueType = T
-    public typealias elementType = T
+    public typealias Element = T
 
     public var x:T, y:T
 
@@ -32,6 +31,9 @@ public struct Vector2i<T:IntegerScalarType> : IntegerVectorType {
 
     public var s:T { get {return x} set {x = newValue} }
     public var t:T { get {return y} set {y = newValue} }
+
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return 2 }
 
     public subscript(i: Int) -> T {
         get {
@@ -48,17 +50,6 @@ public struct Vector2i<T:IntegerScalarType> : IntegerVectorType {
             case 1: y = newValue
             default: preconditionFailure("Vector index out of range")
             }
-        }
-    }
-
-    public subscript(i: Int, j:Int) -> T {
-        get {
-            precondition(j==0)
-            return self[i]
-        }
-        set {
-            precondition(j==0)
-            self[i] = newValue
         }
     }
 
@@ -133,6 +124,31 @@ public struct Vector2i<T:IntegerScalarType> : IntegerVectorType {
     public init (_ v:Vector4i<T>) {
         self.x = v.x
         self.y = v.y
+    }
+
+    public init (_ v:Vector2i<T>, @noescape _ op:(_:T) -> T) {
+        self.x = op(v.x)
+        self.y = op(v.y)
+    }
+
+    public init (_ s:T, _ v:Vector2i<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(s, v.x)
+        self.y = op(s, v.y)
+    }
+
+    public init (_ v:Vector2i<T>, _ s:T, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(v.x, s)
+        self.y = op(v.y, s)
+    }
+
+    public init (_ v1:Vector2i<T>, _ v2:Vector2i<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(v1.x, v2.x)
+        self.y = op(v1.y, v2.y)
+    }
+
+    public init (_ v1:Vector2i<T>, _ v2:Vector2i<T>, _ v3:Vector2i<T>, @noescape _ op:(_:T, _:T, _:T) -> T) {
+        self.x = op(v1.x, v2.x, v3.x)
+        self.y = op(v1.y, v2.y, v3.y)
     }
 
 }

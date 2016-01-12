@@ -26,128 +26,58 @@
 import Foundation
 
 
-private func componentWise<T:GLmathType>(x:T, @noescape
-        _ op:(_:T.elementType) -> T.elementType) -> T
-{
-    let cols = sizeof(T) / sizeof(T.valueType.self)
-    let rows = sizeof(T.valueType.self) / sizeof(T.elementType.self)
-    var result = T()
-    for r in 0..<rows {
-        for c in 0..<cols {
-            result[c,r] = op(x[c,r])
-        }
-    }
-    return result
-}
-
-
-private func componentWise<T:GLmathType>(x1:T, _ x2:T, @noescape
-        _ op:(_:T.elementType, _:T.elementType) -> T.elementType) -> T
-{
-    let cols = sizeof(T) / sizeof(T.valueType.self)
-    let rows = sizeof(T.valueType.self) / sizeof(T.elementType.self)
-    var result = T()
-    for r in 0..<rows {
-        for c in 0..<cols {
-            result[c,r] = op(x1[c,r], x2[c,r])
-        }
-    }
-    return result
-}
-
-
-private func componentWise<T:GLmathType>(x:T, _ s:T.elementType, @noescape
-       _ op:(_:T.elementType, _:T.elementType) -> T.elementType) -> T
-{
-    let cols = sizeof(T) / sizeof(T.valueType.self)
-    let rows = sizeof(T.valueType.self) / sizeof(T.elementType.self)
-    var result = T()
-    for r in 0..<rows {
-        for c in 0..<cols {
-            result[c,r] = op(x[c,r], s)
-        }
-    }
-    return result
-}
-
-
-private func componentWise<T:GLmathType>(s:T.elementType, _ x:T, @noescape
-       _ op:(_:T.elementType, _:T.elementType) -> T.elementType) -> T
-{
-    let cols = sizeof(T) / sizeof(T.valueType.self)
-    let rows = sizeof(T.valueType.self) / sizeof(T.elementType.self)
-    var result = T()
-    for r in 0..<rows {
-        for c in 0..<cols {
-            result[c,r] = op(s, x[c,r])
-        }
-    }
-    return result
-}
-
-
 public func matrixCompMult<T:MatrixType>(x1:T, _ x2:T) -> T {
-    return componentWise(x1, x2, *)
+    return T(x1, x2, *)
 }
 
 
 public func min<T:ScalarVectorType>(x1:T, _ x2:T) -> T {
-    return componentWise(x1, x2) {
-        $0 < $1 ? $0 : $1
-    }
+    return T(x1, x2, min)
 }
 
 
-public func min<T:ScalarVectorType>(x1:T, _ x2:T.elementType) -> T {
-    return componentWise(x1, x2) {
-        $0 < $1 ? $0 : $1
-    }
+public func min<T:ScalarVectorType>(x1:T, _ x2:T.Element) -> T {
+    return T(x1, x2, min)
 }
 
 
 public func max<T:ScalarVectorType>(x1:T, _ x2:T) -> T {
-    return componentWise(x1, x2) {
-        $0 > $1 ? $0 : $1
-    }
+    return T(x1, x2, max)
 }
 
 
-public func max<T:ScalarVectorType>(x1:T, _ x2:T.elementType) -> T {
-    return componentWise(x1, x2) {
-        $0 > $1 ? $0 : $1
-    }
+public func max<T:ScalarVectorType>(x1:T, _ x2:T.Element) -> T {
+    return T(x1, x2, max)
 }
 
 
 public func clamp<T:ScalarVectorType>(a:T, _ minVal:T, _ maxVal:T) -> T {
-    return min(max(a, minVal), maxVal)
+    return T(a, minVal, maxVal) { min(max($0, $1), $2) }
 }
 
 
-public func clamp<T:ScalarVectorType>(a:T, _ minVal:T.elementType, _ maxVal:T.elementType) -> T {
-    return min(max(a, minVal), maxVal)
+public func clamp<T:ScalarVectorType>(a:T, _ minVal:T.Element, _ maxVal:T.Element) -> T {
+    return T(a) { min(max($0, minVal), maxVal) }
 }
 
 
 public func mix<T:FloatingPointVectorType>(x:T, _ y:T, _ a:T) -> T {
-    let inv = componentWise(T.elementType(1), a, -)
-    let facA = componentWise(x, inv, *)
-    let facB = componentWise(y, a, *)
-    return componentWise(facA, facB, +)
+    return T(x, y, a) {
+        let a = $0 * (T.Element(1) - $2)
+        return a + $1 * $2
+    }
 }
 
 
-public func mix<T:FloatingPointVectorType>(x:T, _ y:T, _ a:T.elementType) -> T {
-    let inv = T.elementType(1) - a
-    return x * inv + y * a
+public func mix<T:FloatingPointVectorType>(x:T, _ y:T, _ a:T.Element) -> T {
+    let inv = T.Element(1) - a
+    return T(x, y) {$0 * inv + $1 * a}
 }
 
 //TODO also mix with bool
 
-public func abs<T:ScalarVectorType where T.elementType:SignedNumberType>(x:T) -> T {
-    return componentWise(x) {
-        $0 < T.elementType(0) ? -$0 : $0
-    }
+public func abs<T:ScalarVectorType where T.Element:SignedNumberType>(x:T) -> T {
+    return T(x) {$0 < T.Element(0) ? -$0 : $0}
 }
 
 
@@ -160,23 +90,18 @@ public func cross<T:ScalarType>(v1:Vector3<T>, v2:Vector3<T>) -> Vector3<T> {
 }
 
 
-public func dot<T:FloatingPointVectorType>(x1:T, _ x2:T) -> T.elementType {
-    let cols = sizeof(T) / sizeof(T.valueType.self)
-    var result = x1[0,0] * x2[0,0]
-    for c in 1..<cols {
-        result = result + x1[c,0] * x2[c,0]
-    }
-    return result
+public func dot<T:FloatingPointVectorType>(x1:T, _ x2:T) -> T.Element {
+    let a = T(x1, x2, *)
+    return a.reduce(T.Element(0)) { $0 + ($1 as! T.Element) }
 }
 
 
-public func length<T:FloatingPointVectorType>(v:T) -> T.elementType {
-    let d = dot(v, v)
-    return sqrt(d)
+public func length<T:FloatingPointVectorType>(v:T) -> T.Element {
+    return sqrt(dot(v, v))
 }
 
 
-public func distance<T:FloatingPointVectorType>(v1:T, _ v2:T) -> T.elementType {
+public func distance<T:FloatingPointVectorType>(v1:T, _ v2:T) -> T.Element {
     return length(v1 - v2)
 }
 
@@ -187,23 +112,23 @@ public func normalize<T:FloatingPointVectorType>(v:T) -> T {
 
 
 public func faceforward<T:FloatingPointVectorType>(n:T, _ i:T, _ nRef:T) -> T {
-    return dot(nRef, i) < T.elementType(0) ? n : componentWise(n, -)
+    return dot(nRef, i) < T.Element(0) ? n : -n
 }
 
 
 public func reflect<T:FloatingPointVectorType>(i:T, _ n:T) -> T {
-    let f = T.elementType(2) * dot(n, i)
+    let f = T.Element(2) * dot(n, i)
     return i - f * n
 }
 
 
-public func refract<T:FloatingPointVectorType>(i:T, _ n:T, _ eta:T.elementType) -> T {
+public func refract<T:FloatingPointVectorType>(i:T, _ n:T, _ eta:T.Element) -> T {
     let dotni = dot(n, i)
     var k = dotni * dotni
-    k = T.elementType(1) - k
+    k = T.Element(1) - k
     k = eta * eta * k
-    k = T.elementType(1) - k
-    if (k < T.elementType(0)) { return T() }
+    k = T.Element(1) - k
+    if (k < T.Element(0)) { return T() }
     let x = eta * dotni + sqrt(k)
     let r = x * n
     return eta * i - r
@@ -224,3 +149,16 @@ public func sqrt<T:FloatingPointScalarType>(v:T) -> T {
 public func inversesqrt<T:FloatingPointScalarType>(v:T) -> T {
     return T(1) / sqrt(v)
 }
+
+
+
+//TODO switch to this math style
+//@warn_unused_result
+//public func /<T:FloatingPointVectorType>(v: T, s: T.Element) -> T {
+//    return T(v, s) {$0 / $1}
+//}
+//
+//public func /=<T:FloatingPointVectorType>(inout v: T, s: T.Element) {
+//    v = v / s
+//}
+

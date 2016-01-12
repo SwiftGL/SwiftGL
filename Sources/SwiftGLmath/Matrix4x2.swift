@@ -27,10 +27,12 @@ import simd
 
 public struct Matrix4x2<T:FloatingPointScalarType> : MatrixType {
 
-    public typealias valueType = Vector2<T>
-    public typealias elementType = T
+    public typealias Element = T
 
     private var x:Vector2<T>, y:Vector2<T>, z:Vector2<T>, w:Vector2<T>
+
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return 4 }
 
     public subscript(i: Int) -> Vector2<T> {
         get {
@@ -50,15 +52,6 @@ public struct Matrix4x2<T:FloatingPointScalarType> : MatrixType {
             case 3: w = newValue
             default: preconditionFailure("Matrix index out of range")
             }
-        }
-    }
-
-    public subscript(i: Int, j: Int) -> T {
-        get {
-            return self[i][j]
-        }
-        set {
-            self[i][j] = newValue
         }
     }
 
@@ -180,6 +173,41 @@ public struct Matrix4x2<T:FloatingPointScalarType> : MatrixType {
         self.y = Vector2<T>(m[1])
         self.z = Vector2<T>(m[2])
         self.w = Vector2<T>(m[3])
+    }
+
+    public init (_ m:Matrix4x2<T>, @noescape _ op:(_:T) -> T) {
+        self.x = Vector2<T>(m.x, op)
+        self.y = Vector2<T>(m.y, op)
+        self.z = Vector2<T>(m.z, op)
+        self.w = Vector2<T>(m.w, op)
+    }
+
+    public init (_ s:T, _ m:Matrix4x2<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = Vector2<T>(s, m.x, op)
+        self.y = Vector2<T>(s, m.y, op)
+        self.z = Vector2<T>(s, m.z, op)
+        self.w = Vector2<T>(s, m.w, op)
+    }
+
+    public init (_ m:Matrix4x2<T>, _ s:T, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = Vector2<T>(m.x, s, op)
+        self.y = Vector2<T>(m.y, s, op)
+        self.z = Vector2<T>(m.z, s, op)
+        self.w = Vector2<T>(m.w, s, op)
+    }
+
+    public init (_ m1:Matrix4x2<T>, _ m2:Matrix4x2<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = Vector2<T>(m1.x, m2.x, op)
+        self.y = Vector2<T>(m1.y, m2.y, op)
+        self.z = Vector2<T>(m1.z, m2.z, op)
+        self.w = Vector2<T>(m1.w, m2.w, op)
+    }
+
+    public init (_ m1:Matrix4x2<T>, _ m2:Matrix4x2<T>, _ m3:Matrix4x2<T>, @noescape _ op:(_:T, _:T, _:T) -> T) {
+        self.x = Vector2<T>(m1.x, m2.x, m3.x, op)
+        self.y = Vector2<T>(m1.y, m2.y, m3.y, op)
+        self.z = Vector2<T>(m1.z, m2.z, m3.z, op)
+        self.w = Vector2<T>(m1.w, m2.w, m3.w, op)
     }
 
 }

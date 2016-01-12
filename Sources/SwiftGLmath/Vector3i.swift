@@ -22,8 +22,7 @@
 
 public struct Vector3i<T:IntegerScalarType> : IntegerVectorType {
 
-    public typealias valueType = T
-    public typealias elementType = T
+    public typealias Element = T
 
     public var x:T, y:T, z:T
 
@@ -34,6 +33,9 @@ public struct Vector3i<T:IntegerScalarType> : IntegerVectorType {
     public var s:T { get {return x} set {x = newValue} }
     public var t:T { get {return y} set {y = newValue} }
     public var p:T { get {return z} set {z = newValue} }
+
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return 3 }
 
     public subscript(i: Int) -> T {
         get {
@@ -52,17 +54,6 @@ public struct Vector3i<T:IntegerScalarType> : IntegerVectorType {
             case 2: z = newValue
             default: preconditionFailure("Vector index out of range")
             }
-        }
-    }
-
-    public subscript(i: Int, j:Int) -> T {
-        get {
-            precondition(j==0)
-            return self[i]
-        }
-        set {
-            precondition(j==0)
-            self[i] = newValue
         }
     }
 
@@ -156,6 +147,36 @@ public struct Vector3i<T:IntegerScalarType> : IntegerVectorType {
         self.x = v.x
         self.y = v.y
         self.z = v.z
+    }
+
+    public init (_ v:Vector3i<T>, @noescape _ op:(_:T) -> T) {
+        self.x = op(v.x)
+        self.y = op(v.y)
+        self.z = op(v.z)
+    }
+
+    public init (_ s:T, _ v:Vector3i<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(s, v.x)
+        self.y = op(s, v.y)
+        self.z = op(s, v.z)
+    }
+
+    public init (_ v:Vector3i<T>, _ s:T, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(v.x, s)
+        self.y = op(v.y, s)
+        self.z = op(v.z, s)
+    }
+
+    public init (_ v1:Vector3i<T>, _ v2:Vector3i<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(v1.x, v2.x)
+        self.y = op(v1.y, v2.y)
+        self.z = op(v1.z, v2.z)
+    }
+
+    public init (_ v1:Vector3i<T>, _ v2:Vector3i<T>, _ v3:Vector3i<T>, @noescape _ op:(_:T, _:T, _:T) -> T) {
+        self.x = op(v1.x, v2.x, v3.x)
+        self.y = op(v1.y, v2.y, v3.y)
+        self.z = op(v1.z, v2.z, v3.z)
     }
 
 }

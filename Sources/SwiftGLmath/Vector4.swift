@@ -27,8 +27,7 @@
 
 public struct Vector4<T:FloatingPointScalarType> : FloatingPointVectorType {
 
-    public typealias valueType = T
-    public typealias elementType = T
+    public typealias Element = T
 
     public var x:T, y:T, z:T, w:T
 
@@ -41,6 +40,9 @@ public struct Vector4<T:FloatingPointScalarType> : FloatingPointVectorType {
     public var t:T { get {return y} set {y = newValue} }
     public var p:T { get {return z} set {z = newValue} }
     public var q:T { get {return w} set {w = newValue} }
+
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return 4 }
 
     public subscript(i: Int) -> T {
         get {
@@ -61,17 +63,6 @@ public struct Vector4<T:FloatingPointScalarType> : FloatingPointVectorType {
             case 3: w = newValue
             default: preconditionFailure("Vector index out of range")
             }
-        }
-    }
-
-    public subscript(i: Int, j:Int) -> T {
-        get {
-            precondition(j==0)
-            return self[i]
-        }
-        set {
-            precondition(j==0)
-            self[i] = newValue
         }
     }
 
@@ -200,6 +191,41 @@ public struct Vector4<T:FloatingPointScalarType> : FloatingPointVectorType {
         self.y = v.y
         self.z = v.z
         self.w = v.w
+    }
+
+    public init (_ v:Vector4<T>, @noescape _ op:(_:T) -> T) {
+        self.x = op(v.x)
+        self.y = op(v.y)
+        self.z = op(v.z)
+        self.w = op(v.w)
+    }
+
+    public init (_ s:T, _ v:Vector4<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(s, v.x)
+        self.y = op(s, v.y)
+        self.z = op(s, v.z)
+        self.w = op(s, v.w)
+    }
+
+    public init (_ v:Vector4<T>, _ s:T, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(v.x, s)
+        self.y = op(v.y, s)
+        self.z = op(v.z, s)
+        self.w = op(v.w, s)
+    }
+
+    public init (_ v1:Vector4<T>, _ v2:Vector4<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = op(v1.x, v2.x)
+        self.y = op(v1.y, v2.y)
+        self.z = op(v1.z, v2.z)
+        self.w = op(v1.w, v2.w)
+    }
+
+    public init (_ v1:Vector4<T>, _ v2:Vector4<T>, _ v3:Vector4<T>, @noescape _ op:(_:T, _:T, _:T) -> T) {
+        self.x = op(v1.x, v2.x, v3.x)
+        self.y = op(v1.y, v2.y, v3.y)
+        self.z = op(v1.z, v2.z, v3.z)
+        self.w = op(v1.w, v2.w, v3.w)
     }
 
 }

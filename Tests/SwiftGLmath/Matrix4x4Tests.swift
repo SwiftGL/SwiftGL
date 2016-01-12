@@ -93,11 +93,11 @@ class Matrix4x4Tests: XCTestCase {
             vec4(8, 9, 88, 11),
             vec4(12, 13, 14, 15)
         )
-        XCTAssertEqual(m0[1,2], m1[1,2])
-        XCTAssertNotEqual(m0[1,1], m1[1,1])
-        m0[1,1] = 99
-        m0[2,2] = 88
-        XCTAssertEqual(m0[1,1], m1[1,1])
+        XCTAssertEqual(m0[1][2], m1[1][2])
+        XCTAssertNotEqual(m0[1][1], m1[1][1])
+        m0[1][1] = 99
+        m0[2][2] = 88
+        XCTAssertEqual(m0[1][1], m1[1][1])
         XCTAssertEqual(m0, m1)
     }
 

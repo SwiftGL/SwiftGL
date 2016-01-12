@@ -27,10 +27,12 @@ import simd
 
 public struct Matrix2x2<T:FloatingPointScalarType> : MatrixType {
 
-    public typealias valueType = Vector2<T>
-    public typealias elementType = T
+    public typealias Element = T
 
     private var x:Vector2<T>, y:Vector2<T>
+
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return 2 }
 
     public subscript(i: Int) -> Vector2<T> {
         get {
@@ -46,15 +48,6 @@ public struct Matrix2x2<T:FloatingPointScalarType> : MatrixType {
             case 1: y = newValue
             default: preconditionFailure("Matrix index out of range")
             }
-        }
-    }
-
-    public subscript(i: Int, j: Int) -> T {
-        get {
-            return self[i][j]
-        }
-        set {
-            self[i][j] = newValue
         }
     }
 
@@ -144,6 +137,31 @@ public struct Matrix2x2<T:FloatingPointScalarType> : MatrixType {
     public init(_ m:Matrix4x4<T>) {
         self.x = Vector2<T>(m[0])
         self.y = Vector2<T>(m[1])
+    }
+
+    public init (_ m:Matrix2x2<T>, @noescape _ op:(_:T) -> T) {
+        self.x = Vector2<T>(m.x, op)
+        self.y = Vector2<T>(m.y, op)
+    }
+
+    public init (_ s:T, _ m:Matrix2x2<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = Vector2<T>(s, m.x, op)
+        self.y = Vector2<T>(s, m.y, op)
+    }
+
+    public init (_ m:Matrix2x2<T>, _ s:T, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = Vector2<T>(m.x, s, op)
+        self.y = Vector2<T>(m.y, s, op)
+    }
+
+    public init (_ m1:Matrix2x2<T>, _ m2:Matrix2x2<T>, @noescape _ op:(_:T, _:T) -> T) {
+        self.x = Vector2<T>(m1.x, m2.x, op)
+        self.y = Vector2<T>(m1.y, m2.y, op)
+    }
+
+    public init (_ m1:Matrix2x2<T>, _ m2:Matrix2x2<T>, _ m3:Matrix2x2<T>, @noescape _ op:(_:T, _:T, _:T) -> T) {
+        self.x = Vector2<T>(m1.x, m2.x, m3.x, op)
+        self.y = Vector2<T>(m1.y, m2.y, m3.y, op)
     }
 
 }

@@ -71,7 +71,7 @@ public struct Vector3<T:FloatingPointScalarType> : FloatingPointVectorType {
     }
 
     public var hashValue: Int {
-        return hash(x.hashValue, y.hashValue, z.hashValue)
+        return SwiftGLmath.hash(x.hashValue, y.hashValue, z.hashValue)
     }
 
     public init () {

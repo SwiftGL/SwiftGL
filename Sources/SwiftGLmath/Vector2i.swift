@@ -67,7 +67,7 @@ public struct Vector2i<T:IntegerScalarType> : IntegerVectorType {
     }
 
     public var hashValue: Int {
-        return hash(x.hashValue, y.hashValue)
+        return SwiftGLmath.hash(x.hashValue, y.hashValue)
     }
 
     public init () {
@@ -144,13 +144,13 @@ public func ==<T:IntegerScalarType>(v1: Vector2i<T>, v2: Vector2i<T>) -> Bool {
 
 
 @warn_unused_result
-public prefix func +<T:SignedIntegerScalarType>(v: Vector2i<T>) -> Vector2i<T> {
+public prefix func +<T:IntegerScalarType where T:SignedIntegerType>(v: Vector2i<T>) -> Vector2i<T> {
     return v
 }
 
 
 @warn_unused_result
-public prefix func -<T:SignedIntegerScalarType>(v: Vector2i<T>) -> Vector2i<T> {
+public prefix func -<T:IntegerScalarType where T:SignedIntegerType>(v: Vector2i<T>) -> Vector2i<T> {
     return Vector2i<T>(-v.x, -v.y)
 }
 

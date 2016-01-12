@@ -65,7 +65,7 @@ public struct Matrix2x4<T:FloatingPointScalarType> : MatrixType {
     }
 
     public var hashValue: Int {
-        return hash(x.hashValue, y.hashValue)
+        return SwiftGLmath.hash(x.hashValue, y.hashValue)
     }
 
     public init() {

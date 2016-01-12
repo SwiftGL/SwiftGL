@@ -80,7 +80,7 @@ public struct Vector4i<T:IntegerScalarType> : IntegerVectorType {
     }
 
     public var hashValue: Int {
-        return hash(x.hashValue, y.hashValue, z.hashValue, w.hashValue)
+        return SwiftGLmath.hash(x.hashValue, y.hashValue, z.hashValue, w.hashValue)
     }
 
     public init () {
@@ -211,13 +211,13 @@ public func ==<T:IntegerScalarType>(v1: Vector4i<T>, v2: Vector4i<T>) -> Bool {
 
 
 @warn_unused_result
-public prefix func +<T:SignedIntegerScalarType>(v: Vector4i<T>) -> Vector4i<T> {
+public prefix func +<T:IntegerScalarType where T:SignedIntegerType>(v: Vector4i<T>) -> Vector4i<T> {
     return v
 }
 
 
 @warn_unused_result
-public prefix func -<T:SignedIntegerScalarType>(v: Vector4i<T>) -> Vector4i<T> {
+public prefix func -<T:IntegerScalarType where T:SignedIntegerType>(v: Vector4i<T>) -> Vector4i<T> {
     #if !os(Linux)
         if T.self == Int32.self || T.self == UInt32.self {
             return unsafeBitCast(-unsafeBitCast(v, int4.self), Vector4i<T>.self)

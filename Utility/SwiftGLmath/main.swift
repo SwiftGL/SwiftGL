@@ -66,7 +66,8 @@ func writeSwizzle(out:NSOutputStream)
 {
     writeLicense(out)
 
-    let v = ["", "", "Vector2", "Vector3", "Vector4"]
+    let vname = ["", "", "Vector2", "Vector3", "Vector4"]
+    let vtype = ["", "i", "b"]
     let e = [
         ["x", "y", "z", "w"],
         ["r", "g", "b", "a"],
@@ -74,40 +75,44 @@ func writeSwizzle(out:NSOutputStream)
     ]
 
     for vecNum in 2...4 {
-        out.write("public extension \(v[vecNum]) {\n")
-        for e0 in 0...2 {
-            for e1 in 0..<vecNum {
-                for e2 in 0..<vecNum {
-                    if (e2 == e1) {continue}
+        for vnameNum in 0...2 {
+            out.write("public extension \(vname[vecNum])\(vtype[vnameNum]) {\n")
+            var suff = vtype[vnameNum]
+            if suff != "b" { suff += "<T>"}
+            for e0 in 0...2 {
+                for e1 in 0..<vecNum {
+                    for e2 in 0..<vecNum {
+                        if (e2 == e1) {continue}
 
-                    out.write("    public var \(e[e0][e1])\(e[e0][e2]):Vector2<T> { ")
-                    out.write("get { return Vector2<T>(\(e[0][e1]),\(e[0][e2])) } ")
-                    out.write("set { \(e[0][e1]) = newValue.x; \(e[0][e2]) = newValue.y } ")
-                    out.write("}\n")
-
-                    for e3 in 0..<vecNum {
-                        if (vecNum < 3 || e3 == e1 || e3 == e2) {continue}
-
-                        out.write("    public var \(e[e0][e1])\(e[e0][e2])\(e[e0][e3]):Vector3<T> { ")
-                        out.write("get { return Vector3<T>(\(e[0][e1]),\(e[0][e2]),\(e[0][e3])) } ")
-                        out.write("set { \(e[0][e1]) = newValue.x; \(e[0][e2]) = newValue.y; \(e[0][e3]) = newValue.z } ")
+                        out.write("    public var \(e[e0][e1])\(e[e0][e2]):Vector2\(suff) { ")
+                        out.write("get { return Vector2\(suff)(\(e[0][e1]),\(e[0][e2])) } ")
+                        out.write("set { \(e[0][e1]) = newValue.x; \(e[0][e2]) = newValue.y } ")
                         out.write("}\n")
 
-                        for e4 in 0..<vecNum {
-                            if (vecNum < 4 || e4 == e1 || e4 == e2 || e4 == e3) {continue}
+                        for e3 in 0..<vecNum {
+                            if (vecNum < 3 || e3 == e1 || e3 == e2) {continue}
 
-                            out.write("    public var \(e[e0][e1])\(e[e0][e2])\(e[e0][e3])\(e[e0][e4]):Vector4<T> { ")
-                            out.write("get { return Vector4<T>(\(e[0][e1]),\(e[0][e2]),\(e[0][e3]),\(e[0][e4])) } ")
-                            out.write("set { \(e[0][e1]) = newValue.x; \(e[0][e2]) = newValue.y; \(e[0][e3]) = newValue.z; \(e[0][e4]) = newValue.w } ")
+                            out.write("    public var \(e[e0][e1])\(e[e0][e2])\(e[e0][e3]):Vector3\(suff) { ")
+                            out.write("get { return Vector3\(suff)(\(e[0][e1]),\(e[0][e2]),\(e[0][e3])) } ")
+                            out.write("set { \(e[0][e1]) = newValue.x; \(e[0][e2]) = newValue.y; \(e[0][e3]) = newValue.z } ")
                             out.write("}\n")
 
+                            for e4 in 0..<vecNum {
+                                if (vecNum < 4 || e4 == e1 || e4 == e2 || e4 == e3) {continue}
 
+                                out.write("    public var \(e[e0][e1])\(e[e0][e2])\(e[e0][e3])\(e[e0][e4]):Vector4\(suff) { ")
+                                out.write("get { return Vector4\(suff)(\(e[0][e1]),\(e[0][e2]),\(e[0][e3]),\(e[0][e4])) } ")
+                                out.write("set { \(e[0][e1]) = newValue.x; \(e[0][e2]) = newValue.y; \(e[0][e3]) = newValue.z; \(e[0][e4]) = newValue.w } ")
+                                out.write("}\n")
+
+
+                            }
                         }
                     }
                 }
             }
+            out.write("}\n\n")
         }
-        out.write("}\n\n")
     }
 }
 

@@ -24,16 +24,19 @@ public typealias vec2 = Vector2<Float>
 public typealias dvec2 = Vector2<Double>
 public typealias ivec2 = Vector2i<Int32>
 public typealias uvec2 = Vector2i<UInt32>
+public typealias bvec2 = Vector2b
 
 public typealias vec3 = Vector3<Float>
 public typealias dvec3 = Vector3<Double>
 public typealias ivec3 = Vector3i<Int32>
 public typealias uvec3 = Vector3i<UInt32>
+public typealias bvec3 = Vector3b
 
 public typealias vec4 = Vector4<Float>
 public typealias dvec4 = Vector4<Double>
 public typealias ivec4 = Vector4i<Int32>
 public typealias uvec4 = Vector4i<UInt32>
+public typealias bvec4 = Vector4b
 
 public typealias mat2 = Matrix2x2<Float>
 public typealias dmat2 = Matrix2x2<Double>
@@ -63,33 +66,31 @@ public typealias dmat4x3 = Matrix4x3<Double>
 public typealias mat4x4 = Matrix4x4<Float>
 public typealias dmat4x4 = Matrix4x4<Double>
 
-public protocol ScalarType {
+
+public protocol ScalarType : Hashable, Comparable {
     init(_: Int)
     init(_: Int32)
     init(_: UInt32)
     init(_: Float)
     init(_: Double)
-    var hashValue: Int { get }
-    func ==(_: Self, _: Self) -> Bool
-    func >(_: Self, _: Self) -> Bool
-    func <(_: Self, _: Self) -> Bool
-    func /(_: Self, _: Self) -> Self
 }
+extension Int8: ScalarType {}
 
 public protocol IntegerScalarType : ScalarType {
     func &+(_: Self, _: Self) -> Self
     func &-(_: Self, _: Self) -> Self
     func &*(_: Self, _: Self) -> Self
+    func /(_: Self, _: Self) -> Self
 }
 extension UInt32: IntegerScalarType {}
+extension Int32: IntegerScalarType {}
 
-public protocol SignedIntegerScalarType : IntegerScalarType, SignedNumberType {}
-extension Int32: SignedIntegerScalarType {}
-
-public protocol FloatingPointScalarType : ScalarType, FloatingPointType, SignedNumberType {
+public protocol FloatingPointScalarType : ScalarType {
+    prefix func -(_: Self) -> Self
     func +(_: Self, _: Self) -> Self
     func -(_: Self, _: Self) -> Self
     func *(_: Self, _: Self) -> Self
+    func /(_: Self, _: Self) -> Self
 }
 extension Float: FloatingPointScalarType {}
 extension Double: FloatingPointScalarType {}
@@ -97,9 +98,60 @@ extension Double: FloatingPointScalarType {}
 
 public protocol GLmathType : Hashable, Equatable, CustomDebugStringConvertible {
     typealias valueType
-    typealias elementType:ScalarType
+    typealias elementType
     subscript(_: Int, _: Int) -> elementType { get set }
     init()
+}
+
+public protocol BooleanVectorType : GLmathType {
+    typealias valueType:ScalarType
+    typealias elementType:BooleanType
+}
+
+public protocol ScalarVectorType : GLmathType {
+    typealias valueType:ScalarType
+    typealias elementType:ScalarType
+}
+
+public protocol IntegerVectorType : ScalarVectorType {
+    typealias valueType:IntegerScalarType
+    typealias elementType:IntegerScalarType
+    func &+(_: Self, _: Self) -> Self
+    func &+(_: elementType, _: Self) -> Self
+    func &+(_: Self, _: elementType) -> Self
+    func &-(_: Self, _: Self) -> Self
+    func &-(_: elementType, _: Self) -> Self
+    func &-(_: Self, _: elementType) -> Self
+    func &*(_: Self, _: Self) -> Self
+    func &*(_: elementType, _: Self) -> Self
+    func &*(_: Self, _: elementType) -> Self
+    func /(_: Self, _: Self) -> Self
+    func /(_: elementType, _: Self) -> Self
+    func /(_: Self, _: elementType) -> Self
+}
+
+public protocol FloatingPointVectorType : ScalarVectorType {
+    typealias valueType:FloatingPointScalarType
+    typealias elementType:FloatingPointScalarType
+    prefix func -(_: Self) -> Self
+    func +(_: Self, _: Self) -> Self
+    func +(_: elementType, _: Self) -> Self
+    func +(_: Self, _: elementType) -> Self
+    func -(_: Self, _: Self) -> Self
+    func -(_: elementType, _: Self) -> Self
+    func -(_: Self, _: elementType) -> Self
+    func *(_: Self, _: Self) -> Self
+    func *(_: elementType, _: Self) -> Self
+    func *(_: Self, _: elementType) -> Self
+    func /(_: Self, _: Self) -> Self
+    func /(_: elementType, _: Self) -> Self
+    func /(_: Self, _: elementType) -> Self
+}
+
+public protocol MatrixType : GLmathType {
+    typealias valueType:FloatingPointVectorType
+    typealias elementType:FloatingPointScalarType
+    prefix func -(_: Self) -> Self
     func +(_: Self, _: Self) -> Self
     func +(_: elementType, _: Self) -> Self
     func +(_: Self, _: elementType) -> Self
@@ -110,27 +162,4 @@ public protocol GLmathType : Hashable, Equatable, CustomDebugStringConvertible {
     func *(_: Self, _: elementType) -> Self
     func /(_: elementType, _: Self) -> Self
     func /(_: Self, _: elementType) -> Self
-}
-
-public protocol GLmathFloatingPointType : GLmathType {
-    typealias elementType:FloatingPointScalarType
-    prefix func -(_: Self) -> Self
-}
-
-public protocol VectorType : GLmathType {
-    func *(_: Self, _: Self) -> Self
-    func /(_: Self, _: Self) -> Self
-}
-
-public protocol IntegerVectorType : VectorType {
-    typealias valueType:IntegerScalarType
-    typealias elementType:IntegerScalarType
-}
-
-public protocol FloatingPointVectorType : VectorType, GLmathFloatingPointType {
-    typealias valueType:FloatingPointScalarType
-}
-
-public protocol MatrixType : GLmathFloatingPointType {
-    typealias valueType:FloatingPointVectorType
 }

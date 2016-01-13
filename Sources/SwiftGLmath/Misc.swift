@@ -52,7 +52,7 @@ public func max<T:ScalarVectorType>(x1:T, _ x2:T.Element) -> T {
 
 
 public func clamp<T:ScalarVectorType>(a:T, _ minVal:T, _ maxVal:T) -> T {
-    return T(a, minVal, maxVal) { min(max($0, $1), $2) }
+    return T(a, minVal, maxVal) { min(max($0, $2), $1) }
 }
 
 
@@ -135,20 +135,6 @@ public func refract<T:FloatingPointVectorType>(i:T, _ n:T, _ eta:T.Element) -> T
 }
 
 
-public func sqrt<T:FloatingPointScalarType>(v:T) -> T {
-    if let vv = v as? Double {
-        return sqrt(vv) as! T
-    }
-    if let vv = v as? Float {
-        return sqrtf(vv) as! T
-    }
-    preconditionFailure()
-}
-
-
-public func inversesqrt<T:FloatingPointScalarType>(v:T) -> T {
-    return T(1) / sqrt(v)
-}
 
 
 

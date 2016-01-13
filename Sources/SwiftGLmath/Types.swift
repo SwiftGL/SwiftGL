@@ -74,12 +74,16 @@ public protocol ScalarType : Hashable, Comparable {
     init(_: Float)
     init(_: Double)
     func +(_: Self, _: Self) -> Self
+    func +=(inout _: Self, _: Self)
     func -(_: Self, _: Self) -> Self
+    func -=(inout _: Self, _: Self)
     func *(_: Self, _: Self) -> Self
+    func *=(inout _: Self, _: Self)
     func /(_: Self, _: Self) -> Self
+    func /=(inout _: Self, _: Self)
     func %(_: Self, _: Self) -> Self
+    func %=(inout _: Self, _: Self)
 }
-extension Int8: ScalarType {}
 
 public protocol IntegerScalarType : ScalarType {
     func &+(_: Self, _: Self) -> Self
@@ -89,8 +93,11 @@ public protocol IntegerScalarType : ScalarType {
     func <<(_: Self, _: Self) -> Self
     func >>(_: Self, _: Self) -> Self
     func &(_: Self, _: Self) -> Self
+    func &=(inout _: Self, _: Self)
     func |(_: Self, _: Self) -> Self
+    func |=(inout _: Self, _: Self)
     func ^(_: Self, _: Self) -> Self
+    func ^=(inout _: Self, _: Self)
 }
 extension UInt32: IntegerScalarType {}
 extension Int32: IntegerScalarType {}

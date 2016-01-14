@@ -318,3 +318,21 @@ public func determinant<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> T {
         det = det + m.z.x * d3
     return det
 }
+
+
+public func transpose<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
+    return Matrix3x3(
+        m.x.x, m.y.x, m.z.x,
+        m.x.y, m.y.y, m.z.y,
+        m.x.z, m.y.z, m.z.z
+    )
+}
+
+
+public func outerProduct<T:FloatingPointScalarType>(c:Vector3<T>, _ r:Vector3<T>) -> Matrix3x3<T> {
+    return Matrix3x3(
+        c * r[0],
+        c * r[1],
+        c * r[2]
+    )
+}

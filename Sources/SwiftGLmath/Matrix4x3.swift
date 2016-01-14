@@ -286,3 +286,22 @@ public func *<T:FloatingPointScalarType>(m1: Matrix4x3<T>, m2: Matrix4x4<T>) -> 
     w = w + m1.w * m2[3].w
     return Matrix4x3<T>(x, y, z, w)
 }
+
+
+public func transpose<T:FloatingPointScalarType>(m: Matrix4x3<T>) -> Matrix3x4<T> {
+    return Matrix3x4(
+        m.x.x, m.y.x, m.z.x, m.w.x,
+        m.x.y, m.y.y, m.z.y, m.w.y,
+        m.x.z, m.y.z, m.z.z, m.w.z
+    )
+}
+
+
+public func outerProduct<T:FloatingPointScalarType>(c:Vector3<T>, _ r:Vector4<T>) -> Matrix4x3<T> {
+    return Matrix4x3(
+        c * r[0],
+        c * r[1],
+        c * r[2],
+        c * r[3]
+    )
+}

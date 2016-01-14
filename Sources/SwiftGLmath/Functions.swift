@@ -141,47 +141,47 @@ public func inversesqrt<genType:FloatingPointVectorType>(x:genType) -> genType {
 
 // Section 8.5 Geometric Functions
 
-public func length<T:FloatingPointVectorType>(v:T) -> T.Element {
-    return sqrt(dot(v, v))
+public func length<genType:FloatingPointVectorType>(x:genType) -> genType.Element {
+    return sqrt(dot(x, x))
 }
 
-public func distance<T:FloatingPointVectorType>(v1:T, _ v2:T) -> T.Element {
-    return length(v1 - v2)
+public func distance<genType:FloatingPointVectorType>(p0:genType, _ p1:genType) -> genType.Element {
+    return length(p0 - p1)
 }
 
-public func dot<T:FloatingPointVectorType>(x1:T, _ x2:T) -> T.Element {
-    let a = T(x1, x2, *)
-    return a.reduce(T.Element(0)) { $0 + ($1 as! T.Element) }
+public func dot<genType:FloatingPointVectorType>(x:genType, _ y:genType) -> genType.Element {
+    let a = genType(x, y, *)
+    return a.reduce(genType.Element(0)) { $0 + ($1 as! genType.Element) }
 }
 
-public func cross<T:ScalarType>(v1:Vector3<T>, v2:Vector3<T>) -> Vector3<T> {
-    return Vector3<T>(
-        v1.y * v2.z - v1.z * v2.y,
-        v1.z * v2.x - v1.x * v2.z,
-        v1.x * v2.y - v1.y * v2.x
+public func cross<genType:FloatingPointScalarType>(x:Vector3<genType>, y:Vector3<genType>) -> Vector3<genType> {
+    return Vector3<genType>(
+        x.y * y.z - y.y * x.z,
+        x.z * y.x - y.z * x.x,
+        x.x * y.y - y.x * x.y
     )
 }
 
-public func normalize<T:FloatingPointVectorType>(v:T) -> T {
-    return v / length(v)
+public func normalize<genType:FloatingPointVectorType>(x:genType) -> genType {
+    return x / length(x)
 }
 
-public func faceforward<T:FloatingPointVectorType>(n:T, _ i:T, _ nRef:T) -> T {
-    return dot(nRef, i) < T.Element(0) ? n : -n
+public func faceforward<genType:FloatingPointVectorType>(n:genType, _ i:genType, _ nRef:genType) -> genType {
+    return dot(nRef, i) < genType.Element(0) ? n : -n
 }
 
-public func reflect<T:FloatingPointVectorType>(i:T, _ n:T) -> T {
-    let f = T.Element(2) * dot(n, i)
+public func reflect<genType:FloatingPointVectorType>(i:genType, _ n:genType) -> genType {
+    let f = genType.Element(2) * dot(n, i)
     return i - f * n
 }
 
-public func refract<T:FloatingPointVectorType>(i:T, _ n:T, _ eta:T.Element) -> T {
+public func refract<genType:FloatingPointVectorType>(i:genType, _ n:genType, _ eta:genType.Element) -> genType {
     let dotni = dot(n, i)
     var k = dotni * dotni
-    k = T.Element(1) - k
+    k = genType.Element(1) - k
     k = eta * eta * k
-    k = T.Element(1) - k
-    if (k < T.Element(0)) { return T() }
+    k = genType.Element(1) - k
+    if (k < genType.Element(0)) { return genType() }
     let x = eta * dotni + sqrt(k)
     let r = x * n
     return eta * i - r
@@ -191,8 +191,8 @@ public func refract<T:FloatingPointVectorType>(i:T, _ n:T, _ eta:T.Element) -> T
 // Section 8.6 Matrix Functions
 // Most of these are in the Matrix?x?.swift files
 
-public func matrixCompMult<T:MatrixType>(x1:T, _ x2:T) -> T {
-    return T(x1, x2, *)
+public func matrixCompMult<genType:MatrixType>(x:genType, _ y:genType) -> genType {
+    return genType(x, y, *)
 }
 
 

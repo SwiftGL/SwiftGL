@@ -264,3 +264,19 @@ public func inverse<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> 
 public func determinant<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> T {
     return m.x.x * m.y.y - m.y.x * m.x.y
 }
+
+
+public func transpose<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
+    return Matrix2x2(
+        m.x.x, m.y.x,
+        m.x.y, m.y.y
+    )
+}
+
+
+public func outerProduct<T:FloatingPointScalarType>(c:Vector2<T>, _ r:Vector2<T>) -> Matrix2x2<T> {
+    return Matrix2x2(
+        c * r[0],
+        c * r[1]
+    )
+}

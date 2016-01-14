@@ -515,3 +515,23 @@ public func determinant<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> T {
 
     return det
 }
+
+
+public func transpose<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
+    return Matrix4x4(
+        m.x.x, m.y.x, m.z.x, m.w.x,
+        m.x.y, m.y.y, m.z.y, m.w.y,
+        m.x.z, m.y.z, m.z.z, m.w.z,
+        m.x.w, m.y.w, m.z.w, m.w.w
+    )
+}
+
+
+public func outerProduct<T:FloatingPointScalarType>(c:Vector4<T>, _ r:Vector4<T>) -> Matrix4x4<T> {
+    return Matrix4x4(
+        c * r[0],
+        c * r[1],
+        c * r[2],
+        c * r[3]
+    )
+}

@@ -136,7 +136,73 @@ public func inversesqrt<genType:FloatingPointVectorType>(x:genType) -> genType {
 
 
 // Section 8.4 Floating-Point Pack and Unpack Functions
-//TODO
+
+public func packUnorm2x16(v:vec2) -> UInt32 {
+    let i = uvec2(round(clamp(v, 0, 1) * 0xffff))
+    return (i.y << 16) &+ i.x
+}
+
+public func packSnorm2x16(v:vec2) -> UInt32 {
+    let i = ivec2(round(clamp(v, -1, 1) * 0x7fff))
+    return ((UInt32(bitPattern: i.y) & 0xFFFF) << 16) &+ (UInt32(bitPattern: i.x) & 0xFFFF)
+}
+
+public func packUnorm4x8(v:vec4) -> UInt32 {
+    let i = uvec4(round(clamp(v, 0, 1) * 0xff))
+    return (i.w << 24) &+ (i.z << 16) &+ (i.y << 8) &+ i.x
+}
+
+public func packSnorm4x8(v:vec4) -> UInt32 {
+    let i = ivec4(round(clamp(v, -1, 1) * 0x7f))
+    var r = (UInt32(bitPattern: i.w) & 0xFF) << 24
+    r += (UInt32(bitPattern: i.z) & 0xFF) << 16
+    r += (UInt32(bitPattern: i.y) & 0xFF) << 8
+    r += UInt32(bitPattern: i.x)
+    return r
+}
+
+public func unpackUnorm2x16(p:UInt32) -> vec2 {
+    let r = vec2(
+        Float(p & 0xffff),
+        Float(p >> 16 & 0xffff)
+    )
+    return r / 0xffff
+}
+
+public func unpackSnorm2x16(p:UInt32) -> vec2 {
+    let p0 = UInt16(p >> 0 & 0xffff)
+    let p1 = UInt16(p >> 16 & 0xffff)
+    let r = vec2(
+        Float(Int16(bitPattern: p0)),
+        Float(Int16(bitPattern: p1))
+    )
+    return clamp(r / 0x7fff, -1, 1)
+}
+
+public func unpackUnorm4x8(p:UInt32) -> vec4 {
+    let r = vec4(
+        Float(p & 0xff),
+        Float(p >> 8 & 0xff),
+        Float(p >> 16 & 0xff),
+        Float(p >> 24 & 0xff)
+    )
+    return r / 0xff
+}
+
+public func unpackSnorm4x8(p:UInt32) -> vec4 {
+    let p0 = UInt8(p >> 0 & 0xff)
+    let p1 = UInt8(p >> 8 & 0xff)
+    let p2 = UInt8(p >> 16 & 0xff)
+    let p3 = UInt8(p >> 24 & 0xff)
+    let r = vec4(
+        Float(Int8(bitPattern: p0)),
+        Float(Int8(bitPattern: p1)),
+        Float(Int8(bitPattern: p2)),
+        Float(Int8(bitPattern: p3))
+    )
+    return clamp(r / 0x7f, -1, 1)
+}
+
 
 
 // Section 8.5 Geometric Functions

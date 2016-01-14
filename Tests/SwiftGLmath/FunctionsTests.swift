@@ -22,4 +22,24 @@ class FunctionsTests: XCTestCase {
         XCTAssertEqual(isinf(vf), vi)
     }
 
+
+    func testPackUnpackFP() {
+        let v2i = vec2(-0.7, 0.4)
+        let u2s = packSnorm2x16(v2i)
+        let u2i = packUnorm2x16(v2i)
+        let v2os = unpackSnorm2x16(u2s)
+        let v2ou = unpackUnorm2x16(u2i)
+        XCTAssertEqualWithAccuracy(v2os, v2i, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(v2ou, vec2(0, 0.4), accuracy: 0.0001)
+
+        let v4i = vec4(0.0, -0.7, 0.4, 1.0)
+        let u4s = packSnorm4x8(v4i)
+        let u4i = packUnorm4x8(v4i)
+        let v4os = unpackSnorm4x8(u4s)
+        let v4ou = unpackUnorm4x8(u4i)
+        XCTAssertEqualWithAccuracy(v4os, v4i, accuracy: 0.01)
+        XCTAssertEqualWithAccuracy(v4ou, vec4(0, 0, 0.4, 1), accuracy: 0.01)
+
+    }
+
 }

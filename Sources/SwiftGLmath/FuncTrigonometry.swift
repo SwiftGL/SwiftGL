@@ -133,17 +133,17 @@ private func atan<T:FloatingPointScalarType>(y:T, _ x:T) -> T {
 }
 
 @warn_unused_result
-public func atan<genType:FloatingPointVectorType>(y:genType.Element, x:genType) -> genType {
+public func atan<genType:FloatingPointVectorType>(y:genType.Element, _ x:genType) -> genType {
     return genType(y, x, atan)
 }
 
 @warn_unused_result
-public func atan<genType:FloatingPointVectorType>(y:genType, x:genType.Element) -> genType {
+public func atan<genType:FloatingPointVectorType>(y:genType, _ x:genType.Element) -> genType {
     return genType(y, x, atan)
 }
 
 @warn_unused_result
-public func atan<genType:FloatingPointVectorType>(y:genType, x:genType) -> genType {
+public func atan<genType:FloatingPointVectorType>(y:genType, _ x:genType) -> genType {
     return genType(y, x, atan)
 }
 

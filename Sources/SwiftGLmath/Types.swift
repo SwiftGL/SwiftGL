@@ -89,7 +89,6 @@ public protocol IntegerScalarType : ScalarType {
     func &+(_: Self, _: Self) -> Self
     func &-(_: Self, _: Self) -> Self
     func &*(_: Self, _: Self) -> Self
-    prefix func ~(_: Self) -> Self
     func <<(_: Self, _: Self) -> Self
     func >>(_: Self, _: Self) -> Self
     func &(_: Self, _: Self) -> Self
@@ -98,6 +97,7 @@ public protocol IntegerScalarType : ScalarType {
     func |=(inout _: Self, _: Self)
     func ^(_: Self, _: Self) -> Self
     func ^=(inout _: Self, _: Self)
+    prefix func ~(_: Self) -> Self
 }
 extension UInt32: IntegerScalarType {}
 extension Int32: IntegerScalarType {}
@@ -110,20 +110,15 @@ extension Double: FloatingPointScalarType {}
 
 
 public protocol GLmathType : MutableCollectionType, Hashable, Equatable, CustomDebugStringConvertible {
-    init()
-}
-
-public protocol BooleanVectorType : GLmathType {
-    typealias Element:BooleanType
-}
-
-public protocol GLmathScalarType : GLmathType{
-    typealias Element:ScalarType
+    typealias Element
     init(_: Self, @noescape _:(_:Element) -> Element)
+    init(_: Self, _: Self, @noescape _:(_:Element, _:Element) -> Element)
     init(_: Element, _: Self, @noescape _:(_:Element, _:Element) -> Element)
     init(_: Self, _: Element, @noescape _:(_:Element, _:Element) -> Element)
-    init(_: Self, _: Self, @noescape _:(_:Element, _:Element) -> Element)
-    init(_: Self, _: Self, _: Self, @noescape _:(_:Element, _:Element, _:Element) -> Element)
+}
+
+public protocol GLmathScalarType : GLmathType {
+    typealias Element:ScalarType
     prefix func ++(inout _: Self) -> Self
     postfix func ++(inout _: Self) -> Self
     prefix func --(inout _: Self) -> Self
@@ -151,20 +146,7 @@ public protocol GLmathScalarType : GLmathType{
     func %=(inout _: Self, _: Element)
 }
 
-public protocol GLmathFloatingPointType : GLmathScalarType {
-    typealias Element:FloatingPointScalarType
-    prefix func +(_: Self) -> Self
-    prefix func -(_: Self) -> Self
-}
-
-public protocol ScalarVectorType : GLmathScalarType {
-    func *(_: Self, _: Self) -> Self
-    func *=(inout _: Self, _: Self)
-    func /(_: Self, _: Self) -> Self
-    func /=(inout _: Self, _: Self)
-}
-
-public protocol IntegerVectorType : ScalarVectorType {
+public protocol GLmathIntegerType : GLmathScalarType {
     typealias Element:IntegerScalarType
     func &+(_: Self, _: Self) -> Self
     func &+(_: Element, _: Self) -> Self
@@ -195,6 +177,48 @@ public protocol IntegerVectorType : ScalarVectorType {
     func ^(_: Self, _: Element) -> Self
     func ^=(inout _: Self, _: Element)
     prefix func ~(_: Self) -> Self
+}
+
+public protocol GLmathFloatingPointType : GLmathScalarType {
+    typealias Element:FloatingPointScalarType
+    prefix func +(_: Self) -> Self
+    prefix func -(_: Self) -> Self
+}
+
+
+public protocol VectorType : GLmathType {
+    typealias FloatVector
+    typealias DoubleVector
+    typealias Int32Vector
+    typealias UInt32Vector
+    typealias BooleanVector
+    // T.BooleanVector == BooleanVector : This is important.
+    init<T:VectorType where T.BooleanVector == BooleanVector>(_: T, @noescape _:(_:T.Element) -> Element)
+    init<T1:VectorType, T2:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
+        (_:T1, _:T2, @noescape _:(_:T1.Element, _:T2.Element) -> Element)
+    init<T1:VectorType, T2:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
+        (_:T1, inout _:T2, @noescape _:(_:T1.Element, inout _:T2.Element) -> Element)
+    init<T1:VectorType, T2:VectorType, T3:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector, T3.BooleanVector == BooleanVector>
+        (_:T1, _:T2, _:T3, @noescape _:(_:T1.Element, _:T2.Element, _:T3.Element) -> Element)
+    subscript(_:Int) -> Element { get set }
+}
+
+
+public protocol BooleanVectorType : VectorType {
+}
+
+public protocol ScalarVectorType : VectorType, GLmathScalarType {
+    typealias BooleanVector:BooleanVectorType
+    func *(_: Self, _: Self) -> Self
+    func *=(inout _: Self, _: Self)
+    func /(_: Self, _: Self) -> Self
+    func /=(inout _: Self, _: Self)
+}
+
+public protocol IntegerVectorType : ScalarVectorType, GLmathIntegerType {
 }
 
 public protocol FloatingPointVectorType : ScalarVectorType, GLmathFloatingPointType {

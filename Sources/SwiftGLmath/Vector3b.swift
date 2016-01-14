@@ -23,39 +23,40 @@
 public struct Vector3b : BooleanVectorType {
 
     public typealias Element = Bool
+    public typealias FloatVector = Vector3<Float>
+    public typealias DoubleVector = Vector3<Double>
+    public typealias Int32Vector = Vector3i<Int32>
+    public typealias UInt32Vector = Vector3i<UInt32>
+    public typealias BooleanVector = Vector3b
 
-    private var b0:Int8, b1:Int8, b2:Int8
+    public var x:Bool, y:Bool, z:Bool
 
-    public var x:Bool { get {return b0 != 0} set {b0 = newValue ? 1 : 0} }
-    public var y:Bool { get {return b1 != 0} set {b1 = newValue ? 1 : 0} }
-    public var z:Bool { get {return b2 != 0} set {b2 = newValue ? 1 : 0} }
+    public var r:Bool { get {return x} set {x = newValue} }
+    public var g:Bool { get {return y} set {y = newValue} }
+    public var b:Bool { get {return z} set {z = newValue} }
 
-    public var r:Bool { get {return b0 != 0} set {b0 = newValue ? 1 : 0} }
-    public var g:Bool { get {return b1 != 0} set {b1 = newValue ? 1 : 0} }
-    public var b:Bool { get {return b2 != 0} set {b2 = newValue ? 1 : 0} }
-
-    public var s:Bool { get {return b0 != 0} set {b0 = newValue ? 1 : 0} }
-    public var t:Bool { get {return b1 != 0} set {b1 = newValue ? 1 : 0} }
-    public var p:Bool { get {return b2 != 0} set {b2 = newValue ? 1 : 0} }
+    public var s:Bool { get {return x} set {x = newValue} }
+    public var t:Bool { get {return y} set {y = newValue} }
+    public var p:Bool { get {return z} set {z = newValue} }
 
     public var startIndex: Int { return 0 }
-    public var endIndex: Int { return 3 }
+    public var endIndex: Int { return 4 }
 
     public subscript(i: Int) -> Bool {
         get {
 
             switch(i) {
-            case 0: return b0 != 0
-            case 1: return b1 != 0
-            case 2: return b2 != 0
+            case 0: return x
+            case 1: return y
+            case 2: return z
             default: preconditionFailure("Vector index out of range")
             }
         }
         set {
             switch(i) {
-            case 0: b0 = newValue ? 1 : 0
-            case 1: b1 = newValue ? 1 : 0
-            case 2: b2 = newValue ? 1 : 0
+            case 0: x = newValue
+            case 1: y = newValue
+            case 2: z = newValue
             default: preconditionFailure("Vector index out of range")
             }
         }
@@ -70,82 +71,124 @@ public struct Vector3b : BooleanVectorType {
     }
 
     public init () {
-        self.b0 = 0
-        self.b1 = 0
-        self.b2 = 0
+        self.x = false
+        self.y = false
+        self.z = false
     }
 
     public init (_ v:Bool) {
-        let b:Int8 = v ? 1 : 0
-        self.b0 = b
-        self.b1 = b
-        self.b2 = b
+        self.x = v
+        self.y = v
+        self.z = v
     }
 
     public init (_ x:Bool, _ y:Bool, _ z:Bool) {
-        self.b0 = x ? 1 : 0
-        self.b1 = y ? 1 : 0
-        self.b2 = z ? 1 : 0
+        self.x = x
+        self.y = y
+        self.z = z
     }
 
     public init (_ v:Vector2b, _ z:Bool) {
-        self.b0 = v.x ? 1 : 0
-        self.b1 = v.y ? 1 : 0
-        self.b2 = z ? 1 : 0
+        self.x = v.x
+        self.y = v.y
+        self.z = z
     }
 
     public init (_ x:Bool, _ v:Vector2b) {
-        self.b0 = x ? 1 : 0
-        self.b1 = v.x ? 1 : 0
-        self.b2 = v.y ? 1 : 0
+        self.x = x
+        self.y = v.x
+        self.z = v.y
     }
 
     public init (x:Bool, y:Bool, z:Bool) {
-        self.b0 = x ? 1 : 0
-        self.b1 = y ? 1 : 0
-        self.b2 = z ? 1 : 0
+        self.x = x
+        self.y = y
+        self.z = z
     }
 
     public init (r:Bool, g:Bool, b:Bool) {
-        self.b0 = r ? 1 : 0
-        self.b1 = g ? 1 : 0
-        self.b2 = b ? 1 : 0
+        self.x = r
+        self.y = g
+        self.z = b
     }
 
     public init (s:Bool, t:Bool, p:Bool) {
-        self.b0 = s ? 1 : 0
-        self.b1 = t ? 1 : 0
-        self.b2 = p ? 1 : 0
+        self.x = s
+        self.y = t
+        self.z = p
     }
 
     public init (_ v:Vector3<Float>) {
-        self.b0 = v.x == 0 ? 0 : 1
-        self.b1 = v.y == 0 ? 0 : 1
-        self.b2 = v.z == 0 ? 0 : 1
+        self.x = v.x == 0 ? false : true
+        self.y = v.y == 0 ? false : true
+        self.z = v.z == 0 ? false : true
     }
 
     public init (_ v:Vector3<Double>) {
-        self.b0 = v.x == 0 ? 0 : 1
-        self.b1 = v.y == 0 ? 0 : 1
-        self.b2 = v.z == 0 ? 0 : 1
+        self.x = v.x == 0 ? false : true
+        self.y = v.y == 0 ? false : true
+        self.z = v.z == 0 ? false : true
     }
 
     public init (_ v:Vector3i<Int32>) {
-        self.b0 = v.x == 0 ? 0 : 1
-        self.b1 = v.y == 0 ? 0 : 1
-        self.b2 = v.z == 0 ? 0 : 1
+        self.x = v.x == 0 ? false : true
+        self.y = v.y == 0 ? false : true
+        self.z = v.z == 0 ? false : true
     }
 
     public init (_ v:Vector3i<UInt32>) {
-        self.b0 = v.x == 0 ? 0 : 1
-        self.b1 = v.y == 0 ? 0 : 1
-        self.b2 = v.z == 0 ? 0 : 1
+        self.x = v.x == 0 ? false : true
+        self.y = v.y == 0 ? false : true
+        self.z = v.z == 0 ? false : true
     }
 
     public init (_ v:Vector3b) {
-        self.b0 = v.b0
-        self.b1 = v.b1
-        self.b2 = v.b2
+        self.x = v.x
+        self.y = v.y
+        self.z = v.z
+    }
+
+    public init (_ s:Bool, _ v:Vector3b, @noescape _ op:(_:Bool, _:Bool) -> Bool) {
+        self.x = op(s, v.x)
+        self.y = op(s, v.y)
+        self.z = op(s, v.z)
+    }
+
+    public init (_ v:Vector3b, _ s:Bool, @noescape _ op:(_:Bool, _:Bool) -> Bool) {
+        self.x = op(v.x, s)
+        self.y = op(v.y, s)
+        self.z = op(v.z, s)
+    }
+
+    public init<T:VectorType where T.BooleanVector == BooleanVector>
+        (_ v: T, @noescape _ op:(_:T.Element) -> Element) {
+            self.x = op(v[0])
+            self.y = op(v[1])
+            self.z = op(v[2])
+    }
+
+    public init<T1:VectorType, T2:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
+        (_ v1:T1, _ v2:T2, @noescape _ op:(_:T1.Element, _:T2.Element) -> Element) {
+            self.x = op(v1[0], v2[0])
+            self.y = op(v1[1], v2[1])
+            self.z = op(v1[2], v2[2])
+    }
+
+    public init<T1:VectorType, T2:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
+        (_ v1:T1, inout _ v2:T2, @noescape _ op:(_:T1.Element, inout _:T2.Element) -> Element) {
+            self.x = op(v1[0], &v2[0])
+            self.y = op(v1[1], &v2[1])
+            self.z = op(v1[2], &v2[2])
+    }
+
+    public init<T1:VectorType, T2:VectorType, T3:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector, T3.BooleanVector == BooleanVector>
+        (_ v1:T1, _ v2:T2, _ v3:T3, @noescape _ op:(_:T1.Element, _:T2.Element, _:T3.Element) -> Element) {
+            self.x = op(v1[0], v2[0], v3[0])
+            self.y = op(v1[1], v2[1], v3[1])
+            self.z = op(v1[2], v2[2], v3[2])
     }
 
 }

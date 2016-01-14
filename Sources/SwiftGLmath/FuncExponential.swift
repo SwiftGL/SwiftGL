@@ -38,17 +38,17 @@ private func pow<T:FloatingPointScalarType>(x:T, _ y:T) -> T {
 }
 
 @warn_unused_result
-public func pow<genType:FloatingPointVectorType>(x:genType.Element, y:genType) -> genType {
+public func pow<genType:FloatingPointVectorType>(x:genType.Element, _ y:genType) -> genType {
     return genType(x, y, pow)
 }
 
 @warn_unused_result
-public func pow<genType:FloatingPointVectorType>(x:genType, y:genType.Element) -> genType {
+public func pow<genType:FloatingPointVectorType>(x:genType, _ y:genType.Element) -> genType {
     return genType(x, y, pow)
 }
 
 @warn_unused_result
-public func pow<genType:FloatingPointVectorType>(x:genType, y:genType) -> genType {
+public func pow<genType:FloatingPointVectorType>(x:genType, _ y:genType) -> genType {
     return genType(x, y, pow)
 }
 
@@ -112,7 +112,7 @@ public func log2<genType:FloatingPointVectorType>(x:genType) -> genType {
     return genType(x, log2)
 }
 
-internal func sqrt<T:FloatingPointScalarType>(x:T) -> T {
+private func sqrt<T:FloatingPointScalarType>(x:T) -> T {
     if let z = x as? Double {
         return sqrt(z) as! T
     }

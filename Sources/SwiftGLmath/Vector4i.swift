@@ -28,6 +28,11 @@
 public struct Vector4i<T:IntegerScalarType> : IntegerVectorType {
 
     public typealias Element = T
+    public typealias FloatVector = Vector4<Float>
+    public typealias DoubleVector = Vector4<Double>
+    public typealias Int32Vector = Vector4i<Int32>
+    public typealias UInt32Vector = Vector4i<UInt32>
+    public typealias BooleanVector = Vector4b
 
     public var x:T, y:T, z:T, w:T
 
@@ -193,13 +198,6 @@ public struct Vector4i<T:IntegerScalarType> : IntegerVectorType {
         self.w = v.w
     }
 
-    public init (_ v:Vector4i<T>, @noescape _ op:(_:T) -> T) {
-        self.x = op(v.x)
-        self.y = op(v.y)
-        self.z = op(v.z)
-        self.w = op(v.w)
-    }
-
     public init (_ s:T, _ v:Vector4i<T>, @noescape _ op:(_:T, _:T) -> T) {
         self.x = op(s, v.x)
         self.y = op(s, v.y)
@@ -214,18 +212,39 @@ public struct Vector4i<T:IntegerScalarType> : IntegerVectorType {
         self.w = op(v.w, s)
     }
 
-    public init (_ v1:Vector4i<T>, _ v2:Vector4i<T>, @noescape _ op:(_:T, _:T) -> T) {
-        self.x = op(v1.x, v2.x)
-        self.y = op(v1.y, v2.y)
-        self.z = op(v1.z, v2.z)
-        self.w = op(v1.w, v2.w)
+    public init<T:VectorType where T.BooleanVector == BooleanVector>
+        (_ v: T, @noescape _ op:(_:T.Element) -> Element) {
+            self.x = op(v[0])
+            self.y = op(v[1])
+            self.z = op(v[2])
+            self.w = op(v[3])
     }
 
-    public init (_ v1:Vector4i<T>, _ v2:Vector4i<T>, _ v3:Vector4i<T>, @noescape _ op:(_:T, _:T, _:T) -> T) {
-        self.x = op(v1.x, v2.x, v3.x)
-        self.y = op(v1.y, v2.y, v3.y)
-        self.z = op(v1.z, v2.z, v3.z)
-        self.w = op(v1.w, v2.w, v3.w)
+    public init<T1:VectorType, T2:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
+        (_ v1:T1, _ v2:T2, @noescape _ op:(_:T1.Element, _:T2.Element) -> Element) {
+            self.x = op(v1[0], v2[0])
+            self.y = op(v1[1], v2[1])
+            self.z = op(v1[2], v2[2])
+            self.w = op(v1[3], v2[3])
+    }
+
+    public init<T1:VectorType, T2:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
+        (_ v1:T1, inout _ v2:T2, @noescape _ op:(_:T1.Element, inout _:T2.Element) -> Element) {
+            self.x = op(v1[0], &v2[0])
+            self.y = op(v1[1], &v2[1])
+            self.z = op(v1[2], &v2[2])
+            self.w = op(v1[3], &v2[3])
+    }
+
+    public init<T1:VectorType, T2:VectorType, T3:VectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector, T3.BooleanVector == BooleanVector>
+        (_ v1:T1, _ v2:T2, _ v3:T3, @noescape _ op:(_:T1.Element, _:T2.Element, _:T3.Element) -> Element) {
+            self.x = op(v1[0], v2[0], v3[0])
+            self.y = op(v1[1], v2[1], v3[1])
+            self.z = op(v1[2], v2[2], v3[2])
+            self.w = op(v1[3], v2[3], v3[3])
     }
 
 }

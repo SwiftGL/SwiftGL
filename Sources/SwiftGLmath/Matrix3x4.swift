@@ -181,12 +181,6 @@ public struct Matrix3x4<T:FloatingPointScalarType> : MatrixType {
         self.z = Vector4<T>(m1.z, m2.z, op)
     }
 
-    public init (_ m1:Matrix3x4<T>, _ m2:Matrix3x4<T>, _ m3:Matrix3x4<T>, @noescape _ op:(_:T, _:T, _:T) -> T) {
-        self.x = Vector4<T>(m1.x, m2.x, m3.x, op)
-        self.y = Vector4<T>(m1.y, m2.y, m3.y, op)
-        self.z = Vector4<T>(m1.z, m2.z, m3.z, op)
-    }
-
 }
 
 

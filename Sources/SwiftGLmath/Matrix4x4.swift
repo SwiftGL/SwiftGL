@@ -203,13 +203,6 @@ public struct Matrix4x4<T:FloatingPointScalarType> : MatrixType {
         self.w = Vector4<T>(m1.w, m2.w, op)
     }
 
-    public init (_ m1:Matrix4x4<T>, _ m2:Matrix4x4<T>, _ m3:Matrix4x4<T>, @noescape _ op:(_:T, _:T, _:T) -> T) {
-        self.x = Vector4<T>(m1.x, m2.x, m3.x, op)
-        self.y = Vector4<T>(m1.y, m2.y, m3.y, op)
-        self.z = Vector4<T>(m1.z, m2.z, m3.z, op)
-        self.w = Vector4<T>(m1.w, m2.w, m3.w, op)
-    }
-
 }
 
 

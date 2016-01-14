@@ -197,7 +197,74 @@ public func matrixCompMult<genType:MatrixType>(x:genType, _ y:genType) -> genTyp
 
 
 // Section 8.7 Vector Relational Functions
-//TODO
 
-// Section 8.8 Integer Functions
-//TODO
+@warn_unused_result
+public func lessThan<genType:ScalarVectorType where
+    genType.BooleanVector.Element == Bool,
+    genType.BooleanVector == genType.BooleanVector.BooleanVector
+    >(x:genType, _ y:genType) -> genType.BooleanVector {
+        return genType.BooleanVector(x, y, <)
+}
+
+@warn_unused_result
+public func lessThanEqual<genType:ScalarVectorType where
+    genType.BooleanVector.Element == Bool,
+    genType.BooleanVector == genType.BooleanVector.BooleanVector
+    >(x:genType, _ y:genType) -> genType.BooleanVector {
+        return genType.BooleanVector(x, y, <=)
+}
+
+@warn_unused_result
+public func greaterThan<genType:ScalarVectorType where
+    genType.BooleanVector.Element == Bool,
+    genType.BooleanVector == genType.BooleanVector.BooleanVector
+    >(x:genType, _ y:genType) -> genType.BooleanVector {
+        return genType.BooleanVector(x, y, >)
+}
+
+@warn_unused_result
+public func greaterThanEqual<genType:ScalarVectorType where
+    genType.BooleanVector.Element == Bool,
+    genType.BooleanVector == genType.BooleanVector.BooleanVector
+    >(x:genType, _ y:genType) -> genType.BooleanVector {
+        return genType.BooleanVector(x, y, >=)
+}
+
+@warn_unused_result
+public func equal<genType:ScalarVectorType where
+    genType.BooleanVector.Element == Bool,
+    genType.BooleanVector == genType.BooleanVector.BooleanVector
+    >(x:genType, _ y:genType) -> genType.BooleanVector {
+        return genType.BooleanVector(x, y, ==)
+}
+
+@warn_unused_result
+public func notEqual<genType:ScalarVectorType where
+    genType.BooleanVector.Element == Bool,
+    genType.BooleanVector == genType.BooleanVector.BooleanVector
+    >(x:genType, _ y:genType) -> genType.BooleanVector {
+        return genType.BooleanVector(x, y, !=)
+}
+
+@warn_unused_result
+public func any<bvec:BooleanVectorType where
+    bvec.Generator.Element:BooleanType,
+    bvec.Element == Bool
+    >(x:bvec) -> bvec.Element {
+        return x.reduce(false) { $0 || $1 }
+}
+
+@warn_unused_result
+public func all<bvec:BooleanVectorType where
+    bvec.Generator.Element:BooleanType,
+    bvec.Element == Bool
+    >(x:bvec) -> bvec.Element {
+        return x.reduce(true) { $0 && $1 }
+}
+
+@warn_unused_result
+public func not<bvec:BooleanVectorType
+    where bvec.Element == Bool
+    >(x:bvec) -> bvec {
+        return bvec(x, !)
+}

@@ -259,18 +259,20 @@ public func smoothstep<genType:FloatingPointVectorType>(edge0:genType.Element, _
 public func isnan<genType:FloatingPointVectorType
     where
     genType.Element:FloatingPointType,
+    genType.BooleanVector.Element == Bool,
     genType.BooleanVector == genType.BooleanVector.BooleanVector
     >(x:genType) -> genType.BooleanVector {
-    return genType.BooleanVector(x) {$0.isNaN as! genType.BooleanVector.Element}
+    return genType.BooleanVector(x) {$0.isNaN}
 }
 
 @warn_unused_result
 public func isinf<genType:FloatingPointVectorType
     where
     genType.Element:FloatingPointType,
+    genType.BooleanVector.Element == Bool,
     genType.BooleanVector == genType.BooleanVector.BooleanVector
     >(x:genType) -> genType.BooleanVector {
-    return genType.BooleanVector(x) {$0.isInfinite as! genType.BooleanVector.Element}
+    return genType.BooleanVector(x) {$0.isInfinite}
 }
 
 @warn_unused_result

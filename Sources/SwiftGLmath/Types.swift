@@ -207,6 +207,7 @@ public protocol VectorType : GLmathType {
 }
 
 public protocol BooleanVectorType : VectorType {
+    typealias Element:BooleanType
 }
 
 public protocol ScalarVectorType : VectorType, GLmathScalarType {

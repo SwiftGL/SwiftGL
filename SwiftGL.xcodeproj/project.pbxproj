@@ -10,7 +10,6 @@
 		3D0485381C436A57002BE7F5 /* Vector2i.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0485361C436A57002BE7F5 /* Vector2i.swift */; };
 		3D04853A1C436A5F002BE7F5 /* Vector3i.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0485391C436A5F002BE7F5 /* Vector3i.swift */; };
 		3D04853C1C436A72002BE7F5 /* Vector4i.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D04853B1C436A72002BE7F5 /* Vector4i.swift */; };
-		3D04853E1C436C4F002BE7F5 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D04853D1C436C4F002BE7F5 /* Misc.swift */; };
 		3D214CDE1C44378A000DE32E /* Vector4b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D214CDD1C44378A000DE32E /* Vector4b.swift */; };
 		3D28E9F01C3B2D600091E013 /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
 		3D28E9F21C3B2D7A0091E013 /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
@@ -24,7 +23,6 @@
 		3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */; };
 		3D412D591C3EE71800044962 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D412D581C3EE71800044962 /* Operators.swift */; };
 		3D6014861C45C52600A3356D /* FuncTrigonometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6014851C45C52600A3356D /* FuncTrigonometry.swift */; };
-		3D6014891C45D6D300A3356D /* FuncExponential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6014871C45D54400A3356D /* FuncExponential.swift */; };
 		3D60148B1C45DF4F00A3356D /* FuncCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D60148A1C45DF4F00A3356D /* FuncCommon.swift */; };
 		3D81EE931C3CBB0B00B19119 /* MatrixSIMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81EE911C3CBA9900B19119 /* MatrixSIMD.swift */; };
 		3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F3D151C3B28B1007C49E7 /* main.swift */; };
@@ -48,6 +46,7 @@
 		3D91C3E11C3B224500BA748A /* Matrix4x4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */; };
 		3D91C3E21C3B224500BA748A /* SwizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */; };
 		3D91C3E31C3B224500BA748A /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */; };
+		3DB284391C475DEB008D46E6 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB284381C475DEB008D46E6 /* Functions.swift */; };
 		3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */; };
 		3DFFC9891C447AC000EF48B4 /* Vector3b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFC9881C447AC000EF48B4 /* Vector3b.swift */; };
 		3DFFC98B1C447B6600EF48B4 /* Vector2b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFC98A1C447B6600EF48B4 /* Vector2b.swift */; };
@@ -88,7 +87,6 @@
 		3D0485361C436A57002BE7F5 /* Vector2i.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector2i.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D0485391C436A5F002BE7F5 /* Vector3i.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector3i.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D04853B1C436A72002BE7F5 /* Vector4i.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector4i.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D04853D1C436C4F002BE7F5 /* Misc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Misc.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D214CDD1C44378A000DE32E /* Vector4b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector4b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D28E9F71C3B34B90091E013 /* SwiftGLUtil */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGLUtil; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D28E9FE1C3B34ED0091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 		3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D412D581C3EE71800044962 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Operators.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D6014851C45C52600A3356D /* FuncTrigonometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncTrigonometry.swift; sourceTree = "<group>"; };
-		3D6014871C45D54400A3356D /* FuncExponential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncExponential.swift; sourceTree = "<group>"; };
 		3D60148A1C45DF4F00A3356D /* FuncCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FuncCommon.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D81EE911C3CBA9900B19119 /* MatrixSIMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixSIMD.swift; sourceTree = "<group>"; };
 		3D8F3D081C3B2892007C49E7 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +126,7 @@
 		3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix4x4Tests.swift; sourceTree = "<group>"; };
 		3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwizzleTests.swift; sourceTree = "<group>"; };
 		3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2Tests.swift; sourceTree = "<group>"; };
+		3DB284381C475DEB008D46E6 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector4Tests.swift; sourceTree = "<group>"; };
 		3DFFC9881C447AC000EF48B4 /* Vector3b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector3b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3DFFC98A1C447B6600EF48B4 /* Vector2b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector2b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -274,9 +272,8 @@
 				3D04853B1C436A72002BE7F5 /* Vector4i.swift */,
 				3D214CDD1C44378A000DE32E /* Vector4b.swift */,
 				3D412D581C3EE71800044962 /* Operators.swift */,
-				3D04853D1C436C4F002BE7F5 /* Misc.swift */,
+				3DB284381C475DEB008D46E6 /* Functions.swift */,
 				3D6014851C45C52600A3356D /* FuncTrigonometry.swift */,
-				3D6014871C45D54400A3356D /* FuncExponential.swift */,
 				3D60148A1C45DF4F00A3356D /* FuncCommon.swift */,
 			);
 			name = SwiftGLmath;
@@ -554,7 +551,6 @@
 				3D6014861C45C52600A3356D /* FuncTrigonometry.swift in Sources */,
 				3D91C3D01C3B220E00BA748A /* Matrix2x2.swift in Sources */,
 				3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */,
-				3D6014891C45D6D300A3356D /* FuncExponential.swift in Sources */,
 				3D91C3D51C3B220E00BA748A /* Vector2.swift in Sources */,
 				3D3C73371C3CEFE6007FD4F9 /* Matrix3x4.swift in Sources */,
 				3D91C3D31C3B220E00BA748A /* Swizzle.swift in Sources */,
@@ -568,9 +564,9 @@
 				3DFFC98B1C447B6600EF48B4 /* Vector2b.swift in Sources */,
 				3D91C3D61C3B220E00BA748A /* Vector3.swift in Sources */,
 				3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */,
+				3DB284391C475DEB008D46E6 /* Functions.swift in Sources */,
 				3D91C3D71C3B220E00BA748A /* Vector4.swift in Sources */,
 				3D04853C1C436A72002BE7F5 /* Vector4i.swift in Sources */,
-				3D04853E1C436C4F002BE7F5 /* Misc.swift in Sources */,
 				3D81EE931C3CBB0B00B19119 /* MatrixSIMD.swift in Sources */,
 				3D60148B1C45DF4F00A3356D /* FuncCommon.swift in Sources */,
 				3D91C3D21C3B220E00BA748A /* Matrix4x4.swift in Sources */,

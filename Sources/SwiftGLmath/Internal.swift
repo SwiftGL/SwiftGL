@@ -20,9 +20,9 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-// The API in this file is unstable and always will be. Not everyone will
-// use this library as a module so we stuff all the internals into this
-// class to avoid polluting the namespace.
+// Not everyone will use this library as a module so we put all the
+// internals into this class to avoid polluting the namespace.
+// The API in this file is unstable and always will be.
 
 internal final class SwiftGLmath {
 

@@ -27,6 +27,8 @@
 #endif
 
 
+// Section 8.3 Common Functions
+
 @warn_unused_result
 public func abs<genType:GLmathScalarType where genType.Element:AbsoluteValuable>(x:genType) -> genType {
     return genType(x, abs)

@@ -111,6 +111,7 @@ extension Double: FloatingPointScalarType {}
 
 public protocol GLmathType : MutableCollectionType, Hashable, Equatable, CustomDebugStringConvertible {
     typealias Element
+    init()
     init(_: Self, @noescape _:(_:Element) -> Element)
     init(_: Self, _: Self, @noescape _:(_:Element, _:Element) -> Element)
     init(_: Element, _: Self, @noescape _:(_:Element, _:Element) -> Element)
@@ -185,14 +186,13 @@ public protocol GLmathFloatingPointType : GLmathScalarType {
     prefix func -(_: Self) -> Self
 }
 
-
 public protocol VectorType : GLmathType {
     typealias FloatVector
     typealias DoubleVector
     typealias Int32Vector
     typealias UInt32Vector
     typealias BooleanVector
-    // T.BooleanVector == BooleanVector : This is important.
+    // T.BooleanVector == BooleanVector : Must use this key with mixed types.
     init<T:VectorType where T.BooleanVector == BooleanVector>(_: T, @noescape _:(_:T.Element) -> Element)
     init<T1:VectorType, T2:VectorType where
         T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
@@ -205,7 +205,6 @@ public protocol VectorType : GLmathType {
         (_:T1, _:T2, _:T3, @noescape _:(_:T1.Element, _:T2.Element, _:T3.Element) -> Element)
     subscript(_:Int) -> Element { get set }
 }
-
 
 public protocol BooleanVectorType : VectorType {
 }

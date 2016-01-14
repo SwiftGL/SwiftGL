@@ -27,6 +27,8 @@
 #endif
 
 
+// Section 8.1 Angle and Trignometry Functions
+
 @warn_unused_result
 public func radians<genType:FloatingPointScalarType>(degrees:genType) -> genType {
     return genType(M_PI) / genType(180) * degrees

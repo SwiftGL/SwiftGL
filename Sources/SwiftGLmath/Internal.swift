@@ -100,4 +100,77 @@ internal final class SwiftGLmath {
         }
     }
 
+
+    static func floatFromHalf(i:UInt16) -> Float {
+        let ret:UInt32
+        var exponent = UInt32(i) & 0x7c00
+        let sign = UInt32(i & 0x8000) << 16
+        if (exponent == 0) {
+            var significand = UInt32(i & 0x03ff)
+            if (significand == 0) {
+                // Zero
+                ret = sign
+            }
+            else {
+                // Subnormal
+                significand <<= 1
+                while ((significand & 0x0400) == 0) {
+                    significand <<= 1
+                    exponent++
+                }
+                exponent = (127 - 15 - exponent) << 23
+                significand = (significand & 0x03ff) << 13
+                ret = sign | exponent | significand
+            }
+        } else if (exponent == 0x7c00) {
+            // inf or NaN
+            ret = sign | 0x7f800000 | (UInt32(i & 0x03ff) << 13)
+        } else {
+            // Normal
+            ret = sign | ((UInt32(i & 0x7fff) + 0x1c000) << 13)
+        }
+        return unsafeBitCast(ret, Float.self)
+    }
+
+
+    static func halfFromFloat(f:Float) -> UInt16 {
+        let fbits = unsafeBitCast(f, UInt32.self)
+        let sign = UInt16((fbits & 0x80000000) >> 16)
+        var exponent = fbits & 0x7f800000
+        var significand:UInt32 = fbits & 0x007fffff
+
+        if (exponent <= 0x38000000) {
+            // Exponent underflow
+            if (exponent < 0x33000000) {
+                // Zero
+                return sign
+            }
+            // Subnormal
+            exponent >>= 23
+            significand |= 0x00800000
+            significand >>= 113 - exponent
+            significand += 0x00001000
+            return sign | UInt16(significand >> 13)
+        }
+
+        if (exponent >= 0x47800000) {
+            // Exponent overflow
+            if (exponent == 0x7f800000 && significand != 0) {
+                // NaN
+                significand >>= 13
+                if (significand == 0) {
+                    return 0x7c01
+                }
+                return sign | 0x7c00 | UInt16(significand)
+            }
+            // Inf
+            return sign | 0x7c00
+        }
+
+        // Nominal (must sum for correct rounding)
+        exponent -= 0x38000000
+        significand += 0x00001000
+        return sign + UInt16(exponent >> 13) + UInt16(significand >> 13)
+    }
+
 }

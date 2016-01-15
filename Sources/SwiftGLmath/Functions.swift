@@ -203,6 +203,33 @@ public func unpackSnorm4x8(p:UInt32) -> vec4 {
     return clamp(r / 0x7f, -1, 1)
 }
 
+public func packDouble2x32 (v:uvec2) -> Double {
+    let i:UInt64 = (UInt64(v.y) << 32) + UInt64(v.x)
+    return unsafeBitCast(i, Double.self)
+}
+
+
+public func unpackDouble2x32 (v:Double) -> uvec2 {
+    let d = unsafeBitCast(v, UInt64.self)
+    return uvec2(
+        UInt32( d & 0xFFFFFFFF ),
+        UInt32( (d >> 32) & 0xFFFFFFFF )
+    )
+}
+
+
+public func packHalf2x16 (v:vec2) -> UInt32 {
+    var ret:UInt32 = UInt32(SwiftGLmath.halfFromFloat(v[0]))
+    ret += UInt32(SwiftGLmath.halfFromFloat(v[1])) << 16
+    return ret
+}
+
+public func unpackHalf2x16 (v:UInt32) -> vec2 {
+    return vec2 (
+        SwiftGLmath.floatFromHalf( UInt16(v & 0xFFFF) ),
+        SwiftGLmath.floatFromHalf( UInt16((v>>16) & 0xFFFF) )
+    )
+}
 
 
 // Section 8.5 Geometric Functions

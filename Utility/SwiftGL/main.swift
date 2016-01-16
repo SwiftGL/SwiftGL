@@ -346,9 +346,9 @@ func writeConstants(outstream:NSOutputStream, _ delegate:KhronosXmlDelegate)
     for key in delegate.enums {
         let value = delegate.values[key]!
         if value.hasPrefix("-") {
-            outstream.write("public let \(key) = GLuint(0)&\(value)\n")
+            outstream.write("public let \(key) = GLint(0)&\(value)\n")
         } else {
-            outstream.write("public let \(key) = GLuint(\(value))\n")
+            outstream.write("public let \(key) = GLint(\(value))\n")
         }
     }
     outstream.write("\n// GLbitfield constants\n")
@@ -611,6 +611,7 @@ func tidyDelegate(delegate:KhronosXmlDelegate)
     for key in delegate.enums {
         var value = delegate.values[key]!
         if value == "0xFFFFFFFFFFFFFFFF" {value = "-1"}
+        if value == "0xFFFFFFFF" {value = "-1"}
         let valInt = strtoll(value,nil,0)
         if valInt < 0 {
             delegate.values[key] = "\(valInt)"

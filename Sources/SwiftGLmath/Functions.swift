@@ -208,7 +208,6 @@ public func packDouble2x32 (v:uvec2) -> Double {
     return unsafeBitCast(i, Double.self)
 }
 
-
 public func unpackDouble2x32 (v:Double) -> uvec2 {
     let d = unsafeBitCast(v, UInt64.self)
     return uvec2(
@@ -216,7 +215,6 @@ public func unpackDouble2x32 (v:Double) -> uvec2 {
         UInt32( (d >> 32) & 0xFFFFFFFF )
     )
 }
-
 
 public func packHalf2x16 (v:vec2) -> UInt32 {
     var ret:UInt32 = UInt32(SwiftGLmath.halfFromFloat(v[0]))
@@ -247,7 +245,7 @@ public func dot<genType:FloatingPointVectorType>(x:genType, _ y:genType) -> genT
     return a.reduce(genType.Element(0)) { $0 + ($1 as! genType.Element) }
 }
 
-public func cross<genType:FloatingPointScalarType>(x:Vector3<genType>, y:Vector3<genType>) -> Vector3<genType> {
+public func cross<genType:FloatingPointScalarType>(x:Vector3<genType>, _ y:Vector3<genType>) -> Vector3<genType> {
     return Vector3<genType>(
         x.y * y.z - y.y * x.z,
         x.z * y.x - y.z * x.x,

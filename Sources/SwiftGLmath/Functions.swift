@@ -40,16 +40,6 @@ private func pow<T:FloatingPointScalarType>(x:T, _ y:T) -> T {
 }
 
 @warn_unused_result
-public func pow<genType:FloatingPointVectorType>(x:genType.Element, _ y:genType) -> genType {
-    return genType(x, y, pow)
-}
-
-@warn_unused_result
-public func pow<genType:FloatingPointVectorType>(x:genType, _ y:genType.Element) -> genType {
-    return genType(x, y, pow)
-}
-
-@warn_unused_result
 public func pow<genType:FloatingPointVectorType>(x:genType, _ y:genType) -> genType {
     return genType(x, y, pow)
 }

@@ -116,7 +116,7 @@ internal final class SwiftGLmath {
                 significand <<= 1
                 while ((significand & 0x0400) == 0) {
                     significand <<= 1
-                    exponent++
+                    exponent += 1
                 }
                 exponent = (127 - 15 - exponent) << 23
                 significand = (significand & 0x03ff) << 13

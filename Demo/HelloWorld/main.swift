@@ -21,7 +21,6 @@
 
 
 import SwiftGL
-import SwiftGLmath
 import CGLFW3
 #if os(Linux)
 import CGLFW3.Linux
@@ -44,6 +43,8 @@ let fragmentShaderSource =
     "gl_FragColor = vec4(0.3, 0.6, 0.6, 1.0);\n" +
     "}\n"
 
+typealias vec3 = (x:Float, y:Float, z:Float)
+
 let vertices:[vec3] = [
     vec3(0.5, 0.5, 0.0),
     vec3(0.5, -0.5, 0.0),
@@ -59,7 +60,7 @@ let indices:[GLuint] = [
 func keyCallback(window: COpaquePointer, key: Int32, scancode: Int32, action: Int32, mode: Int32)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
-        glfwSetWindowShouldClose(window, Int32(GL_TRUE))
+        glfwSetWindowShouldClose(window, GL_TRUE)
     }
 }
 
@@ -91,7 +92,7 @@ func compileShader(shader: GLuint, source: String) -> String?
     }
     glCompileShader(shader)
     var success:GLint = 0
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &success)
     if success != GLint(GL_TRUE) {
         return getShaderInfoLog(shader)
     }
@@ -104,7 +105,7 @@ func linkProgram(program: GLuint, vertex: GLuint, fragment: GLuint) -> String?
     glAttachShader(program, fragment)
     glLinkProgram(program)
     var success:GLint = 0
-    glGetProgramiv(program, GL_LINK_STATUS, &success);
+    glGetProgramiv(program, GL_LINK_STATUS, &success)
     if success != GLint(GL_TRUE) {
         return getProgramInfoLog(program)
     }
@@ -115,14 +116,14 @@ func validateProgram(program: GLuint)  -> String?
 {
     glValidateProgram(program)
     var success:GLint = 0
-    glGetProgramiv(program, GL_VALIDATE_STATUS, &success);
+    glGetProgramiv(program, GL_VALIDATE_STATUS, &success)
     if success != GLint(GL_TRUE) {
         return getProgramInfoLog(program)
     }
     return nil
 }
 
-if glfwInit() != Int32(GL_TRUE) {
+if glfwInit() != GL_TRUE {
     fatalError("glfwInit() failed")
 }
 defer { glfwTerminate() }
@@ -130,7 +131,7 @@ defer { glfwTerminate() }
 glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2)
 glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0)
 glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE)
-glfwWindowHint(GLFW_RESIZABLE, Int32(GL_FALSE))
+glfwWindowHint(GLFW_RESIZABLE, GL_FALSE)
 
 let window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World", nil, nil)
 if (window == nil) {
@@ -184,7 +185,7 @@ glBufferData(target: GL_ELEMENT_ARRAY_BUFFER, size: strideof(GLuint) * indices.c
     data: indices, usage: GL_STATIC_DRAW)
 
 glVertexAttribPointer(index: 0, size: 3, type: GL_FLOAT,
-    normalized: GLboolean(GL_FALSE), stride: GLsizei(strideof(vec3)), pointer: nil)
+    normalized: false, stride: GLsizei(strideof(vec3)), pointer: nil)
 glEnableVertexAttribArray(index: 0)
 
 glBindBuffer(target: GL_ARRAY_BUFFER, buffer: 0)
@@ -192,14 +193,14 @@ glBindBuffer(target: GL_ARRAY_BUFFER, buffer: 0)
 glBindVertexArray(0)
 
 // Uncomment this to see wireframe
-// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)
 
 while (glfwWindowShouldClose(window) == 0)
 {
     glfwPollEvents()
 
-    glClearColor(0.4, 0.3, 0.3, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.4, 0.3, 0.3, 1.0)
+    glClear(GL_COLOR_BUFFER_BIT)
 
     glUseProgram(shaderProgram)
     glBindVertexArray(VAO)
@@ -209,4 +210,3 @@ while (glfwWindowShouldClose(window) == 0)
 
     glfwSwapBuffers(window)
 }
-

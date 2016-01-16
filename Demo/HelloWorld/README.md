@@ -7,6 +7,4 @@ This is a package for the open source Swift. Usage:
 - `swift build`
 - `.build/debug/hello`
 
-It's just a box. You need to use all the interesting OpenGL command
-patterns to draw a box. So you'll find everything you need to figure
-out how Swift exchanges data with OpenGL.
+This demo requires OpenGL 2.0. It draws a box. Simple.

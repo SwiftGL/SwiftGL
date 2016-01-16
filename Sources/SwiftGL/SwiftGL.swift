@@ -21,8 +21,8 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public typealias GLenum = UInt32
-public typealias GLboolean = UInt8
+public typealias GLenum = Int32
+public typealias GLboolean = Bool
 public typealias GLbitfield = UInt32
 public typealias GLbyte = Int8
 public typealias GLshort = Int16

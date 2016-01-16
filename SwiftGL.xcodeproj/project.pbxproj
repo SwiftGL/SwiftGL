@@ -26,6 +26,11 @@
 		3D60148B1C45DF4F00A3356D /* FuncCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D60148A1C45DF4F00A3356D /* FuncCommon.swift */; };
 		3D81EE931C3CBB0B00B19119 /* MatrixSIMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81EE911C3CBA9900B19119 /* MatrixSIMD.swift */; };
 		3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F3D151C3B28B1007C49E7 /* main.swift */; };
+		3D90F4981C489B2100229A4F /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
+		3D90F4991C489B2600229A4F /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
+		3D90F49D1C489BF100229A4F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F49C1C489BF100229A4F /* main.swift */; };
+		3D90F49F1C48BA6300229A4F /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F49E1C48BA6300229A4F /* Shader.swift */; };
+		3D90F4A11C4972B700229A4F /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F4A01C4972B700229A4F /* Camera.swift */; };
 		3D91C3961C3B20C600BA748A /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3911C3B20C600BA748A /* Commands.swift */; };
 		3D91C3971C3B20C600BA748A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3921C3B20C600BA748A /* Constants.swift */; };
 		3D91C3991C3B20C600BA748A /* Loaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3941C3B20C600BA748A /* Loaders.swift */; };
@@ -49,6 +54,8 @@
 		3DB284391C475DEB008D46E6 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB284381C475DEB008D46E6 /* Functions.swift */; };
 		3DB2843B1C481396008D46E6 /* FunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB2843A1C481396008D46E6 /* FunctionsTests.swift */; };
 		3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */; };
+		3DFD6ECB1C49E3A500E26222 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECA1C49E3A500E26222 /* Player.swift */; };
+		3DFD6ECD1C49FA3C00E26222 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECC1C49FA3C00E26222 /* Cube.swift */; };
 		3DFFC9891C447AC000EF48B4 /* Vector3b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFC9881C447AC000EF48B4 /* Vector3b.swift */; };
 		3DFFC98B1C447B6600EF48B4 /* Vector2b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFC98A1C447B6600EF48B4 /* Vector2b.swift */; };
 /* End PBXBuildFile section */
@@ -105,6 +112,10 @@
 		3D81EE911C3CBA9900B19119 /* MatrixSIMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixSIMD.swift; sourceTree = "<group>"; };
 		3D8F3D081C3B2892007C49E7 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8F3D151C3B28B1007C49E7 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3D90F48B1C489AED00229A4F /* CubeWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CubeWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D90F49C1C489BF100229A4F /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3D90F49E1C48BA6300229A4F /* Shader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
+		3D90F4A01C4972B700229A4F /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		3D91C3791C3B1FF700BA748A /* SwiftGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D91C3911C3B20C600BA748A /* Commands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		3D91C3921C3B20C600BA748A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -130,6 +141,8 @@
 		3DB284381C475DEB008D46E6 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		3DB2843A1C481396008D46E6 /* FunctionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsTests.swift; sourceTree = "<group>"; };
 		3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector4Tests.swift; sourceTree = "<group>"; };
+		3DFD6ECA1C49E3A500E26222 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3DFD6ECC1C49FA3C00E26222 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		3DFFC9881C447AC000EF48B4 /* Vector3b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector3b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3DFFC98A1C447B6600EF48B4 /* Vector2b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector2b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
@@ -155,6 +168,15 @@
 			files = (
 				3D28E9F01C3B2D600091E013 /* SwiftGL.framework in Frameworks */,
 				3D28E9F21C3B2D7A0091E013 /* SwiftGLmath.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D90F4881C489AED00229A4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D90F4981C489B2100229A4F /* SwiftGLmath.framework in Frameworks */,
+				3D90F4991C489B2600229A4F /* SwiftGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,10 +232,24 @@
 			path = Demo/HelloWorld;
 			sourceTree = "<group>";
 		};
+		3D90F48C1C489AEE00229A4F /* CubeWorld */ = {
+			isa = PBXGroup;
+			children = (
+				3D90F49C1C489BF100229A4F /* main.swift */,
+				3D90F49E1C48BA6300229A4F /* Shader.swift */,
+				3D90F4A01C4972B700229A4F /* Camera.swift */,
+				3DFD6ECA1C49E3A500E26222 /* Player.swift */,
+				3DFD6ECC1C49FA3C00E26222 /* Cube.swift */,
+			);
+			name = CubeWorld;
+			path = Demo/CubeWorld;
+			sourceTree = "<group>";
+		};
 		3D91C35B1C3B1FB400BA748A = {
 			isa = PBXGroup;
 			children = (
 				3D8F3D091C3B2892007C49E7 /* HelloWorld */,
+				3D90F48C1C489AEE00229A4F /* CubeWorld */,
 				3D91C37A1C3B1FF700BA748A /* SwiftGL */,
 				3D91C3A11C3B210500BA748A /* SwiftGLmath */,
 				3D91C3BC1C3B21BE00BA748A /* SwiftGLmathTests */,
@@ -232,6 +268,7 @@
 				3D8F3D081C3B2892007C49E7 /* HelloWorld.app */,
 				3D28E9F71C3B34B90091E013 /* SwiftGLUtil */,
 				3D28EA061C3B35D90091E013 /* SwiftGLmathUtil */,
+				3D90F48B1C489AED00229A4F /* CubeWorld.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -369,6 +406,23 @@
 			productReference = 3D8F3D081C3B2892007C49E7 /* HelloWorld.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3D90F48A1C489AED00229A4F /* CubeWorld */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D90F4971C489AEE00229A4F /* Build configuration list for PBXNativeTarget "CubeWorld" */;
+			buildPhases = (
+				3D90F4871C489AED00229A4F /* Sources */,
+				3D90F4881C489AED00229A4F /* Frameworks */,
+				3D90F4891C489AED00229A4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CubeWorld;
+			productName = CubeWorld;
+			productReference = 3D90F48B1C489AED00229A4F /* CubeWorld.app */;
+			productType = "com.apple.product-type.application";
+		};
 		3D91C3781C3B1FF700BA748A /* SwiftGL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D91C38A1C3B1FF700BA748A /* Build configuration list for PBXNativeTarget "SwiftGL" */;
@@ -442,6 +496,9 @@
 					3D8F3D071C3B2892007C49E7 = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					3D90F48A1C489AED00229A4F = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					3D91C3781C3B1FF700BA748A = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -467,6 +524,7 @@
 			projectRoot = "";
 			targets = (
 				3D8F3D071C3B2892007C49E7 /* HelloWorld */,
+				3D90F48A1C489AED00229A4F /* CubeWorld */,
 				3D91C3781C3B1FF700BA748A /* SwiftGL */,
 				3D91C39F1C3B210500BA748A /* SwiftGLmath */,
 				3D91C3BA1C3B21BE00BA748A /* SwiftGLmathTests */,
@@ -478,6 +536,13 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		3D8F3D061C3B2892007C49E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D90F4891C489AED00229A4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -529,6 +594,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D90F4871C489AED00229A4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DFD6ECB1C49E3A500E26222 /* Player.swift in Sources */,
+				3DFD6ECD1C49FA3C00E26222 /* Cube.swift in Sources */,
+				3D90F49D1C489BF100229A4F /* main.swift in Sources */,
+				3D90F49F1C48BA6300229A4F /* Shader.swift in Sources */,
+				3D90F4A11C4972B700229A4F /* Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +743,39 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.HelloWorld;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
+			};
+			name = Release;
+		};
+		3D90F4951C489AEE00229A4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.CubeWorld;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3D90F4961C489AEE00229A4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.CubeWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 			};
@@ -893,6 +1003,15 @@
 			buildConfigurations = (
 				3D8F3D121C3B2892007C49E7 /* Debug */,
 				3D8F3D131C3B2892007C49E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D90F4971C489AEE00229A4F /* Build configuration list for PBXNativeTarget "CubeWorld" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D90F4951C489AEE00229A4F /* Debug */,
+				3D90F4961C489AEE00229A4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

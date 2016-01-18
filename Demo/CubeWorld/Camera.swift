@@ -75,11 +75,11 @@ public class Camera {
         if !normalsValid {
             let radiansPitch = radians(pitch)
             let radiansYaw = radians(yaw)
-            let cosPitch = cos(radiansPitch)
+            let cosPitch = cosf(radiansPitch)
             let forward = vec3(
-                x: cosPitch * cos(radiansYaw),
-                y: sin(radiansPitch),
-                z: cosPitch * sin(radiansYaw)
+                x: cosPitch * cosf(radiansYaw),
+                y: sinf(radiansPitch),
+                z: cosPitch * sinf(radiansYaw)
             )
             normalsCache.forward = normalize(forward)
             normalsCache.right = normalize(cross(normalsCache.forward, worldUp))
@@ -119,7 +119,7 @@ public class Camera {
     private var projectionValid = false
     public var projection:mat4 {
         if !projectionValid {
-            let yscale = 1 / tan(fov / 2)
+            let yscale = 1 / tanf(fov / 2)
             projectionCache[0][0] = yscale / aspect
             projectionCache[1][1] = yscale
             projectionCache[2][2] = (clip.far + clip.near) / (clip.near - clip.far)

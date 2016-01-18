@@ -23,9 +23,6 @@
 import SwiftGL
 import SwiftGLmath
 import CGLFW3
-#if os(Linux)
-    import CGLFW3.Linux
-#endif
 
 
 let WIDTH:GLsizei = 800, HEIGHT:GLsizei = 600

@@ -117,80 +117,6 @@ func writeSwizzle(out:NSOutputStream)
 }
 
 
-func writeSimdWarn(out:NSOutputStream)
-{
-    out.write("// This style of SIMD support is deprecated.\n")
-    out.write("// As types are upgraded they will be removed here.\n\n")
-}
-
-func writeMatrixMul(out:NSOutputStream, _ T:String, _ col:Int, _ row:Int)
-{
-    let type = "Matrix\(col)x\(row)<\(T)>"
-    let simd = "\(T)\(col)x\(row)".lowercaseString
-    let vecCol = "Vector\(col)<\(T)>"
-    let vecRow = "Vector\(row)<\(T)>"
-    let simdCol = "\(T)\(col)".lowercaseString
-    let simdRow = "\(T)\(row)".lowercaseString
-
-    // vectors
-    out.write("@warn_unused_result\n")
-    out.write("public func *(v:\(vecRow), m:\(type)) -> \(vecCol) {\n")
-    out.write("    return unsafeBitCast(\n")
-    out.write("    unsafeBitCast(v, \(simdRow).self) * unsafeBitCast(m, \(simd).self)\n")
-    out.write("    , \(vecCol).self)\n")
-    out.write("}\n")
-
-    if (col != 3) {
-        out.write("@warn_unused_result\n")
-        out.write("public func *(m:\(type), v:\(vecCol)) -> \(vecRow) {\n")
-        out.write("    return unsafeBitCast(\n")
-        out.write("    unsafeBitCast(m, \(simd).self) * unsafeBitCast(v, \(simdCol).self)\n")
-        out.write("    , \(vecRow).self)\n")
-        out.write("}\n")
-    }
-
-    // matrices
-    for other in 2...4 {
-        let matB = "Matrix\(other)x\(col)<\(T)>"
-        let matResult = "Matrix\(other)x\(row)<\(T)>"
-        let simdB = "\(T)\(other)x\(col)".lowercaseString
-
-        out.write("@warn_unused_result\n")
-        out.write("public func *(m1:\(type), m2:\(matB)) -> \(matResult) {\n")
-        out.write("    return unsafeBitCast(\n")
-        out.write("    unsafeBitCast(m1, \(simd).self) * unsafeBitCast(m2, \(simdB).self)\n")
-        out.write("    , \(matResult).self)\n")
-        out.write("}\n")
-    }
-
-    if (row == col) {
-        out.write("public func *=(inout m1:\(type), m2:\(type)) {\n")
-        out.write("    m1 = unsafeBitCast(\n")
-        out.write("    unsafeBitCast(m1, \(simd).self) * unsafeBitCast(m2, \(simd).self)\n")
-        out.write("    , \(type).self)\n")
-        out.write("}\n")
-    }
-}
-
-
-func writeMatrixSIMD(out:NSOutputStream)
-{
-    writeLicense(out)
-    writeSimdWarn(out)
-    out.write("#if !os(Linux)\n\nimport simd\n\n")
-    for T in ["Float", "Double"] {
-        for col in 2...4 {
-            for row in [2,4] {
-                if col == 4 && row == 4 {continue}
-                writeMatrixMul(out, T, col, row)
-                out.write("\n")
-            }
-        }
-    }
-    out.write("#endif\n")
-}
-
-
 func writer(filename:String, _ generator:(outstream:NSOutputStream) -> Void)
 {
     let outstream:NSOutputStream! = NSOutputStream(toFileAtPath: filename, append: false)
@@ -209,5 +135,4 @@ if (Process.argc != 2) {
 let pathPrefix = Process.arguments[1]
 print("Working...")
 writer(pathPrefix + "/Sources/SwiftGLmath/Swizzle.swift", writeSwizzle)
-writer(pathPrefix + "/Sources/SwiftGLmath/MatrixSIMD.swift", writeMatrixSIMD)
 print("Success")

@@ -213,75 +213,125 @@ public func ==<T:FloatingPointScalarType>(m1: Matrix4x2<T>, m2: Matrix4x2<T>) ->
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(v: Vector2<T>, m: Matrix4x2<T>) -> Vector4<T> {
-    let x:T = v.x * m.x.x + v.y * m.x.y
-    let y:T = v.x * m.y.x + v.y * m.y.y
-    let z:T = v.x * m.z.x + v.y * m.z.y
-    let w:T = v.x * m.w.x + v.y * m.w.y
-    return Vector4<T>(x,y,z,w)
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(v, float2.self) * unsafeBitCast(m, float4x2.self), Vector4<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(v, double2.self) * unsafeBitCast(m, double4x2.self), Vector4<T>.self)
+        }
+        preconditionFailure()
+    #else
+        let x:T = v.x * m.x.x + v.y * m.x.y
+        let y:T = v.x * m.y.x + v.y * m.y.y
+        let z:T = v.x * m.z.x + v.y * m.z.y
+        let w:T = v.x * m.w.x + v.y * m.w.y
+        return Vector4<T>(x,y,z,w)
+    #endif
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(m: Matrix4x2<T>, v: Vector4<T>) -> Vector2<T> {
-    var rv:Vector2<T> = m.x * v.x
-    rv = rv + m.y * v.y
-    rv = rv + m.z * v.z
-    rv = rv + m.w * v.w
-    return rv
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m, float4x2.self) * unsafeBitCast(v, float4.self), Vector2<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m, double4x2.self) * unsafeBitCast(v, double4.self), Vector2<T>.self)
+        }
+        preconditionFailure()
+    #else
+        var rv:Vector2<T> = m.x * v.x
+        rv = rv + m.y * v.y
+        rv = rv + m.z * v.z
+        rv = rv + m.w * v.w
+        return rv
+    #endif
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(m1: Matrix4x2<T>, m2: Matrix2x4<T>) -> Matrix2x2<T> {
-    var x:Vector2<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
-    var y:Vector2<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
-    return Matrix2x2<T>(x, y)
+    #if !os(Linux)
+        if T.self == Float.self {
+            return unsafeBitCast(unsafeBitCast(m1, float4x2.self) * unsafeBitCast(m2, float2x4.self), Matrix2x2<T>.self)
+        }
+        if T.self == Double.self {
+            return unsafeBitCast(unsafeBitCast(m1, double4x2.self) * unsafeBitCast(m2, double2x4.self), Matrix2x2<T>.self)
+        }
+        preconditionFailure()
+    #else
+        var x:Vector2<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
+        var y:Vector2<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
+        return Matrix2x2<T>(x, y)
+    #endif
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(m1: Matrix4x2<T>, m2: Matrix3x4<T>) -> Matrix3x2<T> {
-    var x:Vector2<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
-    var y:Vector2<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
-    var z:Vector2<T> = m1.x * m2[2].x
-    z = z + m1.y * m2[2].y
-    z = z + m1.z * m2[2].z
-    z = z + m1.w * m2[2].w
-    return Matrix3x2<T>(x, y, z)
+    #if !os(Linux)
+        if T.self == Float.self {
+        return unsafeBitCast(unsafeBitCast(m1, float4x2.self) * unsafeBitCast(m2, float3x4.self), Matrix3x2<T>.self)
+        }
+        if T.self == Double.self {
+        return unsafeBitCast(unsafeBitCast(m1, double4x2.self) * unsafeBitCast(m2, double3x4.self), Matrix3x2<T>.self)
+        }
+        preconditionFailure()
+    #else
+        var x:Vector2<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
+        var y:Vector2<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
+        var z:Vector2<T> = m1.x * m2[2].x
+        z = z + m1.y * m2[2].y
+        z = z + m1.z * m2[2].z
+        z = z + m1.w * m2[2].w
+        return Matrix3x2<T>(x, y, z)
+    #endif
 }
 
 
 @warn_unused_result
 public func *<T:FloatingPointScalarType>(m1: Matrix4x2<T>, m2: Matrix4x4<T>) -> Matrix4x2<T> {
-    var x:Vector2<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
-    var y:Vector2<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
-    var z:Vector2<T> = m1.x * m2[2].x
-    z = z + m1.y * m2[2].y
-    z = z + m1.z * m2[2].z
-    z = z + m1.w * m2[2].w
-    var w:Vector2<T> = m1.x * m2[3].x
-    w = w + m1.y * m2[3].y
-    w = w + m1.z * m2[3].z
-    w = w + m1.w * m2[3].w
-    return Matrix4x2<T>(x, y, z, w)
+    #if !os(Linux)
+        if T.self == Float.self {
+        return unsafeBitCast(unsafeBitCast(m1, float4x2.self) * unsafeBitCast(m2, float2x4.self), Matrix4x2<T>.self)
+        }
+        if T.self == Double.self {
+        return unsafeBitCast(unsafeBitCast(m1, double4x2.self) * unsafeBitCast(m2, double2x4.self), Matrix4x2<T>.self)
+        }
+        preconditionFailure()
+    #else
+        var x:Vector2<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
+        var y:Vector2<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
+        var z:Vector2<T> = m1.x * m2[2].x
+        z = z + m1.y * m2[2].y
+        z = z + m1.z * m2[2].z
+        z = z + m1.w * m2[2].w
+        var w:Vector2<T> = m1.x * m2[3].x
+        w = w + m1.y * m2[3].y
+        w = w + m1.z * m2[3].z
+        w = w + m1.w * m2[3].w
+        return Matrix4x2<T>(x, y, z, w)
+    #endif
 }
 
 

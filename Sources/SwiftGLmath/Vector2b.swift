@@ -25,8 +25,8 @@ public struct Vector2b : BooleanVectorType {
     public typealias Element = Bool
     public typealias FloatVector = Vector2<Float>
     public typealias DoubleVector = Vector2<Double>
-    public typealias Int32Vector = Vector2i<Int32>
-    public typealias UInt32Vector = Vector2i<UInt32>
+    public typealias Int32Vector = Vector2<Int32>
+    public typealias UInt32Vector = Vector2<UInt32>
     public typealias BooleanVector = Vector2b
 
     public var x:Bool, y:Bool
@@ -38,11 +38,10 @@ public struct Vector2b : BooleanVectorType {
     public var t:Bool { get {return y} set {y = newValue} }
 
     public var startIndex: Int { return 0 }
-    public var endIndex: Int { return 4 }
+    public var endIndex: Int { return 2 }
 
     public subscript(i: Int) -> Bool {
         get {
-
             switch(i) {
             case 0: return x
             case 1: return y
@@ -106,12 +105,12 @@ public struct Vector2b : BooleanVectorType {
         self.y = v.y == 0 ? false : true
     }
 
-    public init (_ v:Vector2i<Int32>) {
+    public init (_ v:Vector2<Int32>) {
         self.x = v.x == 0 ? false : true
         self.y = v.y == 0 ? false : true
     }
 
-    public init (_ v:Vector2i<UInt32>) {
+    public init (_ v:Vector2<UInt32>) {
         self.x = v.x == 0 ? false : true
         self.y = v.y == 0 ? false : true
     }

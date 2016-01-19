@@ -25,7 +25,7 @@
 #endif
 
 
-// GLmathScalarType
+// Scalar Operators
 
 public prefix func ++<T:GLmathScalarType>(inout v: T) -> T {
     v = v + T.Element(1)
@@ -295,15 +295,15 @@ public func %=<T:GLmathScalarType>(inout x: T, s: T.Element) {
 }
 
 
-// GLmathIntegerType
+// Unchecked Integer Operators
 
 @warn_unused_result
-public func &+<T:GLmathIntegerType>(v1: T, v2: T) -> T {
+public func &+<T:GLmathScalarType where T.Element:IntegerScalarType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
-        case is Vector2i<Int32>, is Vector2i<UInt32> :
+        case is Vector2<Int32>, is Vector2<UInt32> :
             return unsafeBitCast(unsafeBitCast(v1, int2.self) &+ unsafeBitCast(v2, int2.self), T.self)
-        case is Vector4i<Int32>, is Vector4i<UInt32> :
+        case is Vector4<Int32>, is Vector4<UInt32> :
             return unsafeBitCast(unsafeBitCast(v1, int4.self) &+ unsafeBitCast(v2, int4.self), T.self)
         default:
             break
@@ -313,22 +313,22 @@ public func &+<T:GLmathIntegerType>(v1: T, v2: T) -> T {
 }
 
 @warn_unused_result
-public func &+<T:GLmathIntegerType>(s: T.Element, v: T) -> T {
+public func &+<T:GLmathScalarType where T.Element:IntegerScalarType>(s: T.Element, v: T) -> T {
     return T(s, v, &+)
 }
 
 @warn_unused_result
-public func &+<T:GLmathIntegerType>(v: T, s: T.Element) -> T {
+public func &+<T:GLmathScalarType where T.Element:IntegerScalarType>(v: T, s: T.Element) -> T {
     return T(v, s, &+)
 }
 
 @warn_unused_result
-public func &-<T:GLmathIntegerType>(v1: T, v2: T) -> T {
+public func &-<T:GLmathScalarType where T.Element:IntegerScalarType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
-        case is Vector2i<Int32>, is Vector2i<UInt32> :
+        case is Vector2<Int32>, is Vector2<UInt32> :
             return unsafeBitCast(unsafeBitCast(v1, int2.self) &- unsafeBitCast(v2, int2.self), T.self)
-        case is Vector4i<Int32>, is Vector4i<UInt32> :
+        case is Vector4<Int32>, is Vector4<UInt32> :
             return unsafeBitCast(unsafeBitCast(v1, int4.self) &- unsafeBitCast(v2, int4.self), T.self)
         default:
             break
@@ -338,22 +338,22 @@ public func &-<T:GLmathIntegerType>(v1: T, v2: T) -> T {
 }
 
 @warn_unused_result
-public func &-<T:GLmathIntegerType>(s: T.Element, v: T) -> T {
+public func &-<T:GLmathScalarType where T.Element:IntegerScalarType>(s: T.Element, v: T) -> T {
     return T(s, v, &-)
 }
 
 @warn_unused_result
-public func &-<T:GLmathIntegerType>(v: T, s: T.Element) -> T {
+public func &-<T:GLmathScalarType where T.Element:IntegerScalarType>(v: T, s: T.Element) -> T {
     return T(v, s, &-)
 }
 
 @warn_unused_result
-public func &*<T:GLmathIntegerType>(v1: T, v2: T) -> T {
+public func &*<T:GLmathScalarType where T.Element:IntegerScalarType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
-        case is Vector2i<Int32>, is Vector2i<UInt32> :
+        case is Vector2<Int32>, is Vector2<UInt32> :
             return unsafeBitCast(unsafeBitCast(v1, int2.self) &* unsafeBitCast(v2, int2.self), T.self)
-        case is Vector4i<Int32>, is Vector4i<UInt32> :
+        case is Vector4<Int32>, is Vector4<UInt32> :
             return unsafeBitCast(unsafeBitCast(v1, int4.self) &* unsafeBitCast(v2, int4.self), T.self)
         default:
             break
@@ -363,12 +363,12 @@ public func &*<T:GLmathIntegerType>(v1: T, v2: T) -> T {
 }
 
 @warn_unused_result
-public func &*<T:GLmathIntegerType>(s: T.Element, v: T) -> T {
+public func &*<T:GLmathScalarType where T.Element:IntegerScalarType>(s: T.Element, v: T) -> T {
     #if !os(Linux)
         switch (v) {
-        case is Vector2i<Int32>, is Vector2i<UInt32> :
+        case is Vector2<Int32>, is Vector2<UInt32> :
             return unsafeBitCast(unsafeBitCast(s, Int32.self) &* unsafeBitCast(v, int2.self), T.self)
-        case is Vector4i<Int32>, is Vector4i<UInt32> :
+        case is Vector4<Int32>, is Vector4<UInt32> :
             return unsafeBitCast(unsafeBitCast(s, Int32.self) &* unsafeBitCast(v, int4.self), T.self)
         default:
             break
@@ -378,12 +378,12 @@ public func &*<T:GLmathIntegerType>(s: T.Element, v: T) -> T {
 }
 
 @warn_unused_result
-public func &*<T:GLmathIntegerType>(v: T, s: T.Element) -> T {
+public func &*<T:GLmathScalarType where T.Element:IntegerScalarType>(v: T, s: T.Element) -> T {
     #if !os(Linux)
         switch (v) {
-        case is Vector2i<Int32>, is Vector2i<UInt32> :
+        case is Vector2<Int32>, is Vector2<UInt32> :
             return unsafeBitCast(unsafeBitCast(v, int2.self) &* unsafeBitCast(s, Int32.self), T.self)
-        case is Vector4i<Int32>, is Vector4i<UInt32> :
+        case is Vector4<Int32>, is Vector4<UInt32> :
             return unsafeBitCast(unsafeBitCast(v, int4.self) &* unsafeBitCast(s, Int32.self), T.self)
         default:
             break
@@ -393,107 +393,109 @@ public func &*<T:GLmathIntegerType>(v: T, s: T.Element) -> T {
 }
 
 @warn_unused_result
-public func << <T:GLmathIntegerType>(v: T, s: T.Element) -> T {
+public func << <T:GLmathScalarType where T.Element:IntegerScalarType>(v: T, s: T.Element) -> T {
     return T(v, s, <<)
 }
 
-public func <<= <T:GLmathIntegerType>(inout v: T, s: T.Element) {
+public func <<= <T:GLmathScalarType where T.Element:IntegerScalarType>(inout v: T, s: T.Element) {
     v = v << s
 }
 
 @warn_unused_result
-public func >> <T:GLmathIntegerType>(v: T, s: T.Element) -> T {
+public func >> <T:GLmathScalarType where T.Element:IntegerScalarType>(v: T, s: T.Element) -> T {
     return T(v, s, <<)
 }
 
-public func >>= <T:GLmathIntegerType>(inout v: T, s: T.Element) {
+public func >>= <T:GLmathScalarType where T.Element:IntegerScalarType>(inout v: T, s: T.Element) {
     v = v >> s
 }
 
 @warn_unused_result
-public func &<T:GLmathIntegerType>(x1: T, x2: T) -> T {
+public func &<T:GLmathScalarType where T.Element:IntegerScalarType>(x1: T, x2: T) -> T {
     return T(x1, x2, &)
 }
 
-public func &=<T:GLmathIntegerType>(inout x1: T, x2: T) {
+public func &=<T:GLmathScalarType where T.Element:IntegerScalarType>(inout x1: T, x2: T) {
     x1 = x1 & x2
 }
 
 @warn_unused_result
-public func &<T:GLmathIntegerType>(s: T.Element, x: T) -> T {
+public func &<T:GLmathScalarType where T.Element:IntegerScalarType>(s: T.Element, x: T) -> T {
     return T(s, x, &)
 }
 
 @warn_unused_result
-public func &<T:GLmathIntegerType>(x: T, s: T.Element) -> T {
+public func &<T:GLmathScalarType where T.Element:IntegerScalarType>(x: T, s: T.Element) -> T {
     return T(x, s, &)
 }
 
-public func &=<T:GLmathIntegerType>(inout x: T, s: T.Element) {
+public func &=<T:GLmathScalarType where T.Element:IntegerScalarType>(inout x: T, s: T.Element) {
     x = x & s
 }
 
 @warn_unused_result
-public func |<T:GLmathIntegerType>(x1: T, x2: T) -> T {
+public func |<T:GLmathScalarType where T.Element:IntegerScalarType>(x1: T, x2: T) -> T {
     return T(x1, x2, |)
 }
 
-public func |=<T:GLmathIntegerType>(inout x1: T, x2: T) {
+public func |=<T:GLmathScalarType where T.Element:IntegerScalarType>(inout x1: T, x2: T) {
     x1 = x1 | x2
 }
 
 @warn_unused_result
-public func |<T:GLmathIntegerType>(s: T.Element, x: T) -> T {
+public func |<T:GLmathScalarType where T.Element:IntegerScalarType>(s: T.Element, x: T) -> T {
     return T(s, x, |)
 }
 
 @warn_unused_result
-public func |<T:GLmathIntegerType>(x: T, s: T.Element) -> T {
+public func |<T:GLmathScalarType where T.Element:IntegerScalarType>(x: T, s: T.Element) -> T {
     return T(x, s, |)
 }
 
-public func |=<T:GLmathIntegerType>(inout x: T, s: T.Element) {
+public func |=<T:GLmathScalarType where T.Element:IntegerScalarType>(inout x: T, s: T.Element) {
     x = x | s
 }
 
 @warn_unused_result
-public func ^<T:GLmathIntegerType>(v1: T, v2: T) -> T {
+public func ^<T:GLmathScalarType where T.Element:IntegerScalarType>(v1: T, v2: T) -> T {
     return T(v1, v2, ^)
 }
 
-public func ^=<T:GLmathIntegerType>(inout x1: T, x2: T) {
+public func ^=<T:GLmathScalarType where T.Element:IntegerScalarType>(inout x1: T, x2: T) {
     x1 = x1 ^ x2
 }
 
 @warn_unused_result
-public func ^<T:GLmathIntegerType>(s: T.Element, x: T) -> T {
+public func ^<T:GLmathScalarType where T.Element:IntegerScalarType>(s: T.Element, x: T) -> T {
     return T(s, x, ^)
 }
 
 @warn_unused_result
-public func ^<T:GLmathIntegerType>(x: T, s: T.Element) -> T {
+public func ^<T:GLmathScalarType where T.Element:IntegerScalarType>(x: T, s: T.Element) -> T {
     return T(x, s, ^)
 }
 
-public func ^=<T:GLmathIntegerType>(inout x: T, s: T.Element) {
+public func ^=<T:GLmathScalarType where T.Element:IntegerScalarType>(inout x: T, s: T.Element) {
     x = x ^ s
 }
 
 @warn_unused_result
-public prefix func ~<T:GLmathIntegerType>(v: T) -> T {
+public prefix func ~<T:GLmathScalarType where T.Element:IntegerScalarType>(v: T) -> T {
     return T(v, ~)
 }
 
 
-// GLmathFloatingPointType
+// Signed Numbers Only
 
 @warn_unused_result
-public prefix func +<T:GLmathFloatingPointType>(v: T) -> T {
+public prefix func +<T:GLmathScalarType where T.Element:SignedNumberType>
+    (v: T) -> T {
     return v
 }
 
 @warn_unused_result
-public prefix func -<T:GLmathFloatingPointType>(x: T) -> T {
+public prefix func -<T:GLmathScalarType where T.Element:SignedNumberType>
+    (x: T) -> T {
     #if !os(Linux)
         switch (x) {
         case is Matrix2x2<Float> :
@@ -524,10 +526,14 @@ public prefix func -<T:GLmathFloatingPointType>(x: T) -> T {
             return unsafeBitCast(-unsafeBitCast(x, float2.self), T.self)
         case is Vector2<Double> :
             return unsafeBitCast(-unsafeBitCast(x, double2.self), T.self)
+        case is Vector2<Int32>:
+            return unsafeBitCast(-unsafeBitCast(x, int2.self), T.self)
         case is Vector4<Float> :
             return unsafeBitCast(-unsafeBitCast(x, float4.self), T.self)
         case is Vector4<Double> :
             return unsafeBitCast(-unsafeBitCast(x, double4.self), T.self)
+        case is Vector4<Int32>:
+            return unsafeBitCast(-unsafeBitCast(x, int4.self), T.self)
         default: break
         }
     #endif
@@ -535,7 +541,7 @@ public prefix func -<T:GLmathFloatingPointType>(x: T) -> T {
 }
 
 
-// ScalarVectorType
+// Vector Multiply and Divide
 
 @warn_unused_result
 public func *<T:ScalarVectorType>(v1: T, v2: T) -> T {
@@ -563,9 +569,9 @@ public func *=<T:ScalarVectorType>(inout v1: T, v2: T) {
 public func /<T:ScalarVectorType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
-        case is Vector2i<Int32>, is Vector2i<UInt32> :
+        case is Vector2<Int32>, is Vector2<UInt32> :
             return unsafeBitCast(unsafeBitCast(v1, int2.self) / unsafeBitCast(v2, int2.self), T.self)
-        case is Vector4i<Int32>, is Vector4i<UInt32> :
+        case is Vector4<Int32>, is Vector4<UInt32> :
             return unsafeBitCast(unsafeBitCast(v1, int4.self) / unsafeBitCast(v2, int4.self), T.self)
         case is Vector2<Float> :
             return unsafeBitCast(unsafeBitCast(v1, float2.self) / unsafeBitCast(v2, float2.self), T.self)

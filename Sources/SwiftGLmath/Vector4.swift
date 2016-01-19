@@ -20,13 +20,13 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Vector4<T:FloatingPointScalarType> : FloatingPointVectorType {
+public struct Vector4<T:ScalarType> : ScalarVectorType {
 
     public typealias Element = T
     public typealias FloatVector = Vector4<Float>
     public typealias DoubleVector = Vector4<Double>
-    public typealias Int32Vector = Vector4i<Int32>
-    public typealias UInt32Vector = Vector4i<UInt32>
+    public typealias Int32Vector = Vector4<Int32>
+    public typealias UInt32Vector = Vector4<UInt32>
     public typealias BooleanVector = Vector4b
 
     public var x:T, y:T, z:T, w:T
@@ -172,14 +172,14 @@ public struct Vector4<T:FloatingPointScalarType> : FloatingPointVectorType {
         self.w = T(v.w)
     }
 
-    public init (_ v:Vector4i<Int32>) {
+    public init (_ v:Vector4<Int32>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
         self.w = T(v.w)
     }
 
-    public init (_ v:Vector4i<UInt32>) {
+    public init (_ v:Vector4<UInt32>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
@@ -245,6 +245,6 @@ public struct Vector4<T:FloatingPointScalarType> : FloatingPointVectorType {
 }
 
 
-public func ==<T:FloatingPointScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Bool {
+public func ==<T:ScalarType>(v1: Vector4<T>, v2: Vector4<T>) -> Bool {
     return v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w
 }

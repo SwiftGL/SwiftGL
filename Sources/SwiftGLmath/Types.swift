@@ -22,20 +22,20 @@
 
 public typealias vec2 = Vector2<Float>
 public typealias dvec2 = Vector2<Double>
-public typealias ivec2 = Vector2i<Int32>
-public typealias uvec2 = Vector2i<UInt32>
+public typealias ivec2 = Vector2<Int32>
+public typealias uvec2 = Vector2<UInt32>
 public typealias bvec2 = Vector2b
 
 public typealias vec3 = Vector3<Float>
 public typealias dvec3 = Vector3<Double>
-public typealias ivec3 = Vector3i<Int32>
-public typealias uvec3 = Vector3i<UInt32>
+public typealias ivec3 = Vector3<Int32>
+public typealias uvec3 = Vector3<UInt32>
 public typealias bvec3 = Vector3b
 
 public typealias vec4 = Vector4<Float>
 public typealias dvec4 = Vector4<Double>
-public typealias ivec4 = Vector4i<Int32>
-public typealias uvec4 = Vector4i<UInt32>
+public typealias ivec4 = Vector4<Int32>
+public typealias uvec4 = Vector4<UInt32>
 public typealias bvec4 = Vector4b
 
 public typealias mat2 = Matrix2x2<Float>
@@ -147,45 +147,6 @@ public protocol GLmathScalarType : GLmathType {
     func %=(inout _: Self, _: Element)
 }
 
-public protocol GLmathIntegerType : GLmathScalarType {
-    typealias Element:IntegerScalarType
-    func &+(_: Self, _: Self) -> Self
-    func &+(_: Element, _: Self) -> Self
-    func &+(_: Self, _: Element) -> Self
-    func &-(_: Self, _: Self) -> Self
-    func &-(_: Element, _: Self) -> Self
-    func &-(_: Self, _: Element) -> Self
-    func &*(_: Self, _: Self) -> Self
-    func &*(_: Element, _: Self) -> Self
-    func &*(_: Self, _: Element) -> Self
-    func <<(_: Self, _: Element) -> Self
-    func <<=(inout _: Self, _: Element)
-    func >>(_: Self, _: Element) -> Self
-    func >>=(inout _: Self, _: Element)
-    func &(_: Self, _: Self) -> Self
-    func &=(inout _: Self, _: Self)
-    func &(_: Element, _: Self) -> Self
-    func &(_: Self, _: Element) -> Self
-    func &=(inout _: Self, _: Element)
-    func |(_: Self, _: Self) -> Self
-    func |=(inout _: Self, _: Self)
-    func |(_: Element, _: Self) -> Self
-    func |(_: Self, _: Element) -> Self
-    func |=(inout _: Self, _: Element)
-    func ^(_: Self, _: Self) -> Self
-    func ^=(inout _: Self, _: Self)
-    func ^(_: Element, _: Self) -> Self
-    func ^(_: Self, _: Element) -> Self
-    func ^=(inout _: Self, _: Element)
-    prefix func ~(_: Self) -> Self
-}
-
-public protocol GLmathFloatingPointType : GLmathScalarType {
-    typealias Element:FloatingPointScalarType
-    prefix func +(_: Self) -> Self
-    prefix func -(_: Self) -> Self
-}
-
 public protocol VectorType : GLmathType {
     typealias FloatVector
     typealias DoubleVector
@@ -212,17 +173,7 @@ public protocol BooleanVectorType : VectorType {
 
 public protocol ScalarVectorType : VectorType, GLmathScalarType {
     typealias BooleanVector:BooleanVectorType
-    func *(_: Self, _: Self) -> Self
-    func *=(inout _: Self, _: Self)
-    func /(_: Self, _: Self) -> Self
-    func /=(inout _: Self, _: Self)
 }
 
-public protocol IntegerVectorType : ScalarVectorType, GLmathIntegerType {
-}
-
-public protocol FloatingPointVectorType : ScalarVectorType, GLmathFloatingPointType {
-}
-
-public protocol MatrixType : GLmathFloatingPointType {
+public protocol MatrixType : GLmathScalarType {
 }

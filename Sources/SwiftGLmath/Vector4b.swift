@@ -25,8 +25,8 @@ public struct Vector4b : BooleanVectorType {
     public typealias Element = Bool
     public typealias FloatVector = Vector4<Float>
     public typealias DoubleVector = Vector4<Double>
-    public typealias Int32Vector = Vector4i<Int32>
-    public typealias UInt32Vector = Vector4i<UInt32>
+    public typealias Int32Vector = Vector4<Int32>
+    public typealias UInt32Vector = Vector4<UInt32>
     public typealias BooleanVector = Vector4b
 
     public var x:Bool, y:Bool, z:Bool, w:Bool
@@ -172,14 +172,14 @@ public struct Vector4b : BooleanVectorType {
         self.w = v.w == 0 ? false : true
     }
 
-    public init (_ v:Vector4i<Int32>) {
+    public init (_ v:Vector4<Int32>) {
         self.x = v.x == 0 ? false : true
         self.y = v.y == 0 ? false : true
         self.z = v.z == 0 ? false : true
         self.w = v.w == 0 ? false : true
     }
 
-    public init (_ v:Vector4i<UInt32>) {
+    public init (_ v:Vector4<UInt32>) {
         self.x = v.x == 0 ? false : true
         self.y = v.y == 0 ? false : true
         self.z = v.z == 0 ? false : true

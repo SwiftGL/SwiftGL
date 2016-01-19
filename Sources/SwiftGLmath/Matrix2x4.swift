@@ -25,7 +25,7 @@ import simd
 #endif
 
 
-public struct Matrix2x4<T:FloatingPointScalarType> : MatrixType {
+public struct Matrix2x4<T:ScalarType> : MatrixType {
 
     public typealias Element = T
 
@@ -162,13 +162,13 @@ public struct Matrix2x4<T:FloatingPointScalarType> : MatrixType {
 }
 
 
-public func ==<T:FloatingPointScalarType>(m1: Matrix2x4<T>, m2: Matrix2x4<T>) -> Bool {
+public func ==<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix2x4<T>) -> Bool {
     return m1.x == m2.x && m1.y == m2.y
 }
 
 
 @warn_unused_result
-public func *<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix2x4<T>) -> Vector2<T> {
+public func *<T:ScalarType>(v: Vector4<T>, m: Matrix2x4<T>) -> Vector2<T> {
     var x:T = v.x * m.x.x
     x = x + v.y * m.x.y
     x = x + v.z * m.x.z
@@ -182,13 +182,13 @@ public func *<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix2x4<T>) -> Vect
 
 
 @warn_unused_result
-public func *<T:FloatingPointScalarType>(m: Matrix2x4<T>, v: Vector3<T>) -> Vector4<T> {
+public func *<T:ScalarType>(m: Matrix2x4<T>, v: Vector3<T>) -> Vector4<T> {
     return m.x * v.x + m.y * v.y
 }
 
 
 @warn_unused_result
-public func *<T:FloatingPointScalarType>(m1: Matrix2x4<T>, m2: Matrix2x2<T>) -> Matrix2x4<T> {
+public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix2x2<T>) -> Matrix2x4<T> {
     var x:Vector4<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     var y:Vector4<T> = m1.x * m2[1].x
@@ -198,7 +198,7 @@ public func *<T:FloatingPointScalarType>(m1: Matrix2x4<T>, m2: Matrix2x2<T>) -> 
 
 
 @warn_unused_result
-public func *<T:FloatingPointScalarType>(m1: Matrix2x4<T>, m2: Matrix3x2<T>) -> Matrix3x4<T> {
+public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix3x2<T>) -> Matrix3x4<T> {
     var x:Vector4<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     var y:Vector4<T> = m1.x * m2[1].x
@@ -210,7 +210,7 @@ public func *<T:FloatingPointScalarType>(m1: Matrix2x4<T>, m2: Matrix3x2<T>) -> 
 
 
 @warn_unused_result
-public func *<T:FloatingPointScalarType>(m1: Matrix2x4<T>, m2: Matrix4x2<T>) -> Matrix4x4<T> {
+public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix4x2<T>) -> Matrix4x4<T> {
     var x:Vector4<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     var y:Vector4<T> = m1.x * m2[1].x
@@ -223,7 +223,7 @@ public func *<T:FloatingPointScalarType>(m1: Matrix2x4<T>, m2: Matrix4x2<T>) -> 
 }
 
 
-public func transpose<T:FloatingPointScalarType>(m: Matrix2x4<T>) -> Matrix4x2<T> {
+public func transpose<T:ScalarType>(m: Matrix2x4<T>) -> Matrix4x2<T> {
     return Matrix4x2(
         m.x.x, m.y.x,
         m.x.y, m.y.y,
@@ -233,7 +233,7 @@ public func transpose<T:FloatingPointScalarType>(m: Matrix2x4<T>) -> Matrix4x2<T
 }
 
 
-public func outerProduct<T:FloatingPointScalarType>(c:Vector4<T>, _ r:Vector2<T>) -> Matrix2x4<T> {
+public func outerProduct<T:ScalarType>(c:Vector4<T>, _ r:Vector2<T>) -> Matrix2x4<T> {
     return Matrix2x4(
         c * r[0],
         c * r[1]

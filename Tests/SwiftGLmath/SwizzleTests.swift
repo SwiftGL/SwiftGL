@@ -39,5 +39,5 @@ class SwizzleTests: XCTestCase {
         XCTAssertEqual(z.ab, vec2(99,98))
         XCTAssertEqual(z, vec4(1,2,98,99))
     }
-    
+
 }

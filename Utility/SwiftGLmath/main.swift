@@ -67,7 +67,7 @@ func writeSwizzle(out:NSOutputStream)
     writeLicense(out)
 
     let vname = ["", "", "Vector2", "Vector3", "Vector4"]
-    let vtype = ["", "i", "b"]
+    let vtype = ["", "b"]
     let e = [
         ["x", "y", "z", "w"],
         ["r", "g", "b", "a"],
@@ -75,7 +75,7 @@ func writeSwizzle(out:NSOutputStream)
     ]
 
     for vecNum in 2...4 {
-        for vnameNum in 0...2 {
+        for vnameNum in 0...1 {
             out.write("public extension \(vname[vecNum])\(vtype[vnameNum]) {\n")
             var suff = vtype[vnameNum]
             if suff != "b" { suff += "<T>"}

@@ -25,8 +25,8 @@ public struct Vector3b : BooleanVectorType {
     public typealias Element = Bool
     public typealias FloatVector = Vector3<Float>
     public typealias DoubleVector = Vector3<Double>
-    public typealias Int32Vector = Vector3i<Int32>
-    public typealias UInt32Vector = Vector3i<UInt32>
+    public typealias Int32Vector = Vector3<Int32>
+    public typealias UInt32Vector = Vector3<UInt32>
     public typealias BooleanVector = Vector3b
 
     public var x:Bool, y:Bool, z:Bool
@@ -40,7 +40,7 @@ public struct Vector3b : BooleanVectorType {
     public var p:Bool { get {return z} set {z = newValue} }
 
     public var startIndex: Int { return 0 }
-    public var endIndex: Int { return 4 }
+    public var endIndex: Int { return 3 }
 
     public subscript(i: Int) -> Bool {
         get {
@@ -130,13 +130,13 @@ public struct Vector3b : BooleanVectorType {
         self.z = v.z == 0 ? false : true
     }
 
-    public init (_ v:Vector3i<Int32>) {
+    public init (_ v:Vector3<Int32>) {
         self.x = v.x == 0 ? false : true
         self.y = v.y == 0 ? false : true
         self.z = v.z == 0 ? false : true
     }
 
-    public init (_ v:Vector3i<UInt32>) {
+    public init (_ v:Vector3<UInt32>) {
         self.x = v.x == 0 ? false : true
         self.y = v.y == 0 ? false : true
         self.z = v.z == 0 ? false : true

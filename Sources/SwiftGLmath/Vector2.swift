@@ -20,13 +20,13 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Vector2<T:FloatingPointScalarType> : FloatingPointVectorType {
+public struct Vector2<T:ScalarType> : ScalarVectorType {
 
     public typealias Element = T
     public typealias FloatVector = Vector2<Float>
     public typealias DoubleVector = Vector2<Double>
-    public typealias Int32Vector = Vector2i<Int32>
-    public typealias UInt32Vector = Vector2i<UInt32>
+    public typealias Int32Vector = Vector2<Int32>
+    public typealias UInt32Vector = Vector2<UInt32>
     public typealias BooleanVector = Vector2b
 
     public var x:T, y:T
@@ -106,12 +106,12 @@ public struct Vector2<T:FloatingPointScalarType> : FloatingPointVectorType {
         self.y = T(v.y)
     }
 
-    public init (_ v:Vector2i<Int32>) {
+    public init (_ v:Vector2<Int32>) {
         self.x = T(v.x)
         self.y = T(v.y)
     }
 
-    public init (_ v:Vector2i<UInt32>) {
+    public init (_ v:Vector2<UInt32>) {
         self.x = T(v.x)
         self.y = T(v.y)
     }
@@ -171,6 +171,6 @@ public struct Vector2<T:FloatingPointScalarType> : FloatingPointVectorType {
 }
 
 
-public func ==<T:FloatingPointScalarType>(v1: Vector2<T>, v2: Vector2<T>) -> Bool {
+public func ==<T:ScalarType>(v1: Vector2<T>, v2: Vector2<T>) -> Bool {
     return v1.x == v2.x && v1.y == v2.y
 }

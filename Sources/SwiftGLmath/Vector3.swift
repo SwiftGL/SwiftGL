@@ -20,13 +20,13 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Vector3<T:FloatingPointScalarType> : FloatingPointVectorType {
+public struct Vector3<T:ScalarType> : ScalarVectorType {
 
     public typealias Element = T
     public typealias FloatVector = Vector3<Float>
     public typealias DoubleVector = Vector3<Double>
-    public typealias Int32Vector = Vector3i<Int32>
-    public typealias UInt32Vector = Vector3i<UInt32>
+    public typealias Int32Vector = Vector3<Int32>
+    public typealias UInt32Vector = Vector3<UInt32>
     public typealias BooleanVector = Vector3b
 
     public var x:T, y:T, z:T
@@ -130,13 +130,13 @@ public struct Vector3<T:FloatingPointScalarType> : FloatingPointVectorType {
         self.z = T(v.z)
     }
 
-    public init (_ v:Vector3i<Int32>) {
+    public init (_ v:Vector3<Int32>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
     }
 
-    public init (_ v:Vector3i<UInt32>) {
+    public init (_ v:Vector3<UInt32>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
@@ -200,6 +200,6 @@ public struct Vector3<T:FloatingPointScalarType> : FloatingPointVectorType {
 }
 
 
-public func ==<T:FloatingPointScalarType>(v1: Vector3<T>, v2: Vector3<T>) -> Bool {
+public func ==<T:ScalarType>(v1: Vector3<T>, v2: Vector3<T>) -> Bool {
     return v1.x == v2.x && v1.y == v2.y && v1.z == v2.z
 }

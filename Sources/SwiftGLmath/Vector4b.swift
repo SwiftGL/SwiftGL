@@ -71,7 +71,7 @@ public struct Vector4b : BooleanVectorType {
     }
 
     public var hashValue: Int {
-        return SwiftGLmath.hash(x.hashValue, y.hashValue, z.hashValue, w.hashValue)
+        return GLmath.hash(x.hashValue, y.hashValue, z.hashValue, w.hashValue)
     }
 
     public init () {

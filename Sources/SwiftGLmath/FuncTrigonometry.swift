@@ -20,18 +20,11 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-#if os(Linux)
-    import Glibc
-#else
-    import Darwin.C
-#endif
-
-
 // Section 8.1 Angle and Trignometry Functions
 
 @warn_unused_result
-public func radians<genType:FloatingPointScalarType>(degrees:genType) -> genType {
-    return genType(M_PI) / genType(180) * degrees
+public func radians<T:FloatingPointScalarType>(degrees:T) -> T {
+    return degrees * T(0.017453292519943295)
 }
 
 @warn_unused_result
@@ -40,8 +33,8 @@ public func radians<genType:FloatingPointVectorType>(degrees:genType) -> genType
 }
 
 @warn_unused_result
-public func degrees<genType:FloatingPointScalarType>(radians:genType) -> genType {
-    return genType(180) / genType(M_PI) * radians
+public func degrees<T:FloatingPointScalarType>(radians:T) -> T {
+    return radians * T(57.29577951308232)
 }
 
 @warn_unused_result
@@ -49,207 +42,77 @@ public func degrees<genType:FloatingPointVectorType>(radians:genType) -> genType
     return genType(radians, degrees)
 }
 
-private func sin<T:FloatingPointScalarType>(angle:T) -> T {
-    if let z = angle as? Double {
-        return sin(z) as! T
-    }
-    if let z = angle as? Float {
-        return sinf(z) as! T
-    }
-    preconditionFailure()
-}
-
 @warn_unused_result
 public func sin<genType:FloatingPointVectorType>(angle:genType) -> genType {
-    return genType(angle, sin)
-}
-
-private func cos<T:FloatingPointScalarType>(angle:T) -> T {
-    if let z = angle as? Double {
-        return cos(z) as! T
-    }
-    if let z = angle as? Float {
-        return cosf(z) as! T
-    }
-    preconditionFailure()
+    return genType(angle, GLmath.GLsin)
 }
 
 @warn_unused_result
 public func cos<genType:FloatingPointVectorType>(angle:genType) -> genType {
-    return genType(angle, cos)
-}
-
-private func tan<T:FloatingPointScalarType>(angle:T) -> T {
-    if let z = angle as? Double {
-        return tan(z) as! T
-    }
-    if let z = angle as? Float {
-        return tanf(z) as! T
-    }
-    preconditionFailure()
+    return genType(angle, GLmath.GLcos)
 }
 
 @warn_unused_result
 public func tan<genType:FloatingPointVectorType>(angle:genType) -> genType {
-    return genType(angle, tan)
-}
-
-private func asin<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return asin(z) as! T
-    }
-    if let z = x as? Float {
-        return asinf(z) as! T
-    }
-    preconditionFailure()
+    return genType(angle, GLmath.GLtan)
 }
 
 @warn_unused_result
 public func asin<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, asin)
-}
-
-private func acos<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return acos(z) as! T
-    }
-    if let z = x as? Float {
-        return acosf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLasin)
 }
 
 @warn_unused_result
 public func acos<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, acos)
-}
-
-private func atan<T:FloatingPointScalarType>(y:T, _ x:T) -> T {
-    if let z = y as? Double {
-        return atan2(z, x as! Double) as! T
-    }
-    if let z = y as? Float {
-        return atan2f(z, x as! Float) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLacos)
 }
 
 @warn_unused_result
 public func atan<genType:FloatingPointVectorType>(y:genType.Element, _ x:genType) -> genType {
-    return genType(y, x, atan)
+    return genType(y, x, GLmath.GLatan)
 }
 
 @warn_unused_result
 public func atan<genType:FloatingPointVectorType>(y:genType, _ x:genType.Element) -> genType {
-    return genType(y, x, atan)
+    return genType(y, x, GLmath.GLatan)
 }
 
 @warn_unused_result
 public func atan<genType:FloatingPointVectorType>(y:genType, _ x:genType) -> genType {
-    return genType(y, x, atan)
-}
-
-private func atan<T:FloatingPointScalarType>(yoverx:T) -> T {
-    if let z = yoverx as? Double {
-        return atan(z) as! T
-    }
-    if let z = yoverx as? Float {
-        return atanf(z) as! T
-    }
-    preconditionFailure()
+    return genType(y, x, GLmath.GLatan)
 }
 
 @warn_unused_result
 public func atan<genType:FloatingPointVectorType>(yoverx:genType) -> genType {
-    return genType(yoverx, atan)
-}
-
-private func sinh<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return sinh(z) as! T
-    }
-    if let z = x as? Float {
-        return sinhf(z) as! T
-    }
-    preconditionFailure()
+    return genType(yoverx, GLmath.GLatan)
 }
 
 @warn_unused_result
 public func sinh<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, sinh)
-}
-
-private func cosh<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return cosh(z) as! T
-    }
-    if let z = x as? Float {
-        return coshf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLsinh)
 }
 
 @warn_unused_result
 public func cosh<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, cosh)
-}
-
-private func tanh<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return tanh(z) as! T
-    }
-    if let z = x as? Float {
-        return tanhf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLcosh)
 }
 
 @warn_unused_result
 public func tanh<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, tanh)
-}
-
-private func asinh<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return asinh(z) as! T
-    }
-    if let z = x as? Float {
-        return asinhf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLtanh)
 }
 
 @warn_unused_result
 public func asinh<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, asinh)
-}
-
-private func acosh<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return acosh(z) as! T
-    }
-    if let z = x as? Float {
-        return acoshf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLasinh)
 }
 
 @warn_unused_result
 public func acosh<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, acosh)
-}
-
-private func atanh<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return atanh(z) as! T
-    }
-    if let z = x as? Float {
-        return atanhf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLacosh)
 }
 
 @warn_unused_result
 public func atanh<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, atanh)
+    return genType(x, GLmath.GLatanh)
 }

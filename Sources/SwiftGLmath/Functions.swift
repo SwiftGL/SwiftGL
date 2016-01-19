@@ -20,108 +20,41 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-#if os(Linux)
-    import Glibc
-#else
-    import Darwin.C
-#endif
-
-
 // Section 8.2 Exponential Functions
-
-private func pow<T:FloatingPointScalarType>(x:T, _ y:T) -> T {
-    if let z = x as? Double {
-        return pow(z, y as! Double) as! T
-    }
-    if let z = x as? Float {
-        return powf(z, y as! Float) as! T
-    }
-    preconditionFailure()
-}
 
 @warn_unused_result
 public func pow<genType:FloatingPointVectorType>(x:genType, _ y:genType) -> genType {
-    return genType(x, y, pow)
-}
-
-private func exp<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return exp(z) as! T
-    }
-    if let z = x as? Float {
-        return expf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, y, GLmath.GLpow)
 }
 
 @warn_unused_result
 public func exp<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, exp)
-}
-
-private func log<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return log(z) as! T
-    }
-    if let z = x as? Float {
-        return logf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLexp)
 }
 
 @warn_unused_result
 public func log<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, log)
-}
-
-private func exp2<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return exp2(z) as! T
-    }
-    if let z = x as? Float {
-        return exp2f(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLlog)
 }
 
 @warn_unused_result
 public func exp2<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, exp2)
-}
-
-private func log2<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return log2(z) as! T
-    }
-    if let z = x as? Float {
-        return log2f(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLexp2)
 }
 
 @warn_unused_result
 public func log2<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, log2)
-}
-
-private func sqrt<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return sqrt(z) as! T
-    }
-    if let z = x as? Float {
-        return sqrtf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLlog2)
 }
 
 @warn_unused_result
 public func sqrt<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, sqrt)
+    return genType(x, GLmath.GLsqrt)
 }
 
 @warn_unused_result
 public func inversesqrt<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x) { genType.Element(1) / sqrt($0) }
+    return genType(x) { genType.Element(1) / GLmath.GLsqrt($0) }
 }
 
 
@@ -207,15 +140,15 @@ public func unpackDouble2x32 (v:Double) -> uvec2 {
 }
 
 public func packHalf2x16 (v:vec2) -> UInt32 {
-    var ret:UInt32 = UInt32(SwiftGLmath.halfFromFloat(v[0]))
-    ret += UInt32(SwiftGLmath.halfFromFloat(v[1])) << 16
+    var ret:UInt32 = UInt32(GLmath.halfFromFloat(v[0]))
+    ret += UInt32(GLmath.halfFromFloat(v[1])) << 16
     return ret
 }
 
 public func unpackHalf2x16 (v:UInt32) -> vec2 {
     return vec2 (
-        SwiftGLmath.floatFromHalf( UInt16(v & 0xFFFF) ),
-        SwiftGLmath.floatFromHalf( UInt16((v>>16) & 0xFFFF) )
+        GLmath.floatFromHalf( UInt16(v & 0xFFFF) ),
+        GLmath.floatFromHalf( UInt16((v>>16) & 0xFFFF) )
     )
 }
 
@@ -223,7 +156,7 @@ public func unpackHalf2x16 (v:UInt32) -> vec2 {
 // Section 8.5 Geometric Functions
 
 public func length<genType:FloatingPointVectorType>(x:genType) -> genType.Element {
-    return sqrt(dot(x, x))
+    return GLmath.GLsqrt(dot(x, x))
 }
 
 public func distance<genType:FloatingPointVectorType>(p0:genType, _ p1:genType) -> genType.Element {
@@ -263,7 +196,7 @@ public func refract<genType:FloatingPointVectorType>(i:genType, _ n:genType, _ e
     k = eta * eta * k
     k = genType.Element(1) - k
     if (k < genType.Element(0)) { return genType() }
-    let x = eta * dotni + sqrt(k)
+    let x = eta * dotni + GLmath.GLsqrt(k)
     let r = x * n
     return eta * i - r
 }

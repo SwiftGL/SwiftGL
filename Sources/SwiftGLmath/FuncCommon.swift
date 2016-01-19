@@ -20,13 +20,6 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-#if os(Linux)
-    import Glibc
-#else
-    import Darwin.C
-#endif
-
-
 // Section 8.3 Common Functions
 
 @warn_unused_result
@@ -39,56 +32,26 @@ public func sign<genType:GLmathScalarType where genType.Element:SignedNumberType
     return genType(x) { $0 == 0 ? 0 : $0 < 0 ? -1 : 1 }
 }
 
-private func floor<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return floor(z) as! T
-    }
-    if let z = x as? Float {
-        return floorf(z) as! T
-    }
-    preconditionFailure()
-}
-
 @warn_unused_result
 public func floor<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, floor)
-}
-
-private func trunc<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return trunc(z) as! T
-    }
-    if let z = x as? Float {
-        return truncf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLfloor)
 }
 
 @warn_unused_result
 public func trunc<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, trunc)
-}
-
-private func round<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return round(z) as! T
-    }
-    if let z = x as? Float {
-        return roundf(z) as! T
-    }
-    preconditionFailure()
+    return genType(x, GLmath.GLtrunc)
 }
 
 @warn_unused_result
 public func round<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, round)
+    return genType(x, GLmath.GLround)
 }
 
 private func roundEven<T:FloatingPointScalarType>(x:T) -> T {
     var int:T = T(0)
-    let frac:T = modf(x, &int);
+    let frac:T = GLmath.GLmodf(x, &int);
     if frac != T(0.5) && frac != T(-0.5) {
-        return round(x);
+        return GLmath.GLround(x);
     }
     if int % T(2) == T(0) {
         return int
@@ -101,23 +64,13 @@ public func roundEven<genType:FloatingPointVectorType>(x:genType) -> genType {
     return genType(x, roundEven)
 }
 
-private func ceil<T:FloatingPointScalarType>(x:T) -> T {
-    if let z = x as? Double {
-        return ceil(z) as! T
-    }
-    if let z = x as? Float {
-        return ceilf(z) as! T
-    }
-    preconditionFailure()
-}
-
 @warn_unused_result
 public func ceil<genType:FloatingPointVectorType>(x:genType) -> genType {
-    return genType(x, ceil)
+    return genType(x, GLmath.GLceil)
 }
 
 private func fract<T:FloatingPointScalarType>(x:T) -> T {
-    return T(1) - floor(x)
+    return T(1) - GLmath.GLfloor(x)
 }
 
 @warn_unused_result
@@ -125,47 +78,23 @@ public func fract<genType:FloatingPointVectorType>(x:genType) -> genType {
     return genType(x, fract)
 }
 
-private func mod<T:FloatingPointScalarType>(x:T, _ y:T) -> T {
-    if let z = x as? Double {
-        return fmod(z, y as! Double) as! T
-    }
-    if let z = x as? Float {
-        return fmodf(z, y as! Float) as! T
-    }
-    preconditionFailure()
-}
-
 @warn_unused_result
 public func mod<genType:FloatingPointVectorType>(x:genType.Element, _ y:genType) -> genType {
-    return genType(x, y, mod)
+    return genType(x, y, GLmath.GLmod)
 }
 
 @warn_unused_result
 public func mod<genType:FloatingPointVectorType>(x:genType, _ y:genType.Element) -> genType {
-    return genType(x, y, mod)
+    return genType(x, y, GLmath.GLmod)
 }
 
 @warn_unused_result
 public func mod<genType:FloatingPointVectorType>(x:genType, _ y:genType) -> genType {
-    return genType(x, y, mod)
-}
-
-private func modf<T:FloatingPointScalarType>(x:T, inout _ i:T) -> T {
-    if let z = x as? Double {
-        return withUnsafeMutablePointer(&i) {
-            return modf(z, UnsafeMutablePointer<Double>($0)) as! T
-        }
-    }
-    if let z = x as? Float {
-        return withUnsafeMutablePointer(&i) {
-            return modff(z, UnsafeMutablePointer<Float>($0)) as! T
-        }
-    }
-    preconditionFailure()
+    return genType(x, y, GLmath.GLmod)
 }
 
 public func modf<genType:FloatingPointVectorType>(x:genType, inout _ i:genType) -> genType {
-    return genType(x, &i, modf)
+    return genType(x, &i, GLmath.GLmodf)
 }
 
 @warn_unused_result
@@ -319,51 +248,21 @@ public func uintBitsToFloat<genType:IntegerVectorType where
     }
 }
 
-private func fma<T:FloatingPointScalarType>(a:T, _ b:T, _ c:T) -> T {
-    if let z = a as? Double {
-        return fma(z, b as! Double, c as! Double) as! T
-    }
-    if let z = a as? Float {
-        return fmaf(z, b as! Float, c as! Float) as! T
-    }
-    preconditionFailure()
-}
-
 @warn_unused_result
 public func fma<genType:FloatingPointVectorType>(a:genType, _ b:genType, _ c:genType) -> genType {
-    return genType(a, b, c, fma)
-}
-
-private func frexp<T:FloatingPointScalarType>(x:T, inout _ exp:Int32) -> T {
-    if let z = x as? Double {
-        return frexp(z, &exp) as! T
-    }
-    if let z = x as? Float {
-        return frexpf(z, &exp) as! T
-    }
-    preconditionFailure()
+    return genType(a, b, c, GLmath.GLfma)
 }
 
 public func frexp<genType:FloatingPointVectorType, genIType:IntegerVectorType
     where genIType.Element == Int32,
     genType.BooleanVector == genIType.BooleanVector
     >(x:genType, inout _ exp:genIType) -> genType {
-    return genType(x, &exp, frexp)
-}
-
-private func ldexp<T:FloatingPointScalarType>(x:T, _ exp:Int32) -> T {
-    if let z = x as? Double {
-        return ldexp(z, exp) as! T
-    }
-    if let z = x as? Float {
-        return ldexpf(z, exp) as! T
-    }
-    preconditionFailure()
+    return genType(x, &exp, GLmath.GLfrexp)
 }
 
 public func ldexp<genType:FloatingPointVectorType, genIType:IntegerVectorType
     where genIType.Element == Int32,
     genType.BooleanVector == genIType.BooleanVector
     >(x:genType, _ exp:genIType) -> genType {
-        return genType(x, exp, ldexp)
+        return genType(x, exp, GLmath.GLldexp)
 }

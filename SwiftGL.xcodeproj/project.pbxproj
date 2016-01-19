@@ -12,6 +12,7 @@
 		3D28E9F21C3B2D7A0091E013 /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
 		3D28E9FF1C3B34ED0091E013 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28E9FE1C3B34ED0091E013 /* main.swift */; };
 		3D28EA0E1C3B35F30091E013 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28EA0D1C3B35F30091E013 /* main.swift */; };
+		3D319BD71C4ECE7100781256 /* MatrixInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D319BD61C4ECE7100781256 /* MatrixInteger.swift */; };
 		3D3C73311C3CEB9A007FD4F9 /* Matrix4x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73301C3CEB9A007FD4F9 /* Matrix4x3.swift */; };
 		3D3C73331C3CEC67007FD4F9 /* Matrix4x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73321C3CEC67007FD4F9 /* Matrix4x2.swift */; };
 		3D3C73351C3CEE2F007FD4F9 /* Matrix3x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73341C3CEE2F007FD4F9 /* Matrix3x2.swift */; };
@@ -19,7 +20,6 @@
 		3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */; };
 		3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */; };
 		3D412D591C3EE71800044962 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D412D581C3EE71800044962 /* Operators.swift */; };
-		3D6465871C4D58D90004F9A6 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6465861C4D58D90004F9A6 /* Options.swift */; };
 		3D6496341C4B58760009DEAD /* SwiftGLglm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D64962A1C4B58760009DEAD /* SwiftGLglm.framework */; };
 		3D6496431C4B59DE0009DEAD /* SwiftGLglmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6496421C4B59DE0009DEAD /* SwiftGLglmTests.swift */; };
 		3D6496451C4B5A440009DEAD /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6496441C4B5A440009DEAD /* MatrixTransform.swift */; };
@@ -105,6 +105,7 @@
 		3D28E9FE1C3B34ED0091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3D28EA061C3B35D90091E013 /* SwiftGLmathUtil */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGLmathUtil; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D28EA0D1C3B35F30091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3D319BD61C4ECE7100781256 /* MatrixInteger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixInteger.swift; sourceTree = "<group>"; };
 		3D3C73301C3CEB9A007FD4F9 /* Matrix4x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix4x3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D3C73321C3CEC67007FD4F9 /* Matrix4x2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix4x2.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D3C73341C3CEE2F007FD4F9 /* Matrix3x2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix3x2.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -112,7 +113,6 @@
 		3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x4.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D412D581C3EE71800044962 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Operators.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D6465861C4D58D90004F9A6 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		3D64962A1C4B58760009DEAD /* SwiftGLglm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGLglm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6496331C4B58760009DEAD /* SwiftGLglmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGLglmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6496421C4B59DE0009DEAD /* SwiftGLglmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftGLglmTests.swift; path = Tests/SwiftGLglm/SwiftGLglmTests.swift; sourceTree = SOURCE_ROOT; };
@@ -251,8 +251,8 @@
 		3D64962B1C4B58760009DEAD /* SwiftGLglm */ = {
 			isa = PBXGroup;
 			children = (
-				3D6465861C4D58D90004F9A6 /* Options.swift */,
 				3D6496441C4B5A440009DEAD /* MatrixTransform.swift */,
+				3D319BD61C4ECE7100781256 /* MatrixInteger.swift */,
 			);
 			name = SwiftGLglm;
 			path = Sources/SwiftGLglm;
@@ -700,8 +700,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D319BD71C4ECE7100781256 /* MatrixInteger.swift in Sources */,
 				3D6496451C4B5A440009DEAD /* MatrixTransform.swift in Sources */,
-				3D6465871C4D58D90004F9A6 /* Options.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

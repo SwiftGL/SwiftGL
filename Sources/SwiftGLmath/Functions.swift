@@ -235,7 +235,7 @@ public func trunc<genType:ScalarVectorType where
 }
 
 @warn_unused_result
-public func round<genType:VectorType where
+public func round<genType:ScalarVectorType where
     genType.Element:FloatingPointScalarType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLround)
@@ -398,7 +398,7 @@ public func smoothstep<genType:ScalarVectorType where
 }
 
 @warn_unused_result
-public func isnan<genType:VectorType
+public func isnan<genType:ScalarVectorType
     where
     genType.Element:FloatingPointType,
     genType.BooleanVector:BooleanVectorType,
@@ -409,7 +409,7 @@ public func isnan<genType:VectorType
 }
 
 @warn_unused_result
-public func isinf<genType:VectorType
+public func isinf<genType:ScalarVectorType
     where
     genType.Element:FloatingPointType,
     genType.BooleanVector:BooleanVectorType,

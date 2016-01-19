@@ -20,7 +20,33 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
+import SwiftGLmath
 
-public var glmLeftHanded = false
 
-public var glmDepthZeroToOne = false
+public typealias imat2 = Matrix2x2<Int32>
+public typealias umat2 = Matrix2x2<UInt32>
+public typealias imat3 = Matrix3x3<Int32>
+public typealias umat3 = Matrix3x3<UInt32>
+public typealias imat4 = Matrix4x4<Int32>
+public typealias umat4 = Matrix4x4<UInt32>
+
+public typealias imat2x2 = Matrix2x2<Int32>
+public typealias umat2x2 = Matrix2x2<UInt32>
+public typealias imat2x3 = Matrix2x3<Int32>
+public typealias umat2x3 = Matrix2x3<UInt32>
+public typealias imat2x4 = Matrix2x4<Int32>
+public typealias umat2x4 = Matrix2x4<UInt32>
+
+public typealias imat3x2 = Matrix3x2<Int32>
+public typealias umat3x2 = Matrix3x2<UInt32>
+public typealias imat3x3 = Matrix3x3<Int32>
+public typealias umat3x3 = Matrix3x3<UInt32>
+public typealias imat3x4 = Matrix3x4<Int32>
+public typealias umat3x4 = Matrix3x4<UInt32>
+
+public typealias imat4x2 = Matrix4x2<Int32>
+public typealias umat4x2 = Matrix4x2<UInt32>
+public typealias imat4x3 = Matrix4x3<Int32>
+public typealias umat4x3 = Matrix4x3<UInt32>
+public typealias imat4x4 = Matrix4x4<Int32>
+public typealias umat4x4 = Matrix4x4<UInt32>

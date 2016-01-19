@@ -28,6 +28,12 @@ import SwiftGLmath
 #endif
 
 
+// Options may be changed at run time.
+// This is global and not thread-safe.
+public var glmLeftHanded = false
+public var glmDepthZeroToOne = false
+
+
 public func translate<T:FloatingPointScalarType>(m:Matrix4x4<T>, _ v:Vector3<T>) -> Matrix4x4<T>
 {
     var m3 = m[0] * v[0]

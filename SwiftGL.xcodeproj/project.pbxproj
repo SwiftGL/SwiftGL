@@ -22,8 +22,6 @@
 		3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */; };
 		3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */; };
 		3D412D591C3EE71800044962 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D412D581C3EE71800044962 /* Operators.swift */; };
-		3D6014861C45C52600A3356D /* FuncTrigonometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6014851C45C52600A3356D /* FuncTrigonometry.swift */; };
-		3D60148B1C45DF4F00A3356D /* FuncCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D60148A1C45DF4F00A3356D /* FuncCommon.swift */; };
 		3D6465871C4D58D90004F9A6 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6465861C4D58D90004F9A6 /* Options.swift */; };
 		3D6496341C4B58760009DEAD /* SwiftGLglm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D64962A1C4B58760009DEAD /* SwiftGLglm.framework */; };
 		3D6496431C4B59DE0009DEAD /* SwiftGLglmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6496421C4B59DE0009DEAD /* SwiftGLglmTests.swift */; };
@@ -120,8 +118,6 @@
 		3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x4.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D412D581C3EE71800044962 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Operators.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D6014851C45C52600A3356D /* FuncTrigonometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncTrigonometry.swift; sourceTree = "<group>"; };
-		3D60148A1C45DF4F00A3356D /* FuncCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FuncCommon.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D6465861C4D58D90004F9A6 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		3D64962A1C4B58760009DEAD /* SwiftGLglm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGLglm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6496331C4B58760009DEAD /* SwiftGLglmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGLglmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,8 +365,6 @@
 				3D214CDD1C44378A000DE32E /* Vector4b.swift */,
 				3D412D581C3EE71800044962 /* Operators.swift */,
 				3DB284381C475DEB008D46E6 /* Functions.swift */,
-				3D6014851C45C52600A3356D /* FuncTrigonometry.swift */,
-				3D60148A1C45DF4F00A3356D /* FuncCommon.swift */,
 			);
 			name = SwiftGLmath;
 			path = Sources/SwiftGLmath;
@@ -767,7 +761,6 @@
 				3DFFC9891C447AC000EF48B4 /* Vector3b.swift in Sources */,
 				3D0485381C436A57002BE7F5 /* Vector2i.swift in Sources */,
 				3D91C3CF1C3B220E00BA748A /* Internal.swift in Sources */,
-				3D6014861C45C52600A3356D /* FuncTrigonometry.swift in Sources */,
 				3D91C3D01C3B220E00BA748A /* Matrix2x2.swift in Sources */,
 				3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */,
 				3D91C3D51C3B220E00BA748A /* Vector2.swift in Sources */,
@@ -787,7 +780,6 @@
 				3D91C3D71C3B220E00BA748A /* Vector4.swift in Sources */,
 				3D04853C1C436A72002BE7F5 /* Vector4i.swift in Sources */,
 				3D81EE931C3CBB0B00B19119 /* MatrixSIMD.swift in Sources */,
-				3D60148B1C45DF4F00A3356D /* FuncCommon.swift in Sources */,
 				3D91C3D21C3B220E00BA748A /* Matrix4x4.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

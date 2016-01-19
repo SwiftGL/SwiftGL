@@ -51,7 +51,7 @@ public func rotate<T:FloatingPointScalarType where T:FloatingPointType>
     let c = GLmath.GLcos(a)
     let s = GLmath.GLsin(a)
     let axis = normalize(v)
-    let temp = -c * axis
+    let temp = (T(1)-c) * axis
     var r00 = c
         r00 += temp[0] * axis[0]
     var r01 = temp[0] * axis[1]

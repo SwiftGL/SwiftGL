@@ -22,6 +22,7 @@
 
 import SwiftGL
 import SwiftGLmath
+import SwiftGLglm
 #if os(Linux)
     import Glibc
 #else
@@ -119,12 +120,7 @@ public class Camera {
     private var projectionValid = false
     public var projection:mat4 {
         if !projectionValid {
-            let yscale = 1 / tanf(fov / 2)
-            projectionCache[0][0] = yscale / aspect
-            projectionCache[1][1] = yscale
-            projectionCache[2][2] = (clip.far + clip.near) / (clip.near - clip.far)
-            projectionCache[2][3] = -1
-            projectionCache[3][2] = (2 * clip.far * clip.near) / (clip.near - clip.far)
+            projectionCache = perspective(fov, aspect, clip.near, clip.far)
             projectionValid = true
         }
         return projectionCache

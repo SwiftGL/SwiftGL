@@ -22,6 +22,7 @@
 
 import SwiftGL
 import SwiftGLmath
+import SwiftGLglm
 import CGLFW3
 
 
@@ -54,8 +55,8 @@ let fragmentShaderSource =
         "{\n" +
         "vec3 norm = normalize(normal);\n" +
         "vec3 light = normalize(lightPos);\n" +
-        "float albedo = 0.5f * max(dot(norm, light), 0.0);\n" +
-        "vec3 blend = (0.5f + albedo) * lightColor;\n" +
+        "float albedo = 0.7f * max(dot(norm, light), 0.0);\n" +
+        "vec3 blend = (0.3f + albedo) * lightColor;\n" +
         "color = vec4(blend, 1);\n" +
         "}\n"
 
@@ -82,9 +83,9 @@ glEnable(GL_DEPTH_TEST)
 let camera = Camera()
 let player = Player(camera: camera)
 let shader = Shader(vertex: vertexShaderSource, fragment: fragmentShaderSource)
-let cube = Cube()
+let pinwheel = Pinwheel()
 
-glBindVertexArray(cube.VAO)
+glBindVertexArray(pinwheel.cube.VAO)
 shader.validate()
 glBindVertexArray(0)
 
@@ -92,26 +93,23 @@ glfwSetKeyCallback(window) {player.keyCallback($0, $1, $2, $3, $4)}
 glfwSetCursorPosCallback(window, {player.cursorCallback($0, $1, $2)})
 
 camera.aspect = Float(WIDTH) / Float(HEIGHT)
-camera.position = vec3(-1, 1, 2)
-camera.pitch = -25
-camera.yaw = -64
+camera.position = vec3(0, 6.5, 19)
+camera.pitch = -32
 
 while (glfwWindowShouldClose(window) == 0)
 {
     glfwPollEvents()
     player.run()
 
-    glClearColor(0.4, 0.3, 0.3, 1.0)
+    glClearColor(0.2, 0.1, 0.1, 1.0)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     shader.use()
     shader["lightPos"] = vec3(-10, 20, 5)
-    shader["lightColor"] = vec3(0.8, 1.0, 0.8)
     shader["view"] = camera.view
     shader["projection"] = camera.projection
-    shader["model"] = mat4()
 
-    cube.draw()
+    pinwheel.draw()
 
     glfwSwapBuffers(window)
 }

@@ -32,7 +32,7 @@ import CGLFW3
 
 class Player {
 
-    var runSpeed:Float = 2
+    var runSpeed:Float = 4
     var lookSpeed:Float = 0.2
 
     private var camera:Camera
@@ -64,6 +64,12 @@ class Player {
         }
         if (keys[Int(GLFW_KEY_D)]) {
             camera.position += camera.normals.right * distance
+        }
+        if (keys[Int(GLFW_KEY_SPACE)]) {
+            camera.position += camera.normals.up * distance
+        }
+        if (keys[Int(GLFW_KEY_LEFT_SHIFT)]) {
+            camera.position -= camera.normals.up * distance
         }
     }
 
@@ -99,7 +105,7 @@ class Player {
         mouse = dvec2(xpos, ypos)
 
         let pitch = camera.pitch - Float(y) * lookSpeed
-        camera.pitch = min(max(pitch, Float(-60)), Float(60))
+        camera.pitch = min(max(pitch, Float(-80)), Float(80))
 
         var yaw = camera.yaw + Float(x) * lookSpeed
         if (yaw < -360) { yaw += 360 }

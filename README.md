@@ -45,8 +45,6 @@ glClear(mask: GL_COLOR_BUFFER_BIT)
 glTexParameteri(target: GL_TEXTURE_2D, pname: GL_TEXTURE_WRAP_S, param: GL_MIRRORED_REPEAT)
 glViewport(x: 0, y: 0, width: 800, height: 600)
 ```
-Everything is a direct call to the OpenGL functions. There's no translation layers to explain.
-All this syntactical sugar is free by design.
 
 ## SwiftGL math library
 
@@ -80,11 +78,30 @@ let d = Double(f)
 let v = vec3()
 let dv = dvec3(v)
 ```
-Everything is well documented in the spec. Code examples from libraries like this in other
-languages are trivial to translate (C++ glm for example). GLSL code is even easier to
-translate. The only thing that doesn't translate instantly are extra functions in other
-libraries that aren't in the GLSL spec. Because opinions will vary as to what extras to
-add and how they are written, these will always exist as separate library module.
 
-One more thing... SwiftGL uses SIMD on platforms where the Swift SIMD module works. SwiftGL
-is fast even without SIMD. It is not possible to make SwiftGL any faster by linking to C code.
+## SwiftGL glm compatibility
+
+The glm library for C++ is one of the most used math libraries for OpenGL. Like SwiftGL,
+it implements the GLSL specification. It also provides additional functions to support
+things like quaternions and cameras. This module brings those functions to Swift.
+
+To use: `import SwiftGLglm` in your swift file.
+
+There are a massive amount of OpenGL examples and tutorials available for free. Most
+of them use glm. The goal is to have enough glm implemented so that nearly every
+tutorial is easily followed with Swift instead of C++.
+
+Not every function has been ported to Swift. This is not a priority. However, if you
+implement something that was missing, a pull request will almost certainly be accepted.
+
+Christophe Riccio manages the glm project which is available here: http://glm.g-truc.net/
+
+## Performance Considerations
+
+Everything in the loader is a direct call to the OpenGL functions. There's no translation
+layer required to provide the syntactical sugar. Because Swift has first-class support
+for working with C, all OpenGL functions are as fast as they can possibly be.
+
+The math libraries have the potential to be as fast as C code using SIMD intrinsics.
+To get this performance you must use whole-module-optimization (WMO). Otherwise, all
+functions and operators are dynamically dispatched at run time.

@@ -65,11 +65,8 @@ class Pinwheel {
                     Float(c / M_PI / 2)
                 )
 
-                glUniform3f(lightColorLoc, color.x, color.y, color.z)
-                withUnsafePointer(&model, {
-                    glUniformMatrix4fv(modelLoc, 1, false, UnsafePointer($0))
-                })
-
+                shader[lightColorLoc] = color
+                shader[modelLoc] = model
                 cube.draw()
             }
         }

@@ -69,18 +69,33 @@ public class Shader {
     }
 
 
-    /// set any uniform as a subscript
-    ///  { shader["model"] = mat4() }
-    /// get returns location number
-    public subscript(s:String) -> Any
+    /// get uniform location;
+    /// set uniform from location or string
+    // Setting by string:
+    //   shader["model"] = mat4()
+    // Setting by location:
+    //   let modelLoc = shader["model"] as! GLint
+    //   shader[modelLoc] = mat4()
+    // Setting by location is faster when a
+    // uniform is changed many times per frame.
+    public subscript(uniform:Any) -> Any
     {
         get {
+            let s = uniform as! String
             let rv = glGetUniformLocation(program, s)
             assert(glGetError() == GL_NO_ERROR)
             return rv
         }
         set {
-            let loc = self[s] as! GLint
+            var loc:GLint
+            switch(uniform) {
+            case is GLint:
+                loc = uniform as! GLint
+            case is String:
+                loc = self[uniform] as! GLint
+            default:
+                preconditionFailure()
+            }
             assert(loc != -1, "uniform not found")
             switch newValue {
             case is Float:

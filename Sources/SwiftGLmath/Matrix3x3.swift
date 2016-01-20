@@ -259,29 +259,29 @@ public func *=<T:ScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
 
 
 @warn_unused_result
-public func /<T:ScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
+public func /<T:FloatingPointScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
     return v * inverse(m)
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
+public func /<T:FloatingPointScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
     return inverse(m) * v
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
+public func /<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
     return m1 * inverse(m2)
 }
 
 
-public func /=<T:ScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
+public func /=<T:FloatingPointScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
     m1 = m1 / m2
 }
 
 
-public func inverse<T:ScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
+public func inverse<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
     let invdet:T = T(1) / determinant(m)
     var mm = Matrix3x3<T>()
     mm.x.x = m.y.y * m.z.z
@@ -306,7 +306,7 @@ public func inverse<T:ScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
 }
 
 
-public func determinant<T:ScalarType>(m: Matrix3x3<T>) -> T {
+public func determinant<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> T {
     var d1 = m.y.y * m.z.z
         d1 = d1 - m.z.y * m.y.z
     var d2 = m.x.y * m.z.z

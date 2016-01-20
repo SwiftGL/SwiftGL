@@ -543,7 +543,8 @@ public func project<T:FloatingPointScalarType>
     tmp = model * tmp
     tmp = proj * tmp
     tmp /= tmp.w
-    tmp = tmp * T(0.5) + T(0.5)
+    tmp = tmp * T(0.5)
+    tmp += T(0.5)
     tmp[0] = tmp[0] * viewport[2] + viewport[0]
     tmp[1] = tmp[1] * viewport[3] + viewport[1]
     return Vector3<T>(tmp)
@@ -556,7 +557,8 @@ public func unproject<T:FloatingPointScalarType>
     var tmp = Vector4<T>(win, T(1))
     tmp.x = (tmp.x - viewport[0]) / viewport[2]
     tmp.y = (tmp.y - viewport[1]) / viewport[3]
-    tmp = tmp * T(2) - T(1)
+    tmp = tmp * T(2)
+    tmp -= T(1)
     let inv = inverse(proj * model)
     var obj = inv * tmp
     obj /= obj.w

@@ -223,29 +223,29 @@ public func *=<T:ScalarType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
 
 
 @warn_unused_result
-public func /<T:ScalarType>(v: Vector2<T>, m: Matrix2x2<T>) -> Vector2<T> {
+public func /<T:FloatingPointScalarType>(v: Vector2<T>, m: Matrix2x2<T>) -> Vector2<T> {
     return v * inverse(m)
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(m: Matrix2x2<T>, v: Vector2<T>) -> Vector2<T> {
+public func /<T:FloatingPointScalarType>(m: Matrix2x2<T>, v: Vector2<T>) -> Vector2<T> {
     return inverse(m) * v
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> Matrix2x2<T> {
+public func /<T:FloatingPointScalarType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> Matrix2x2<T> {
     return m1 * inverse(m2)
 }
 
 
-public func /=<T:ScalarType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
+public func /=<T:FloatingPointScalarType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
     m1 = m1 / m2
 }
 
 
-public func inverse<T:ScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
+public func inverse<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(m, float2x2.self).inverse, Matrix2x2<T>.self)
@@ -261,7 +261,7 @@ public func inverse<T:ScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
 }
 
 
-public func determinant<T:ScalarType>(m: Matrix2x2<T>) -> T {
+public func determinant<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> T {
     return m.x.x * m.y.y - m.y.x * m.x.y
 }
 

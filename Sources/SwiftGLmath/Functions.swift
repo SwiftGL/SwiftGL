@@ -379,7 +379,8 @@ public func smoothstep<genType:ScalarVectorType where
         var i = x-edge0
         i /= edge1-edge0
         let t = min(max( i, genType.Element(0)), genType.Element(1))
-        i = genType.Element(3) - genType.Element(2) * t
+        i = genType.Element(3)
+        i -= genType.Element(2) * t
         return t * t * i
     }
 }
@@ -392,7 +393,8 @@ public func smoothstep<genType:ScalarVectorType where
         var i = x-edge0
         i /= edge1-edge0
         let t = min(max( i, genType.Element(0)), genType.Element(1))
-        i = genType.Element(3) - genType.Element(2) * t
+        i = genType.Element(3)
+        i -= genType.Element(2) * t
         return t * t * i
     }
 }

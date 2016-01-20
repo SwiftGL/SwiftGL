@@ -354,29 +354,29 @@ public func *=<T:ScalarType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
 
 
 @warn_unused_result
-public func /<T:ScalarType>(v: Vector4<T>, m: Matrix4x4<T>) -> Vector4<T> {
+public func /<T:FloatingPointScalarType>(v: Vector4<T>, m: Matrix4x4<T>) -> Vector4<T> {
     return v * inverse(m)
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(m: Matrix4x4<T>, v: Vector4<T>) -> Vector4<T> {
+public func /<T:FloatingPointScalarType>(m: Matrix4x4<T>, v: Vector4<T>) -> Vector4<T> {
     return inverse(m) * v
 }
 
 
 @warn_unused_result
-public func /<T:ScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4<T> {
+public func /<T:FloatingPointScalarType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4<T> {
     return m1 * inverse(m2)
 }
 
 
-public func /=<T:ScalarType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
+public func /=<T:FloatingPointScalarType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
     m1 = m1 / m2
 }
 
 
-public func inverse<T:ScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
+public func inverse<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(m, float4x4.self).inverse, Matrix4x4<T>.self)
@@ -479,7 +479,7 @@ public func inverse<T:ScalarType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
 }
 
 
-public func determinant<T:ScalarType>(m: Matrix4x4<T>) -> T {
+public func determinant<T:FloatingPointScalarType>(m: Matrix4x4<T>) -> T {
     var d00:T = m.x.x * m.y.y
         d00 = d00 - m.y.x * m.x.y
     var d01:T = m.x.x * m.y.z

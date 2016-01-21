@@ -63,6 +63,7 @@ public class Shader {
         }
     }
 
+
     public func use()
     {
         glUseProgram(program)
@@ -70,60 +71,58 @@ public class Shader {
 
 
     /// get uniform location;
-    /// set uniform from location or string
-    // Setting by string:
-    //   shader["model"] = mat4()
-    // Setting by location:
-    //   let modelLoc = shader["model"] as! GLint
-    //   shader[modelLoc] = mat4()
-    // Setting by location is faster when a
-    // uniform is changed many times per frame.
-    public subscript(uniform:Any) -> Any
+    /// set uniform by string:
+    ///   shader["model"] = mat4();
+    public subscript(uniform:String) -> Any
     {
         get {
-            let s = uniform as! String
-            let rv = glGetUniformLocation(program, s)
+            let loc = glGetUniformLocation(program, uniform)
             assert(glGetError() == GL_NO_ERROR)
-            return rv
+            return loc
         }
         set {
-            var loc:GLint
-            switch(uniform) {
-            case is GLint:
-                loc = uniform as! GLint
-            case is String:
-                loc = self[uniform] as! GLint
-            default:
-                preconditionFailure()
-            }
-            assert(loc != -1, "uniform not found")
+            self[self[uniform] as! GLint] = newValue
+        }
+    }
+
+
+    /// set uniform by location:
+    ///   let modelLoc = shader["model"] as! GLint;
+    ///   shader[modelLoc] = mat4();
+    public subscript(uniform:GLint) -> Any
+    {
+        get {
+            return uniform
+        }
+        set {
+            assert(uniform != -1, "uniform not found")
             switch newValue {
             case is Float:
                 let value = newValue as! Float
-                glUniform1f(loc, value)
+                glUniform1f(uniform, value)
             case is vec2:
                 let value = newValue as! vec2
-                glUniform2f(loc, value.x, value.y)
+                glUniform2f(uniform, value.x, value.y)
             case is vec3:
                 let value = newValue as! vec3
-                glUniform3f(loc, value.x, value.y, value.z)
+                glUniform3f(uniform, value.x, value.y, value.z)
             case is vec4:
                 let value = newValue as! vec4
-                glUniform4f(loc, value.x, value.y, value.z, value.w)
+                glUniform4f(uniform, value.x, value.y, value.z, value.w)
             case is mat2:
                 var value = newValue as! mat2
                 withUnsafePointer(&value, {
-                    glUniformMatrix2fv(loc, 1, false, UnsafePointer($0))
+                    glUniformMatrix2fv(uniform, 1, false, UnsafePointer($0))
                 })
             case is mat3:
                 var value = newValue as! mat3
                 withUnsafePointer(&value, {
-                    glUniformMatrix3fv(loc, 1, false, UnsafePointer($0))
+                    glUniformMatrix3fv(uniform, 1, false, UnsafePointer($0))
                 })
             case is mat4:
                 var value = newValue as! mat4
                 withUnsafePointer(&value, {
-                    glUniformMatrix4fv(loc, 1, false, UnsafePointer($0))
+                    glUniformMatrix4fv(uniform, 1, false, UnsafePointer($0))
                 })
             default:
                 preconditionFailure()

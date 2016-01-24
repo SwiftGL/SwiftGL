@@ -27,7 +27,6 @@
 		3D6496451C4B5A440009DEAD /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6496441C4B5A440009DEAD /* MatrixTransform.swift */; };
 		3D6496471C4B7F5A0009DEAD /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
 		3D6496481C4B883A0009DEAD /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
-		3D81EE931C3CBB0B00B19119 /* MatrixSIMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81EE911C3CBA9900B19119 /* MatrixSIMD.swift */; };
 		3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F3D151C3B28B1007C49E7 /* main.swift */; };
 		3D90F4981C489B2100229A4F /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
 		3D90F4991C489B2600229A4F /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
@@ -120,7 +119,6 @@
 		3D6496331C4B58760009DEAD /* SwiftGLglmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGLglmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6496421C4B59DE0009DEAD /* SwiftGLglmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftGLglmTests.swift; path = Tests/SwiftGLglm/SwiftGLglmTests.swift; sourceTree = SOURCE_ROOT; };
 		3D6496441C4B5A440009DEAD /* MatrixTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTransform.swift; sourceTree = "<group>"; };
-		3D81EE911C3CBA9900B19119 /* MatrixSIMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixSIMD.swift; sourceTree = "<group>"; };
 		3D8F3D081C3B2892007C49E7 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8F3D151C3B28B1007C49E7 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3D90F48B1C489AED00229A4F /* CubeWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CubeWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,7 +350,6 @@
 				3D3C73321C3CEC67007FD4F9 /* Matrix4x2.swift */,
 				3D3C73301C3CEB9A007FD4F9 /* Matrix4x3.swift */,
 				3D91C3C91C3B220E00BA748A /* Matrix4x4.swift */,
-				3D81EE911C3CBA9900B19119 /* MatrixSIMD.swift */,
 				3D91C3CC1C3B220E00BA748A /* Vector2.swift */,
 				3DFFC98A1C447B6600EF48B4 /* Vector2b.swift */,
 				3D91C3CD1C3B220E00BA748A /* Vector3.swift */,
@@ -773,7 +770,6 @@
 				3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */,
 				3DB284391C475DEB008D46E6 /* Functions.swift in Sources */,
 				3D91C3D71C3B220E00BA748A /* Vector4.swift in Sources */,
-				3D81EE931C3CBB0B00B19119 /* MatrixSIMD.swift in Sources */,
 				3D91C3D21C3B220E00BA748A /* Matrix4x4.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

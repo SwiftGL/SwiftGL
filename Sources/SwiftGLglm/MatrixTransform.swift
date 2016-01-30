@@ -44,7 +44,7 @@ public func translate<T:ArithmeticType>(m:Matrix4x4<T>, _ v:Vector3<T>) -> Matri
 }
 
 
-public func rotate<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func rotate<T:FloatingPointArithmeticType>
     (m:Matrix4x4<T>, _ angle:T, _ v:Vector3<T>) -> Matrix4x4<T>
 {
     let a = angle
@@ -87,7 +87,7 @@ public func rotate<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func rotate_slow<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func rotate_slow<T:FloatingPointArithmeticType>
     (m:Matrix4x4<T>, _ angle:T, _ v:Vector3<T>) -> Matrix4x4<T>
 {
     let a = angle
@@ -138,7 +138,7 @@ public func scale<T:ArithmeticType>(m:Matrix4x4<T>, _ v:Vector3<T>) -> Matrix4x4
 }
 
 
-public func ortho<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func ortho<T:FloatingPointArithmeticType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     if glmLeftHanded {
@@ -150,7 +150,7 @@ public func ortho<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func ortho<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func ortho<T:FloatingPointArithmeticType>
     (left:T, _ right:T, _ bottom:T, _ top:T) -> Matrix4x4<T>
 {
     let r00:T = 2 / (right - left)
@@ -168,7 +168,7 @@ public func ortho<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func orthoLH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func orthoLH<T:FloatingPointArithmeticType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     let r00:T = 2 / (right - left)
@@ -194,7 +194,7 @@ public func orthoLH<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func orthoRH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func orthoRH<T:FloatingPointArithmeticType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     let r00:T = 2 / (right - left)
@@ -220,7 +220,7 @@ public func orthoRH<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func frustum<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func frustum<T:FloatingPointArithmeticType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ nearVal:T, _ farVal:T) -> Matrix4x4<T>
 {
     if glmLeftHanded {
@@ -231,7 +231,7 @@ public func frustum<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func frustumLH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func frustumLH<T:FloatingPointArithmeticType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ nearVal:T, _ farVal:T) -> Matrix4x4<T>
 {
     let r00:T = (2 * nearVal) / (right - left)
@@ -260,7 +260,7 @@ public func frustumLH<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func frustumRH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func frustumRH<T:FloatingPointArithmeticType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ nearVal:T, _ farVal:T) -> Matrix4x4<T>
 {
     let r00:T = (2 * nearVal) / (right - left)
@@ -289,7 +289,7 @@ public func frustumRH<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func perspective<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func perspective<T:FloatingPointArithmeticType>
     (fovy:T, _ aspect:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     if glmLeftHanded {
@@ -300,7 +300,7 @@ public func perspective<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func perspectiveLH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func perspectiveLH<T:FloatingPointArithmeticType>
     (fovy:T, _ aspect:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     assert(aspect > 0)
@@ -330,7 +330,7 @@ public func perspectiveLH<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func perspectiveRH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func perspectiveRH<T:FloatingPointArithmeticType>
     (fovy:T, _ aspect:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     assert(aspect > 0)
@@ -359,7 +359,7 @@ public func perspectiveRH<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func perspectiveFov<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func perspectiveFov<T:FloatingPointArithmeticType>
     (fov:T, _ width:T, _ height:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     if glmLeftHanded {
@@ -370,7 +370,7 @@ public func perspectiveFov<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func perspectiveFovLH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func perspectiveFovLH<T:FloatingPointArithmeticType>
     (fov:T, _ width:T, _ height:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     assert(fov > 0)
@@ -400,7 +400,7 @@ public func perspectiveFovLH<T:ArithmeticType where T:FloatingPointArithmeticTyp
 }
 
 
-public func perspectiveFovRH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func perspectiveFovRH<T:FloatingPointArithmeticType>
     (fov:T, _ width:T, _ height:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
     assert(fov > 0)
@@ -430,7 +430,7 @@ public func perspectiveFovRH<T:ArithmeticType where T:FloatingPointArithmeticTyp
 
 
 //TODO epsilon should default to Float(1).ulp
-public func infinitePerspective<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func infinitePerspective<T:FloatingPointArithmeticType>
     (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = 0) -> Matrix4x4<T>
 {
     if glmLeftHanded {
@@ -441,7 +441,7 @@ public func infinitePerspective<T:ArithmeticType where T:FloatingPointArithmetic
 }
 
 
-public func infinitePerspectiveLH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func infinitePerspectiveLH<T:FloatingPointArithmeticType>
     (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = 0) -> Matrix4x4<T>
 {
     let range:T = GLmath.GLtan(fovy / 2) * zNear
@@ -465,7 +465,7 @@ public func infinitePerspectiveLH<T:ArithmeticType where T:FloatingPointArithmet
 }
 
 
-public func infinitePerspectiveRH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func infinitePerspectiveRH<T:FloatingPointArithmeticType>
     (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = 0) -> Matrix4x4<T>
 {
     let range:T = GLmath.GLtan(fovy / 2) * zNear
@@ -539,7 +539,7 @@ public func pickMatrix<T:ArithmeticType>
 }
 
 
-public func lookAt<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func lookAt<T:FloatingPointArithmeticType>
     (eye:Vector3<T>, _ center:Vector3<T>, _ up:Vector3<T>) -> Matrix4x4<T>
 {
     if glmLeftHanded {
@@ -550,7 +550,7 @@ public func lookAt<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func lookAtLH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func lookAtLH<T:FloatingPointArithmeticType>
     (eye:Vector3<T>, _ center:Vector3<T>, _ up:Vector3<T>) -> Matrix4x4<T>
 {
     let f:Vector3<T> = normalize(center - eye)
@@ -571,7 +571,7 @@ public func lookAtLH<T:ArithmeticType where T:FloatingPointArithmeticType>
 }
 
 
-public func lookAtRH<T:ArithmeticType where T:FloatingPointArithmeticType>
+public func lookAtRH<T:FloatingPointArithmeticType>
     (eye:Vector3<T>, _ center:Vector3<T>, _ up:Vector3<T>) -> Matrix4x4<T>
 {
     let f:Vector3<T> = normalize(center - eye)

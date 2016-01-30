@@ -22,11 +22,6 @@
 
 public struct Vector2b : BooleanVectorType {
 
-    public typealias Element = Bool
-    public typealias FloatVector = Vector2<Float>
-    public typealias DoubleVector = Vector2<Double>
-    public typealias Int32Vector = Vector2<Int32>
-    public typealias UInt32Vector = Vector2<UInt32>
     public typealias BooleanVector = Vector2b
 
     public var x:Bool, y:Bool
@@ -130,31 +125,22 @@ public struct Vector2b : BooleanVectorType {
         self.y = op(v.y, s)
     }
 
+    public init(_ v: Vector2b, @noescape _ op:(_:Bool) -> Bool) {
+            self.x = op(v[0])
+            self.y = op(v[1])
+    }
+
     public init<T:VectorType where T.BooleanVector == BooleanVector>
-        (_ v: T, @noescape _ op:(_:T.Element) -> Element) {
+        (_ v: T, @noescape _ op:(_:T.Element) -> Bool) {
             self.x = op(v[0])
             self.y = op(v[1])
     }
 
     public init<T1:VectorType, T2:VectorType where
         T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
-        (_ v1:T1, _ v2:T2, @noescape _ op:(_:T1.Element, _:T2.Element) -> Element) {
+        (_ v1:T1, _ v2:T2, @noescape _ op:(_:T1.Element, _:T2.Element) -> Bool) {
             self.x = op(v1[0], v2[0])
             self.y = op(v1[1], v2[1])
-    }
-
-    public init<T1:VectorType, T2:VectorType where
-        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector>
-        (_ v1:T1, inout _ v2:T2, @noescape _ op:(_:T1.Element, inout _:T2.Element) -> Element) {
-            self.x = op(v1[0], &v2[0])
-            self.y = op(v1[1], &v2[1])
-    }
-
-    public init<T1:VectorType, T2:VectorType, T3:VectorType where
-        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector, T3.BooleanVector == BooleanVector>
-        (_ v1:T1, _ v2:T2, _ v3:T3, @noescape _ op:(_:T1.Element, _:T2.Element, _:T3.Element) -> Element) {
-            self.x = op(v1[0], v2[0], v3[0])
-            self.y = op(v1[1], v2[1], v3[1])
     }
 
 }

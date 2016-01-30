@@ -21,13 +21,11 @@
 		3D3C73371C3CEFE6007FD4F9 /* Matrix3x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73361C3CEFE6007FD4F9 /* Matrix3x4.swift */; };
 		3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */; };
 		3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */; };
-		3D412D591C3EE71800044962 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D412D581C3EE71800044962 /* Operators.swift */; };
 		3D6496341C4B58760009DEAD /* SwiftGLglm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D64962A1C4B58760009DEAD /* SwiftGLglm.framework */; };
 		3D6496431C4B59DE0009DEAD /* SwiftGLglmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6496421C4B59DE0009DEAD /* SwiftGLglmTests.swift */; };
 		3D6496451C4B5A440009DEAD /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6496441C4B5A440009DEAD /* MatrixTransform.swift */; };
 		3D6496471C4B7F5A0009DEAD /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
 		3D6496481C4B883A0009DEAD /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
-		3D6EDB101C57DB53001B9D86 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB284381C475DEB008D46E6 /* Functions.swift */; };
 		3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F3D151C3B28B1007C49E7 /* main.swift */; };
 		3D90F4981C489B2100229A4F /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
 		3D90F4991C489B2600229A4F /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
@@ -55,6 +53,8 @@
 		3D91C3E31C3B224500BA748A /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */; };
 		3DAE99541C4E24B700440741 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3CA1C3B220E00BA748A /* Swizzle.swift */; };
 		3DB2843B1C481396008D46E6 /* FunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB2843A1C481396008D46E6 /* FunctionsTests.swift */; };
+		3DB90A111C5C826300E1576F /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D412D581C3EE71800044962 /* Operators.swift */; };
+		3DB90A121C5C83B900E1576F /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB284381C475DEB008D46E6 /* Functions.swift */; };
 		3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */; };
 		3DFD6ECB1C49E3A500E26222 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECA1C49E3A500E26222 /* Player.swift */; };
 		3DFD6ECD1C49FA3C00E26222 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECC1C49FA3C00E26222 /* Cube.swift */; };
@@ -754,15 +754,15 @@
 				3D3C73311C3CEB9A007FD4F9 /* Matrix4x3.swift in Sources */,
 				3DFFC9891C447AC000EF48B4 /* Vector3b.swift in Sources */,
 				3D91C3CF1C3B220E00BA748A /* Internal.swift in Sources */,
-				3D6EDB101C57DB53001B9D86 /* Functions.swift in Sources */,
+				3DB90A121C5C83B900E1576F /* Functions.swift in Sources */,
 				3D91C3D01C3B220E00BA748A /* Matrix2x2.swift in Sources */,
 				3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */,
 				3D91C3D51C3B220E00BA748A /* Vector2.swift in Sources */,
+				3DB90A111C5C826300E1576F /* Operators.swift in Sources */,
 				3D3C73371C3CEFE6007FD4F9 /* Matrix3x4.swift in Sources */,
 				3D214CDE1C44378A000DE32E /* Vector4b.swift in Sources */,
 				3D3C73331C3CEC67007FD4F9 /* Matrix4x2.swift in Sources */,
 				3DAE99541C4E24B700440741 /* Swizzle.swift in Sources */,
-				3D412D591C3EE71800044962 /* Operators.swift in Sources */,
 				3D91C3D41C3B220E00BA748A /* Types.swift in Sources */,
 				3D91C3D11C3B220E00BA748A /* Matrix3x3.swift in Sources */,
 				3D3C73351C3CEE2F007FD4F9 /* Matrix3x2.swift in Sources */,

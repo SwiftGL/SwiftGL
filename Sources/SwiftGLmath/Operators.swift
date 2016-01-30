@@ -25,32 +25,32 @@
 #endif
 
 
-// Scalar Operators
+// Arithmetic Operators
 
-public prefix func ++<T:GLmathArithmeticType>(inout v: T) -> T {
-    v = v + T.Element(1)
+public prefix func ++<T:MatrixType>(inout v: T) -> T {
+    v = v + 1
     return v
 }
 
-public postfix func ++<T:GLmathArithmeticType>(inout v: T) -> T {
+public postfix func ++<T:MatrixType>(inout v: T) -> T {
     let r = v
-    v = v + T.Element(1)
+    v = v + 1
     return r
 }
 
-public prefix func --<T:GLmathArithmeticType>(inout v: T) -> T {
-    v = v - T.Element(1)
+public prefix func --<T:MatrixType>(inout v: T) -> T {
+    v = v - 1
     return v
 }
 
-public postfix func --<T:GLmathArithmeticType>(inout v: T) -> T {
+public postfix func --<T:MatrixType>(inout v: T) -> T {
     let r = v
-    v = v - T.Element(1)
+    v = v - 1
     return r
 }
 
 @warn_unused_result
-public func +<T:GLmathArithmeticType>(x1: T, x2: T) -> T {
+public func +<T:MatrixType>(x1: T, x2: T) -> T {
     #if !os(Linux)
         switch (x1) {
         case is Matrix2x2<Float> :
@@ -91,26 +91,26 @@ public func +<T:GLmathArithmeticType>(x1: T, x2: T) -> T {
     return T(x1, x2, +)
 }
 
-public func +=<T:GLmathArithmeticType>(inout x1: T, x2: T) {
+public func +=<T:MatrixType>(inout x1: T, x2: T) {
     x1 = x1 + x2
 }
 
 @warn_unused_result
-public func +<T:GLmathArithmeticType>(s: T.Element, x: T) -> T {
+public func +<T:MatrixType>(s: T.Element, x: T) -> T {
     return T(s, x, +)
 }
 
 @warn_unused_result
-public func +<T:GLmathArithmeticType>(x: T, s: T.Element) -> T {
+public func +<T:MatrixType>(x: T, s: T.Element) -> T {
     return T(x, s, +)
 }
 
-public func +=<T:GLmathArithmeticType>(inout x: T, s: T.Element) {
+public func +=<T:MatrixType>(inout x: T, s: T.Element) {
     x = x + s
 }
 
 @warn_unused_result
-public func -<T:GLmathArithmeticType>(x1: T, x2: T) -> T {
+public func -<T:MatrixType>(x1: T, x2: T) -> T {
     #if !os(Linux)
         switch (x1) {
         case is Matrix2x2<Float> :
@@ -151,26 +151,26 @@ public func -<T:GLmathArithmeticType>(x1: T, x2: T) -> T {
     return T(x1, x2, -)
 }
 
-public func -=<T:GLmathArithmeticType>(inout x1: T, x2: T) {
+public func -=<T:MatrixType>(inout x1: T, x2: T) {
     x1 = x1 - x2
 }
 
 @warn_unused_result
-public func -<T:GLmathArithmeticType>(s: T.Element, x: T) -> T {
+public func -<T:MatrixType>(s: T.Element, x: T) -> T {
     return T(s, x, -)
 }
 
 @warn_unused_result
-public func -<T:GLmathArithmeticType>(x: T, s: T.Element) -> T {
+public func -<T:MatrixType>(x: T, s: T.Element) -> T {
     return T(x, s, -)
 }
 
-public func -=<T:GLmathArithmeticType>(inout x: T, s: T.Element) {
+public func -=<T:MatrixType>(inout x: T, s: T.Element) {
     x = x - s
 }
 
 @warn_unused_result
-public func *<T:GLmathArithmeticType>(s: T.Element, x: T) -> T {
+public func *<T:MatrixType>(s: T.Element, x: T) -> T {
     #if !os(Linux)
         switch (x) {
         case is Matrix2x2<Float> :
@@ -212,7 +212,7 @@ public func *<T:GLmathArithmeticType>(s: T.Element, x: T) -> T {
 }
 
 @warn_unused_result
-public func *<T:GLmathArithmeticType>(x: T, s: T.Element) -> T {
+public func *<T:MatrixType>(x: T, s: T.Element) -> T {
     #if !os(Linux)
         switch (x) {
         case is Matrix2x2<Float> :
@@ -253,44 +253,44 @@ public func *<T:GLmathArithmeticType>(x: T, s: T.Element) -> T {
     return T(x, s, *)
 }
 
-public func *=<T:GLmathArithmeticType>(inout x: T, s: T.Element) {
+public func *=<T:MatrixType>(inout x: T, s: T.Element) {
     x = x * s
 }
 
 @warn_unused_result
-public func /<T:GLmathArithmeticType>(s: T.Element, x: T) -> T {
+public func /<T:MatrixType>(s: T.Element, x: T) -> T {
     return T(s, x, /)
 }
 
 @warn_unused_result
-public func /<T:GLmathArithmeticType>(x: T, s: T.Element) -> T {
+public func /<T:MatrixType>(x: T, s: T.Element) -> T {
     return T(x, s, /)
 }
 
-public func /=<T:GLmathArithmeticType>(inout x: T, s: T.Element) {
+public func /=<T:MatrixType>(inout x: T, s: T.Element) {
     x = x / s
 }
 
 @warn_unused_result
-public func %<T:GLmathArithmeticType>(x1: T, x2: T) -> T {
+public func %<T:MatrixType>(x1: T, x2: T) -> T {
     return T(x1, x2, %)
 }
 
-public func %=<T:GLmathArithmeticType>(inout x1: T, x2: T) {
+public func %=<T:MatrixType>(inout x1: T, x2: T) {
     x1 = x1 % x2
 }
 
 @warn_unused_result
-public func %<T:GLmathArithmeticType>(s: T.Element, x: T) -> T {
+public func %<T:MatrixType>(s: T.Element, x: T) -> T {
     return T(s, x, %)
 }
 
 @warn_unused_result
-public func %<T:GLmathArithmeticType>(x: T, s: T.Element) -> T {
+public func %<T:MatrixType>(x: T, s: T.Element) -> T {
     return T(x, s, %)
 }
 
-public func %=<T:GLmathArithmeticType>(inout x: T, s: T.Element) {
+public func %=<T:MatrixType>(inout x: T, s: T.Element) {
     x = x % s
 }
 
@@ -298,7 +298,7 @@ public func %=<T:GLmathArithmeticType>(inout x: T, s: T.Element) {
 // Unchecked Integer Operators
 
 @warn_unused_result
-public func &+<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v1: T, v2: T) -> T {
+public func &+<T:MatrixType where T.Element:IntegerArithmeticType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
         case is Vector2<Int32>, is Vector2<UInt32> :
@@ -313,17 +313,17 @@ public func &+<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v1:
 }
 
 @warn_unused_result
-public func &+<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(s: T.Element, v: T) -> T {
+public func &+<T:MatrixType where T.Element:IntegerArithmeticType>(s: T.Element, v: T) -> T {
     return T(s, v, &+)
 }
 
 @warn_unused_result
-public func &+<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v: T, s: T.Element) -> T {
+public func &+<T:MatrixType where T.Element:IntegerArithmeticType>(v: T, s: T.Element) -> T {
     return T(v, s, &+)
 }
 
 @warn_unused_result
-public func &-<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v1: T, v2: T) -> T {
+public func &-<T:MatrixType where T.Element:IntegerArithmeticType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
         case is Vector2<Int32>, is Vector2<UInt32> :
@@ -338,17 +338,17 @@ public func &-<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v1:
 }
 
 @warn_unused_result
-public func &-<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(s: T.Element, v: T) -> T {
+public func &-<T:MatrixType where T.Element:IntegerArithmeticType>(s: T.Element, v: T) -> T {
     return T(s, v, &-)
 }
 
 @warn_unused_result
-public func &-<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v: T, s: T.Element) -> T {
+public func &-<T:MatrixType where T.Element:IntegerArithmeticType>(v: T, s: T.Element) -> T {
     return T(v, s, &-)
 }
 
 @warn_unused_result
-public func &*<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v1: T, v2: T) -> T {
+public func &*<T:MatrixType where T.Element:IntegerArithmeticType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
         case is Vector2<Int32>, is Vector2<UInt32> :
@@ -363,7 +363,7 @@ public func &*<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v1:
 }
 
 @warn_unused_result
-public func &*<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(s: T.Element, v: T) -> T {
+public func &*<T:MatrixType where T.Element:IntegerArithmeticType>(s: T.Element, v: T) -> T {
     #if !os(Linux)
         switch (v) {
         case is Vector2<Int32>, is Vector2<UInt32> :
@@ -378,7 +378,7 @@ public func &*<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(s: 
 }
 
 @warn_unused_result
-public func &*<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v: T, s: T.Element) -> T {
+public func &*<T:MatrixType where T.Element:IntegerArithmeticType>(v: T, s: T.Element) -> T {
     #if !os(Linux)
         switch (v) {
         case is Vector2<Int32>, is Vector2<UInt32> :
@@ -393,94 +393,94 @@ public func &*<T:GLmathArithmeticType where T.Element:IntegerArithmeticType>(v: 
 }
 
 @warn_unused_result
-public func << <T:GLmathArithmeticType where T.Element:BitsOperationsType>(v: T, s: T.Element) -> T {
+public func << <T:MatrixType where T.Element:BitsOperationsType>(v: T, s: T.Element) -> T {
     return T(v, s, <<)
 }
 
-public func <<= <T:GLmathArithmeticType where T.Element:BitsOperationsType>(inout v: T, s: T.Element) {
+public func <<= <T:MatrixType where T.Element:BitsOperationsType>(inout v: T, s: T.Element) {
     v = v << s
 }
 
 @warn_unused_result
-public func >> <T:GLmathArithmeticType where T.Element:BitsOperationsType>(v: T, s: T.Element) -> T {
+public func >> <T:MatrixType where T.Element:BitsOperationsType>(v: T, s: T.Element) -> T {
     return T(v, s, <<)
 }
 
-public func >>= <T:GLmathArithmeticType where T.Element:BitsOperationsType>(inout v: T, s: T.Element) {
+public func >>= <T:MatrixType where T.Element:BitsOperationsType>(inout v: T, s: T.Element) {
     v = v >> s
 }
 
 @warn_unused_result
-public func &<T:GLmathArithmeticType where T.Element:BitsOperationsType>(x1: T, x2: T) -> T {
+public func &<T:MatrixType where T.Element:BitsOperationsType>(x1: T, x2: T) -> T {
     return T(x1, x2, &)
 }
 
-public func &=<T:GLmathArithmeticType where T.Element:BitsOperationsType>(inout x1: T, x2: T) {
+public func &=<T:MatrixType where T.Element:BitsOperationsType>(inout x1: T, x2: T) {
     x1 = x1 & x2
 }
 
 @warn_unused_result
-public func &<T:GLmathArithmeticType where T.Element:BitsOperationsType>(s: T.Element, x: T) -> T {
+public func &<T:MatrixType where T.Element:BitsOperationsType>(s: T.Element, x: T) -> T {
     return T(s, x, &)
 }
 
 @warn_unused_result
-public func &<T:GLmathArithmeticType where T.Element:BitsOperationsType>(x: T, s: T.Element) -> T {
+public func &<T:MatrixType where T.Element:BitsOperationsType>(x: T, s: T.Element) -> T {
     return T(x, s, &)
 }
 
-public func &=<T:GLmathArithmeticType where T.Element:BitsOperationsType>(inout x: T, s: T.Element) {
+public func &=<T:MatrixType where T.Element:BitsOperationsType>(inout x: T, s: T.Element) {
     x = x & s
 }
 
 @warn_unused_result
-public func |<T:GLmathArithmeticType where T.Element:BitsOperationsType>(x1: T, x2: T) -> T {
+public func |<T:MatrixType where T.Element:BitsOperationsType>(x1: T, x2: T) -> T {
     return T(x1, x2, |)
 }
 
-public func |=<T:GLmathArithmeticType where T.Element:BitsOperationsType>(inout x1: T, x2: T) {
+public func |=<T:MatrixType where T.Element:BitsOperationsType>(inout x1: T, x2: T) {
     x1 = x1 | x2
 }
 
 @warn_unused_result
-public func |<T:GLmathArithmeticType where T.Element:BitsOperationsType>(s: T.Element, x: T) -> T {
+public func |<T:MatrixType where T.Element:BitsOperationsType>(s: T.Element, x: T) -> T {
     return T(s, x, |)
 }
 
 @warn_unused_result
-public func |<T:GLmathArithmeticType where T.Element:BitsOperationsType>(x: T, s: T.Element) -> T {
+public func |<T:MatrixType where T.Element:BitsOperationsType>(x: T, s: T.Element) -> T {
     return T(x, s, |)
 }
 
-public func |=<T:GLmathArithmeticType where T.Element:BitsOperationsType>(inout x: T, s: T.Element) {
+public func |=<T:MatrixType where T.Element:BitsOperationsType>(inout x: T, s: T.Element) {
     x = x | s
 }
 
 @warn_unused_result
-public func ^<T:GLmathArithmeticType where T.Element:BitsOperationsType>(v1: T, v2: T) -> T {
+public func ^<T:MatrixType where T.Element:BitsOperationsType>(v1: T, v2: T) -> T {
     return T(v1, v2, ^)
 }
 
-public func ^=<T:GLmathArithmeticType where T.Element:BitsOperationsType>(inout x1: T, x2: T) {
+public func ^=<T:MatrixType where T.Element:BitsOperationsType>(inout x1: T, x2: T) {
     x1 = x1 ^ x2
 }
 
 @warn_unused_result
-public func ^<T:GLmathArithmeticType where T.Element:BitsOperationsType>(s: T.Element, x: T) -> T {
+public func ^<T:MatrixType where T.Element:BitsOperationsType>(s: T.Element, x: T) -> T {
     return T(s, x, ^)
 }
 
 @warn_unused_result
-public func ^<T:GLmathArithmeticType where T.Element:BitsOperationsType>(x: T, s: T.Element) -> T {
+public func ^<T:MatrixType where T.Element:BitsOperationsType>(x: T, s: T.Element) -> T {
     return T(x, s, ^)
 }
 
-public func ^=<T:GLmathArithmeticType where T.Element:BitsOperationsType>(inout x: T, s: T.Element) {
+public func ^=<T:MatrixType where T.Element:BitsOperationsType>(inout x: T, s: T.Element) {
     x = x ^ s
 }
 
 @warn_unused_result
-public prefix func ~<T:GLmathArithmeticType where T.Element:BitsOperationsType>(v: T) -> T {
+public prefix func ~<T:MatrixType where T.Element:BitsOperationsType>(v: T) -> T {
     return T(v, ~)
 }
 
@@ -488,13 +488,13 @@ public prefix func ~<T:GLmathArithmeticType where T.Element:BitsOperationsType>(
 // Signed Numbers Only
 
 @warn_unused_result
-public prefix func +<T:GLmathArithmeticType where T.Element:SignedNumberType>
+public prefix func +<T:MatrixType where T.Element:SignedNumberType>
     (v: T) -> T {
     return v
 }
 
 @warn_unused_result
-public prefix func -<T:GLmathArithmeticType where T.Element:SignedNumberType>
+public prefix func -<T:MatrixType where T.Element:SignedNumberType>
     (x: T) -> T {
     #if !os(Linux)
         switch (x) {
@@ -544,7 +544,7 @@ public prefix func -<T:GLmathArithmeticType where T.Element:SignedNumberType>
 // Vector Multiply and Divide
 
 @warn_unused_result
-public func *<T:ScalarVectorType>(v1: T, v2: T) -> T {
+public func *<T:VectorType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
         case is Vector2<Float> :
@@ -561,12 +561,12 @@ public func *<T:ScalarVectorType>(v1: T, v2: T) -> T {
     return T(v1, v2, /)
 }
 
-public func *=<T:ScalarVectorType>(inout v1: T, v2: T) {
+public func *=<T:VectorType>(inout v1: T, v2: T) {
     v1 = v1 * v2
 }
 
 @warn_unused_result
-public func /<T:ScalarVectorType>(v1: T, v2: T) -> T {
+public func /<T:VectorType>(v1: T, v2: T) -> T {
     #if !os(Linux)
         switch (v1) {
         case is Vector2<Int32>, is Vector2<UInt32> :
@@ -588,6 +588,6 @@ public func /<T:ScalarVectorType>(v1: T, v2: T) -> T {
     return T(v1, v2, /)
 }
 
-public func /=<T:ScalarVectorType>(inout v1: T, v2: T) {
+public func /=<T:VectorType>(inout v1: T, v2: T) {
     v1 = v1 / v2
 }

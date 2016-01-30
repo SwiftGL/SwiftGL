@@ -20,7 +20,7 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Vector4<T:ArithmeticType> : ScalarVectorType {
+public struct Vector4<T:ArithmeticType> : VectorType {
 
     public typealias Element = T
     public typealias FloatVector = Vector4<Float>
@@ -236,6 +236,15 @@ public struct Vector4<T:ArithmeticType> : ScalarVectorType {
     public init<T1:VectorType, T2:VectorType, T3:VectorType where
         T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector, T3.BooleanVector == BooleanVector>
         (_ v1:T1, _ v2:T2, _ v3:T3, @noescape _ op:(_:T1.Element, _:T2.Element, _:T3.Element) -> Element) {
+            self.x = op(v1[0], v2[0], v3[0])
+            self.y = op(v1[1], v2[1], v3[1])
+            self.z = op(v1[2], v2[2], v3[2])
+            self.w = op(v1[3], v2[3], v3[3])
+    }
+
+    public init<T1:VectorType, T2:VectorType, T3:BooleanVectorType where
+        T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector, T3.BooleanVector == BooleanVector>
+        (_ v1:T1, _ v2:T2, _ v3:T3, @noescape _ op:(_:T1.Element, _:T2.Element, _:Bool) -> Element) {
             self.x = op(v1[0], v2[0], v3[0])
             self.y = op(v1[1], v2[1], v3[1])
             self.z = op(v1[2], v2[2], v3[2])

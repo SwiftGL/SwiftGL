@@ -75,10 +75,10 @@ public struct Vector4<T:ScalarType> : ScalarVectorType {
     }
 
     public init () {
-        self.x = T(0)
-        self.y = T(0)
-        self.z = T(0)
-        self.w = T(0)
+        self.x = 0
+        self.y = 0
+        self.z = 0
+        self.w = 0
     }
 
     public init (_ v:T) {

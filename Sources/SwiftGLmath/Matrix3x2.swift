@@ -64,15 +64,15 @@ public struct Matrix3x2<T:ScalarType> : MatrixType {
     }
 
     public init() {
-        self.x = Vector2<T>(T(1), T(0))
-        self.y = Vector2<T>(T(0), T(1))
-        self.z = Vector2<T>(T(0), T(0))
+        self.x = Vector2<T>(1, 0)
+        self.y = Vector2<T>(0, 1)
+        self.z = Vector2<T>(0, 0)
     }
 
     public init(_ s: T) {
-        self.x = Vector2<T>(s, T(0))
-        self.y = Vector2<T>(T(0), s)
-        self.z = Vector2<T>(T(0), T(0))
+        self.x = Vector2<T>(s, 0)
+        self.y = Vector2<T>(0, s)
+        self.z = Vector2<T>(0, 0)
     }
 
     public init(_ x: Vector2<T>, _ y: Vector2<T>, _ z: Vector2<T>) {
@@ -94,19 +94,19 @@ public struct Matrix3x2<T:ScalarType> : MatrixType {
     public init(_ m:Matrix2x2<T>) {
         self.x = Vector2<T>(m[0])
         self.y = Vector2<T>(m[1])
-        self.z = Vector2<T>(T(0), T(0))
+        self.z = Vector2<T>(0, 0)
     }
 
     public init(_ m:Matrix2x3<T>) {
         self.x = Vector2<T>(m[0])
         self.y = Vector2<T>(m[1])
-        self.z = Vector2<T>(T(0), T(0))
+        self.z = Vector2<T>(0, 0)
     }
 
     public init(_ m:Matrix2x4<T>) {
         self.x = Vector2<T>(m[0])
         self.y = Vector2<T>(m[1])
-        self.z = Vector2<T>(T(0), T(0))
+        self.z = Vector2<T>(0, 0)
     }
 
     public init(_ m: Matrix3x2<Float>) {

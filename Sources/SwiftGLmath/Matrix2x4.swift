@@ -62,13 +62,13 @@ public struct Matrix2x4<T:ScalarType> : MatrixType {
     }
 
     public init() {
-        self.x = Vector4<T>(T(1), T(0), T(0), T(0))
-        self.y = Vector4<T>(T(0), T(1), T(0), T(0))
+        self.x = Vector4<T>(1, 0, 0, 0)
+        self.y = Vector4<T>(0, 1, 0, 0)
     }
 
     public init(_ s: T) {
-        self.x = Vector4<T>(s, T(0), T(0), T(0))
-        self.y = Vector4<T>(T(0), s, T(0), T(0))
+        self.x = Vector4<T>(s, 0, 0, 0)
+        self.y = Vector4<T>(0, s, 0, 0)
     }
 
     public init(_ x: Vector4<T>, _ y: Vector4<T>) {
@@ -85,13 +85,13 @@ public struct Matrix2x4<T:ScalarType> : MatrixType {
     }
 
     public init(_ m:Matrix2x2<T>) {
-        self.x = Vector4<T>(m[0], T(0), T(0))
-        self.y = Vector4<T>(m[1], T(0), T(0))
+        self.x = Vector4<T>(m[0], 0, 0)
+        self.y = Vector4<T>(m[1], 0, 0)
     }
 
     public init(_ m:Matrix2x3<T>) {
-        self.x = Vector4<T>(m[0], T(0))
-        self.y = Vector4<T>(m[1], T(0))
+        self.x = Vector4<T>(m[0], 0)
+        self.y = Vector4<T>(m[1], 0)
     }
 
     public init(_ m: Matrix2x4<Float>) {
@@ -110,13 +110,13 @@ public struct Matrix2x4<T:ScalarType> : MatrixType {
     }
 
     public init(_ m:Matrix3x2<T>) {
-        self.x = Vector4<T>(m[0], T(0), T(0))
-        self.y = Vector4<T>(m[1], T(0), T(0))
+        self.x = Vector4<T>(m[0], 0, 0)
+        self.y = Vector4<T>(m[1], 0, 0)
     }
 
     public init(_ m:Matrix3x3<T>) {
-        self.x = Vector4<T>(m[0], T(0))
-        self.y = Vector4<T>(m[1], T(0))
+        self.x = Vector4<T>(m[0], 0)
+        self.y = Vector4<T>(m[1], 0)
     }
 
     public init(_ m:Matrix3x4<T>) {
@@ -125,13 +125,13 @@ public struct Matrix2x4<T:ScalarType> : MatrixType {
     }
 
     public init(_ m:Matrix4x2<T>) {
-        self.x = Vector4<T>(m[0], T(0), T(0))
-        self.y = Vector4<T>(m[1], T(0), T(0))
+        self.x = Vector4<T>(m[0], 0, 0)
+        self.y = Vector4<T>(m[1], 0, 0)
     }
 
     public init(_ m:Matrix4x3<T>) {
-        self.x = Vector4<T>(m[0], T(0))
-        self.y = Vector4<T>(m[1], T(0))
+        self.x = Vector4<T>(m[0], 0)
+        self.y = Vector4<T>(m[1], 0)
     }
 
     public init(_ m:Matrix4x4<T>) {

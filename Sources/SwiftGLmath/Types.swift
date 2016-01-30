@@ -67,7 +67,7 @@ public typealias mat4x4 = Matrix4x4<Float>
 public typealias dmat4x4 = Matrix4x4<Double>
 
 
-public protocol ScalarType : Hashable, Comparable {
+public protocol ScalarType : Hashable, Comparable, IntegerLiteralConvertible {
     init(_: Int)
     init(_: Int32)
     init(_: UInt32)
@@ -102,7 +102,7 @@ public protocol IntegerScalarType : ScalarType {
 extension UInt32: IntegerScalarType {}
 extension Int32: IntegerScalarType {}
 
-public protocol FloatingPointScalarType : ScalarType {
+public protocol FloatingPointScalarType : ScalarType, FloatLiteralConvertible {
     prefix func -(_: Self) -> Self
 }
 extension Float: FloatingPointScalarType {}

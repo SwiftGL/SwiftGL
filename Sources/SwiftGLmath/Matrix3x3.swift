@@ -59,15 +59,15 @@ public struct Matrix3x3<T:ScalarType> : MatrixType {
     }
 
     public init() {
-        self.x = Vector3<T>(T(1), T(0), T(0))
-        self.y = Vector3<T>(T(0), T(1), T(0))
-        self.z = Vector3<T>(T(0), T(0), T(1))
+        self.x = Vector3<T>(1, 0, 0)
+        self.y = Vector3<T>(0, 1, 0)
+        self.z = Vector3<T>(0, 0, 1)
     }
 
     public init(_ s: T) {
-        self.x = Vector3<T>(s, T(0), T(0))
-        self.y = Vector3<T>(T(0), s, T(0))
-        self.z = Vector3<T>(T(0), T(0), s)
+        self.x = Vector3<T>(s, 0, 0)
+        self.y = Vector3<T>(0, s, 0)
+        self.z = Vector3<T>(0, 0, s)
     }
 
     public init(_ x: Vector3<T>, _ y: Vector3<T>, _ z: Vector3<T>) {
@@ -87,27 +87,27 @@ public struct Matrix3x3<T:ScalarType> : MatrixType {
     }
 
     public init(_ m:Matrix2x2<T>) {
-        self.x = Vector3<T>(m[0], T(0))
-        self.y = Vector3<T>(m[1], T(0))
-        self.z = Vector3<T>(T(0), T(0), T(1))
+        self.x = Vector3<T>(m[0], 0)
+        self.y = Vector3<T>(m[1], 0)
+        self.z = Vector3<T>(0, 0, 1)
     }
 
     public init(_ m:Matrix2x3<T>) {
         self.x = Vector3<T>(m[0])
         self.y = Vector3<T>(m[1])
-        self.z = Vector3<T>(T(0), T(0), T(1))
+        self.z = Vector3<T>(0, 0, 1)
     }
 
     public init(_ m:Matrix2x4<T>) {
         self.x = Vector3<T>(m[0])
         self.y = Vector3<T>(m[1])
-        self.z = Vector3<T>(T(0), T(0), T(1))
+        self.z = Vector3<T>(0, 0, 1)
     }
 
     public init(_ m:Matrix3x2<T>) {
-        self.x = Vector3<T>(m[0], T(0))
-        self.y = Vector3<T>(m[1], T(0))
-        self.z = Vector3<T>(m[2], T(1))
+        self.x = Vector3<T>(m[0], 0)
+        self.y = Vector3<T>(m[1], 0)
+        self.z = Vector3<T>(m[2], 1)
     }
 
     public init(_ m: Matrix3x3<Float>) {
@@ -135,9 +135,9 @@ public struct Matrix3x3<T:ScalarType> : MatrixType {
     }
 
     public init(_ m:Matrix4x2<T>) {
-        self.x = Vector3<T>(m[0], T(0))
-        self.y = Vector3<T>(m[1], T(0))
-        self.z = Vector3<T>(m[2], T(1))
+        self.x = Vector3<T>(m[0], 0)
+        self.y = Vector3<T>(m[1], 0)
+        self.z = Vector3<T>(m[2], 1)
     }
 
     public init(_ m:Matrix4x3<T>) {
@@ -282,7 +282,7 @@ public func /=<T:FloatingPointScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<
 
 
 public func inverse<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
-    let invdet:T = T(1) / determinant(m)
+    let invdet:T = 1 / determinant(m)
     var mm = Matrix3x3<T>()
     mm.x.x = m.y.y * m.z.z
     mm.x.x = mm.x.x - m.y.z * m.z.y

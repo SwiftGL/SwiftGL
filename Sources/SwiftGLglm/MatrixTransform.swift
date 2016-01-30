@@ -51,7 +51,7 @@ public func rotate<T:FloatingPointScalarType where T:FloatingPointType>
     let c = GLmath.GLcos(a)
     let s = GLmath.GLsin(a)
     let axis = normalize(v)
-    let temp = (T(1)-c) * axis
+    let temp = (1-c) * axis
     var r00 = c
         r00 += temp[0] * axis[0]
     var r01 = temp[0] * axis[1]
@@ -96,35 +96,32 @@ public func rotate_slow<T:FloatingPointScalarType where T:FloatingPointType>
 
     let axis = normalize(v)
 
-    let t0 = T(0)
-    let t1 = T(1)
-
     var r00 = c
-        r00 += (t1 - c) * axis.x * axis.x
-    var r01 = (t1 - c) * axis.x * axis.y
+        r00 += (1 - c) * axis.x * axis.x
+    var r01 = (1 - c) * axis.x * axis.y
         r01 += s * axis.z
-    var r02 = (t1 - c) * axis.x * axis.z
+    var r02 = (1 - c) * axis.x * axis.z
         r02 -= s * axis.y
 
-    var r10 = (t1 - c) * axis.y * axis.x
+    var r10 = (1 - c) * axis.y * axis.x
         r10 -= s * axis.z
     var r11 = c
-        r11 += (t1 - c) * axis.y * axis.y
-    var r12 = (t1 - c) * axis.y * axis.z
+        r11 += (1 - c) * axis.y * axis.y
+    var r12 = (1 - c) * axis.y * axis.z
         r12 += s * axis.x
 
-    var r20 = (t1 - c) * axis.z * axis.x
+    var r20 = (1 - c) * axis.z * axis.x
         r20 += s * axis.y
-    var r21 = (t1 - c) * axis.z * axis.y
+    var r21 = (1 - c) * axis.z * axis.y
         r21 -= s * axis.x
     var r22 = c
-        r22 += (t1 - c) * axis.z * axis.z;
+        r22 += (1 - c) * axis.z * axis.z;
 
     return Matrix4x4<T>(
-        r00, r01, r02, t0,
-        r10, r11, r12, t0,
-        r20, r21, r22, t0,
-        t0,  t0,  t0,  t1
+        r00, r01, r02, 0,
+        r10, r11, r12, 0,
+        r20, r21, r22, 0,
+        0,   0,   0,   1
     )
 
 }
@@ -156,21 +153,17 @@ public func ortho<T:FloatingPointScalarType>
 public func ortho<T:FloatingPointScalarType>
     (left:T, _ right:T, _ bottom:T, _ top:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
+    let r00:T = 2 / (right - left)
+    let r11:T = 2 / (top - bottom)
 
-    let r00 = t2 / (right - left)
-    let r11 = t2 / (top - bottom)
-
-    let r30 = -(right + left) / (right - left)
-    let r31 = -(top + bottom) / (top - bottom)
+    let r30:T = -(right + left) / (right - left)
+    let r31:T = -(top + bottom) / (top - bottom)
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  -t1, t0,
-        r30, r31, t0,  t1
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   -1,  0,
+        r30, r31, 0,   1
     )
 }
 
@@ -178,29 +171,25 @@ public func ortho<T:FloatingPointScalarType>
 public func orthoLH<T:FloatingPointScalarType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
-
-    let r00 = t2 / (right - left)
-    let r11 = t2 / (top - bottom)
+    let r00 = 2 / (right - left)
+    let r11 = 2 / (top - bottom)
     let r30 = -(right + left) / (right - left)
     let r31 = -(top + bottom) / (top - bottom)
 
     var r22:T, r32:T
     if glmDepthZeroToOne {
-        r22 = t1 / (zFar - zNear)
+        r22 = 1 / (zFar - zNear)
         r32 = -zNear / (zFar - zNear)
     } else {
-        r22 = t2 / (zFar - zNear)
+        r22 = 2 / (zFar - zNear)
         r32 = -(zFar + zNear) / (zFar - zNear)
     }
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  r22, t0,
-        r30, r31, r32, t1
+        r00, 0,  0,  0,
+        0,  r11, 0,  0,
+        0,  0,  r22, 0,
+        r30, r31, r32, 1
     )
 }
 
@@ -208,29 +197,25 @@ public func orthoLH<T:FloatingPointScalarType>
 public func orthoRH<T:FloatingPointScalarType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
-
-    let r00 = t2 / (right - left)
-    let r11 = t2 / (top - bottom)
+    let r00 = 2 / (right - left)
+    let r11 = 2 / (top - bottom)
     let r30 = -(right + left) / (right - left)
     let r31 = -(top + bottom) / (top - bottom)
 
     var r22:T, r32:T
     if glmDepthZeroToOne {
-        r22 = -t1 / (zFar - zNear)
+        r22 = -1 / (zFar - zNear)
         r32 = -zNear / (zFar - zNear)
     } else {
-        r22 = -t2 / (zFar - zNear)
+        r22 = -2 / (zFar - zNear)
         r32 = -(zFar + zNear) / (zFar - zNear)
     }
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  r22, t0,
-        r30, r31, r32, t1
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   r22, 0,
+        r30, r31, r32, 1
     )
 }
 
@@ -249,12 +234,8 @@ public func frustum<T:FloatingPointScalarType>
 public func frustumLH<T:FloatingPointScalarType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ nearVal:T, _ farVal:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
-
-    let r00 = (t2 * nearVal) / (right - left)
-    let r11 = (t2 * nearVal) / (top - bottom)
+    let r00 = (2 * nearVal) / (right - left)
+    let r11 = (2 * nearVal) / (top - bottom)
     let r20 = (right + left) / (right - left)
     let r21 = (top + bottom) / (top - bottom)
 
@@ -265,15 +246,15 @@ public func frustumLH<T:FloatingPointScalarType>
         r32 /= (farVal - nearVal)
     } else {
         r22 = (farVal + nearVal) / (farVal - nearVal)
-        r32 = -(t2 * farVal * nearVal)
+        r32 = -(2 * farVal * nearVal)
         r32 /= (farVal - nearVal)
     }
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        r20, r21, r22, t1,
-        t0,  t0,  r32, t0
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        r20, r21, r22, 1,
+        0,   0,   r32, 0
     )
 
 }
@@ -282,12 +263,8 @@ public func frustumLH<T:FloatingPointScalarType>
 public func frustumRH<T:FloatingPointScalarType>
     (left:T, _ right:T, _ bottom:T, _ top:T, _ nearVal:T, _ farVal:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
-
-    let r00 = (t2 * nearVal) / (right - left)
-    let r11 = (t2 * nearVal) / (top - bottom)
+    let r00 = (2 * nearVal) / (right - left)
+    let r11 = (2 * nearVal) / (top - bottom)
     let r20 = (right + left) / (right - left)
     let r21 = (top + bottom) / (top - bottom)
 
@@ -298,15 +275,15 @@ public func frustumRH<T:FloatingPointScalarType>
         r32 /= (farVal - nearVal)
     } else {
         r22 = -(farVal + nearVal) / (farVal - nearVal)
-        r32 = -(t2 * farVal * nearVal)
+        r32 = -(2 * farVal * nearVal)
         r32 /= (farVal - nearVal)
     }
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        r20, r21, r22, -t1,
-        t0,  t0,  r32, t0
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        r20, r21, r22, -1,
+        0,   0,   r32, 0
     )
 
 }
@@ -326,16 +303,12 @@ public func perspective<T:FloatingPointScalarType>
 public func perspectiveLH<T:FloatingPointScalarType>
     (fovy:T, _ aspect:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
+    assert(aspect > 0)
 
-    assert(aspect > t0)
+    let tanHalfFovy = GLmath.GLtan(fovy / 2)
 
-    let tanHalfFovy = GLmath.GLtan(fovy / t2)
-
-    let r00 = t1 / (aspect * tanHalfFovy)
-    let r11 = t1 / (tanHalfFovy)
+    let r00 = 1 / (aspect * tanHalfFovy)
+    let r11 = 1 / (tanHalfFovy)
 
     var r22:T, r32:T
     if glmDepthZeroToOne {
@@ -343,15 +316,15 @@ public func perspectiveLH<T:FloatingPointScalarType>
         r32 = -(zFar * zNear) / (zFar - zNear)
     } else {
         r22 = (zFar + zNear) / (zFar - zNear)
-        r32 = -(t2 * zFar * zNear)
+        r32 = -(2 * zFar * zNear)
         r32 /= (zFar - zNear)
     }
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  r22, t1,
-        t0,  t0,  r32, t0
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   r22, 1,
+        0,   0,   r32, 0
     )
 
 }
@@ -360,16 +333,12 @@ public func perspectiveLH<T:FloatingPointScalarType>
 public func perspectiveRH<T:FloatingPointScalarType>
     (fovy:T, _ aspect:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
+    assert(aspect > 0)
 
-    assert(aspect > t0)
+    let tanHalfFovy = GLmath.GLtan(fovy / 2)
 
-    let tanHalfFovy = GLmath.GLtan(fovy / t2)
-
-    let r00 = t1 / (aspect * tanHalfFovy)
-    let r11 = t1 / (tanHalfFovy)
+    let r00 = 1 / (aspect * tanHalfFovy)
+    let r11 = 1 / (tanHalfFovy)
 
     var r22:T, r32:T
     if glmDepthZeroToOne {
@@ -377,15 +346,15 @@ public func perspectiveRH<T:FloatingPointScalarType>
         r32 = -(zFar * zNear) / (zFar - zNear)
     } else {
         r22 = -(zFar + zNear) / (zFar - zNear)
-        r32 = -(t2 * zFar * zNear)
+        r32 = -(2 * zFar * zNear)
         r32 /= (zFar - zNear)
     }
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  r22, -t1,
-        t0,  t0,  r32, t0
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   r22, -1,
+        0,   0,   r32, 0
     )
 }
 
@@ -404,15 +373,11 @@ public func perspectiveFov<T:FloatingPointScalarType>
 public func perspectiveFovLH<T:FloatingPointScalarType>
     (fov:T, _ width:T, _ height:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
+    assert(fov > 0)
+    assert(width > 0)
+    assert(height > 0)
 
-    assert(fov > t0)
-    assert(width > t0)
-    assert(height > t0)
-
-    let r00 = GLmath.GLcos(fov / t2) / GLmath.GLsin(fov / t2)
+    let r00 = GLmath.GLcos(fov / 2) / GLmath.GLsin(fov / 2)
     let r11 = r00 * height / width
 
     var r22:T, r32:T
@@ -421,15 +386,15 @@ public func perspectiveFovLH<T:FloatingPointScalarType>
         r32 = -(zFar * zNear) / (zFar - zNear)
     } else {
         r22 = -(zFar + zNear) / (zFar - zNear)
-        r32 = -(t2 * zFar * zNear)
+        r32 = -(2 * zFar * zNear)
         r32 /= (zFar - zNear)
     }
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  r22, -t1,
-        t0,  t0,  r32, t0
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   r22, -1,
+        0,   0,   r32, 0
     )
 
 }
@@ -438,15 +403,11 @@ public func perspectiveFovLH<T:FloatingPointScalarType>
 public func perspectiveFovRH<T:FloatingPointScalarType>
     (fov:T, _ width:T, _ height:T, _ zNear:T, _ zFar:T) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
+    assert(fov > 0)
+    assert(width > 0)
+    assert(height > 0)
 
-    assert(fov > t0)
-    assert(width > t0)
-    assert(height > t0)
-
-    let r00 = GLmath.GLcos(fov / t2) / GLmath.GLsin(fov / t2)
+    let r00 = GLmath.GLcos(fov / 2) / GLmath.GLsin(fov / 2)
     let r11 = r00 * height / width
 
     var r22:T, r32:T
@@ -455,22 +416,22 @@ public func perspectiveFovRH<T:FloatingPointScalarType>
         r32 = -(zFar * zNear) / (zFar - zNear)
     } else {
         r22 = (zFar + zNear) / (zFar - zNear)
-        r32 = -(t2 * zFar * zNear)
+        r32 = -(2 * zFar * zNear)
         r32 /= (zFar - zNear)
     }
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  r22, t1,
-        t0,  t0,  r32, t0
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   r22, 1,
+        0,   0,   r32, 0
     )
 }
 
 
 //TODO epsilon should default to Float(1).ulp
 public func infinitePerspective<T:FloatingPointScalarType>
-    (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = T(0)) -> Matrix4x4<T>
+    (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = 0) -> Matrix4x4<T>
 {
     if glmLeftHanded {
         return infinitePerspectiveLH(fovy, aspect, zNear, ep)
@@ -481,56 +442,48 @@ public func infinitePerspective<T:FloatingPointScalarType>
 
 
 public func infinitePerspectiveLH<T:FloatingPointScalarType>
-    (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = T(0)) -> Matrix4x4<T>
+    (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = 0) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
-
-    let range = GLmath.GLtan(fovy / t2) * zNear
+    let range = GLmath.GLtan(fovy / 2) * zNear
     let left = -range * aspect
     let right = range * aspect
     let bottom = -range
     let top = range;
 
-    let r00 = (t2 * zNear) / (right - left)
-    let r11 = (t2 * zNear) / (top - bottom)
-    let r22 = t1 - ep
-    let r32 = ep - (t2 * zNear)
+    let r00 = (2 * zNear) / (right - left)
+    let r11 = (2 * zNear) / (top - bottom)
+    let r22 = 1 - ep
+    let r32 = ep - (2 * zNear)
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  r22, t1,
-        t0,  t0,  r32, t0
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   r22, 1,
+        0,   0,   r32, 0
     )
 
 }
 
 
 public func infinitePerspectiveRH<T:FloatingPointScalarType>
-    (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = T(0)) -> Matrix4x4<T>
+    (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = 0) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
-
-    let range = GLmath.GLtan(fovy / t2) * zNear
+    let range = GLmath.GLtan(fovy / 2) * zNear
     let left = -range * aspect
     let right = range * aspect
     let bottom = -range
     let top = range;
 
-    let r00 = (t2 * zNear) / (right - left)
-    let r11 = (t2 * zNear) / (top - bottom)
-    let r22 = ep - t1
-    let r32 = ep - (t2 * zNear)
+    let r00 = (2 * zNear) / (right - left)
+    let r11 = (2 * zNear) / (top - bottom)
+    let r22 = ep - 1
+    let r32 = ep - (2 * zNear)
 
     return Matrix4x4<T>(
-        r00, t0,  t0,  t0,
-        t0,  r11, t0,  t0,
-        t0,  t0,  r22, -t1,
-        t0,  t0,  r32, t0
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   r22, -1,
+        0,   0,   r32, 0
     )
 
 }
@@ -539,7 +492,7 @@ public func infinitePerspectiveRH<T:FloatingPointScalarType>
 public func project<T:FloatingPointScalarType>
     (obj:Vector3<T>, _ model:Matrix4x4<T>, _ proj:Matrix4x4<T>, _ viewport:Vector4<T>) -> Vector3<T>
 {
-    var tmp = Vector4<T>(obj, T(1))
+    var tmp = Vector4<T>(obj, 1)
     tmp = model * tmp
     tmp = proj * tmp
     tmp /= tmp.w
@@ -554,11 +507,11 @@ public func project<T:FloatingPointScalarType>
 public func unproject<T:FloatingPointScalarType>
     (win:Vector3<T>, _ model:Matrix4x4<T>, _ proj:Matrix4x4<T>, _ viewport:Vector4<T>) -> Vector3<T>
 {
-    var tmp = Vector4<T>(win, T(1))
+    var tmp = Vector4<T>(win, 1)
     tmp.x = (tmp.x - viewport[0]) / viewport[2]
     tmp.y = (tmp.y - viewport[1]) / viewport[3]
     tmp = tmp * T(2)
-    tmp -= T(1)
+    tmp -= 1
     let inv = inverse(proj * model)
     var obj = inv * tmp
     obj /= obj.w
@@ -569,22 +522,18 @@ public func unproject<T:FloatingPointScalarType>
 public func pickMatrix<T:FloatingPointScalarType>
     (center:Vector2<T>, _ delta:Vector2<T>, _ viewport:Vector4<T>) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-    let t2 = T(2)
+    assert(delta.x > 0 && delta.y > 0);
 
-    assert(delta.x > t0 && delta.y > t0);
-
-    var tmpx = viewport[2] - t2 * (center.x - viewport[0])
+    var tmpx = viewport[2] - 2 * (center.x - viewport[0])
     tmpx /= delta.x
-    var tmpy = viewport[3] - t2 * (center.y - viewport[1])
+    var tmpy = viewport[3] - 2 * (center.y - viewport[1])
     tmpy /= delta.y
 
-    let trans = Vector3<T>(tmpx, tmpy, t0)
+    let trans = Vector3<T>(tmpx, tmpy, 0)
     let scal = Vector3<T>(
         viewport[2] / delta.x,
         viewport[3] / delta.y,
-        t1
+        1
     )
     return scale(translate(Matrix4x4<T>(), trans), scal)
 }
@@ -604,9 +553,6 @@ public func lookAt<T:FloatingPointScalarType>
 public func lookAtLH<T:FloatingPointScalarType>
     (eye:Vector3<T>, _ center:Vector3<T>, _ up:Vector3<T>) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-
     let f = normalize(center - eye)
     let s = normalize(cross(up, f))
     let u = cross(f, s)
@@ -616,10 +562,10 @@ public func lookAtLH<T:FloatingPointScalarType>
     let r32 = -dot(f, eye)
 
     return Matrix4x4<T>(
-        s.x, u.x, f.x, t0,
-        s.y, u.y, f.y, t0,
-        s.z, u.z, f.z, t0,
-        r30, r31, r32, t1
+        s.x, u.x, f.x, 0,
+        s.y, u.y, f.y, 0,
+        s.z, u.z, f.z, 0,
+        r30, r31, r32, 1
     )
 
 }
@@ -628,9 +574,6 @@ public func lookAtLH<T:FloatingPointScalarType>
 public func lookAtRH<T:FloatingPointScalarType>
     (eye:Vector3<T>, _ center:Vector3<T>, _ up:Vector3<T>) -> Matrix4x4<T>
 {
-    let t0 = T(0)
-    let t1 = T(1)
-
     let f = normalize(center - eye)
     let s = normalize(cross(up, f))
     let u = cross(f, s)
@@ -640,9 +583,9 @@ public func lookAtRH<T:FloatingPointScalarType>
     let r32 =  dot(f, eye)
 
     return Matrix4x4<T>(
-        s.x, u.x, -f.x, t0,
-        s.y, u.y, -f.y, t0,
-        s.z, u.z, -f.z, t0,
-        r30, r31, r32,  t1
+        s.x, u.x, -f.x, 0,
+        s.y, u.y, -f.y, 0,
+        s.z, u.z, -f.z, 0,
+        r30, r31, r32,  1
     )
 }

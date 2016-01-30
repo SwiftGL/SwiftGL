@@ -61,17 +61,17 @@ public struct Matrix4x3<T:ScalarType> : MatrixType {
     }
 
     public init() {
-        self.x = Vector3<T>(T(1), T(0), T(0))
-        self.y = Vector3<T>(T(0), T(1), T(0))
-        self.z = Vector3<T>(T(0), T(0), T(1))
-        self.w = Vector3<T>(T(0), T(0), T(0))
+        self.x = Vector3<T>(1, 0, 0)
+        self.y = Vector3<T>(0, 1, 0)
+        self.z = Vector3<T>(0, 0, 1)
+        self.w = Vector3<T>(0, 0, 0)
     }
 
     public init(_ s: T) {
-        self.x = Vector3<T>(s, T(0), T(0))
-        self.y = Vector3<T>(T(0), s, T(0))
-        self.z = Vector3<T>(T(0), T(0), s)
-        self.w = Vector3<T>(T(0), T(0), T(0))
+        self.x = Vector3<T>(s, 0, 0)
+        self.y = Vector3<T>(0, s, 0)
+        self.z = Vector3<T>(0, 0, s)
+        self.w = Vector3<T>(0, 0, 0)
     }
 
     public init(_ x: Vector3<T>, _ y: Vector3<T>, _ z: Vector3<T>, _ w: Vector3<T>) {
@@ -94,52 +94,52 @@ public struct Matrix4x3<T:ScalarType> : MatrixType {
     }
 
     public init(_ m:Matrix2x2<T>) {
-        self.x = Vector3<T>(m[0], T(0))
-        self.y = Vector3<T>(m[1], T(0))
-        self.z = Vector3<T>(T(0), T(0), T(1))
-        self.w = Vector3<T>(T(0), T(0), T(0))
+        self.x = Vector3<T>(m[0], 0)
+        self.y = Vector3<T>(m[1], 0)
+        self.z = Vector3<T>(0, 0, 1)
+        self.w = Vector3<T>(0, 0, 0)
     }
 
     public init(_ m:Matrix2x3<T>) {
         self.x = Vector3<T>(m[0])
         self.y = Vector3<T>(m[1])
-        self.z = Vector3<T>(T(0), T(0), T(1))
-        self.w = Vector3<T>(T(0), T(0), T(0))
+        self.z = Vector3<T>(0, 0, 1)
+        self.w = Vector3<T>(0, 0, 0)
     }
 
     public init(_ m:Matrix2x4<T>) {
         self.x = Vector3<T>(m[0])
         self.y = Vector3<T>(m[1])
-        self.z = Vector3<T>(T(0), T(0), T(1))
-        self.w = Vector3<T>(T(0), T(0), T(0))
+        self.z = Vector3<T>(0, 0, 1)
+        self.w = Vector3<T>(0, 0, 0)
     }
 
     public init(_ m:Matrix3x2<T>) {
-        self.x = Vector3<T>(m[0], T(0))
-        self.y = Vector3<T>(m[1], T(0))
-        self.z = Vector3<T>(m[2], T(1))
-        self.w = Vector3<T>(T(0), T(0), T(0))
+        self.x = Vector3<T>(m[0], 0)
+        self.y = Vector3<T>(m[1], 0)
+        self.z = Vector3<T>(m[2], 1)
+        self.w = Vector3<T>(0, 0, 0)
     }
 
     public init(_ m:Matrix3x3<T>) {
         self.x = Vector3<T>(m[0])
         self.y = Vector3<T>(m[1])
         self.z = Vector3<T>(m[2])
-        self.w = Vector3<T>(T(0), T(0), T(0))
+        self.w = Vector3<T>(0, 0, 0)
     }
 
     public init(_ m:Matrix3x4<T>) {
         self.x = Vector3<T>(m[0])
         self.y = Vector3<T>(m[1])
         self.z = Vector3<T>(m[2])
-        self.w = Vector3<T>(T(0), T(0), T(0))
+        self.w = Vector3<T>(0, 0, 0)
     }
 
     public init(_ m:Matrix4x2<T>) {
-        self.x = Vector3<T>(m[0], T(0))
-        self.y = Vector3<T>(m[1], T(0))
-        self.z = Vector3<T>(m[2], T(1))
-        self.w = Vector3<T>(m[3], T(0))
+        self.x = Vector3<T>(m[0], 0)
+        self.y = Vector3<T>(m[1], 0)
+        self.z = Vector3<T>(m[2], 1)
+        self.w = Vector3<T>(m[3], 0)
     }
 
     public init(_ m: Matrix4x3<Float>) {

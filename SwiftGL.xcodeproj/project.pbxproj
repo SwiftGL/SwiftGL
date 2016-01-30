@@ -27,6 +27,7 @@
 		3D6496451C4B5A440009DEAD /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6496441C4B5A440009DEAD /* MatrixTransform.swift */; };
 		3D6496471C4B7F5A0009DEAD /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
 		3D6496481C4B883A0009DEAD /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
+		3D6EDB101C57DB53001B9D86 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB284381C475DEB008D46E6 /* Functions.swift */; };
 		3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F3D151C3B28B1007C49E7 /* main.swift */; };
 		3D90F4981C489B2100229A4F /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
 		3D90F4991C489B2600229A4F /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
@@ -53,7 +54,6 @@
 		3D91C3E21C3B224500BA748A /* SwizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */; };
 		3D91C3E31C3B224500BA748A /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */; };
 		3DAE99541C4E24B700440741 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3CA1C3B220E00BA748A /* Swizzle.swift */; };
-		3DB284391C475DEB008D46E6 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB284381C475DEB008D46E6 /* Functions.swift */; };
 		3DB2843B1C481396008D46E6 /* FunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB2843A1C481396008D46E6 /* FunctionsTests.swift */; };
 		3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */; };
 		3DFD6ECB1C49E3A500E26222 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECA1C49E3A500E26222 /* Player.swift */; };
@@ -141,13 +141,13 @@
 		3D91C3CC1C3B220E00BA748A /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector2.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D91C3CD1C3B220E00BA748A /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D91C3CE1C3B220E00BA748A /* Vector4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector4.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D91C3D81C3B224500BA748A /* EqualWithAccuracy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualWithAccuracy.swift; sourceTree = "<group>"; };
+		3D91C3D81C3B224500BA748A /* EqualWithAccuracy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EqualWithAccuracy.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D91C3D91C3B224500BA748A /* Matrix2x2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix2x2Tests.swift; sourceTree = "<group>"; };
 		3D91C3DA1C3B224500BA748A /* Matrix3x3Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix3x3Tests.swift; sourceTree = "<group>"; };
 		3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix4x4Tests.swift; sourceTree = "<group>"; };
 		3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwizzleTests.swift; sourceTree = "<group>"; };
 		3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2Tests.swift; sourceTree = "<group>"; };
-		3DB284381C475DEB008D46E6 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		3DB284381C475DEB008D46E6 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Functions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3DB2843A1C481396008D46E6 /* FunctionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsTests.swift; sourceTree = "<group>"; };
 		3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector4Tests.swift; sourceTree = "<group>"; };
 		3DFD6ECA1C49E3A500E26222 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -754,6 +754,7 @@
 				3D3C73311C3CEB9A007FD4F9 /* Matrix4x3.swift in Sources */,
 				3DFFC9891C447AC000EF48B4 /* Vector3b.swift in Sources */,
 				3D91C3CF1C3B220E00BA748A /* Internal.swift in Sources */,
+				3D6EDB101C57DB53001B9D86 /* Functions.swift in Sources */,
 				3D91C3D01C3B220E00BA748A /* Matrix2x2.swift in Sources */,
 				3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */,
 				3D91C3D51C3B220E00BA748A /* Vector2.swift in Sources */,
@@ -768,7 +769,6 @@
 				3DFFC98B1C447B6600EF48B4 /* Vector2b.swift in Sources */,
 				3D91C3D61C3B220E00BA748A /* Vector3.swift in Sources */,
 				3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */,
-				3DB284391C475DEB008D46E6 /* Functions.swift in Sources */,
 				3D91C3D71C3B220E00BA748A /* Vector4.swift in Sources */,
 				3D91C3D21C3B220E00BA748A /* Matrix4x4.swift in Sources */,
 			);
@@ -880,6 +880,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLglm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

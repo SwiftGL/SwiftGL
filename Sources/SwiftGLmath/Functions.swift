@@ -24,7 +24,7 @@
 
 @warn_unused_result
 public func radians<T:FloatingPointScalarType>(degrees:T) -> T {
-    return degrees * T(0.017453292519943295)
+    return degrees * 0.017453292519943295
 }
 
 @warn_unused_result
@@ -36,7 +36,7 @@ public func radians<genType:ScalarVectorType where
 
 @warn_unused_result
 public func degrees<T:FloatingPointScalarType>(radians:T) -> T {
-    return radians * T(57.29577951308232)
+    return radians * 57.29577951308232
 }
 
 @warn_unused_result
@@ -242,15 +242,15 @@ public func round<genType:ScalarVectorType where
 }
 
 private func roundEven<T:FloatingPointScalarType>(x:T) -> T {
-    var int:T = T(0)
+    var int:T = 0
     let frac:T = GLmath.GLmodf(x, &int);
     if frac != T(0.5) && frac != T(-0.5) {
         return GLmath.GLround(x);
     }
-    if int % T(2) == T(0) {
+    if int % T(2) == 0 {
         return int
     }
-    return int + (x <= T(0) ? T(-1) : T(1))
+    return int + (x <= 0 ? T(-1) : 1)
 }
 
 @warn_unused_result
@@ -268,7 +268,7 @@ public func ceil<genType:ScalarVectorType where
 }
 
 private func fract<T:FloatingPointScalarType>(x:T) -> T {
-    return T(1) - GLmath.GLfloor(x)
+    return 1 - GLmath.GLfloor(x)
 }
 
 @warn_unused_result
@@ -363,12 +363,12 @@ public func mix<genType:ScalarVectorType, genBType:BooleanVectorType
 
 @warn_unused_result
 public func step<genType:ScalarVectorType>(edge:genType, _ x:genType) -> genType {
-    return genType(edge, x) { $1 < $0 ? genType.Element(0) : genType.Element(1)}
+    return genType(edge, x) { $1 < $0 ? 0 : 1}
 }
 
 @warn_unused_result
 public func step<genType:ScalarVectorType>(edge:genType.Element, _ x:genType) -> genType {
-    return genType(x) { $0 < edge ? genType.Element(0) : genType.Element(1)}
+    return genType(x) { $0 < edge ? 0 : 1}
 }
 
 @warn_unused_result
@@ -378,7 +378,7 @@ public func smoothstep<genType:ScalarVectorType where
     return genType(edge0, edge1, x) { (edge0, edge1, x) in
         var i = x-edge0
         i /= edge1-edge0
-        let t = min(max( i, genType.Element(0)), genType.Element(1))
+        let t = min(max( i, 0), 1)
         i = genType.Element(3)
         i -= genType.Element(2) * t
         return t * t * i
@@ -392,7 +392,7 @@ public func smoothstep<genType:ScalarVectorType where
     return genType(x) { (x) in
         var i = x-edge0
         i /= edge1-edge0
-        let t = min(max( i, genType.Element(0)), genType.Element(1))
+        let t = min(max( i, 0), 1)
         i = genType.Element(3)
         i -= genType.Element(2) * t
         return t * t * i
@@ -606,7 +606,7 @@ public func dot<genType:ScalarVectorType where
     genType.Element:FloatingPointScalarType
     >(x:genType, _ y:genType) -> genType.Element {
     let a = genType(x, y, *)
-    return a.reduce(genType.Element(0)) { $0 + ($1 as! genType.Element) }
+    return a.reduce(0) { $0 + ($1 as! genType.Element) }
 }
 
 public func cross<genType:FloatingPointScalarType>
@@ -628,7 +628,7 @@ public func faceforward<genType:ScalarVectorType where
     genType.Element:FloatingPointScalarType,
     genType.Element:SignedNumberType
     >(n:genType, _ i:genType, _ nRef:genType) -> genType {
-    return dot(nRef, i) < genType.Element(0) ? n : -n
+    return dot(nRef, i) < 0 ? n : -n
 }
 
 public func reflect<genType:ScalarVectorType where
@@ -646,7 +646,7 @@ public func refract<genType:ScalarVectorType where
     k = genType.Element(1) - k
     k = eta * eta * k
     k = genType.Element(1) - k
-    if (k < genType.Element(0)) { return genType() }
+    if (k < 0) { return genType() }
     let x = eta * dotni + GLmath.GLsqrt(k)
     let r = x * n
     return eta * i - r

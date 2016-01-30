@@ -14,7 +14,7 @@ let package = Package(
 
 The `Demo` folder contains example programs to get you started.
 Start there if you want to validate your system is compatible.
-Thee rest of this README will explain what each of the modules do.
+The rest of this README will explain what each of the modules do.
 
 ## SwiftGL loader
 

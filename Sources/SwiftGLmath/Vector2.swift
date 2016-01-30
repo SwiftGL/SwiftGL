@@ -67,8 +67,8 @@ public struct Vector2<T:ScalarType> : ScalarVectorType {
     }
 
     public init () {
-        self.x = T(0)
-        self.y = T(0)
+        self.x = 0
+        self.y = 0
     }
 
     public init (_ v:T) {

@@ -28,7 +28,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalVector2(e1, e2, dist), msg, file: file, line: line)
 }
@@ -38,7 +38,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalVector2(e1, e2, dist), msg, file: file, line: line)
 }
@@ -48,7 +48,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalVector3(e1, e2, dist), msg, file: file, line: line)
 }
@@ -57,7 +57,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalVector3(e1, e2, dist), msg, file: file, line: line)
 }
@@ -67,7 +67,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalVector4(e1, e2, dist), msg, file: file, line: line)
 }
@@ -77,7 +77,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalVector4(e1, e2, dist), msg, file: file, line: line)
 }
@@ -87,7 +87,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix2x2(e1, e2, dist), msg, file: file, line: line)
 }
@@ -97,7 +97,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix2x2(e1, e2, dist), msg, file: file, line: line)
 }
@@ -107,7 +107,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix2x3(e1, e2, dist), msg, file: file, line: line)
 }
@@ -117,7 +117,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix2x3(e1, e2, dist), msg, file: file, line: line)
 }
@@ -127,7 +127,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix2x4(e1, e2, dist), msg, file: file, line: line)
 }
@@ -137,7 +137,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix2x4(e1, e2, dist), msg, file: file, line: line)
 }
@@ -147,7 +147,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix3x2(e1, e2, dist), msg, file: file, line: line)
 }
@@ -157,7 +157,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix3x2(e1, e2, dist), msg, file: file, line: line)
 }
@@ -167,7 +167,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix3x3(e1, e2, dist), msg, file: file, line: line)
 }
@@ -177,7 +177,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix3x3(e1, e2, dist), msg, file: file, line: line)
 }
@@ -187,7 +187,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix3x4(e1, e2, dist), msg, file: file, line: line)
 }
@@ -197,7 +197,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix3x4(e1, e2, dist), msg, file: file, line: line)
 }
@@ -207,7 +207,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix4x2(e1, e2, dist), msg, file: file, line: line)
 }
@@ -217,7 +217,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix4x2(e1, e2, dist), msg, file: file, line: line)
 }
@@ -227,7 +227,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix4x3(e1, e2, dist), msg, file: file, line: line)
 }
@@ -237,7 +237,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix4x3(e1, e2, dist), msg, file: file, line: line)
 }
@@ -247,7 +247,7 @@ func XCTAssertEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression1: 
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(equalMatrix4x4(e1, e2, dist), msg, file: file, line: line)
 }
@@ -257,7 +257,7 @@ func XCTAssertNotEqualWithAccuracy<T: FloatingPointType>(@autoclosure expression
 {
     let e1 = expression1()
     let e2 = expression2()
-    let dist = abs(accuracy.distanceTo(T(0)))
+    let dist = abs(accuracy.distanceTo(0))
     let msg = "\(e1) is not equal to \(e2) +/- (\(accuracy)) - \(message)"
     XCTAssert(!equalMatrix4x4(e1, e2, dist), msg, file: file, line: line)
 }

@@ -62,13 +62,13 @@ public struct Matrix2x2<T:ScalarType> : MatrixType {
     }
 
     public init() {
-        self.x = Vector2<T>(T(1), T(0))
-        self.y = Vector2<T>(T(0), T(1))
+        self.x = Vector2<T>(1, 0)
+        self.y = Vector2<T>(0, 1)
     }
 
     public init(_ s: T) {
-        self.x = Vector2<T>(s, T(0))
-        self.y = Vector2<T>(T(0), s)
+        self.x = Vector2<T>(s, 0)
+        self.y = Vector2<T>(0, s)
     }
 
     public init(_ x: Vector2<T>, _ y: Vector2<T>) {
@@ -305,7 +305,7 @@ public func inverse<T:FloatingPointScalarType>(m: Matrix2x2<T>) -> Matrix2x2<T> 
         }
         preconditionFailure()
     #else
-        let invdet:T = T(1) / determinant(m)
+        let invdet:T = 1 / determinant(m)
         return invdet * Matrix2x2<T>(m.y.y, -m.x.y, -m.y.x, m.x.x)
     #endif
 }

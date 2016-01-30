@@ -20,7 +20,7 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Matrix3x3<T:ScalarType> : MatrixType {
+public struct Matrix3x3<T:ArithmeticType> : MatrixType {
 
     public typealias Element = T
 
@@ -179,13 +179,13 @@ public struct Matrix3x3<T:ScalarType> : MatrixType {
 }
 
 
-public func ==<T:ScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Bool {
+public func ==<T:ArithmeticType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Bool {
     return m1.x == m2.x && m1.y == m2.y && m1.z == m2.z
 }
 
 
 @warn_unused_result
-public func *<T:ScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
+public func *<T:ArithmeticType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
     var x:T = v.x * m.x.x
     x = x + v.y * m.x.y
     x = x + v.z * m.x.z
@@ -200,7 +200,7 @@ public func *<T:ScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
+public func *<T:ArithmeticType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
     var rv:Vector3<T> = m.x * v.x
     rv = rv + m.y * v.y
     rv = rv + m.z * v.z
@@ -209,7 +209,7 @@ public func *<T:ScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix3x3<T>, m2: Matrix2x3<T>) -> Matrix2x3<T> {
+public func *<T:ArithmeticType>(m1: Matrix3x3<T>, m2: Matrix2x3<T>) -> Matrix2x3<T> {
     var x:Vector3<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     x = x + m1.z * m2[0].z
@@ -221,7 +221,7 @@ public func *<T:ScalarType>(m1: Matrix3x3<T>, m2: Matrix2x3<T>) -> Matrix2x3<T> 
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
+public func *<T:ArithmeticType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
     var x:Vector3<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     x = x + m1.z * m2[0].z
@@ -236,7 +236,7 @@ public func *<T:ScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> 
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix3x3<T>, m2: Matrix4x3<T>) -> Matrix4x3<T> {
+public func *<T:ArithmeticType>(m1: Matrix3x3<T>, m2: Matrix4x3<T>) -> Matrix4x3<T> {
     var x:Vector3<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     x = x + m1.z * m2[0].z
@@ -253,35 +253,35 @@ public func *<T:ScalarType>(m1: Matrix3x3<T>, m2: Matrix4x3<T>) -> Matrix4x3<T> 
 }
 
 
-public func *=<T:ScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
+public func *=<T:ArithmeticType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
     m1 = m1 * m2
 }
 
 
 @warn_unused_result
-public func /<T:FloatingPointScalarType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
+public func /<T:ArithmeticType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
     return v * inverse(m)
 }
 
 
 @warn_unused_result
-public func /<T:FloatingPointScalarType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
+public func /<T:ArithmeticType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
     return inverse(m) * v
 }
 
 
 @warn_unused_result
-public func /<T:FloatingPointScalarType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
+public func /<T:ArithmeticType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
     return m1 * inverse(m2)
 }
 
 
-public func /=<T:FloatingPointScalarType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
+public func /=<T:ArithmeticType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
     m1 = m1 / m2
 }
 
 
-public func inverse<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
+public func inverse<T:ArithmeticType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
     let invdet:T = 1 / determinant(m)
     var mm = Matrix3x3<T>()
     mm.x.x = m.y.y * m.z.z
@@ -306,7 +306,7 @@ public func inverse<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> 
 }
 
 
-public func determinant<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> T {
+public func determinant<T:ArithmeticType>(m: Matrix3x3<T>) -> T {
     var d1 = m.y.y * m.z.z
         d1 = d1 - m.z.y * m.y.z
     var d2 = m.x.y * m.z.z
@@ -320,7 +320,7 @@ public func determinant<T:FloatingPointScalarType>(m: Matrix3x3<T>) -> T {
 }
 
 
-public func transpose<T:ScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
+public func transpose<T:ArithmeticType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
     return Matrix3x3(
         m.x.x, m.y.x, m.z.x,
         m.x.y, m.y.y, m.z.y,
@@ -329,7 +329,7 @@ public func transpose<T:ScalarType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
 }
 
 
-public func outerProduct<T:ScalarType>(c:Vector3<T>, _ r:Vector3<T>) -> Matrix3x3<T> {
+public func outerProduct<T:ArithmeticType>(c:Vector3<T>, _ r:Vector3<T>) -> Matrix3x3<T> {
     return Matrix3x3(
         c * r[0],
         c * r[1],

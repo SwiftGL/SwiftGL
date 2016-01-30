@@ -25,7 +25,7 @@ import simd
 #endif
 
 
-public struct Matrix3x4<T:ScalarType> : MatrixType {
+public struct Matrix3x4<T:ArithmeticType> : MatrixType {
 
     public typealias Element = T
 
@@ -184,13 +184,13 @@ public struct Matrix3x4<T:ScalarType> : MatrixType {
 }
 
 
-public func ==<T:ScalarType>(m1: Matrix3x4<T>, m2: Matrix3x4<T>) -> Bool {
+public func ==<T:ArithmeticType>(m1: Matrix3x4<T>, m2: Matrix3x4<T>) -> Bool {
     return m1.x == m2.x && m1.y == m2.y && m1.z == m2.z
 }
 
 
 @warn_unused_result
-public func *<T:ScalarType>(v: Vector4<T>, m: Matrix3x4<T>) -> Vector3<T> {
+public func *<T:ArithmeticType>(v: Vector4<T>, m: Matrix3x4<T>) -> Vector3<T> {
     var x:T = v.x * m.x.x
     x = x + v.y * m.x.y
     x = x + v.z * m.x.z
@@ -208,7 +208,7 @@ public func *<T:ScalarType>(v: Vector4<T>, m: Matrix3x4<T>) -> Vector3<T> {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m: Matrix3x4<T>, v: Vector3<T>) -> Vector4<T> {
+public func *<T:ArithmeticType>(m: Matrix3x4<T>, v: Vector3<T>) -> Vector4<T> {
     var rv:Vector4<T> = m.x * v.x
     rv = rv + m.y * v.y
     rv = rv + m.z * v.z
@@ -217,7 +217,7 @@ public func *<T:ScalarType>(m: Matrix3x4<T>, v: Vector3<T>) -> Vector4<T> {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix3x4<T>, m2: Matrix2x3<T>) -> Matrix2x4<T> {
+public func *<T:ArithmeticType>(m1: Matrix3x4<T>, m2: Matrix2x3<T>) -> Matrix2x4<T> {
     var x:Vector4<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     x = x + m1.z * m2[0].z
@@ -229,7 +229,7 @@ public func *<T:ScalarType>(m1: Matrix3x4<T>, m2: Matrix2x3<T>) -> Matrix2x4<T> 
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix3x4<T>, m2: Matrix3x3<T>) -> Matrix3x4<T> {
+public func *<T:ArithmeticType>(m1: Matrix3x4<T>, m2: Matrix3x3<T>) -> Matrix3x4<T> {
     var x:Vector4<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     x = x + m1.z * m2[0].z
@@ -244,7 +244,7 @@ public func *<T:ScalarType>(m1: Matrix3x4<T>, m2: Matrix3x3<T>) -> Matrix3x4<T> 
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix3x4<T>, m2: Matrix4x3<T>) -> Matrix4x4<T> {
+public func *<T:ArithmeticType>(m1: Matrix3x4<T>, m2: Matrix4x3<T>) -> Matrix4x4<T> {
     var x:Vector4<T> = m1.x * m2[0].x
     x = x + m1.y * m2[0].y
     x = x + m1.z * m2[0].z
@@ -261,7 +261,7 @@ public func *<T:ScalarType>(m1: Matrix3x4<T>, m2: Matrix4x3<T>) -> Matrix4x4<T> 
 }
 
 
-public func transpose<T:ScalarType>(m: Matrix3x4<T>) -> Matrix4x3<T> {
+public func transpose<T:ArithmeticType>(m: Matrix3x4<T>) -> Matrix4x3<T> {
     return Matrix4x3(
         m.x.x, m.y.x, m.z.x,
         m.x.y, m.y.y, m.z.y,
@@ -271,7 +271,7 @@ public func transpose<T:ScalarType>(m: Matrix3x4<T>) -> Matrix4x3<T> {
 }
 
 
-public func outerProduct<T:ScalarType>(c:Vector4<T>, _ r:Vector3<T>) -> Matrix3x4<T> {
+public func outerProduct<T:ArithmeticType>(c:Vector4<T>, _ r:Vector3<T>) -> Matrix3x4<T> {
     return Matrix3x4(
         c * r[0],
         c * r[1],

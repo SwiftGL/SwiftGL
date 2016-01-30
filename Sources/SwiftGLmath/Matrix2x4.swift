@@ -25,7 +25,7 @@ import simd
 #endif
 
 
-public struct Matrix2x4<T:ScalarType> : MatrixType {
+public struct Matrix2x4<T:ArithmeticType> : MatrixType {
 
     public typealias Element = T
 
@@ -162,13 +162,13 @@ public struct Matrix2x4<T:ScalarType> : MatrixType {
 }
 
 
-public func ==<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix2x4<T>) -> Bool {
+public func ==<T:ArithmeticType>(m1: Matrix2x4<T>, m2: Matrix2x4<T>) -> Bool {
     return m1.x == m2.x && m1.y == m2.y
 }
 
 
 @warn_unused_result
-public func *<T:ScalarType>(v: Vector4<T>, m: Matrix2x4<T>) -> Vector2<T> {
+public func *<T:ArithmeticType>(v: Vector4<T>, m: Matrix2x4<T>) -> Vector2<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(v, float4.self) * unsafeBitCast(m, float2x4.self), Vector2<T>.self)
@@ -192,7 +192,7 @@ public func *<T:ScalarType>(v: Vector4<T>, m: Matrix2x4<T>) -> Vector2<T> {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m: Matrix2x4<T>, v: Vector2<T>) -> Vector4<T> {
+public func *<T:ArithmeticType>(m: Matrix2x4<T>, v: Vector2<T>) -> Vector4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(m, float2x4.self) * unsafeBitCast(v, float2.self), Vector4<T>.self)
@@ -208,7 +208,7 @@ public func *<T:ScalarType>(m: Matrix2x4<T>, v: Vector2<T>) -> Vector4<T> {
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix2x2<T>) -> Matrix2x4<T> {
+public func *<T:ArithmeticType>(m1: Matrix2x4<T>, m2: Matrix2x2<T>) -> Matrix2x4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(m1, float2x4.self) * unsafeBitCast(m2, float2x2.self), Matrix2x4<T>.self)
@@ -228,7 +228,7 @@ public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix2x2<T>) -> Matrix2x4<T> 
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix3x2<T>) -> Matrix3x4<T> {
+public func *<T:ArithmeticType>(m1: Matrix2x4<T>, m2: Matrix3x2<T>) -> Matrix3x4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(m1, float2x4.self) * unsafeBitCast(m2, float3x2.self), Matrix3x4<T>.self)
@@ -250,7 +250,7 @@ public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix3x2<T>) -> Matrix3x4<T> 
 
 
 @warn_unused_result
-public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix4x2<T>) -> Matrix4x4<T> {
+public func *<T:ArithmeticType>(m1: Matrix2x4<T>, m2: Matrix4x2<T>) -> Matrix4x4<T> {
     #if !os(Linux)
         if T.self == Float.self {
             return unsafeBitCast(unsafeBitCast(m1, float2x4.self) * unsafeBitCast(m2, float4x2.self), Matrix4x4<T>.self)
@@ -273,7 +273,7 @@ public func *<T:ScalarType>(m1: Matrix2x4<T>, m2: Matrix4x2<T>) -> Matrix4x4<T> 
 }
 
 
-public func transpose<T:ScalarType>(m: Matrix2x4<T>) -> Matrix4x2<T> {
+public func transpose<T:ArithmeticType>(m: Matrix2x4<T>) -> Matrix4x2<T> {
     return Matrix4x2(
         m.x.x, m.y.x,
         m.x.y, m.y.y,
@@ -283,7 +283,7 @@ public func transpose<T:ScalarType>(m: Matrix2x4<T>) -> Matrix4x2<T> {
 }
 
 
-public func outerProduct<T:ScalarType>(c:Vector4<T>, _ r:Vector2<T>) -> Matrix2x4<T> {
+public func outerProduct<T:ArithmeticType>(c:Vector4<T>, _ r:Vector2<T>) -> Matrix2x4<T> {
     return Matrix2x4(
         c * r[0],
         c * r[1]

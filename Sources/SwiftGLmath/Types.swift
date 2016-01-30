@@ -67,12 +67,20 @@ public typealias mat4x4 = Matrix4x4<Float>
 public typealias dmat4x4 = Matrix4x4<Double>
 
 
-public protocol ScalarType : Hashable, Comparable, IntegerLiteralConvertible {
+public protocol ArithmeticType : Hashable, Comparable, IntegerLiteralConvertible {
+    init(_: Double)
+    init(_: Float)
+    init(_: Float80)
     init(_: Int)
+    init(_: UInt)
+    init(_: Int8)
+    init(_: UInt8)
+    init(_: Int16)
+    init(_: UInt16)
     init(_: Int32)
     init(_: UInt32)
-    init(_: Float)
-    init(_: Double)
+    init(_: Int64)
+    init(_: UInt64)
     func +(_: Self, _: Self) -> Self
     func +=(inout _: Self, _: Self)
     func -(_: Self, _: Self) -> Self
@@ -84,29 +92,30 @@ public protocol ScalarType : Hashable, Comparable, IntegerLiteralConvertible {
     func %(_: Self, _: Self) -> Self
     func %=(inout _: Self, _: Self)
 }
+extension Float80: ArithmeticType {}
 
-public protocol IntegerScalarType : ScalarType {
-    func &+(_: Self, _: Self) -> Self
-    func &-(_: Self, _: Self) -> Self
-    func &*(_: Self, _: Self) -> Self
+// FloatingPointType should inherit SignedNumberType
+public protocol FloatingPointArithmeticType : ArithmeticType, FloatingPointType, SignedNumberType {}
+extension Double: FloatingPointArithmeticType {}
+extension Float: FloatingPointArithmeticType {}
+
+// Swift didn't put these in BitwiseOperationsType
+public protocol BitsOperationsType : BitwiseOperationsType, ArithmeticType {
     func <<(_: Self, _: Self) -> Self
+    func <<=(inout _: Self, _: Self)
     func >>(_: Self, _: Self) -> Self
-    func &(_: Self, _: Self) -> Self
-    func &=(inout _: Self, _: Self)
-    func |(_: Self, _: Self) -> Self
-    func |=(inout _: Self, _: Self)
-    func ^(_: Self, _: Self) -> Self
-    func ^=(inout _: Self, _: Self)
-    prefix func ~(_: Self) -> Self
+    func >>=(inout _: Self, _: Self)
 }
-extension UInt32: IntegerScalarType {}
-extension Int32: IntegerScalarType {}
-
-public protocol FloatingPointScalarType : ScalarType, FloatLiteralConvertible {
-    prefix func -(_: Self) -> Self
-}
-extension Float: FloatingPointScalarType {}
-extension Double: FloatingPointScalarType {}
+extension Int: BitsOperationsType {}
+extension UInt: BitsOperationsType {}
+extension Int8: BitsOperationsType {}
+extension UInt8: BitsOperationsType {}
+extension Int16: BitsOperationsType {}
+extension UInt16: BitsOperationsType {}
+extension Int32: BitsOperationsType {}
+extension UInt32: BitsOperationsType {}
+extension Int64: BitsOperationsType {}
+extension UInt64: BitsOperationsType {}
 
 
 public protocol GLmathType : MutableCollectionType, Hashable, Equatable, CustomDebugStringConvertible {
@@ -118,8 +127,8 @@ public protocol GLmathType : MutableCollectionType, Hashable, Equatable, CustomD
     init(_: Self, _: Element, @noescape _:(_:Element, _:Element) -> Element)
 }
 
-public protocol GLmathScalarType : GLmathType {
-    typealias Element:ScalarType
+public protocol GLmathArithmeticType : GLmathType {
+    typealias Element:ArithmeticType
     prefix func ++(inout _: Self) -> Self
     postfix func ++(inout _: Self) -> Self
     prefix func --(inout _: Self) -> Self
@@ -171,9 +180,9 @@ public protocol BooleanVectorType : VectorType {
     typealias Element:BooleanType
 }
 
-public protocol ScalarVectorType : VectorType, GLmathScalarType {
+public protocol ScalarVectorType : VectorType, GLmathArithmeticType {
     typealias BooleanVector:BooleanVectorType
 }
 
-public protocol MatrixType : GLmathScalarType {
+public protocol MatrixType : GLmathArithmeticType {
 }

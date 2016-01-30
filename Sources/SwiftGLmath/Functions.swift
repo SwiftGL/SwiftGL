@@ -23,130 +23,130 @@
 // Section 8.1 Angle and Trignometry Functions
 
 @warn_unused_result
-public func radians<T:FloatingPointScalarType>(degrees:T) -> T {
-    return degrees * 0.017453292519943295
+public func radians<T:ArithmeticType>(degrees:T) -> T {
+    return degrees * T(0.017453292519943295)
 }
 
 @warn_unused_result
 public func radians<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(degrees:genType) -> genType {
     return genType(degrees, radians)
 }
 
 @warn_unused_result
-public func degrees<T:FloatingPointScalarType>(radians:T) -> T {
-    return radians * 57.29577951308232
+public func degrees<T:ArithmeticType>(radians:T) -> T {
+    return radians * T(57.29577951308232)
 }
 
 @warn_unused_result
 public func degrees<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(radians:genType) -> genType {
     return genType(radians, degrees)
 }
 
 @warn_unused_result
 public func sin<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(angle:genType) -> genType {
     return genType(angle, GLmath.GLsin)
 }
 
 @warn_unused_result
 public func cos<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(angle:genType) -> genType {
     return genType(angle, GLmath.GLcos)
 }
 
 @warn_unused_result
 public func tan<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(angle:genType) -> genType {
     return genType(angle, GLmath.GLtan)
 }
 
 @warn_unused_result
 public func asin<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLasin)
 }
 
 @warn_unused_result
 public func acos<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLacos)
 }
 
 @warn_unused_result
 public func atan<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(y:genType.Element, _ x:genType) -> genType {
     return genType(y, x, GLmath.GLatan)
 }
 
 @warn_unused_result
 public func atan<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(y:genType, _ x:genType.Element) -> genType {
     return genType(y, x, GLmath.GLatan)
 }
 
 @warn_unused_result
 public func atan<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(y:genType, _ x:genType) -> genType {
     return genType(y, x, GLmath.GLatan)
 }
 
 @warn_unused_result
 public func atan<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(yoverx:genType) -> genType {
     return genType(yoverx, GLmath.GLatan)
 }
 
 @warn_unused_result
 public func sinh<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLsinh)
 }
 
 @warn_unused_result
 public func cosh<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLcosh)
 }
 
 @warn_unused_result
 public func tanh<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLtanh)
 }
 
 @warn_unused_result
 public func asinh<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLasinh)
 }
 
 @warn_unused_result
 public func acosh<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLacosh)
 }
 
 @warn_unused_result
 public func atanh<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLatanh)
 }
@@ -156,49 +156,49 @@ public func atanh<genType:ScalarVectorType where
 
 @warn_unused_result
 public func pow<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType, _ y:genType) -> genType {
     return genType(x, y, GLmath.GLpow)
 }
 
 @warn_unused_result
 public func exp<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLexp)
 }
 
 @warn_unused_result
 public func log<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLlog)
 }
 
 @warn_unused_result
 public func exp2<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLexp2)
 }
 
 @warn_unused_result
 public func log2<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLlog2)
 }
 
 @warn_unused_result
 public func sqrt<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLsqrt)
 }
 
 @warn_unused_result
 public func inversesqrt<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x) { genType.Element(1) / GLmath.GLsqrt($0) }
 }
@@ -207,14 +207,14 @@ public func inversesqrt<genType:ScalarVectorType where
 // Section 8.3 Common Functions
 
 @warn_unused_result
-public func abs<genType:GLmathScalarType where
+public func abs<genType:GLmathArithmeticType where
     genType.Element:AbsoluteValuable
     >(x:genType) -> genType {
     return genType(x, abs)
 }
 
 @warn_unused_result
-public func sign<genType:GLmathScalarType where
+public func sign<genType:GLmathArithmeticType where
     genType.Element:SignedNumberType
     >(x:genType) -> genType {
     return genType(x) { $0 == 0 ? 0 : $0 < 0 ? -1 : 1 }
@@ -222,32 +222,32 @@ public func sign<genType:GLmathScalarType where
 
 @warn_unused_result
 public func floor<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLfloor)
 }
 
 @warn_unused_result
 public func trunc<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLtrunc)
 }
 
 @warn_unused_result
 public func round<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLround)
 }
 
-private func roundEven<T:FloatingPointScalarType>(x:T) -> T {
+private func roundEven<T:ArithmeticType>(x:T) -> T {
     var int:T = 0
     let frac:T = GLmath.GLmodf(x, &int);
     if frac != T(0.5) && frac != T(-0.5) {
         return GLmath.GLround(x);
     }
-    if int % T(2) == 0 {
+    if int % 2 == 0 {
         return int
     }
     return int + (x <= 0 ? T(-1) : 1)
@@ -255,52 +255,52 @@ private func roundEven<T:FloatingPointScalarType>(x:T) -> T {
 
 @warn_unused_result
 public func roundEven<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, roundEven)
 }
 
 @warn_unused_result
 public func ceil<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, GLmath.GLceil)
 }
 
-private func fract<T:FloatingPointScalarType>(x:T) -> T {
+private func fract<T:ArithmeticType>(x:T) -> T {
     return 1 - GLmath.GLfloor(x)
 }
 
 @warn_unused_result
 public func fract<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return genType(x, fract)
 }
 
 @warn_unused_result
 public func mod<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType.Element, _ y:genType) -> genType {
     return genType(x, y, GLmath.GLmod)
 }
 
 @warn_unused_result
 public func mod<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType, _ y:genType.Element) -> genType {
     return genType(x, y, GLmath.GLmod)
 }
 
 @warn_unused_result
 public func mod<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType, _ y:genType) -> genType {
     return genType(x, y, GLmath.GLmod)
 }
 
 public func modf<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType, inout _ i:genType) -> genType {
     return genType(x, &i, GLmath.GLmodf)
 }
@@ -373,7 +373,7 @@ public func step<genType:ScalarVectorType>(edge:genType.Element, _ x:genType) ->
 
 @warn_unused_result
 public func smoothstep<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(edge0:genType, _ edge1:genType, _ x:genType) -> genType {
     return genType(edge0, edge1, x) { (edge0, edge1, x) in
         var i = x-edge0
@@ -387,7 +387,7 @@ public func smoothstep<genType:ScalarVectorType where
 
 @warn_unused_result
 public func smoothstep<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(edge0:genType.Element, _ edge1:genType.Element, _ x:genType) -> genType {
     return genType(x) { (x) in
         var i = x-edge0
@@ -424,7 +424,7 @@ public func isinf<genType:ScalarVectorType
 @warn_unused_result
 public func floatBitsToInt<genType:ScalarVectorType where
     genType.Int32Vector:ScalarVectorType,
-    genType.Int32Vector.Element:IntegerScalarType,
+    genType.Int32Vector.Element:IntegerArithmeticType,
     genType.Element == Float,
     genType.BooleanVector == genType.Int32Vector.BooleanVector
     >(value:genType) -> genType.Int32Vector {
@@ -436,7 +436,7 @@ public func floatBitsToInt<genType:ScalarVectorType where
 @warn_unused_result
 public func floatBitsToUint<genType:ScalarVectorType where
     genType.UInt32Vector:ScalarVectorType,
-    genType.UInt32Vector.Element:IntegerScalarType,
+    genType.UInt32Vector.Element:IntegerArithmeticType,
     genType.Element == Float,
     genType.BooleanVector == genType.UInt32Vector.BooleanVector
     >(value:genType) -> genType.UInt32Vector {
@@ -471,13 +471,13 @@ public func uintBitsToFloat<genType:ScalarVectorType where
 
 @warn_unused_result
 public func fma<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(a:genType, _ b:genType, _ c:genType) -> genType {
     return genType(a, b, c, GLmath.GLfma)
 }
 
 public func frexp<genType:ScalarVectorType, genIType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType,
+    genType.Element:ArithmeticType,
     genIType.Element == Int32,
     genType.BooleanVector == genIType.BooleanVector
     >(x:genType, inout _ exp:genIType) -> genType {
@@ -485,7 +485,7 @@ public func frexp<genType:ScalarVectorType, genIType:ScalarVectorType where
 }
 
 public func ldexp<genType:ScalarVectorType, genIType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType,
+    genType.Element:ArithmeticType,
     genIType.Element == Int32,
     genType.BooleanVector == genIType.BooleanVector
     >(x:genType, _ exp:genIType) -> genType {
@@ -591,25 +591,25 @@ public func unpackHalf2x16 (v:UInt32) -> vec2 {
 // Section 8.5 Geometric Functions
 
 public func length<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType.Element {
     return GLmath.GLsqrt(dot(x, x))
 }
 
 public func distance<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(p0:genType, _ p1:genType) -> genType.Element {
     return length(p0 - p1)
 }
 
 public func dot<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType, _ y:genType) -> genType.Element {
     let a = genType(x, y, *)
     return a.reduce(0) { $0 + ($1 as! genType.Element) }
 }
 
-public func cross<genType:FloatingPointScalarType>
+public func cross<genType:ArithmeticType>
     (x:Vector3<genType>, _ y:Vector3<genType>) -> Vector3<genType> {
     return Vector3<genType>(
         x.y * y.z - y.y * x.z,
@@ -619,27 +619,27 @@ public func cross<genType:FloatingPointScalarType>
 }
 
 public func normalize<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(x:genType) -> genType {
     return x / length(x)
 }
 
 public func faceforward<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType,
+    genType.Element:ArithmeticType,
     genType.Element:SignedNumberType
     >(n:genType, _ i:genType, _ nRef:genType) -> genType {
     return dot(nRef, i) < 0 ? n : -n
 }
 
 public func reflect<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(i:genType, _ n:genType) -> genType {
     let f = genType.Element(2) * dot(n, i)
     return i - f * n
 }
 
 public func refract<genType:ScalarVectorType where
-    genType.Element:FloatingPointScalarType
+    genType.Element:ArithmeticType
     >(i:genType, _ n:genType, _ eta:genType.Element) -> genType {
     let dotni = dot(n, i)
     var k = dotni * dotni

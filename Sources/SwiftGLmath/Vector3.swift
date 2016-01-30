@@ -20,7 +20,7 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public struct Vector3<T:ScalarType> : ScalarVectorType {
+public struct Vector3<T:ArithmeticType> : ScalarVectorType {
 
     public typealias Element = T
     public typealias FloatVector = Vector3<Float>
@@ -200,6 +200,6 @@ public struct Vector3<T:ScalarType> : ScalarVectorType {
 }
 
 
-public func ==<T:ScalarType>(v1: Vector3<T>, v2: Vector3<T>) -> Bool {
+public func ==<T:ArithmeticType>(v1: Vector3<T>, v2: Vector3<T>) -> Bool {
     return v1.x == v2.x && v1.y == v2.y && v1.z == v2.z
 }

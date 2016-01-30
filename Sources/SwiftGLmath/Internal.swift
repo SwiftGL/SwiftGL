@@ -106,7 +106,7 @@ public final class GLmath {
         }
     }
 
-    public static func GLsin<T:FloatingPointScalarType>(angle:T) -> T {
+    public static func GLsin<T:ArithmeticType>(angle:T) -> T {
         if let z = angle as? Double {
             return sin(z) as! T
         }
@@ -116,7 +116,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLcos<T:FloatingPointScalarType>(angle:T) -> T {
+    public static func GLcos<T:ArithmeticType>(angle:T) -> T {
         if let z = angle as? Double {
             return cos(z) as! T
         }
@@ -126,7 +126,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLtan<T:FloatingPointScalarType>(angle:T) -> T {
+    public static func GLtan<T:ArithmeticType>(angle:T) -> T {
         if let z = angle as? Double {
             return tan(z) as! T
         }
@@ -136,7 +136,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLasin<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLasin<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return asin(z) as! T
         }
@@ -146,7 +146,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLacos<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLacos<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return acos(z) as! T
         }
@@ -156,7 +156,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLatan<T:FloatingPointScalarType>(y:T, _ x:T) -> T {
+    public static func GLatan<T:ArithmeticType>(y:T, _ x:T) -> T {
         if let z = y as? Double {
             return atan2(z, x as! Double) as! T
         }
@@ -166,7 +166,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLatan<T:FloatingPointScalarType>(yoverx:T) -> T {
+    public static func GLatan<T:ArithmeticType>(yoverx:T) -> T {
         if let z = yoverx as? Double {
             return atan(z) as! T
         }
@@ -176,7 +176,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLsinh<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLsinh<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return sinh(z) as! T
         }
@@ -186,7 +186,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLcosh<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLcosh<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return cosh(z) as! T
         }
@@ -196,7 +196,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLtanh<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLtanh<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return tanh(z) as! T
         }
@@ -206,7 +206,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLasinh<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLasinh<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return asinh(z) as! T
         }
@@ -216,7 +216,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLacosh<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLacosh<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return acosh(z) as! T
         }
@@ -226,7 +226,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLatanh<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLatanh<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return atanh(z) as! T
         }
@@ -236,7 +236,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLpow<T:FloatingPointScalarType>(x:T, _ y:T) -> T {
+    public static func GLpow<T:ArithmeticType>(x:T, _ y:T) -> T {
         if let z = x as? Double {
             return pow(z, y as! Double) as! T
         }
@@ -245,7 +245,7 @@ public final class GLmath {
         }
         preconditionFailure()
     }
-    public static func GLexp<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLexp<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return exp(z) as! T
         }
@@ -254,7 +254,7 @@ public final class GLmath {
         }
         preconditionFailure()
     }
-    public static func GLlog<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLlog<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return log(z) as! T
         }
@@ -264,7 +264,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLexp2<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLexp2<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return exp2(z) as! T
         }
@@ -273,7 +273,7 @@ public final class GLmath {
         }
         preconditionFailure()
     }
-    public static func GLlog2<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLlog2<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return log2(z) as! T
         }
@@ -283,7 +283,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLsqrt<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLsqrt<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return sqrt(z) as! T
         }
@@ -293,7 +293,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLfloor<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLfloor<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return floor(z) as! T
         }
@@ -303,7 +303,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLtrunc<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLtrunc<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return trunc(z) as! T
         }
@@ -313,7 +313,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLround<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLround<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return round(z) as! T
         }
@@ -323,7 +323,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLceil<T:FloatingPointScalarType>(x:T) -> T {
+    public static func GLceil<T:ArithmeticType>(x:T) -> T {
         if let z = x as? Double {
             return ceil(z) as! T
         }
@@ -333,7 +333,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLmod<T:FloatingPointScalarType>(x:T, _ y:T) -> T {
+    public static func GLmod<T:ArithmeticType>(x:T, _ y:T) -> T {
         if let z = x as? Double {
             return fmod(z, y as! Double) as! T
         }
@@ -343,7 +343,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLmodf<T:FloatingPointScalarType>(x:T, inout _ i:T) -> T {
+    public static func GLmodf<T:ArithmeticType>(x:T, inout _ i:T) -> T {
         if let z = x as? Double {
             return withUnsafeMutablePointer(&i) {
                 return modf(z, UnsafeMutablePointer<Double>($0)) as! T
@@ -357,7 +357,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLfma<T:FloatingPointScalarType>(a:T, _ b:T, _ c:T) -> T {
+    public static func GLfma<T:ArithmeticType>(a:T, _ b:T, _ c:T) -> T {
         if let z = a as? Double {
             return fma(z, b as! Double, c as! Double) as! T
         }
@@ -367,7 +367,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLfrexp<T:FloatingPointScalarType>(x:T, inout _ exp:Int32) -> T {
+    public static func GLfrexp<T:ArithmeticType>(x:T, inout _ exp:Int32) -> T {
         if let z = x as? Double {
             return frexp(z, &exp) as! T
         }
@@ -377,7 +377,7 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLldexp<T:FloatingPointScalarType>(x:T, _ exp:Int32) -> T {
+    public static func GLldexp<T:ArithmeticType>(x:T, _ exp:Int32) -> T {
         if let z = x as? Double {
             return ldexp(z, exp) as! T
         }

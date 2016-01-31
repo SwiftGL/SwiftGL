@@ -424,7 +424,6 @@ public func perspectiveFovRH<T:FloatingPointArithmeticType>
 }
 
 
-//TODO epsilon should default to Float(1).ulp
 public func infinitePerspective<T:FloatingPointArithmeticType>
     (fovy:T, _ aspect:T, _ zNear:T, _ ep:T = 0) -> Matrix4x4<T>
 {
@@ -447,8 +446,21 @@ public func infinitePerspectiveLH<T:FloatingPointArithmeticType>
 
     let r00:T = (2 * zNear) / (right - left)
     let r11:T = (2 * zNear) / (top - bottom)
-    let r22:T = 1 - ep
     let r32:T = ep - (2 * zNear)
+
+    let r22:T
+    if ep == 0 {
+        switch(ep) {
+        case is Float:
+            r22 = T(0x1.fffffep-1)
+        case is Double:
+            r22 = T(0x1.fffffffffffffp-1)
+        default:
+            preconditionFailure()
+        }
+    } else {
+        r22 = 1 - ep
+    }
 
     return Matrix4x4<T>(
         r00, 0,   0,   0,
@@ -471,8 +483,21 @@ public func infinitePerspectiveRH<T:FloatingPointArithmeticType>
 
     let r00:T = (2 * zNear) / (right - left)
     let r11:T = (2 * zNear) / (top - bottom)
-    let r22:T = ep - 1
     let r32:T = ep - (2 * zNear)
+
+    let r22:T
+    if ep == 0 {
+        switch(ep) {
+        case is Float:
+            r22 = T(-0x1.fffffep-1)
+        case is Double:
+            r22 = T(-0x1.fffffffffffffp-1)
+        default:
+            preconditionFailure()
+        }
+    } else {
+        r22 = ep - 1
+    }
 
     return Matrix4x4<T>(
         r00, 0,   0,   0,
@@ -507,7 +532,7 @@ public func unproject<T:ArithmeticType>
     tmp.y = (tmp.y - viewport[1]) / viewport[3]
     tmp = tmp * 2
     tmp -= 1
-    let inv = inverse(proj * model)
+    let inv = (proj * model).inverse
     var obj = inv * tmp
     obj /= obj.w
     return Vector3<T>(obj)

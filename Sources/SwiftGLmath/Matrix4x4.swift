@@ -277,6 +277,153 @@ public struct Matrix4x4<T:ArithmeticType> : MatrixType {
         self.w = Vector4<T>(m1.w, m2.w, op)
     }
 
+    public var inverse:Matrix4x4<T> {
+        #if !os(Linux)
+            if T.self == Float.self {
+                return unsafeBitCast(unsafeBitCast(self, float4x4.self).inverse, Matrix4x4<T>.self)
+            }
+            if T.self == Double.self {
+                return unsafeBitCast(unsafeBitCast(self, double4x4.self).inverse, Matrix4x4<T>.self)
+            }
+        #endif
+
+        var d00:T = self.x.x * self.y.y
+        d00 = d00 - self.y.x * self.x.y
+        var d01:T = self.x.x * self.y.z
+        d01 = d01 - self.y.x * self.x.z
+        var d02:T = self.x.x * self.y.w
+        d02 = d02 - self.y.x * self.x.w
+        var d03:T = self.x.y * self.y.z
+        d03 = d03 - self.y.y * self.x.z
+        var d04:T = self.x.y * self.y.w
+        d04 = d04 - self.y.y * self.x.w
+        var d05:T = self.x.z * self.y.w
+        d05 = d05 - self.y.z * self.x.w
+
+        var d10:T = self.z.x * self.w.y
+        d10 = d10 - self.w.x * self.z.y
+        var d11:T = self.z.x * self.w.z
+        d11 = d11 - self.w.x * self.z.z
+        var d12:T = self.z.x * self.w.w
+        d12 = d12 - self.w.x * self.z.w
+        var d13:T = self.z.y * self.w.z
+        d13 = d13 - self.w.y * self.z.z
+        var d14:T = self.z.y * self.w.w
+        d14 = d14 - self.w.y * self.z.w
+        var d15:T = self.z.z * self.w.w
+        d15 = d15 - self.w.z * self.z.w
+
+        var det:T = d00 * d15
+        det = det - d01 * d14
+        det = det + d02 * d13
+        det = det + d03 * d12
+        det = det - d04 * d11
+        det = det + d05 * d10
+
+        var mm = Matrix4x4<T>()
+
+        mm.x.x = self.y.y * d15
+        mm.x.x = mm.x.x - self.y.z * d14
+        mm.x.x = mm.x.x + self.y.w * d13
+        mm.x.y = 0 - self.x.y * d15
+        mm.x.y = mm.x.y + self.x.z * d14
+        mm.x.y = mm.x.y - self.x.w * d13
+        mm.x.z = self.w.y * d05
+        mm.x.z = mm.x.z - self.w.z * d04
+        mm.x.z = mm.x.z + self.w.w * d03
+        mm.x.w = 0 - self.z.y * d05
+        mm.x.w = mm.x.w + self.z.z * d04
+        mm.x.w = mm.x.w - self.z.w * d03
+
+        mm.y.x = 0 - self.y.x * d15
+        mm.y.x = mm.y.x + self.y.z * d12
+        mm.y.x = mm.y.x - self.y.w * d11
+        mm.y.y = self.x.x * d15
+        mm.y.y = mm.y.y - self.x.z * d12
+        mm.y.y = mm.y.y + self.x.w * d11
+        mm.y.z = 0 - self.w.x * d05
+        mm.y.z = mm.y.z + self.w.z * d02
+        mm.y.z = mm.y.z - self.w.w * d01
+        mm.y.w = self.z.x * d05
+        mm.y.w = mm.y.w - self.z.z * d02
+        mm.y.w = mm.y.w + self.z.w * d01
+
+        mm.z.x = self.y.x * d14
+        mm.z.x = mm.z.x - self.y.y * d12
+        mm.z.x = mm.z.x + self.y.w * d10
+        mm.z.y = 0 - self.x.x * d14
+        mm.z.y = mm.z.y + self.x.y * d12
+        mm.z.y = mm.z.y - self.x.w * d10
+        mm.z.z = self.w.x * d04
+        mm.z.z = mm.z.z - self.w.y * d02
+        mm.z.z = mm.z.z + self.w.w * d00
+        mm.z.w = 0 - self.z.x * d04
+        mm.z.w = mm.z.w + self.z.y * d02
+        mm.z.w = mm.z.w - self.z.w * d00
+
+        mm.w.x = 0 - self.y.x * d13
+        mm.w.x = mm.w.x + self.y.y * d11
+        mm.w.x = mm.w.x - self.y.z * d10
+        mm.w.y = self.x.x * d13
+        mm.w.y = mm.w.y - self.x.y * d11
+        mm.w.y = mm.w.y + self.x.z * d10
+        mm.w.z = 0 - self.w.x * d03
+        mm.w.z = mm.w.z + self.w.y * d01
+        mm.w.z = mm.w.z - self.w.z * d00
+        mm.w.w = self.z.x * d03
+        mm.w.w = mm.w.w - self.z.y * d01
+        mm.w.w = mm.w.w + self.z.z * d00
+
+        let invdet : T = 1 / det
+        return mm * invdet
+    }
+
+    public var determinant:T {
+        var d00:T = self.x.x * self.y.y
+        d00 = d00 - self.y.x * self.x.y
+        var d01:T = self.x.x * self.y.z
+        d01 = d01 - self.y.x * self.x.z
+        var d02:T = self.x.x * self.y.w
+        d02 = d02 - self.y.x * self.x.w
+        var d03:T = self.x.y * self.y.z
+        d03 = d03 - self.y.y * self.x.z
+        var d04:T = self.x.y * self.y.w
+        d04 = d04 - self.y.y * self.x.w
+        var d05:T = self.x.z * self.y.w
+        d05 = d05 - self.y.z * self.x.w
+
+        var d10:T = self.z.x * self.w.y
+        d10 = d10 - self.w.x * self.z.y
+        var d11:T = self.z.x * self.w.z
+        d11 = d11 - self.w.x * self.z.z
+        var d12:T = self.z.x * self.w.w
+        d12 = d12 - self.w.x * self.z.w
+        var d13:T = self.z.y * self.w.z
+        d13 = d13 - self.w.y * self.z.z
+        var d14:T = self.z.y * self.w.w
+        d14 = d14 - self.w.y * self.z.w
+        var d15:T = self.z.z * self.w.w
+        d15 = d15 - self.w.z * self.z.w
+
+        var det:T = d00 * d15
+        det = det - d01 * d14
+        det = det + d02 * d13
+        det = det + d03 * d12
+        det = det - d04 * d11
+        det = det + d05 * d10
+
+        return det
+    }
+
+    public var transpose:Matrix4x4<T> {
+        return Matrix4x4(
+            self.x.x, self.y.x, self.z.x, self.w.x,
+            self.x.y, self.y.y, self.z.y, self.w.y,
+            self.x.z, self.y.z, self.z.z, self.w.z,
+            self.x.w, self.y.w, self.z.w, self.w.w
+        )
+    }
+
 }
 
 
@@ -419,185 +566,22 @@ public func *=<T:ArithmeticType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
 
 @warn_unused_result
 public func /<T:ArithmeticType>(v: Vector4<T>, m: Matrix4x4<T>) -> Vector4<T> {
-    return v * inverse(m)
+    return v * m.inverse
 }
 
 
 @warn_unused_result
 public func /<T:ArithmeticType>(m: Matrix4x4<T>, v: Vector4<T>) -> Vector4<T> {
-    return inverse(m) * v
+    return m.inverse * v
 }
 
 
 @warn_unused_result
 public func /<T:ArithmeticType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4<T> {
-    return m1 * inverse(m2)
+    return m1 * m2.inverse
 }
 
 
 public func /=<T:ArithmeticType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
     m1 = m1 / m2
-}
-
-
-@warn_unused_result
-public func inverse<T:ArithmeticType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
-    #if !os(Linux)
-        if T.self == Float.self {
-            return unsafeBitCast(unsafeBitCast(m, float4x4.self).inverse, Matrix4x4<T>.self)
-        }
-        if T.self == Double.self {
-            return unsafeBitCast(unsafeBitCast(m, double4x4.self).inverse, Matrix4x4<T>.self)
-        }
-    #endif
-    var d00:T = m.x.x * m.y.y
-        d00 = d00 - m.y.x * m.x.y
-    var d01:T = m.x.x * m.y.z
-        d01 = d01 - m.y.x * m.x.z
-    var d02:T = m.x.x * m.y.w
-        d02 = d02 - m.y.x * m.x.w
-    var d03:T = m.x.y * m.y.z
-        d03 = d03 - m.y.y * m.x.z
-    var d04:T = m.x.y * m.y.w
-        d04 = d04 - m.y.y * m.x.w
-    var d05:T = m.x.z * m.y.w
-        d05 = d05 - m.y.z * m.x.w
-
-    var d10:T = m.z.x * m.w.y
-        d10 = d10 - m.w.x * m.z.y
-    var d11:T = m.z.x * m.w.z
-        d11 = d11 - m.w.x * m.z.z
-    var d12:T = m.z.x * m.w.w
-        d12 = d12 - m.w.x * m.z.w
-    var d13:T = m.z.y * m.w.z
-        d13 = d13 - m.w.y * m.z.z
-    var d14:T = m.z.y * m.w.w
-        d14 = d14 - m.w.y * m.z.w
-    var d15:T = m.z.z * m.w.w
-        d15 = d15 - m.w.z * m.z.w
-
-    var det:T = d00 * d15
-        det = det - d01 * d14
-        det = det + d02 * d13
-    det = det + d03 * d12
-        det = det - d04 * d11
-        det = det + d05 * d10
-    let invdet : T = 1 / det
-
-    var mm = Matrix4x4<T>()
-
-    mm.x.x =  m.y.y * d15
-    mm.x.x = mm.x.x - m.y.z * d14
-    mm.x.x = mm.x.x + m.y.w * d13
-    mm.x.y = 0 - m.x.y * d15
-    mm.x.y = mm.x.y + m.x.z * d14
-    mm.x.y = mm.x.y - m.x.w * d13
-    mm.x.z =  m.w.y * d05
-    mm.x.z = mm.x.z - m.w.z * d04
-    mm.x.z = mm.x.z + m.w.w * d03
-    mm.x.w = 0 - m.z.y * d05
-    mm.x.w = mm.x.w + m.z.z * d04
-    mm.x.w = mm.x.w - m.z.w * d03
-
-    mm.y.x = 0 - m.y.x * d15
-    mm.y.x = mm.y.x + m.y.z * d12
-    mm.y.x = mm.y.x - m.y.w * d11
-    mm.y.y =  m.x.x * d15
-    mm.y.y = mm.y.y - m.x.z * d12
-    mm.y.y = mm.y.y + m.x.w * d11
-    mm.y.z = 0 - m.w.x * d05
-    mm.y.z = mm.y.z + m.w.z * d02
-    mm.y.z = mm.y.z - m.w.w * d01
-    mm.y.w =  m.z.x * d05
-    mm.y.w = mm.y.w - m.z.z * d02
-    mm.y.w = mm.y.w + m.z.w * d01
-
-    mm.z.x =  m.y.x * d14
-    mm.z.x = mm.z.x - m.y.y * d12
-    mm.z.x = mm.z.x + m.y.w * d10
-    mm.z.y = 0 - m.x.x * d14
-    mm.z.y = mm.z.y + m.x.y * d12
-    mm.z.y = mm.z.y - m.x.w * d10
-    mm.z.z =  m.w.x * d04
-    mm.z.z = mm.z.z - m.w.y * d02
-    mm.z.z = mm.z.z + m.w.w * d00
-    mm.z.w = 0 - m.z.x * d04
-    mm.z.w = mm.z.w + m.z.y * d02
-    mm.z.w = mm.z.w - m.z.w * d00
-
-    mm.w.x = 0 - m.y.x * d13
-    mm.w.x = mm.w.x + m.y.y * d11
-    mm.w.x = mm.w.x - m.y.z * d10
-    mm.w.y =  m.x.x * d13
-    mm.w.y = mm.w.y - m.x.y * d11
-    mm.w.y = mm.w.y + m.x.z * d10
-    mm.w.z = 0 - m.w.x * d03
-    mm.w.z = mm.w.z + m.w.y * d01
-    mm.w.z = mm.w.z - m.w.z * d00
-    mm.w.w =  m.z.x * d03
-    mm.w.w = mm.w.w - m.z.y * d01
-    mm.w.w = mm.w.w + m.z.z * d00
-
-    return mm * invdet
-}
-
-
-@warn_unused_result
-public func determinant<T:ArithmeticType>(m: Matrix4x4<T>) -> T {
-    var d00:T = m.x.x * m.y.y
-        d00 = d00 - m.y.x * m.x.y
-    var d01:T = m.x.x * m.y.z
-        d01 = d01 - m.y.x * m.x.z
-    var d02:T = m.x.x * m.y.w
-        d02 = d02 - m.y.x * m.x.w
-    var d03:T = m.x.y * m.y.z
-        d03 = d03 - m.y.y * m.x.z
-    var d04:T = m.x.y * m.y.w
-        d04 = d04 - m.y.y * m.x.w
-    var d05:T = m.x.z * m.y.w
-        d05 = d05 - m.y.z * m.x.w
-
-    var d10:T = m.z.x * m.w.y
-        d10 = d10 - m.w.x * m.z.y
-    var d11:T = m.z.x * m.w.z
-        d11 = d11 - m.w.x * m.z.z
-    var d12:T = m.z.x * m.w.w
-        d12 = d12 - m.w.x * m.z.w
-    var d13:T = m.z.y * m.w.z
-        d13 = d13 - m.w.y * m.z.z
-    var d14:T = m.z.y * m.w.w
-        d14 = d14 - m.w.y * m.z.w
-    var d15:T = m.z.z * m.w.w
-        d15 = d15 - m.w.z * m.z.w
-
-    var det:T = d00 * d15
-    det = det - d01 * d14
-    det = det + d02 * d13
-    det = det + d03 * d12
-    det = det - d04 * d11
-    det = det + d05 * d10
-
-    return det
-}
-
-
-@warn_unused_result
-public func transpose<T:ArithmeticType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
-    return Matrix4x4(
-        m.x.x, m.y.x, m.z.x, m.w.x,
-        m.x.y, m.y.y, m.z.y, m.w.y,
-        m.x.z, m.y.z, m.z.z, m.w.z,
-        m.x.w, m.y.w, m.z.w, m.w.w
-    )
-}
-
-
-@warn_unused_result
-public func outerProduct<T:ArithmeticType>(c:Vector4<T>, _ r:Vector4<T>) -> Matrix4x4<T> {
-    return Matrix4x4(
-        c * r[0],
-        c * r[1],
-        c * r[2],
-        c * r[3]
-    )
 }

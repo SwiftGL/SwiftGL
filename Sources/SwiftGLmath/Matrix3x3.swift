@@ -240,6 +240,50 @@ public struct Matrix3x3<T:ArithmeticType> : MatrixType {
         self.z = Vector3<T>(m1.z, m2.z, op)
     }
 
+    public var inverse:Matrix3x3<T> {
+        var mm = Matrix3x3<T>()
+        mm.x.x = self.y.y * self.z.z
+        mm.x.x = mm.x.x - self.y.z * self.z.y
+        mm.y.x = self.y.z * self.z.x
+        mm.y.x = mm.y.x - self.y.x * self.z.z
+        mm.z.x = self.y.x * self.z.y
+        mm.z.x = mm.z.x - self.y.y * self.z.x
+        mm.x.y = self.x.z * self.z.y
+        mm.x.y = mm.x.y - self.x.y * self.z.z
+        mm.y.y = self.x.x * self.z.z
+        mm.y.y = mm.y.y - self.x.z * self.z.x
+        mm.z.y = self.x.y * self.z.x
+        mm.z.y = mm.z.y - self.x.x * self.z.y
+        mm.x.z = self.x.y * self.y.z
+        mm.x.z = mm.x.z - self.x.z * self.y.y
+        mm.y.z = self.x.z * self.y.x
+        mm.y.z = mm.y.z - self.x.x * self.y.z
+        mm.z.z = self.x.x * self.y.y
+        mm.z.z = mm.z.z - self.x.y * self.y.x
+        return mm * (1 / determinant)
+    }
+
+    public var determinant:T {
+        var d1 = self.y.y * self.z.z
+        d1 = d1 - self.z.y * self.y.z
+        var d2 = self.x.y * self.z.z
+        d2 = d2 - self.z.y * self.x.z
+        var d3 = self.x.y * self.y.z
+        d3 = d3 - self.y.y * self.x.z
+        var det = self.x.x * d1
+        det = det - self.y.x * d2
+        det = det + self.z.x * d3
+        return det
+    }
+
+    public var transpose:Matrix3x3<T> {
+        return Matrix3x3(
+            self.x.x, self.y.x, self.z.x,
+            self.x.y, self.y.y, self.z.y,
+            self.x.z, self.y.z, self.z.z
+        )
+    }
+
 }
 
 
@@ -324,81 +368,22 @@ public func *=<T:ArithmeticType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
 
 @warn_unused_result
 public func /<T:ArithmeticType>(v: Vector3<T>, m: Matrix3x3<T>) -> Vector3<T> {
-    return v * inverse(m)
+    return v * m.inverse
 }
 
 
 @warn_unused_result
 public func /<T:ArithmeticType>(m: Matrix3x3<T>, v: Vector3<T>) -> Vector3<T> {
-    return inverse(m) * v
+    return m.inverse * v
 }
 
 
 @warn_unused_result
 public func /<T:ArithmeticType>(m1: Matrix3x3<T>, m2: Matrix3x3<T>) -> Matrix3x3<T> {
-    return m1 * inverse(m2)
+    return m1 * m2.inverse
 }
 
 
 public func /=<T:ArithmeticType>(inout m1: Matrix3x3<T>, m2: Matrix3x3<T>) {
     m1 = m1 / m2
-}
-
-
-public func inverse<T:ArithmeticType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
-    let invdet:T = 1 / determinant(m)
-    var mm = Matrix3x3<T>()
-    mm.x.x = m.y.y * m.z.z
-    mm.x.x = mm.x.x - m.y.z * m.z.y
-    mm.y.x = m.y.z * m.z.x
-    mm.y.x = mm.y.x - m.y.x * m.z.z
-    mm.z.x = m.y.x * m.z.y
-    mm.z.x = mm.z.x - m.y.y * m.z.x
-    mm.x.y = m.x.z * m.z.y
-    mm.x.y = mm.x.y - m.x.y * m.z.z
-    mm.y.y = m.x.x * m.z.z
-    mm.y.y = mm.y.y - m.x.z * m.z.x
-    mm.z.y = m.x.y * m.z.x
-    mm.z.y = mm.z.y - m.x.x * m.z.y
-    mm.x.z = m.x.y * m.y.z
-    mm.x.z = mm.x.z - m.x.z * m.y.y
-    mm.y.z = m.x.z * m.y.x
-    mm.y.z = mm.y.z - m.x.x * m.y.z
-    mm.z.z = m.x.x * m.y.y
-    mm.z.z = mm.z.z - m.x.y * m.y.x
-    return mm * invdet
-}
-
-
-public func determinant<T:ArithmeticType>(m: Matrix3x3<T>) -> T {
-    var d1 = m.y.y * m.z.z
-        d1 = d1 - m.z.y * m.y.z
-    var d2 = m.x.y * m.z.z
-        d2 = d2 - m.z.y * m.x.z
-    var d3 = m.x.y * m.y.z
-        d3 = d3 - m.y.y * m.x.z
-    var det = m.x.x * d1
-        det = det - m.y.x * d2
-        det = det + m.z.x * d3
-    return det
-}
-
-
-@warn_unused_result
-public func transpose<T:ArithmeticType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
-    return Matrix3x3(
-        m.x.x, m.y.x, m.z.x,
-        m.x.y, m.y.y, m.z.y,
-        m.x.z, m.y.z, m.z.z
-    )
-}
-
-
-@warn_unused_result
-public func outerProduct<T:ArithmeticType>(c:Vector3<T>, _ r:Vector3<T>) -> Matrix3x3<T> {
-    return Matrix3x3(
-        c * r[0],
-        c * r[1],
-        c * r[2]
-    )
 }

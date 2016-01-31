@@ -277,6 +277,13 @@ public struct Matrix4x2<T:ArithmeticType> : MatrixType {
         self.w = Vector2<T>(m1.w, m2.w, op)
     }
 
+    public var transpose:Matrix2x4<T> {
+        return Matrix2x4(
+            self.x.x, self.y.x, self.z.x, self.w.x,
+            self.x.y, self.y.y, self.z.y, self.w.y
+        )
+    }
+
 }
 
 
@@ -396,24 +403,4 @@ public func *<T:ArithmeticType>(m1: Matrix4x2<T>, m2: Matrix4x4<T>) -> Matrix4x2
         w = w + m1.z * m2[3].z
         w = w + m1.w * m2[3].w
     return Matrix4x2<T>(x, y, z, w)
-}
-
-
-@warn_unused_result
-public func transpose<T:ArithmeticType>(m: Matrix4x2<T>) -> Matrix2x4<T> {
-    return Matrix2x4(
-        m.x.x, m.y.x, m.z.x, m.w.x,
-        m.x.y, m.y.y, m.z.y, m.w.y
-    )
-}
-
-
-@warn_unused_result
-public func outerProduct<T:ArithmeticType>(c:Vector2<T>, _ r:Vector4<T>) -> Matrix4x2<T> {
-    return Matrix4x2(
-        c * r[0],
-        c * r[1],
-        c * r[2],
-        c * r[3]
-    )
 }

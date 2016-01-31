@@ -20,6 +20,8 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
+// Functions from the OpenGL Shading Language 4.50
+
 // Section 8.1 Angle and Trignometry Functions
 
 @warn_unused_result
@@ -684,11 +686,148 @@ public func refract<genType:VectorType where
 
 
 // Section 8.6 Matrix Functions
-// Most of these are in the MatrixNxN.swift files
 
 @warn_unused_result
 public func matrixCompMult<mat:MatrixType>(x:mat, _ y:mat) -> mat {
     return mat(x, y, *)
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector2<T>, _ r:Vector2<T>) -> Matrix2x2<T> {
+    return Matrix2x2(
+        c * r[0], c * r[1]
+    )
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector3<T>, _ r:Vector2<T>) -> Matrix2x3<T> {
+    return Matrix2x3(
+        c * r[0], c * r[1]
+    )
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector4<T>, _ r:Vector2<T>) -> Matrix2x4<T> {
+    return Matrix2x4(
+        c * r[0], c * r[1]
+    )
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector2<T>, _ r:Vector3<T>) -> Matrix3x2<T> {
+    return Matrix3x2(
+        c * r[0], c * r[1], c * r[2]
+    )
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector3<T>, _ r:Vector3<T>) -> Matrix3x3<T> {
+    return Matrix3x3(
+        c * r[0], c * r[1], c * r[2]
+    )
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector4<T>, _ r:Vector3<T>) -> Matrix3x4<T> {
+    return Matrix3x4(
+        c * r[0], c * r[1], c * r[2]
+    )
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector2<T>, _ r:Vector4<T>) -> Matrix4x2<T> {
+    return Matrix4x2(
+        c * r[0], c * r[1], c * r[2], c * r[3]
+    )
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector3<T>, _ r:Vector4<T>) -> Matrix4x3<T> {
+    return Matrix4x3(
+        c * r[0], c * r[1], c * r[2], c * r[3]
+    )
+}
+
+@warn_unused_result
+public func outerProduct<T:ArithmeticType>(c:Vector4<T>, _ r:Vector4<T>) -> Matrix4x4<T> {
+    return Matrix4x4(
+        c * r[0], c * r[1], c * r[2], c * r[3]
+    )
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix2x2<T>) -> Matrix2x2<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix2x3<T>) -> Matrix3x2<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix2x4<T>) -> Matrix4x2<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix3x2<T>) -> Matrix2x3<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix3x3<T>) -> Matrix3x3<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix3x4<T>) -> Matrix4x3<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix4x2<T>) -> Matrix2x4<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix4x3<T>) -> Matrix3x4<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func transpose<T:ArithmeticType>(m:Matrix4x4<T>) -> Matrix4x4<T> {
+    return m.transpose
+}
+
+@warn_unused_result
+public func determinant<T:ArithmeticType>(m:Matrix2x2<T>) -> T {
+    return m.determinant
+}
+
+@warn_unused_result
+public func determinant<T:ArithmeticType>(m:Matrix3x3<T>) -> T {
+    return m.determinant
+}
+
+@warn_unused_result
+public func determinant<T:ArithmeticType>(m:Matrix4x4<T>) -> T {
+    return m.determinant
+}
+
+@warn_unused_result
+public func inverse<T:ArithmeticType>(m:Matrix2x2<T>) -> Matrix2x2<T> {
+    return m.inverse
+}
+
+@warn_unused_result
+public func inverse<T:ArithmeticType>(m:Matrix3x3<T>) -> Matrix3x3<T> {
+    return m.inverse
+}
+
+@warn_unused_result
+public func inverse<T:ArithmeticType>(m:Matrix4x4<T>) -> Matrix4x4<T> {
+    return m.inverse
 }
 
 

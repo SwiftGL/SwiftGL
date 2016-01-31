@@ -213,6 +213,30 @@ public struct Matrix2x2<T:ArithmeticType> : MatrixType {
         self.y = Vector2<T>(m1.y, m2.y, op)
     }
 
+    public var inverse:Matrix2x2<T> {
+        #if !os(Linux)
+            if T.self == Float.self {
+                return unsafeBitCast(unsafeBitCast(self, float2x2.self).inverse, Matrix2x2<T>.self)
+            }
+            if T.self == Double.self {
+                return unsafeBitCast(unsafeBitCast(self, double2x2.self).inverse, Matrix2x2<T>.self)
+            }
+        #endif
+        let invdet:T = 1 / determinant
+        return invdet * Matrix2x2<T>(self.y.y, 0-self.x.y, 0-self.y.x, self.x.x)
+    }
+
+    public var determinant:T {
+        return self.x.x * self.y.y - self.y.x * self.x.y
+    }
+
+    public var transpose:Matrix2x2<T> {
+        return Matrix2x2(
+            self.x.x, self.y.x,
+            self.x.y, self.y.y
+        )
+    }
+
 }
 
 
@@ -318,61 +342,22 @@ public func *=<T:ArithmeticType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
 
 @warn_unused_result
 public func /<T:ArithmeticType>(v: Vector2<T>, m: Matrix2x2<T>) -> Vector2<T> {
-    return v * inverse(m)
+    return v * m.inverse
 }
 
 
 @warn_unused_result
 public func /<T:ArithmeticType>(m: Matrix2x2<T>, v: Vector2<T>) -> Vector2<T> {
-    return inverse(m) * v
+    return m.inverse * v
 }
 
 
 @warn_unused_result
 public func /<T:ArithmeticType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> Matrix2x2<T> {
-    return m1 * inverse(m2)
+    return m1 * m2.inverse
 }
 
 
 public func /=<T:ArithmeticType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
     m1 = m1 / m2
-}
-
-
-@warn_unused_result
-public func inverse<T:ArithmeticType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
-    #if !os(Linux)
-        if T.self == Float.self {
-            return unsafeBitCast(unsafeBitCast(m, float2x2.self).inverse, Matrix2x2<T>.self)
-        }
-        if T.self == Double.self {
-            return unsafeBitCast(unsafeBitCast(m, double2x2.self).inverse, Matrix2x2<T>.self)
-        }
-    #endif
-    let invdet:T = 1 / determinant(m)
-    return invdet * Matrix2x2<T>(m.y.y, 0-m.x.y, 0-m.y.x, m.x.x)
-}
-
-
-@warn_unused_result
-public func determinant<T:ArithmeticType>(m: Matrix2x2<T>) -> T {
-    return m.x.x * m.y.y - m.y.x * m.x.y
-}
-
-
-@warn_unused_result
-public func transpose<T:ArithmeticType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
-    return Matrix2x2(
-        m.x.x, m.y.x,
-        m.x.y, m.y.y
-    )
-}
-
-
-@warn_unused_result
-public func outerProduct<T:ArithmeticType>(c:Vector2<T>, _ r:Vector2<T>) -> Matrix2x2<T> {
-    return Matrix2x2(
-        c * r[0],
-        c * r[1]
-    )
 }

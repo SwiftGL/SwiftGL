@@ -35,16 +35,16 @@ public struct Vector2b : BooleanVectorType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 2 }
 
-    public subscript(i: Int) -> Bool {
+    public subscript(index: Int) -> Bool {
         get {
-            switch(i) {
+            switch(index) {
             case 0: return x
             case 1: return y
             default: preconditionFailure("Vector index out of range")
             }
         }
         set {
-            switch(i) {
+            switch(index) {
             case 0: x = newValue
             case 1: y = newValue
             default: preconditionFailure("Vector index out of range")
@@ -90,27 +90,17 @@ public struct Vector2b : BooleanVectorType {
         self.y = t
     }
 
-    public init (_ v:Vector2<Float>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-    }
-
-    public init (_ v:Vector2<Double>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-    }
-
-    public init (_ v:Vector2<Int32>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-    }
-
-    public init (_ v:Vector2<UInt32>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-    }
-
     public init (_ v:Vector2b) {
+        self.x = v.x
+        self.y = v.y
+    }
+
+    public init (_ v:Vector3b) {
+        self.x = v.x
+        self.y = v.y
+    }
+
+    public init (_ v:Vector4b) {
         self.x = v.x
         self.y = v.y
     }

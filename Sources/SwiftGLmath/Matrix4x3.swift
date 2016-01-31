@@ -29,9 +29,9 @@ public struct Matrix4x3<T:ArithmeticType> : MatrixType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 4 }
 
-    public subscript(i: Int) -> Vector3<T> {
+    public subscript(column: Int) -> Vector3<T> {
         get {
-            switch(i) {
+            switch(column) {
             case 0: return x
             case 1: return y
             case 2: return z
@@ -40,7 +40,7 @@ public struct Matrix4x3<T:ArithmeticType> : MatrixType {
             }
         }
         set {
-            switch(i) {
+            switch(column) {
             case 0: x = newValue
             case 1: y = newValue
             case 2: z = newValue
@@ -48,6 +48,10 @@ public struct Matrix4x3<T:ArithmeticType> : MatrixType {
             default: preconditionFailure("Matrix index out of range")
             }
         }
+    }
+
+    public subscript(column:Int, row:Int) -> T {
+        return self[column][row]
     }
 
     public var debugDescription: String {
@@ -142,20 +146,6 @@ public struct Matrix4x3<T:ArithmeticType> : MatrixType {
         self.w = Vector3<T>(m[3], 0)
     }
 
-    public init(_ m: Matrix4x3<Float>) {
-        self.x = Vector3<T>(m[0])
-        self.y = Vector3<T>(m[1])
-        self.z = Vector3<T>(m[2])
-        self.w = Vector3<T>(m[3])
-    }
-
-    public init(_ m: Matrix4x3<Double>) {
-        self.x = Vector3<T>(m[0])
-        self.y = Vector3<T>(m[1])
-        self.z = Vector3<T>(m[2])
-        self.w = Vector3<T>(m[3])
-    }
-
     public init(_ m: Matrix4x3<T>) {
         self.x = Vector3<T>(m[0])
         self.y = Vector3<T>(m[1])
@@ -170,6 +160,90 @@ public struct Matrix4x3<T:ArithmeticType> : MatrixType {
         self.w = Vector3<T>(m[3])
     }
 
+    public init(_ m: Matrix4x3<Double>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<Float>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<Int>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<UInt>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<Int8>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<UInt8>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<Int16>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<UInt16>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<Int32>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<UInt32>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<Int64>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x3<UInt64>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+        self.w = Vector3<T>(m.w)
+    }
+    
     public init (_ m:Matrix4x3<T>, @noescape _ op:(_:T) -> T) {
         self.x = Vector3<T>(m.x, op)
         self.y = Vector3<T>(m.y, op)
@@ -227,9 +301,9 @@ public func *<T:ArithmeticType>(v: Vector3<T>, m: Matrix4x3<T>) -> Vector4<T> {
 @warn_unused_result
 public func *<T:ArithmeticType>(m: Matrix4x3<T>, v: Vector4<T>) -> Vector3<T> {
     var rv:Vector3<T> = m.x * v.x
-    rv = rv + m.y * v.y
-    rv = rv + m.z * v.z
-    rv = rv + m.w * v.w
+        rv = rv + m.y * v.y
+        rv = rv + m.z * v.z
+        rv = rv + m.w * v.w
     return rv
 }
 
@@ -237,13 +311,13 @@ public func *<T:ArithmeticType>(m: Matrix4x3<T>, v: Vector4<T>) -> Vector3<T> {
 @warn_unused_result
 public func *<T:ArithmeticType>(m1: Matrix4x3<T>, m2: Matrix2x4<T>) -> Matrix2x3<T> {
     var x:Vector3<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
     var y:Vector3<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
     return Matrix2x3<T>(x, y)
 }
 
@@ -251,17 +325,17 @@ public func *<T:ArithmeticType>(m1: Matrix4x3<T>, m2: Matrix2x4<T>) -> Matrix2x3
 @warn_unused_result
 public func *<T:ArithmeticType>(m1: Matrix4x3<T>, m2: Matrix3x4<T>) -> Matrix3x3<T> {
     var x:Vector3<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
     var y:Vector3<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
     var z:Vector3<T> = m1.x * m2[2].x
-    z = z + m1.y * m2[2].y
-    z = z + m1.z * m2[2].z
-    z = z + m1.w * m2[2].w
+        z = z + m1.y * m2[2].y
+        z = z + m1.z * m2[2].z
+        z = z + m1.w * m2[2].w
     return Matrix3x3<T>(x, y, z)
 }
 
@@ -269,25 +343,26 @@ public func *<T:ArithmeticType>(m1: Matrix4x3<T>, m2: Matrix3x4<T>) -> Matrix3x3
 @warn_unused_result
 public func *<T:ArithmeticType>(m1: Matrix4x3<T>, m2: Matrix4x4<T>) -> Matrix4x3<T> {
     var x:Vector3<T> = m1.x * m2[0].x
-    x = x + m1.y * m2[0].y
-    x = x + m1.z * m2[0].z
-    x = x + m1.w * m2[0].w
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
     var y:Vector3<T> = m1.x * m2[1].x
-    y = y + m1.y * m2[1].y
-    y = y + m1.z * m2[1].z
-    y = y + m1.w * m2[1].w
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
     var z:Vector3<T> = m1.x * m2[2].x
-    z = z + m1.y * m2[2].y
-    z = z + m1.z * m2[2].z
-    z = z + m1.w * m2[2].w
+        z = z + m1.y * m2[2].y
+        z = z + m1.z * m2[2].z
+        z = z + m1.w * m2[2].w
     var w:Vector3<T> = m1.x * m2[3].x
-    w = w + m1.y * m2[3].y
-    w = w + m1.z * m2[3].z
-    w = w + m1.w * m2[3].w
+        w = w + m1.y * m2[3].y
+        w = w + m1.z * m2[3].z
+        w = w + m1.w * m2[3].w
     return Matrix4x3<T>(x, y, z, w)
 }
 
 
+@warn_unused_result
 public func transpose<T:ArithmeticType>(m: Matrix4x3<T>) -> Matrix3x4<T> {
     return Matrix3x4(
         m.x.x, m.y.x, m.z.x, m.w.x,
@@ -297,6 +372,7 @@ public func transpose<T:ArithmeticType>(m: Matrix4x3<T>) -> Matrix3x4<T> {
 }
 
 
+@warn_unused_result
 public func outerProduct<T:ArithmeticType>(c:Vector3<T>, _ r:Vector4<T>) -> Matrix4x3<T> {
     return Matrix4x3(
         c * r[0],

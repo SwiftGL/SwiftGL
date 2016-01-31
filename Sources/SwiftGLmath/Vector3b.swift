@@ -37,10 +37,10 @@ public struct Vector3b : BooleanVectorType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 3 }
 
-    public subscript(i: Int) -> Bool {
+    public subscript(index: Int) -> Bool {
         get {
 
-            switch(i) {
+            switch(index) {
             case 0: return x
             case 1: return y
             case 2: return z
@@ -48,7 +48,7 @@ public struct Vector3b : BooleanVectorType {
             }
         }
         set {
-            switch(i) {
+            switch(index) {
             case 0: x = newValue
             case 1: y = newValue
             case 2: z = newValue
@@ -113,31 +113,13 @@ public struct Vector3b : BooleanVectorType {
         self.z = p
     }
 
-    public init (_ v:Vector3<Float>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-        self.z = v.z == 0 ? false : true
-    }
-
-    public init (_ v:Vector3<Double>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-        self.z = v.z == 0 ? false : true
-    }
-
-    public init (_ v:Vector3<Int32>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-        self.z = v.z == 0 ? false : true
-    }
-
-    public init (_ v:Vector3<UInt32>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-        self.z = v.z == 0 ? false : true
-    }
-
     public init (_ v:Vector3b) {
+        self.x = v.x
+        self.y = v.y
+        self.z = v.z
+    }
+
+    public init (_ v:Vector4b) {
         self.x = v.x
         self.y = v.y
         self.z = v.z

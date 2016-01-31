@@ -29,9 +29,9 @@ public struct Matrix3x3<T:ArithmeticType> : MatrixType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 3 }
 
-    public subscript(i: Int) -> Vector3<T> {
+    public subscript(column: Int) -> Vector3<T> {
         get {
-            switch(i) {
+            switch(column) {
             case 0: return x
             case 1: return y
             case 2: return z
@@ -39,13 +39,17 @@ public struct Matrix3x3<T:ArithmeticType> : MatrixType {
             }
         }
         set {
-            switch(i) {
+            switch(column) {
             case 0: x = newValue
             case 1: y = newValue
             case 2: z = newValue
             default: preconditionFailure("Matrix index out of range")
             }
         }
+    }
+
+    public subscript(column:Int, row:Int) -> T {
+        return self[column][row]
     }
 
     public var debugDescription: String {
@@ -110,18 +114,6 @@ public struct Matrix3x3<T:ArithmeticType> : MatrixType {
         self.z = Vector3<T>(m[2], 1)
     }
 
-    public init(_ m: Matrix3x3<Float>) {
-        self.x = Vector3<T>(m[0])
-        self.y = Vector3<T>(m[1])
-        self.z = Vector3<T>(m[2])
-    }
-
-    public init(_ m: Matrix3x3<Double>) {
-        self.x = Vector3<T>(m[0])
-        self.y = Vector3<T>(m[1])
-        self.z = Vector3<T>(m[2])
-    }
-
     public init(_ m: Matrix3x3<T>) {
         self.x = Vector3<T>(m[0])
         self.y = Vector3<T>(m[1])
@@ -152,6 +144,78 @@ public struct Matrix3x3<T:ArithmeticType> : MatrixType {
         self.z = Vector3<T>(m[2])
     }
 
+    public init(_ m: Matrix3x3<Double>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<Float>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<Int>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<UInt>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<Int8>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<UInt8>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<Int16>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<UInt16>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<Int32>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<UInt32>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<Int64>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+
+    public init(_ m: Matrix3x3<UInt64>) {
+        self.x = Vector3<T>(m.x)
+        self.y = Vector3<T>(m.y)
+        self.z = Vector3<T>(m.z)
+    }
+    
     public init (_ m:Matrix3x3<T>, @noescape _ op:(_:T) -> T) {
         self.x = Vector3<T>(m.x, op)
         self.y = Vector3<T>(m.y, op)
@@ -320,6 +384,7 @@ public func determinant<T:ArithmeticType>(m: Matrix3x3<T>) -> T {
 }
 
 
+@warn_unused_result
 public func transpose<T:ArithmeticType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
     return Matrix3x3(
         m.x.x, m.y.x, m.z.x,
@@ -329,6 +394,7 @@ public func transpose<T:ArithmeticType>(m: Matrix3x3<T>) -> Matrix3x3<T> {
 }
 
 
+@warn_unused_result
 public func outerProduct<T:ArithmeticType>(c:Vector3<T>, _ r:Vector3<T>) -> Matrix3x3<T> {
     return Matrix3x3(
         c * r[0],

@@ -34,21 +34,25 @@ public struct Matrix2x2<T:ArithmeticType> : MatrixType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 2 }
 
-    public subscript(i: Int) -> Vector2<T> {
+    public subscript(column: Int) -> Vector2<T> {
         get {
-            switch(i) {
+            switch(column) {
             case 0: return x
             case 1: return y
             default: preconditionFailure("Matrix index out of range")
             }
         }
         set {
-            switch(i) {
+            switch(column) {
             case 0: x = newValue
             case 1: y = newValue
             default: preconditionFailure("Matrix index out of range")
             }
         }
+    }
+
+    public subscript(column:Int, row:Int) -> T {
+        return self[column][row]
     }
 
     public var debugDescription: String {
@@ -82,16 +86,6 @@ public struct Matrix2x2<T:ArithmeticType> : MatrixType {
         ) {
             self.x = Vector2<T>(x1, y1)
             self.y = Vector2<T>(x2, y2)
-    }
-
-    public init(_ m: Matrix2x2<Float>) {
-        self.x = Vector2<T>(m[0])
-        self.y = Vector2<T>(m[1])
-    }
-
-    public init(_ m: Matrix2x2<Double>) {
-        self.x = Vector2<T>(m[0])
-        self.y = Vector2<T>(m[1])
     }
 
     public init(_ m: Matrix2x2<T>) {
@@ -139,6 +133,66 @@ public struct Matrix2x2<T:ArithmeticType> : MatrixType {
         self.y = Vector2<T>(m[1])
     }
 
+    public init(_ m: Matrix2x2<Double>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<Float>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<Int>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<UInt>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<Int8>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<UInt8>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<Int16>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<UInt16>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<Int32>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<UInt32>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<Int64>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
+    public init(_ m: Matrix2x2<UInt64>) {
+        self.x = Vector2<T>(m.x)
+        self.y = Vector2<T>(m.y)
+    }
+
     public init (_ m:Matrix2x2<T>, @noescape _ op:(_:T) -> T) {
         self.x = Vector2<T>(m.x, op)
         self.y = Vector2<T>(m.y, op)
@@ -176,12 +230,10 @@ public func *<T:ArithmeticType>(v: Vector2<T>, m: Matrix2x2<T>) -> Vector2<T> {
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(v, double2.self) * unsafeBitCast(m, double2x2.self), Vector2<T>.self)
         }
-        preconditionFailure()
-    #else
-        let x:T = v.x * m.x.x + v.y * m.x.y
-        let y:T = v.x * m.y.x + v.y * m.y.y
-        return Vector2<T>(x,y)
     #endif
+    let x:T = v.x * m.x.x + v.y * m.x.y
+    let y:T = v.x * m.y.x + v.y * m.y.y
+    return Vector2<T>(x,y)
 }
 
 
@@ -194,10 +246,8 @@ public func *<T:ArithmeticType>(m: Matrix2x2<T>, v: Vector2<T>) -> Vector2<T> {
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m, double2x2.self) * unsafeBitCast(v, double2.self), Vector2<T>.self)
         }
-        preconditionFailure()
-    #else
-        return m.x * v.x + m.y * v.y
     #endif
+    return m.x * v.x + m.y * v.y
 }
 
 
@@ -210,14 +260,12 @@ public func *<T:ArithmeticType>(m1: Matrix2x2<T>, m2: Matrix2x2<T>) -> Matrix2x2
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double2x2.self) * unsafeBitCast(m2, double2x2.self), Matrix2x2<T>.self)
         }
-        preconditionFailure()
-    #else
-        var x:Vector2<T> = m1.x * m2[0].x
-        x = x + m1.y * m2[0].y
-        var y:Vector2<T> = m1.x * m2[1].x
-        y = y + m1.y * m2[1].y
-        return Matrix2x2<T>(x, y)
     #endif
+    var x:Vector2<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+    var y:Vector2<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+    return Matrix2x2<T>(x, y)
 }
 
 
@@ -230,16 +278,14 @@ public func *<T:ArithmeticType>(m1: Matrix2x2<T>, m2: Matrix3x2<T>) -> Matrix3x2
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double2x2.self) * unsafeBitCast(m2, double3x2.self), Matrix3x2<T>.self)
         }
-        preconditionFailure()
-    #else
-        var x:Vector2<T> = m1.x * m2[0].x
-        x = x + m1.y * m2[0].y
-        var y:Vector2<T> = m1.x * m2[1].x
-        y = y + m1.y * m2[1].y
-        var z:Vector2<T> = m1.x * m2[2].x
-        z = z + m1.y * m2[2].y
-        return Matrix3x2<T>(x, y, z)
     #endif
+    var x:Vector2<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+    var y:Vector2<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+    var z:Vector2<T> = m1.x * m2[2].x
+        z = z + m1.y * m2[2].y
+    return Matrix3x2<T>(x, y, z)
 }
 
 
@@ -252,18 +298,16 @@ public func *<T:ArithmeticType>(m1: Matrix2x2<T>, m2: Matrix4x2<T>) -> Matrix4x2
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double2x2.self) * unsafeBitCast(m2, double4x2.self), Matrix4x2<T>.self)
         }
-        preconditionFailure()
-    #else
-        var x:Vector2<T> = m1.x * m2[0].x
-        x = x + m1.y * m2[0].y
-        var y:Vector2<T> = m1.x * m2[1].x
-        y = y + m1.y * m2[1].y
-        var z:Vector2<T> = m1.x * m2[2].x
-        z = z + m1.y * m2[2].y
-        var w:Vector2<T> = m1.x * m2[3].x
-        w = w + m1.y * m2[3].y
-        return Matrix4x2<T>(x, y, z, w)
     #endif
+    var x:Vector2<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+    var y:Vector2<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+    var z:Vector2<T> = m1.x * m2[2].x
+        z = z + m1.y * m2[2].y
+    var w:Vector2<T> = m1.x * m2[3].x
+        w = w + m1.y * m2[3].y
+    return Matrix4x2<T>(x, y, z, w)
 }
 
 
@@ -295,6 +339,7 @@ public func /=<T:ArithmeticType>(inout m1: Matrix2x2<T>, m2: Matrix2x2<T>) {
 }
 
 
+@warn_unused_result
 public func inverse<T:ArithmeticType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
     #if !os(Linux)
         if T.self == Float.self {
@@ -303,19 +348,19 @@ public func inverse<T:ArithmeticType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m, double2x2.self).inverse, Matrix2x2<T>.self)
         }
-        preconditionFailure()
-    #else
-        let invdet:T = 1 / determinant(m)
-        return invdet * Matrix2x2<T>(m.y.y, -m.x.y, -m.y.x, m.x.x)
     #endif
+    let invdet:T = 1 / determinant(m)
+    return invdet * Matrix2x2<T>(m.y.y, 0-m.x.y, 0-m.y.x, m.x.x)
 }
 
 
+@warn_unused_result
 public func determinant<T:ArithmeticType>(m: Matrix2x2<T>) -> T {
     return m.x.x * m.y.y - m.y.x * m.x.y
 }
 
 
+@warn_unused_result
 public func transpose<T:ArithmeticType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
     return Matrix2x2(
         m.x.x, m.y.x,
@@ -324,6 +369,7 @@ public func transpose<T:ArithmeticType>(m: Matrix2x2<T>) -> Matrix2x2<T> {
 }
 
 
+@warn_unused_result
 public func outerProduct<T:ArithmeticType>(c:Vector2<T>, _ r:Vector2<T>) -> Matrix2x2<T> {
     return Matrix2x2(
         c * r[0],

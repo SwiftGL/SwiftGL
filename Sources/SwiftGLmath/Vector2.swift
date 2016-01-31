@@ -40,17 +40,17 @@ public struct Vector2<T:ArithmeticType> : VectorType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 2 }
 
-    public subscript(i: Int) -> T {
+    public subscript(index: Int) -> T {
         get {
 
-            switch(i) {
+            switch(index) {
             case 0: return x
             case 1: return y
             default: preconditionFailure("Vector index out of range")
             }
         }
         set {
-            switch(i) {
+            switch(index) {
             case 0: x = newValue
             case 1: y = newValue
             default: preconditionFailure("Vector index out of range")
@@ -76,6 +76,16 @@ public struct Vector2<T:ArithmeticType> : VectorType {
         self.y = v
     }
 
+    public init(_ array:[T]) {
+        precondition(array.count == 2, "Vector2 requires a 2-element array")
+        self.x = array[0]
+        self.y = array[1]
+    }
+
+    public init(arrayLiteral elements: T...) {
+        self.init(elements)
+    }
+
     public init (_ x:T, _ y:T) {
         self.x = x
         self.y = y
@@ -96,12 +106,57 @@ public struct Vector2<T:ArithmeticType> : VectorType {
         self.y = t
     }
 
+    public init (_ v:Vector2<T>) {
+        self.x = v.x
+        self.y = v.y
+    }
+
+    public init (_ v:Vector3<T>) {
+        self.x = v.x
+        self.y = v.y
+    }
+
+    public init (_ v:Vector4<T>) {
+        self.x = v.x
+        self.y = v.y
+    }
+
+    public init (_ v:Vector2<Double>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+    }
+
     public init (_ v:Vector2<Float>) {
         self.x = T(v.x)
         self.y = T(v.y)
     }
 
-    public init (_ v:Vector2<Double>) {
+    public init (_ v:Vector2<Int>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+    }
+
+    public init (_ v:Vector2<UInt>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+    }
+
+    public init (_ v:Vector2<Int8>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+    }
+
+    public init (_ v:Vector2<UInt8>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+    }
+
+    public init (_ v:Vector2<Int16>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+    }
+
+    public init (_ v:Vector2<UInt16>) {
         self.x = T(v.x)
         self.y = T(v.y)
     }
@@ -116,19 +171,14 @@ public struct Vector2<T:ArithmeticType> : VectorType {
         self.y = T(v.y)
     }
 
-    public init (_ v:Vector2<T>) {
-        self.x = v.x
-        self.y = v.y
+    public init (_ v:Vector2<Int64>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
     }
 
-    public init (_ v:Vector3<T>) {
-        self.x = v.x
-        self.y = v.y
-    }
-
-    public init (_ v:Vector4<T>) {
-        self.x = v.x
-        self.y = v.y
+    public init (_ v:Vector2<UInt64>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
     }
 
     public init (_ s:T, _ v:Vector2<T>, @noescape _ op:(_:T, _:T) -> T) {

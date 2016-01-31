@@ -21,15 +21,10 @@
 
 
 import SwiftGLmath
-#if os(Linux)
-    import Glibc
-#else
-    import Darwin.C
-#endif
 
 
 // Options may be changed at run time.
-// This is global and not thread-safe.
+// This is global and not thread local.
 public var glmLeftHanded = false
 public var glmDepthZeroToOne = false
 
@@ -186,9 +181,9 @@ public func orthoLH<T:FloatingPointArithmeticType>
     }
 
     return Matrix4x4<T>(
-        r00, 0,  0,  0,
-        0,  r11, 0,  0,
-        0,  0,  r22, 0,
+        r00, 0,   0,   0,
+        0,   r11, 0,   0,
+        0,   0,   r22, 0,
         r30, r31, r32, 1
     )
 }

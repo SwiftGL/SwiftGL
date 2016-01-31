@@ -42,10 +42,10 @@ public struct Vector3<T:ArithmeticType> : VectorType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 3 }
 
-    public subscript(i: Int) -> T {
+    public subscript(index: Int) -> T {
         get {
 
-            switch(i) {
+            switch(index) {
             case 0: return x
             case 1: return y
             case 2: return z
@@ -53,7 +53,7 @@ public struct Vector3<T:ArithmeticType> : VectorType {
             }
         }
         set {
-            switch(i) {
+            switch(index) {
             case 0: x = newValue
             case 1: y = newValue
             case 2: z = newValue
@@ -82,6 +82,17 @@ public struct Vector3<T:ArithmeticType> : VectorType {
         self.z = v
     }
 
+    public init(_ array:[T]) {
+        precondition(array.count == 3, "Vector3 requires a 3-element array")
+        self.x = array[0]
+        self.y = array[1]
+        self.z = array[2]
+    }
+
+    public init(arrayLiteral elements: T...) {
+        self.init(elements)
+    }
+    
     public init (_ x:T, _ y:T, _ z:T) {
         self.x = x
         self.y = y
@@ -118,13 +129,61 @@ public struct Vector3<T:ArithmeticType> : VectorType {
         self.z = p
     }
 
+    public init (_ v:Vector3<T>) {
+        self.x = v.x
+        self.y = v.y
+        self.z = v.z
+    }
+
+    public init (_ v:Vector4<T>) {
+        self.x = v.x
+        self.y = v.y
+        self.z = v.z
+    }
+
+    public init (_ v:Vector3<Double>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+    }
+
     public init (_ v:Vector3<Float>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
     }
 
-    public init (_ v:Vector3<Double>) {
+    public init (_ v:Vector3<Int>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+    }
+
+    public init (_ v:Vector3<UInt>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+    }
+
+    public init (_ v:Vector3<Int8>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+    }
+
+    public init (_ v:Vector3<UInt8>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+    }
+
+    public init (_ v:Vector3<Int16>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+    }
+
+    public init (_ v:Vector3<UInt16>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
@@ -142,16 +201,16 @@ public struct Vector3<T:ArithmeticType> : VectorType {
         self.z = T(v.z)
     }
 
-    public init (_ v:Vector3<T>) {
-        self.x = v.x
-        self.y = v.y
-        self.z = v.z
+    public init (_ v:Vector3<Int64>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
     }
 
-    public init (_ v:Vector4<T>) {
-        self.x = v.x
-        self.y = v.y
-        self.z = v.z
+    public init (_ v:Vector3<UInt64>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
     }
 
     public init (_ s:T, _ v:Vector3<T>, @noescape _ op:(_:T, _:T) -> T) {

@@ -70,7 +70,6 @@ public typealias dmat4x4 = Matrix4x4<Double>
 public protocol ArithmeticType : Hashable, Comparable, IntegerLiteralConvertible {
     init(_: Double)
     init(_: Float)
-    init(_: Float80)
     init(_: Int)
     init(_: UInt)
     init(_: Int8)
@@ -92,15 +91,13 @@ public protocol ArithmeticType : Hashable, Comparable, IntegerLiteralConvertible
     func %(_: Self, _: Self) -> Self
     func %=(inout _: Self, _: Self)
 }
-extension Float80: ArithmeticType {}
 
-// FloatingPointType should inherit SignedNumberType
 public protocol FloatingPointArithmeticType : ArithmeticType, FloatingPointType, SignedNumberType, FloatLiteralConvertible {}
 extension Double: FloatingPointArithmeticType {}
 extension Float: FloatingPointArithmeticType {}
 
 // Swift didn't put these in BitwiseOperationsType
-public protocol BitsOperationsType : BitwiseOperationsType, ArithmeticType {
+public protocol BitsOperationsType : ArithmeticType, BitwiseOperationsType {
     func <<(_: Self, _: Self) -> Self
     func <<=(inout _: Self, _: Self)
     func >>(_: Self, _: Self) -> Self
@@ -152,7 +149,7 @@ public protocol MatrixType : MutableCollectionType, Hashable, Equatable, CustomD
     func %=(inout _: Self, _: Element)
 }
 
-public protocol VectorType : MatrixType {
+public protocol VectorType : MatrixType, ArrayLiteralConvertible {
     typealias FloatVector
     typealias DoubleVector
     typealias Int32Vector
@@ -173,6 +170,10 @@ public protocol VectorType : MatrixType {
     init<T1:VectorType, T2:VectorType, T3:BooleanVectorType where
         T1.BooleanVector == BooleanVector, T2.BooleanVector == BooleanVector, T3.BooleanVector == BooleanVector>
         (_:T1, _:T2, _:T3, @noescape _:(_:T1.Element, _:T2.Element, _:Bool) -> Element)
+    func *(_: Self, _: Self) -> Self
+    func *=(inout _: Self, _: Self)
+    func /(_: Self, _: Self) -> Self
+    func /=(inout _: Self, _: Self)
 }
 
 public protocol BooleanVectorType : MutableCollectionType, Hashable, Equatable, CustomDebugStringConvertible {

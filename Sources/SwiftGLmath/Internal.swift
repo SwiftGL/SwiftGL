@@ -333,16 +333,6 @@ public final class GLmath {
         preconditionFailure()
     }
 
-    public static func GLmod<T:FloatingPointArithmeticType>(x:T, _ y:T) -> T {
-        if let z = x as? Double {
-            return fmod(z, y as! Double) as! T
-        }
-        if let z = x as? Float {
-            return fmodf(z, y as! Float) as! T
-        }
-        preconditionFailure()
-    }
-
     public static func GLmodf<T:FloatingPointArithmeticType>(x:T, inout _ i:T) -> T {
         if let z = x as? Double {
             return withUnsafeMutablePointer(&i) {

@@ -39,10 +39,10 @@ public struct Vector4b : BooleanVectorType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 4 }
 
-    public subscript(i: Int) -> Bool {
+    public subscript(index: Int) -> Bool {
         get {
 
-            switch(i) {
+            switch(index) {
             case 0: return x
             case 1: return y
             case 2: return z
@@ -51,7 +51,7 @@ public struct Vector4b : BooleanVectorType {
             }
         }
         set {
-            switch(i) {
+            switch(index) {
             case 0: x = newValue
             case 1: y = newValue
             case 2: z = newValue
@@ -151,34 +151,6 @@ public struct Vector4b : BooleanVectorType {
         self.y = t
         self.z = p
         self.w = q
-    }
-
-    public init (_ v:Vector4<Float>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-        self.z = v.z == 0 ? false : true
-        self.w = v.w == 0 ? false : true
-    }
-
-    public init (_ v:Vector4<Double>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-        self.z = v.z == 0 ? false : true
-        self.w = v.w == 0 ? false : true
-    }
-
-    public init (_ v:Vector4<Int32>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-        self.z = v.z == 0 ? false : true
-        self.w = v.w == 0 ? false : true
-    }
-
-    public init (_ v:Vector4<UInt32>) {
-        self.x = v.x == 0 ? false : true
-        self.y = v.y == 0 ? false : true
-        self.z = v.z == 0 ? false : true
-        self.w = v.w == 0 ? false : true
     }
 
     public init (_ v:Vector4b) {

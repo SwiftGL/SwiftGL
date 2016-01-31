@@ -44,10 +44,10 @@ public struct Vector4<T:ArithmeticType> : VectorType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 4 }
 
-    public subscript(i: Int) -> T {
+    public subscript(index: Int) -> T {
         get {
 
-            switch(i) {
+            switch(index) {
             case 0: return x
             case 1: return y
             case 2: return z
@@ -56,7 +56,7 @@ public struct Vector4<T:ArithmeticType> : VectorType {
             }
         }
         set {
-            switch(i) {
+            switch(index) {
             case 0: x = newValue
             case 1: y = newValue
             case 2: z = newValue
@@ -86,6 +86,18 @@ public struct Vector4<T:ArithmeticType> : VectorType {
         self.y = v
         self.z = v
         self.w = v
+    }
+
+    public init(_ array:[T]) {
+        precondition(array.count == 4, "Vector4 requires a 4-element array")
+        self.x = array[0]
+        self.y = array[1]
+        self.z = array[2]
+        self.w = array[3]
+    }
+
+    public init(arrayLiteral elements: T...) {
+        self.init(elements)
     }
 
     public init (_ x:T, _ y:T, _ z:T, _ w:T) {
@@ -158,6 +170,20 @@ public struct Vector4<T:ArithmeticType> : VectorType {
         self.w = q
     }
 
+    public init (_ v:Vector4<T>) {
+        self.x = v.x
+        self.y = v.y
+        self.z = v.z
+        self.w = v.w
+    }
+
+    public init (_ v:Vector4<Double>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+        self.w = T(v.w)
+    }
+
     public init (_ v:Vector4<Float>) {
         self.x = T(v.x)
         self.y = T(v.y)
@@ -165,7 +191,42 @@ public struct Vector4<T:ArithmeticType> : VectorType {
         self.w = T(v.w)
     }
 
-    public init (_ v:Vector4<Double>) {
+    public init (_ v:Vector4<Int>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+        self.w = T(v.w)
+    }
+
+    public init (_ v:Vector4<UInt>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+        self.w = T(v.w)
+    }
+
+    public init (_ v:Vector4<Int8>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+        self.w = T(v.w)
+    }
+
+    public init (_ v:Vector4<UInt8>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+        self.w = T(v.w)
+    }
+
+    public init (_ v:Vector4<Int16>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+        self.w = T(v.w)
+    }
+
+    public init (_ v:Vector4<UInt16>) {
         self.x = T(v.x)
         self.y = T(v.y)
         self.z = T(v.z)
@@ -186,11 +247,18 @@ public struct Vector4<T:ArithmeticType> : VectorType {
         self.w = T(v.w)
     }
 
-    public init (_ v:Vector4<T>) {
-        self.x = v.x
-        self.y = v.y
-        self.z = v.z
-        self.w = v.w
+    public init (_ v:Vector4<Int64>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+        self.w = T(v.w)
+    }
+
+    public init (_ v:Vector4<UInt64>) {
+        self.x = T(v.x)
+        self.y = T(v.y)
+        self.z = T(v.z)
+        self.w = T(v.w)
     }
 
     public init (_ s:T, _ v:Vector4<T>, @noescape _ op:(_:T, _:T) -> T) {

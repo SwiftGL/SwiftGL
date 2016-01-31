@@ -34,9 +34,9 @@ public struct Matrix4x4<T:ArithmeticType> : MatrixType {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 4 }
 
-    public subscript(i: Int) -> Vector4<T> {
+    public subscript(column: Int) -> Vector4<T> {
         get {
-            switch(i) {
+            switch(column) {
             case 0: return x
             case 1: return y
             case 2: return z
@@ -45,7 +45,7 @@ public struct Matrix4x4<T:ArithmeticType> : MatrixType {
             }
         }
         set {
-            switch(i) {
+            switch(column) {
             case 0: x = newValue
             case 1: y = newValue
             case 2: z = newValue
@@ -53,6 +53,10 @@ public struct Matrix4x4<T:ArithmeticType> : MatrixType {
             default: preconditionFailure("Matrix index out of range")
             }
         }
+    }
+
+    public subscript(column:Int, row:Int) -> T {
+        return self[column][row]
     }
 
     public var debugDescription: String {
@@ -154,7 +158,7 @@ public struct Matrix4x4<T:ArithmeticType> : MatrixType {
         self.w = Vector4<T>(m[3], 1)
     }
 
-    public init(_ m: Matrix4x4<Float>) {
+    public init(_ m: Matrix4x4<T>) {
         self.x = Vector4<T>(m[0])
         self.y = Vector4<T>(m[1])
         self.z = Vector4<T>(m[2])
@@ -162,17 +166,87 @@ public struct Matrix4x4<T:ArithmeticType> : MatrixType {
     }
 
     public init(_ m: Matrix4x4<Double>) {
-        self.x = Vector4<T>(m[0])
-        self.y = Vector4<T>(m[1])
-        self.z = Vector4<T>(m[2])
-        self.w = Vector4<T>(m[3])
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
     }
 
-    public init(_ m: Matrix4x4<T>) {
-        self.x = Vector4<T>(m[0])
-        self.y = Vector4<T>(m[1])
-        self.z = Vector4<T>(m[2])
-        self.w = Vector4<T>(m[3])
+    public init(_ m: Matrix4x4<Float>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<Int>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<UInt>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<Int8>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<UInt8>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<Int16>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<UInt16>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<Int32>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<UInt32>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<Int64>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
+    }
+
+    public init(_ m: Matrix4x4<UInt64>) {
+        self.x = Vector4<T>(m.x)
+        self.y = Vector4<T>(m.y)
+        self.z = Vector4<T>(m.z)
+        self.w = Vector4<T>(m.w)
     }
 
     public init (_ m:Matrix4x4<T>, @noescape _ op:(_:T) -> T) {
@@ -221,26 +295,24 @@ public func *<T:ArithmeticType>(v: Vector4<T>, m: Matrix4x4<T>) -> Vector4<T> {
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(v, double4.self) * unsafeBitCast(m, double4x4.self), Vector4<T>.self)
         }
-        preconditionFailure()
-    #else
-        var x:T = v.x * m.x.x
-            x = x + v.y * m.x.y
-            x = x + v.z * m.x.z
-            x = x + v.w * m.x.w
-        var y:T = v.x * m.y.x
-            y = y + v.y * m.y.y
-            y = y + v.z * m.y.z
-            y = y + v.w * m.y.w
-        var z:T = v.x * m.z.x
-            z = z + v.y * m.z.y
-            z = z + v.z * m.z.z
-            z = z + v.w * m.z.w
-        var w:T = v.x * m.w.x
-            w = w + v.y * m.w.y
-            w = w + v.z * m.w.z
-            w = w + v.w * m.w.w
-        return Vector4<T>(x,y,z,w)
     #endif
+    var x:T = v.x * m.x.x
+        x = x + v.y * m.x.y
+        x = x + v.z * m.x.z
+        x = x + v.w * m.x.w
+    var y:T = v.x * m.y.x
+        y = y + v.y * m.y.y
+        y = y + v.z * m.y.z
+        y = y + v.w * m.y.w
+    var z:T = v.x * m.z.x
+        z = z + v.y * m.z.y
+        z = z + v.z * m.z.z
+        z = z + v.w * m.z.w
+    var w:T = v.x * m.w.x
+        w = w + v.y * m.w.y
+        w = w + v.z * m.w.z
+        w = w + v.w * m.w.w
+    return Vector4<T>(x,y,z,w)
 }
 
 
@@ -253,14 +325,12 @@ public func *<T:ArithmeticType>(m: Matrix4x4<T>, v: Vector4<T>) -> Vector4<T> {
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m, double4x4.self) * unsafeBitCast(v, double4.self), Vector4<T>.self)
         }
-        preconditionFailure()
-    #else
-        var rv:Vector4<T> = m.x * v.x
-            rv = rv + m.y * v.y
-            rv = rv + m.z * v.z
-            rv = rv + m.w * v.w
-        return rv
     #endif
+    var rv:Vector4<T> = m.x * v.x
+        rv = rv + m.y * v.y
+        rv = rv + m.z * v.z
+        rv = rv + m.w * v.w
+    return rv
 }
 
 
@@ -273,18 +343,16 @@ public func *<T:ArithmeticType>(m1: Matrix4x4<T>, m2: Matrix2x4<T>) -> Matrix2x4
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double2x4.self), Matrix2x4<T>.self)
         }
-        preconditionFailure()
-    #else
-        var x:Vector4<T> = m1.x * m2[0].x
-            x = x + m1.y * m2[0].y
-            x = x + m1.z * m2[0].z
-            x = x + m1.w * m2[0].w
-        var y:Vector4<T> = m1.x * m2[1].x
-            y = y + m1.y * m2[1].y
-            y = y + m1.z * m2[1].z
-            y = y + m1.w * m2[1].w
-        return Matrix2x4<T>(x, y)
     #endif
+    var x:Vector4<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
+    var y:Vector4<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
+    return Matrix2x4<T>(x, y)
 }
 
 
@@ -297,22 +365,20 @@ public func *<T:ArithmeticType>(m1: Matrix4x4<T>, m2: Matrix3x4<T>) -> Matrix3x4
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double3x4.self), Matrix3x4<T>.self)
         }
-        preconditionFailure()
-    #else
-        var x:Vector4<T> = m1.x * m2[0].x
-            x = x + m1.y * m2[0].y
-            x = x + m1.z * m2[0].z
-            x = x + m1.w * m2[0].w
-        var y:Vector4<T> = m1.x * m2[1].x
-            y = y + m1.y * m2[1].y
-            y = y + m1.z * m2[1].z
-            y = y + m1.w * m2[1].w
-        var z:Vector4<T> = m1.x * m2[2].x
-            z = z + m1.y * m2[2].y
-            z = z + m1.z * m2[2].z
-            z = z + m1.w * m2[2].w
-        return Matrix3x4<T>(x, y, z)
     #endif
+    var x:Vector4<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
+    var y:Vector4<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
+    var z:Vector4<T> = m1.x * m2[2].x
+        z = z + m1.y * m2[2].y
+        z = z + m1.z * m2[2].z
+        z = z + m1.w * m2[2].w
+    return Matrix3x4<T>(x, y, z)
 }
 
 
@@ -325,26 +391,24 @@ public func *<T:ArithmeticType>(m1: Matrix4x4<T>, m2: Matrix4x4<T>) -> Matrix4x4
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m1, double4x4.self) * unsafeBitCast(m2, double4x4.self), Matrix4x4<T>.self)
         }
-        preconditionFailure()
-    #else
-        var x:Vector4<T> = m1.x * m2[0].x
-            x = x + m1.y * m2[0].y
-            x = x + m1.z * m2[0].z
-            x = x + m1.w * m2[0].w
-        var y:Vector4<T> = m1.x * m2[1].x
-            y = y + m1.y * m2[1].y
-            y = y + m1.z * m2[1].z
-            y = y + m1.w * m2[1].w
-        var z:Vector4<T> = m1.x * m2[2].x
-            z = z + m1.y * m2[2].y
-            z = z + m1.z * m2[2].z
-            z = z + m1.w * m2[2].w
-        var w:Vector4<T> = m1.x * m2.w.x
-            w = w + m1.y * m2[3].y
-            w = w + m1.z * m2[3].z
-            w = w + m1.w * m2[3].w
-        return Matrix4x4<T>(x, y, z, w)
     #endif
+    var x:Vector4<T> = m1.x * m2[0].x
+        x = x + m1.y * m2[0].y
+        x = x + m1.z * m2[0].z
+        x = x + m1.w * m2[0].w
+    var y:Vector4<T> = m1.x * m2[1].x
+        y = y + m1.y * m2[1].y
+        y = y + m1.z * m2[1].z
+        y = y + m1.w * m2[1].w
+    var z:Vector4<T> = m1.x * m2[2].x
+        z = z + m1.y * m2[2].y
+        z = z + m1.z * m2[2].z
+        z = z + m1.w * m2[2].w
+    var w:Vector4<T> = m1.x * m2.w.x
+        w = w + m1.y * m2[3].y
+        w = w + m1.z * m2[3].z
+        w = w + m1.w * m2[3].w
+    return Matrix4x4<T>(x, y, z, w)
 }
 
 
@@ -376,6 +440,7 @@ public func /=<T:ArithmeticType>(inout m1: Matrix4x4<T>, m2: Matrix4x4<T>) {
 }
 
 
+@warn_unused_result
 public func inverse<T:ArithmeticType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
     #if !os(Linux)
         if T.self == Float.self {
@@ -384,101 +449,100 @@ public func inverse<T:ArithmeticType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
         if T.self == Double.self {
             return unsafeBitCast(unsafeBitCast(m, double4x4.self).inverse, Matrix4x4<T>.self)
         }
-        preconditionFailure()
-    #else
-        var d00:T = m.x.x * m.y.y
-            d00 = d00 - m.y.x * m.x.y
-        var d01:T = m.x.x * m.y.z
-            d01 = d01 - m.y.x * m.x.z
-        var d02:T = m.x.x * m.y.w
-            d02 = d02 - m.y.x * m.x.w
-        var d03:T = m.x.y * m.y.z
-            d03 = d03 - m.y.y * m.x.z
-        var d04:T = m.x.y * m.y.w
-            d04 = d04 - m.y.y * m.x.w
-        var d05:T = m.x.z * m.y.w
-            d05 = d05 - m.y.z * m.x.w
-
-        var d10:T = m.z.x * m.w.y
-            d10 = d10 - m.w.x * m.z.y
-        var d11:T = m.z.x * m.w.z
-            d11 = d11 - m.w.x * m.z.z
-        var d12:T = m.z.x * m.w.w
-            d12 = d12 - m.w.x * m.z.w
-        var d13:T = m.z.y * m.w.z
-            d13 = d13 - m.w.y * m.z.z
-        var d14:T = m.z.y * m.w.w
-            d14 = d14 - m.w.y * m.z.w
-        var d15:T = m.z.z * m.w.w
-            d15 = d15 - m.w.z * m.z.w
-
-        var det:T = d00 * d15
-            det = det - d01 * d14
-            det = det + d02 * d13
-        det = det + d03 * d12
-            det = det - d04 * d11
-            det = det + d05 * d10
-        let invdet : T = 1 / det
-
-        var mm = Matrix4x4<T>()
-
-        mm.x.x =  m.y.y * d15
-        mm.x.x = mm.x.x - m.y.z * d14
-        mm.x.x = mm.x.x + m.y.w * d13
-        mm.x.y = -m.x.y * d15
-        mm.x.y = mm.x.y + m.x.z * d14
-        mm.x.y = mm.x.y - m.x.w * d13
-        mm.x.z =  m.w.y * d05
-        mm.x.z = mm.x.z - m.w.z * d04
-        mm.x.z = mm.x.z + m.w.w * d03
-        mm.x.w = -m.z.y * d05
-        mm.x.w = mm.x.w + m.z.z * d04
-        mm.x.w = mm.x.w - m.z.w * d03
-
-        mm.y.x = -m.y.x * d15
-        mm.y.x = mm.y.x + m.y.z * d12
-        mm.y.x = mm.y.x - m.y.w * d11
-        mm.y.y =  m.x.x * d15
-        mm.y.y = mm.y.y - m.x.z * d12
-        mm.y.y = mm.y.y + m.x.w * d11
-        mm.y.z = -m.w.x * d05
-        mm.y.z = mm.y.z + m.w.z * d02
-        mm.y.z = mm.y.z - m.w.w * d01
-        mm.y.w =  m.z.x * d05
-        mm.y.w = mm.y.w - m.z.z * d02
-        mm.y.w = mm.y.w + m.z.w * d01
-
-        mm.z.x =  m.y.x * d14
-        mm.z.x = mm.z.x - m.y.y * d12
-        mm.z.x = mm.z.x + m.y.w * d10
-        mm.z.y = -m.x.x * d14
-        mm.z.y = mm.z.y + m.x.y * d12
-        mm.z.y = mm.z.y - m.x.w * d10
-        mm.z.z =  m.w.x * d04
-        mm.z.z = mm.z.z - m.w.y * d02
-        mm.z.z = mm.z.z + m.w.w * d00
-        mm.z.w = -m.z.x * d04
-        mm.z.w = mm.z.w + m.z.y * d02
-        mm.z.w = mm.z.w - m.z.w * d00
-
-        mm.w.x = -m.y.x * d13
-        mm.w.x = mm.w.x + m.y.y * d11
-        mm.w.x = mm.w.x - m.y.z * d10
-        mm.w.y =  m.x.x * d13
-        mm.w.y = mm.w.y - m.x.y * d11
-        mm.w.y = mm.w.y + m.x.z * d10
-        mm.w.z = -m.w.x * d03
-        mm.w.z = mm.w.z + m.w.y * d01
-        mm.w.z = mm.w.z - m.w.z * d00
-        mm.w.w =  m.z.x * d03
-        mm.w.w = mm.w.w - m.z.y * d01
-        mm.w.w = mm.w.w + m.z.z * d00
-
-        return mm * invdet
     #endif
+    var d00:T = m.x.x * m.y.y
+        d00 = d00 - m.y.x * m.x.y
+    var d01:T = m.x.x * m.y.z
+        d01 = d01 - m.y.x * m.x.z
+    var d02:T = m.x.x * m.y.w
+        d02 = d02 - m.y.x * m.x.w
+    var d03:T = m.x.y * m.y.z
+        d03 = d03 - m.y.y * m.x.z
+    var d04:T = m.x.y * m.y.w
+        d04 = d04 - m.y.y * m.x.w
+    var d05:T = m.x.z * m.y.w
+        d05 = d05 - m.y.z * m.x.w
+
+    var d10:T = m.z.x * m.w.y
+        d10 = d10 - m.w.x * m.z.y
+    var d11:T = m.z.x * m.w.z
+        d11 = d11 - m.w.x * m.z.z
+    var d12:T = m.z.x * m.w.w
+        d12 = d12 - m.w.x * m.z.w
+    var d13:T = m.z.y * m.w.z
+        d13 = d13 - m.w.y * m.z.z
+    var d14:T = m.z.y * m.w.w
+        d14 = d14 - m.w.y * m.z.w
+    var d15:T = m.z.z * m.w.w
+        d15 = d15 - m.w.z * m.z.w
+
+    var det:T = d00 * d15
+        det = det - d01 * d14
+        det = det + d02 * d13
+    det = det + d03 * d12
+        det = det - d04 * d11
+        det = det + d05 * d10
+    let invdet : T = 1 / det
+
+    var mm = Matrix4x4<T>()
+
+    mm.x.x =  m.y.y * d15
+    mm.x.x = mm.x.x - m.y.z * d14
+    mm.x.x = mm.x.x + m.y.w * d13
+    mm.x.y = 0 - m.x.y * d15
+    mm.x.y = mm.x.y + m.x.z * d14
+    mm.x.y = mm.x.y - m.x.w * d13
+    mm.x.z =  m.w.y * d05
+    mm.x.z = mm.x.z - m.w.z * d04
+    mm.x.z = mm.x.z + m.w.w * d03
+    mm.x.w = 0 - m.z.y * d05
+    mm.x.w = mm.x.w + m.z.z * d04
+    mm.x.w = mm.x.w - m.z.w * d03
+
+    mm.y.x = 0 - m.y.x * d15
+    mm.y.x = mm.y.x + m.y.z * d12
+    mm.y.x = mm.y.x - m.y.w * d11
+    mm.y.y =  m.x.x * d15
+    mm.y.y = mm.y.y - m.x.z * d12
+    mm.y.y = mm.y.y + m.x.w * d11
+    mm.y.z = 0 - m.w.x * d05
+    mm.y.z = mm.y.z + m.w.z * d02
+    mm.y.z = mm.y.z - m.w.w * d01
+    mm.y.w =  m.z.x * d05
+    mm.y.w = mm.y.w - m.z.z * d02
+    mm.y.w = mm.y.w + m.z.w * d01
+
+    mm.z.x =  m.y.x * d14
+    mm.z.x = mm.z.x - m.y.y * d12
+    mm.z.x = mm.z.x + m.y.w * d10
+    mm.z.y = 0 - m.x.x * d14
+    mm.z.y = mm.z.y + m.x.y * d12
+    mm.z.y = mm.z.y - m.x.w * d10
+    mm.z.z =  m.w.x * d04
+    mm.z.z = mm.z.z - m.w.y * d02
+    mm.z.z = mm.z.z + m.w.w * d00
+    mm.z.w = 0 - m.z.x * d04
+    mm.z.w = mm.z.w + m.z.y * d02
+    mm.z.w = mm.z.w - m.z.w * d00
+
+    mm.w.x = 0 - m.y.x * d13
+    mm.w.x = mm.w.x + m.y.y * d11
+    mm.w.x = mm.w.x - m.y.z * d10
+    mm.w.y =  m.x.x * d13
+    mm.w.y = mm.w.y - m.x.y * d11
+    mm.w.y = mm.w.y + m.x.z * d10
+    mm.w.z = 0 - m.w.x * d03
+    mm.w.z = mm.w.z + m.w.y * d01
+    mm.w.z = mm.w.z - m.w.z * d00
+    mm.w.w =  m.z.x * d03
+    mm.w.w = mm.w.w - m.z.y * d01
+    mm.w.w = mm.w.w + m.z.z * d00
+
+    return mm * invdet
 }
 
 
+@warn_unused_result
 public func determinant<T:ArithmeticType>(m: Matrix4x4<T>) -> T {
     var d00:T = m.x.x * m.y.y
         d00 = d00 - m.y.x * m.x.y
@@ -517,6 +581,7 @@ public func determinant<T:ArithmeticType>(m: Matrix4x4<T>) -> T {
 }
 
 
+@warn_unused_result
 public func transpose<T:ArithmeticType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
     return Matrix4x4(
         m.x.x, m.y.x, m.z.x, m.w.x,
@@ -527,6 +592,7 @@ public func transpose<T:ArithmeticType>(m: Matrix4x4<T>) -> Matrix4x4<T> {
 }
 
 
+@warn_unused_result
 public func outerProduct<T:ArithmeticType>(c:Vector4<T>, _ r:Vector4<T>) -> Matrix4x4<T> {
     return Matrix4x4(
         c * r[0],

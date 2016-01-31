@@ -283,24 +283,21 @@ public func fract<T:VectorType where T.Element:FloatingPointArithmeticType>
 }
 
 @warn_unused_result
-public func mod<genType:VectorType where
-    genType.Element:FloatingPointArithmeticType
-    >(x:genType.Element, _ y:genType) -> genType {
-    return genType(x, y, GLmath.GLmod)
+public func mod<genType:VectorType>
+    (x:genType.Element, _ y:genType) -> genType {
+        return x % y
 }
 
 @warn_unused_result
-public func mod<genType:VectorType where
-    genType.Element:FloatingPointArithmeticType
-    >(x:genType, _ y:genType.Element) -> genType {
-    return genType(x, y, GLmath.GLmod)
+public func mod<genType:VectorType>
+    (x:genType, _ y:genType.Element) -> genType {
+        return x % y
 }
 
 @warn_unused_result
-public func mod<genType:VectorType where
-    genType.Element:FloatingPointArithmeticType
-    >(x:genType, _ y:genType) -> genType {
-    return genType(x, y, GLmath.GLmod)
+public func mod<genType:VectorType>
+    (x:genType, _ y:genType) -> genType {
+        return x % y
 }
 
 @warn_unused_result
@@ -657,11 +654,13 @@ public func cross<T:ArithmeticType>
 @warn_unused_result
 public func cross<T:ArithmeticType>
     (x:Vector3<T>, _ y:Vector3<T>) -> Vector3<T> {
-    return Vector3<T>(
-        x.y * y.z - y.y * x.z,
-        x.z * y.x - y.z * x.x,
-        x.x * y.y - y.x * x.y
-    )
+        var x1:T = x.y * y.z
+            x1 = x1 - y.y * x.z
+        var y1:T = x.z * y.x
+            y1 = y1 - y.z * x.x
+        var z1:T = x.x * y.y
+            z1 = z1 - y.x * x.y
+        return Vector3<T>(x1,y1,z1)
 }
 
 @warn_unused_result

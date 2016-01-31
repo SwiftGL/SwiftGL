@@ -284,12 +284,6 @@ public func fract<T:VectorType where T.Element:FloatingPointArithmeticType>
 
 @warn_unused_result
 public func mod<genType:VectorType>
-    (x:genType.Element, _ y:genType) -> genType {
-        return x % y
-}
-
-@warn_unused_result
-public func mod<genType:VectorType>
     (x:genType, _ y:genType.Element) -> genType {
         return x % y
 }
@@ -375,28 +369,26 @@ public func step<genType:VectorType>(edge:genType.Element, _ x:genType) -> genTy
 
 @warn_unused_result
 public func smoothstep<genType:VectorType where
-    genType.Element:ArithmeticType
+    genType.Element:FloatingPointArithmeticType
     >(edge0:genType, _ edge1:genType, _ x:genType) -> genType {
     return genType(edge0, edge1, x) { (edge0, edge1, x) in
         var i = x-edge0
         i /= edge1-edge0
         let t = min(max( i, 0), 1)
-        i = genType.Element(3)
-        i -= genType.Element(2) * t
+        i = 3 - 2 * t
         return t * t * i
     }
 }
 
 @warn_unused_result
 public func smoothstep<genType:VectorType where
-    genType.Element:ArithmeticType
+    genType.Element:FloatingPointArithmeticType
     >(edge0:genType.Element, _ edge1:genType.Element, _ x:genType) -> genType {
     return genType(x) { (x) in
         var i = x-edge0
         i /= edge1-edge0
         let t = min(max( i, 0), 1)
-        i = genType.Element(3)
-        i -= genType.Element(2) * t
+        i = 3 - 2 * t
         return t * t * i
     }
 }
@@ -424,7 +416,6 @@ public func isinf<genType:VectorType
 @warn_unused_result
 public func floatBitsToInt<genType:VectorType where
     genType.Int32Vector:VectorType,
-    genType.Int32Vector.Element:IntegerArithmeticType,
     genType.Element == Float,
     genType.BooleanVector == genType.Int32Vector.BooleanVector
     >(value:genType) -> genType.Int32Vector {
@@ -436,7 +427,6 @@ public func floatBitsToInt<genType:VectorType where
 @warn_unused_result
 public func floatBitsToUint<genType:VectorType where
     genType.UInt32Vector:VectorType,
-    genType.UInt32Vector.Element:IntegerArithmeticType,
     genType.Element == Float,
     genType.BooleanVector == genType.UInt32Vector.BooleanVector
     >(value:genType) -> genType.UInt32Vector {
@@ -448,7 +438,6 @@ public func floatBitsToUint<genType:VectorType where
 @warn_unused_result
 public func intBitsToFloat<genType:VectorType where
     genType.FloatVector:VectorType,
-    genType.FloatVector.Element == Float,
     genType.Element == Int32,
     genType.BooleanVector == genType.FloatVector.BooleanVector
     >(value:genType) -> genType.FloatVector {
@@ -460,7 +449,6 @@ public func intBitsToFloat<genType:VectorType where
 @warn_unused_result
 public func uintBitsToFloat<genType:VectorType where
     genType.FloatVector:VectorType,
-    genType.FloatVector.Element == Float,
     genType.Element == UInt32,
     genType.BooleanVector == genType.FloatVector.BooleanVector
     >(value:genType) -> genType.FloatVector {
@@ -620,7 +608,7 @@ public func distance<genType:VectorType where
 
 @warn_unused_result
 public func dot<genType:VectorType where
-    genType.Element:ArithmeticType
+    genType.Element:FloatingPointArithmeticType
     >(x:genType, _ y:genType) -> genType.Element {
         switch (x) {
         case is Vector2<genType.Element>:
@@ -646,13 +634,7 @@ public func dot<genType:VectorType where
 }
 
 @warn_unused_result
-public func cross<T:ArithmeticType>
-    (x:Vector2<T>, _ y:Vector2<T>) -> Vector3<T> {
-        return Vector3<T>(0, 0, x.x * y.y - y.x * x.y)
-}
-
-@warn_unused_result
-public func cross<T:ArithmeticType>
+public func cross<T:FloatingPointArithmeticType>
     (x:Vector3<T>, _ y:Vector3<T>) -> Vector3<T> {
         var x1:T = x.y * y.z
             x1 = x1 - y.y * x.z
@@ -672,17 +654,16 @@ public func normalize<genType:VectorType where
 
 @warn_unused_result
 public func faceforward<genType:VectorType where
-    genType.Element:ArithmeticType,
-    genType.Element:SignedNumberType
+    genType.Element:FloatingPointArithmeticType
     >(n:genType, _ i:genType, _ nRef:genType) -> genType {
     return dot(nRef, i) < 0 ? n : -n
 }
 
 @warn_unused_result
 public func reflect<genType:VectorType where
-    genType.Element:ArithmeticType
+    genType.Element:FloatingPointArithmeticType
     >(i:genType, _ n:genType) -> genType {
-    let f = genType.Element(2) * dot(n, i)
+    let f = 2 * dot(n, i)
     return i - f * n
 }
 

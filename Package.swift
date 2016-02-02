@@ -6,9 +6,6 @@ let package = Package(
             Target(
                 name: "SwiftGL"),
             Target(
-                name: "SwiftGLmath"),
-            Target(
-                name: "SwiftGLglm",
-                dependencies: [.Target(name: "SwiftGLmath")])
+                name: "SwiftGLmath")
         ]
 )

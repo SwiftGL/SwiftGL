@@ -20,33 +20,53 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
+import XCTest
 import SwiftGLmath
 
+class SwiftGLglmTests: XCTestCase {
 
-public typealias imat2 = Matrix2x2<Int32>
-public typealias umat2 = Matrix2x2<UInt32>
-public typealias imat3 = Matrix3x3<Int32>
-public typealias umat3 = Matrix3x3<UInt32>
-public typealias imat4 = Matrix4x4<Int32>
-public typealias umat4 = Matrix4x4<UInt32>
+    func testGenericLink() {
+        // Nothing asserts here.
+        // Just making sure the generics will link.
 
-public typealias imat2x2 = Matrix2x2<Int32>
-public typealias umat2x2 = Matrix2x2<UInt32>
-public typealias imat2x3 = Matrix2x3<Int32>
-public typealias umat2x3 = Matrix2x3<UInt32>
-public typealias imat2x4 = Matrix2x4<Int32>
-public typealias umat2x4 = Matrix2x4<UInt32>
+        let m4 = mat4()
+        let v2 = vec2(1)
+        let v3 = vec3()
+        let v4 = vec4()
 
-public typealias imat3x2 = Matrix3x2<Int32>
-public typealias umat3x2 = Matrix3x2<UInt32>
-public typealias imat3x3 = Matrix3x3<Int32>
-public typealias umat3x3 = Matrix3x3<UInt32>
-public typealias imat3x4 = Matrix3x4<Int32>
-public typealias umat3x4 = Matrix3x4<UInt32>
+        translate(m4, v3)
+        rotate(m4, 1.1, v3)
+        rotate_slow(m4, 1.1, v3)
+        scale(m4, v3)
 
-public typealias imat4x2 = Matrix4x2<Int32>
-public typealias umat4x2 = Matrix4x2<UInt32>
-public typealias imat4x3 = Matrix4x3<Int32>
-public typealias umat4x3 = Matrix4x3<UInt32>
-public typealias imat4x4 = Matrix4x4<Int32>
-public typealias umat4x4 = Matrix4x4<UInt32>
+        ortho(1,2,3,4,5,6)
+        ortho(1,2,3,4)
+        orthoLH(1,2,3,4,5,6)
+        orthoRH(1,2,3,4,5,6)
+
+        frustum(1,2,3,4,5,6)
+        frustumLH(1,2,3,4,5,6)
+        frustumRH(1,2,3,4,5,6)
+
+        perspective(1,2,3,4)
+        perspectiveLH(1,2,3,4)
+        perspectiveRH(1,2,3,4)
+
+        perspectiveFov(1,2,3,4,5)
+        perspectiveFovLH(1,2,3,4,5)
+        perspectiveFovRH(1,2,3,4,5)
+
+        infinitePerspective(1,2,3)
+        infinitePerspectiveLH(1,2,3)
+        infinitePerspectiveRH(1,2,3)
+
+        project(v3, m4, m4, v4)
+        unproject(v3, m4, m4, v4)
+        pickMatrix(v2, v2, v4)
+
+        lookAt(v3, v3, v3)
+        lookAtLH(v3, v3, v3)
+        lookAtRH(v3, v3, v3)
+    }
+
+}

@@ -22,7 +22,6 @@
 
 import SwiftGL
 import SwiftGLmath
-import SwiftGLglm
 #if os(Linux)
     import Glibc
 #else

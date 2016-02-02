@@ -22,7 +22,6 @@
 
 import SwiftGL
 import SwiftGLmath
-import SwiftGLglm
 import CGLFW3
 
 

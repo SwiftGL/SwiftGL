@@ -20,7 +20,8 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-import SwiftGLmath
+// Portability for glm by Christophe Riccio
+// http://glm.g-truc.net/
 
 
 // Options may be changed at run time.
@@ -28,6 +29,39 @@ import SwiftGLmath
 public var glmLeftHanded = false
 public var glmDepthZeroToOne = false
 
+
+// Integer matrices
+
+public typealias imat2 = Matrix2x2<Int32>
+public typealias umat2 = Matrix2x2<UInt32>
+public typealias imat3 = Matrix3x3<Int32>
+public typealias umat3 = Matrix3x3<UInt32>
+public typealias imat4 = Matrix4x4<Int32>
+public typealias umat4 = Matrix4x4<UInt32>
+
+public typealias imat2x2 = Matrix2x2<Int32>
+public typealias umat2x2 = Matrix2x2<UInt32>
+public typealias imat2x3 = Matrix2x3<Int32>
+public typealias umat2x3 = Matrix2x3<UInt32>
+public typealias imat2x4 = Matrix2x4<Int32>
+public typealias umat2x4 = Matrix2x4<UInt32>
+
+public typealias imat3x2 = Matrix3x2<Int32>
+public typealias umat3x2 = Matrix3x2<UInt32>
+public typealias imat3x3 = Matrix3x3<Int32>
+public typealias umat3x3 = Matrix3x3<UInt32>
+public typealias imat3x4 = Matrix3x4<Int32>
+public typealias umat3x4 = Matrix3x4<UInt32>
+
+public typealias imat4x2 = Matrix4x2<Int32>
+public typealias umat4x2 = Matrix4x2<UInt32>
+public typealias imat4x3 = Matrix4x3<Int32>
+public typealias umat4x3 = Matrix4x3<UInt32>
+public typealias imat4x4 = Matrix4x4<Int32>
+public typealias umat4x4 = Matrix4x4<UInt32>
+
+
+// Matrix transforms
 
 public func translate<T:ArithmeticType>(m:Matrix4x4<T>, _ v:Vector3<T>) -> Matrix4x4<T>
 {
@@ -544,9 +578,9 @@ public func pickMatrix<T:ArithmeticType>
 {
     assert(delta.x > 0 && delta.y > 0);
 
-    var tmpx = viewport[2] - 2 * (center.x - viewport[0])
+    var tmpx:T = viewport[2] - 2 * (center.x - viewport[0])
     tmpx /= delta.x
-    var tmpy = viewport[3] - 2 * (center.y - viewport[1])
+    var tmpy:T = viewport[3] - 2 * (center.y - viewport[1])
     tmpy /= delta.y
 
     let trans:Vector3<T> = Vector3<T>(tmpx, tmpy, 0)

@@ -20,53 +20,6 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-public typealias vec2 = Vector2<Float>
-public typealias dvec2 = Vector2<Double>
-public typealias ivec2 = Vector2<Int32>
-public typealias uvec2 = Vector2<UInt32>
-public typealias bvec2 = Vector2b
-
-public typealias vec3 = Vector3<Float>
-public typealias dvec3 = Vector3<Double>
-public typealias ivec3 = Vector3<Int32>
-public typealias uvec3 = Vector3<UInt32>
-public typealias bvec3 = Vector3b
-
-public typealias vec4 = Vector4<Float>
-public typealias dvec4 = Vector4<Double>
-public typealias ivec4 = Vector4<Int32>
-public typealias uvec4 = Vector4<UInt32>
-public typealias bvec4 = Vector4b
-
-public typealias mat2 = Matrix2x2<Float>
-public typealias dmat2 = Matrix2x2<Double>
-public typealias mat3 = Matrix3x3<Float>
-public typealias dmat3 = Matrix3x3<Double>
-public typealias mat4 = Matrix4x4<Float>
-public typealias dmat4 = Matrix4x4<Double>
-
-public typealias mat2x2 = Matrix2x2<Float>
-public typealias dmat2x2 = Matrix2x2<Double>
-public typealias mat2x3 = Matrix2x3<Float>
-public typealias dmat2x3 = Matrix2x3<Double>
-public typealias mat2x4 = Matrix2x4<Float>
-public typealias dmat2x4 = Matrix2x4<Double>
-
-public typealias mat3x2 = Matrix3x2<Float>
-public typealias dmat3x2 = Matrix3x2<Double>
-public typealias mat3x3 = Matrix3x3<Float>
-public typealias dmat3x3 = Matrix3x3<Double>
-public typealias mat3x4 = Matrix3x4<Float>
-public typealias dmat3x4 = Matrix3x4<Double>
-
-public typealias mat4x2 = Matrix4x2<Float>
-public typealias dmat4x2 = Matrix4x2<Double>
-public typealias mat4x3 = Matrix4x3<Float>
-public typealias dmat4x3 = Matrix4x3<Double>
-public typealias mat4x4 = Matrix4x4<Float>
-public typealias dmat4x4 = Matrix4x4<Double>
-
-
 public protocol ArithmeticType : Hashable, Comparable, IntegerLiteralConvertible {
     init(_: Double)
     init(_: Float)
@@ -115,6 +68,8 @@ extension Int64: BitsOperationsType {}
 extension UInt64: BitsOperationsType {}
 
 
+// Anything not a plain single scalar is considered a Matrix.
+// This includes Vectors, Complex, and Quaternion.
 public protocol MatrixType : MutableCollectionType, Hashable, Equatable, CustomDebugStringConvertible {
     typealias Element:ArithmeticType
     init()
@@ -149,6 +104,7 @@ public protocol MatrixType : MutableCollectionType, Hashable, Equatable, CustomD
     func %=(inout _: Self, _: Element)
 }
 
+// This protocol is only Vector2, Vector3, and Vector4
 public protocol VectorType : MatrixType, ArrayLiteralConvertible {
     typealias FloatVector
     typealias DoubleVector
@@ -176,6 +132,7 @@ public protocol VectorType : MatrixType, ArrayLiteralConvertible {
     func /=(inout _: Self, _: Self)
 }
 
+// This protocol is only Vector2b, Vector3b, and Vector4b
 public protocol BooleanVectorType : MutableCollectionType, Hashable, Equatable, CustomDebugStringConvertible {
     typealias BooleanVector
     subscript(_:Int) -> Bool { get set }

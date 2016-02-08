@@ -10,6 +10,10 @@ let package = Package(
     ]
 )
 ```
+It doesn't look like Swift 2.2 is going to be released with the package manager.
+I have no idea where things are headed for building on Linux. Some of the
+directions herein are in a state of transition awaiting Swift 3.0 or later.
+
 ## Getting Started
 
 The `Demo` folder contains example programs to get you started.
@@ -78,23 +82,31 @@ let d = Double(f)
 let v = vec3()
 let dv = dvec3(v)
 ```
-
-## SwiftGL glm compatibility
-
 The glm library for C++ is one of the most used math libraries for OpenGL. Like SwiftGL,
 it implements the GLSL specification. It also provides additional functions to support
-things like quaternions and cameras. This module brings those functions to Swift.
-
-To use: `import SwiftGLglm` in your swift file.
-
+things like quaternions and cameras. The SwiftGL math module contains matrix
+transformations compatible with glm.
+```swift
+let projectionMatrix = perspective(fov, aspect, clip.near, clip.far)
+```
 There are a massive amount of OpenGL examples and tutorials available for free. Most
-of them use glm. The goal is to have enough glm implemented so that nearly every
-tutorial is easily followed with Swift instead of C++.
+of them use glm. Having a compatible API for matrix transformations enables nearly every
+tutorial to be easily followed with Swift instead of C++.
 
-Not every function has been ported to Swift. This is not a priority. However, if you
-implement something that was missing, a pull request will almost certainly be accepted.
+## SwiftGL resource management
 
-Christophe Riccio manages the glm project which is available here: http://glm.g-truc.net/
+Currently, only BMP importing is working. But the framework for this is comprehensive
+so adding more decoders is straightforward.
+```
+import SwiftGLres
+let loader = SGLImageLoader(fromFile: "/Users/dturnbull/Desktop/buildingtex.bmp")
+assert(loader.error == nil, loader.error!)
+// You can inspect info like loader.decoder!.channels here.
+// Images are automatically converted to fit any SGLImageType provided.
+let image = SGLImageRGB<UInt8>(loader)
+assert(loader.error == nil, loader.error!)
+```
+Future decoders will include: GIF, HDR, JPEG, PIC, PNG, PNM, PSD, TGA.
 
 ## Performance Considerations
 
@@ -102,6 +114,15 @@ Everything in the loader is a direct call to the OpenGL functions. There's no tr
 layer required to provide the syntactical sugar. Because Swift has first-class support
 for working with C, all OpenGL functions are as fast as they can possibly be.
 
-The math libraries have the potential to be as fast as C code using SIMD intrinsics.
-To get this performance you must use whole-module-optimization (WMO). Otherwise, all
-functions and operators are dynamically dispatched at run time.
+The math libraries have the potential to be as fast as C code having SIMD intrinsics.
+To get this performance you must use whole-module-optimization (WMO).
+
+## Acknowledgements
+
+Some of the more difficult problems were modeled after solutions in glm. In particular,
+the matrix transformation API. Christophe Riccio manages the glm project which is
+available here: http://glm.g-truc.net/
+
+Image importing was bootstrapped from Sean Barrett's stb library:
+https://github.com/nothings/stb
+

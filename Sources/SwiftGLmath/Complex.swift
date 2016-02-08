@@ -177,11 +177,10 @@ public func *<T:FloatingPointArithmeticType>(x1: Complex<T>, x2: Complex<T>) -> 
 
 @warn_unused_result
 public func /<T:FloatingPointArithmeticType>(x1: Complex<T>, x2: Complex<T>) -> Complex<T> {
-    let cd = x2.real * x2.real + x2.imag * x2.imag
-    return Complex<T>(
-        (x1.real * x2.real + x1.imag * x2.imag) / cd,
-        (x1.imag * x2.real - x1.real * x2.imag) / cd
-    )
+    let cd:T = x2.real * x2.real + x2.imag * x2.imag
+    let r:T = x1.real * x2.real + x1.imag * x2.imag
+    let i:T = x1.imag * x2.real - x1.real * x2.imag
+    return Complex<T>(r / cd, i / cd)
 }
 
 

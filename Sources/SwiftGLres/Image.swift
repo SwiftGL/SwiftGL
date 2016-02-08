@@ -219,7 +219,10 @@ final public class SGLImageLoader {
 
     // Needs to be NSInputStream eventually...
     private var input:NSData
-    private var pos = 0
+    private var inputPos = 0
+    private var buf = [UInt8]()
+    private var bufPos = 0
+    private let bufSize = 4096
 
     // Initialization API is a bit unstable until
     // NSInputStream is available on Linux.
@@ -260,6 +263,7 @@ final public class SGLImageLoader {
         // Release some things early
         decoder = nil
         input = NSData()
+        buf = [UInt8]()
     }
 
     // TODO
@@ -269,25 +273,61 @@ final public class SGLImageLoader {
     // 3. Normal read from NSInputStream
 
     private func rewind() {
-        pos = 0
+        assert(bufPos == inputPos)
+        bufPos = 0
+        inputPos = 0
     }
 
-    private func skip(len:Int) -> Int {
-        let length = min(len, input.length - pos)
-        assert(length==len)
-        pos += length
-        return length
+    private func getNextBuffer() {
+        bufPos -= buf.count
+        let length = min(bufSize, input.length - inputPos)
+        if length == 0 {
+            // stops bufPos >= buf.count when at end
+            bufPos = -1
+        }
+        if length < 0 {
+            // read past eof
+            // can we handle this better?
+            fatalError()
+        }
+        if length > buf.count {
+            buf = [UInt8](count:length, repeatedValue:0)
+        }
+        if length < buf.count {
+            buf.replaceRange(length ..< buf.count , with: [])
+        }
+        buf.withUnsafeMutableBufferPointer(){
+            // this is extra super slow which is why we buffer
+            let r = NSRange(location: inputPos, length: length)
+            input.getBytes($0.baseAddress, range: r)
+        }
     }
 
-    private func read(buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
-        //TODO this is horrifically slow calling to Obj-C
-        //     seriously half the time is spent dispatching
-        let length = min(len, input.length - pos)
-        assert(length==len)
-        let r = NSRange(location: pos, length: length)
-        input.getBytes(buffer, range: r)
-        pos += length
-        return length
+    private func skip(len:Int) {
+        inputPos += len
+        bufPos += len
+        while bufPos >= buf.count {
+            getNextBuffer()
+        }
+    }
+
+    private func read(buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) {
+        var i = 0
+        var j = len
+        while j > 0 {
+            var toMove = min(j, buf.count - bufPos)
+            j -= toMove
+            inputPos += toMove
+            while toMove > 0 {
+                buffer[i] = buf[bufPos]
+                bufPos += 1
+                i += 1
+                toMove -= 1
+            }
+            if bufPos >= buf.count {
+                getNextBuffer()
+            }
+        }
     }
 
     private func read8() -> Int {
@@ -592,13 +632,13 @@ public class SGLImageDecoder {
     public var flipVertical:Bool {
         return loader!.flipVertical
     }
-    public class func skip(loader:SGLImageLoader, len:Int) -> Int { return loader.skip(len) }
+    public class func skip(loader:SGLImageLoader, len:Int) { loader.skip(len) }
     public class func read8(loader:SGLImageLoader) -> Int { return loader.read8() }
     public class func read16be(loader:SGLImageLoader) -> Int { return loader.read16be() }
     public class func read32be(loader:SGLImageLoader) -> Int { return loader.read32be() }
     public class func read16le(loader:SGLImageLoader) -> Int { return loader.read16le() }
     public class func read32le(loader:SGLImageLoader) -> Int { return loader.read32le() }
-    final public func skip(len:Int) -> Int { return loader!.skip(len) }
+    final public func skip(len:Int) { loader!.skip(len) }
     final public func read8() -> Int { return loader!.read8() }
     final public func read16be() -> Int { return loader!.read16be() }
     final public func read32be() -> Int { return loader!.read32be() }

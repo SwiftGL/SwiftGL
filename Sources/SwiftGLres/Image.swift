@@ -21,7 +21,11 @@
 
 
 import Foundation
-
+#if os(Linux)
+    import Glibc
+#else
+    import Darwin.C
+#endif
 
 public protocol SGLImageType {
     typealias Element
@@ -85,7 +89,8 @@ public class SGLImage<T> : SGLImageType {
     private let buffer:UnsafeMutableBufferPointer<T>
 
     public init(width:Int, height:Int, channels:Int) {
-        assert(!(T.self is AnyObject))
+//        // There's no AnyObject on Linux. How do we enforce value types?
+//        assert(!(T.self is AnyObject))
         self.width = width
         self.height = height
         self.channels = channels
@@ -229,7 +234,7 @@ final public class SGLImageLoader {
     public init(fromFile filename:String) {
         do {
             try input = NSData(contentsOfFile: filename,
-                options: [.UncachedRead, .DataReadingMappedAlways])
+                options: [.DataReadingUncached, .DataReadingMappedAlways])
         }
         catch let error as NSError {
             self.error = error.localizedFailureReason
@@ -266,27 +271,19 @@ final public class SGLImageLoader {
         buf = [UInt8]()
     }
 
-    // TODO
-    // The idea is to have three read states when NSInputStream is available:
-    // 1. Read into a rewindable, growable buffer to run tests
-    // 2. Read from buffer until empty then switch to...
-    // 3. Normal read from NSInputStream
-
     private func rewind() {
-        assert(bufPos == inputPos)
+        precondition(bufPos == inputPos)
         bufPos = 0
         inputPos = 0
     }
 
+    // Obj-C calls are extra super slow.
+    // Using a buffer doubles performance.
     private func getNextBuffer() {
         bufPos -= buf.count
         let length = min(bufSize, input.length - inputPos)
-        if length == 0 {
-            // stops bufPos >= buf.count when at end
-            bufPos = -1
-        }
-        if length < 0 {
-            // read past eof
+        if length <= 0 {
+            // all eof errors come here
             // can we handle this better?
             fatalError()
         }
@@ -297,7 +294,6 @@ final public class SGLImageLoader {
             buf.replaceRange(length ..< buf.count , with: [])
         }
         buf.withUnsafeMutableBufferPointer(){
-            // this is extra super slow which is why we buffer
             let r = NSRange(location: inputPos, length: length)
             input.getBytes($0.baseAddress, range: r)
         }
@@ -306,7 +302,8 @@ final public class SGLImageLoader {
     private func skip(len:Int) {
         inputPos += len
         bufPos += len
-        while bufPos >= buf.count {
+        // not >= here so you can seek to eof without error
+        while bufPos > buf.count {
             getNextBuffer()
         }
     }
@@ -315,6 +312,9 @@ final public class SGLImageLoader {
         var i = 0
         var j = len
         while j > 0 {
+            if bufPos >= buf.count {
+                getNextBuffer()
+            }
             var toMove = min(j, buf.count - bufPos)
             j -= toMove
             inputPos += toMove
@@ -324,15 +324,26 @@ final public class SGLImageLoader {
                 i += 1
                 toMove -= 1
             }
-            if bufPos >= buf.count {
-                getNextBuffer()
-            }
         }
     }
 
+    private func readUInt8() -> UInt8 {
+        if bufPos >= buf.count {
+            getNextBuffer()
+        }
+        let value:UInt8 = buf[bufPos]
+        bufPos += 1
+        inputPos += 1
+        return value
+    }
+
     private func read8() -> Int {
-        var value:UInt8 = 0
-        read(&value, maxLength:1)
+        if bufPos >= buf.count {
+            getNextBuffer()
+        }
+        let value:UInt8 = buf[bufPos]
+        bufPos += 1
+        inputPos += 1
         return Int(value)
     }
 
@@ -420,7 +431,7 @@ public class SGLImageDecoder {
             return v2 as! T
         }
         if (T.self == Float.self) {
-            let v2 = pow(Float(v1) / 255, loader!.fGamma) * loader!.fScale
+            let v2 = powf(Float(v1) / 255, loader!.fGamma) * loader!.fScale
             return v2 as! T
         }
         fatalError()
@@ -450,7 +461,7 @@ public class SGLImageDecoder {
             return v1 as! T
         }
         if (T.self == Float.self) {
-            let v2 = pow(Float(v1) / 65535, loader!.fGamma) * loader!.fScale
+            let v2 = powf(Float(v1) / 65535, loader!.fGamma) * loader!.fScale
             return v2 as! T
         }
         fatalError()
@@ -473,11 +484,11 @@ public class SGLImageDecoder {
 
     final public func cast<T>(v1:Float) -> T {
         if (T.self == UInt8.self) {
-            let v2 = pow(v1 * loader!.iScale, loader!.iGamma) * 255 + 0.5
+            let v2 = powf(v1 * loader!.iScale, loader!.iGamma) * 255 + 0.5
             return UInt8(min(max(v2, 0), 255)) as! T
         }
         if (T.self == UInt16.self) {
-            let v2 = pow(v1 * loader!.iScale, loader!.iGamma) * 65535 + 0.5
+            let v2 = powf(v1 * loader!.iScale, loader!.iGamma) * 65535 + 0.5
             return UInt16(min(max(v2, 0), 65535)) as! T
         }
         if (T.self == Float.self) {
@@ -633,12 +644,14 @@ public class SGLImageDecoder {
         return loader!.flipVertical
     }
     public class func skip(loader:SGLImageLoader, len:Int) { loader.skip(len) }
+    public class func readUInt8(loader:SGLImageLoader) -> UInt8 { return loader.readUInt8() }
     public class func read8(loader:SGLImageLoader) -> Int { return loader.read8() }
     public class func read16be(loader:SGLImageLoader) -> Int { return loader.read16be() }
     public class func read32be(loader:SGLImageLoader) -> Int { return loader.read32be() }
     public class func read16le(loader:SGLImageLoader) -> Int { return loader.read16le() }
     public class func read32le(loader:SGLImageLoader) -> Int { return loader.read32le() }
     final public func skip(len:Int) { loader!.skip(len) }
+    final public func readUInt8() -> UInt8 { return loader!.readUInt8() }
     final public func read8() -> Int { return loader!.read8() }
     final public func read16be() -> Int { return loader!.read16be() }
     final public func read32be() -> Int { return loader!.read32be() }

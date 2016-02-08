@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D12884C1C646A9F00A909A0 /* ImageBMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12884B1C646A9F00A909A0 /* ImageBMP.swift */; };
 		3D1B873F1C5EB9B200FC10A5 /* glm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B873E1C5EB9B200FC10A5 /* glm.swift */; };
 		3D1B87411C5EB9BD00FC10A5 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B87401C5EB9BD00FC10A5 /* Quaternion.swift */; };
 		3D1B87421C5EBA3300FC10A5 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B873C1C5EB87200FC10A5 /* Protocols.swift */; };
@@ -24,6 +25,7 @@
 		3D3C73371C3CEFE6007FD4F9 /* Matrix3x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73361C3CEFE6007FD4F9 /* Matrix3x4.swift */; };
 		3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */; };
 		3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */; };
+		3D5E1EF81C685865004CB9AC /* SwiftGLresImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE88ED61C64655C0096145C /* SwiftGLresImage.swift */; };
 		3D7BF88D1C5EC5CF006B5373 /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7BF88C1C5EC5CF006B5373 /* Complex.swift */; };
 		3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F3D151C3B28B1007C49E7 /* main.swift */; };
 		3D90F4981C489B2100229A4F /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
@@ -53,6 +55,8 @@
 		3DB2843B1C481396008D46E6 /* FunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB2843A1C481396008D46E6 /* FunctionsTests.swift */; };
 		3DB90A111C5C826300E1576F /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D412D581C3EE71800044962 /* Operators.swift */; };
 		3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */; };
+		3DE88EC51C6417BA0096145C /* SwiftGLres.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE88EBB1C6417B90096145C /* SwiftGLres.framework */; };
+		3DE88ED51C6465280096145C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE88ED41C6465280096145C /* Image.swift */; };
 		3DFD6ECB1C49E3A500E26222 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECA1C49E3A500E26222 /* Player.swift */; };
 		3DFD6ECD1C49FA3C00E26222 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECC1C49FA3C00E26222 /* Cube.swift */; };
 		3DFFC9891C447AC000EF48B4 /* Vector3b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFC9881C447AC000EF48B4 /* Vector3b.swift */; };
@@ -66,6 +70,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3D91C39F1C3B210500BA748A;
 			remoteInfo = SwiftGLmath;
+		};
+		3DE88EC61C6417BA0096145C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D91C35C1C3B1FB400BA748A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DE88EBA1C6417B90096145C;
+			remoteInfo = SwiftGLres;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -91,6 +102,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D12884B1C646A9F00A909A0 /* ImageBMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBMP.swift; sourceTree = "<group>"; };
 		3D1B873C1C5EB87200FC10A5 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		3D1B873E1C5EB9B200FC10A5 /* glm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = glm.swift; sourceTree = "<group>"; };
 		3D1B87401C5EB9BD00FC10A5 /* Quaternion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
@@ -139,6 +151,10 @@
 		3DB284381C475DEB008D46E6 /* glsl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = glsl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3DB2843A1C481396008D46E6 /* FunctionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsTests.swift; sourceTree = "<group>"; };
 		3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector4Tests.swift; sourceTree = "<group>"; };
+		3DE88EBB1C6417B90096145C /* SwiftGLres.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGLres.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DE88EC41C6417BA0096145C /* SwiftGLresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGLresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DE88ED41C6465280096145C /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		3DE88ED61C64655C0096145C /* SwiftGLresImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGLresImage.swift; sourceTree = "<group>"; };
 		3DFD6ECA1C49E3A500E26222 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		3DFD6ECC1C49FA3C00E26222 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		3DFFC9881C447AC000EF48B4 /* Vector3b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector3b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -200,6 +216,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DE88EB71C6417B90096145C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DE88EC11C6417BA0096145C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DE88EC51C6417BA0096145C /* SwiftGLres.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -254,6 +285,8 @@
 				3D91C3BC1C3B21BE00BA748A /* SwiftGLmathTests */,
 				3D28E9F81C3B34B90091E013 /* SwiftGLUtil */,
 				3D28EA071C3B35D90091E013 /* SwiftGLmathUtil */,
+				3DE88EBC1C6417BA0096145C /* SwiftGLres */,
+				3DE88EC81C6417BA0096145C /* SwiftGLresTests */,
 				3D91C3651C3B1FB400BA748A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -268,6 +301,8 @@
 				3D28E9F71C3B34B90091E013 /* SwiftGLUtil */,
 				3D28EA061C3B35D90091E013 /* SwiftGLmathUtil */,
 				3D90F48B1C489AED00229A4F /* CubeWorld.app */,
+				3DE88EBB1C6417B90096145C /* SwiftGLres.framework */,
+				3DE88EC41C6417BA0096145C /* SwiftGLresTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,6 +367,25 @@
 			path = Tests/SwiftGLmath;
 			sourceTree = "<group>";
 		};
+		3DE88EBC1C6417BA0096145C /* SwiftGLres */ = {
+			isa = PBXGroup;
+			children = (
+				3DE88ED41C6465280096145C /* Image.swift */,
+				3D12884B1C646A9F00A909A0 /* ImageBMP.swift */,
+			);
+			name = SwiftGLres;
+			path = Sources/SwiftGLres;
+			sourceTree = "<group>";
+		};
+		3DE88EC81C6417BA0096145C /* SwiftGLresTests */ = {
+			isa = PBXGroup;
+			children = (
+				3DE88ED61C64655C0096145C /* SwiftGLresImage.swift */,
+			);
+			name = SwiftGLresTests;
+			path = Tests/SwiftGLres;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -343,6 +397,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3D91C39D1C3B210500BA748A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DE88EB81C6417B90096145C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -474,6 +535,42 @@
 			productReference = 3D91C3BB1C3B21BE00BA748A /* SwiftGLmathTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		3DE88EBA1C6417B90096145C /* SwiftGLres */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DE88ED01C6417BA0096145C /* Build configuration list for PBXNativeTarget "SwiftGLres" */;
+			buildPhases = (
+				3DE88EB61C6417B90096145C /* Sources */,
+				3DE88EB71C6417B90096145C /* Frameworks */,
+				3DE88EB81C6417B90096145C /* Headers */,
+				3DE88EB91C6417B90096145C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftGLres;
+			productName = SwiftGLres;
+			productReference = 3DE88EBB1C6417B90096145C /* SwiftGLres.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3DE88EC31C6417BA0096145C /* SwiftGLresTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DE88ED11C6417BA0096145C /* Build configuration list for PBXNativeTarget "SwiftGLresTests" */;
+			buildPhases = (
+				3DE88EC01C6417BA0096145C /* Sources */,
+				3DE88EC11C6417BA0096145C /* Frameworks */,
+				3DE88EC21C6417BA0096145C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DE88EC71C6417BA0096145C /* PBXTargetDependency */,
+			);
+			name = SwiftGLresTests;
+			productName = SwiftGLresTests;
+			productReference = 3DE88EC41C6417BA0096145C /* SwiftGLresTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -505,6 +602,12 @@
 					3D91C3BA1C3B21BE00BA748A = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					3DE88EBA1C6417B90096145C = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					3DE88EC31C6417BA0096145C = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 3D91C35F1C3B1FB400BA748A /* Build configuration list for PBXProject "SwiftGL" */;
@@ -523,10 +626,12 @@
 				3D8F3D071C3B2892007C49E7 /* HelloWorld */,
 				3D90F48A1C489AED00229A4F /* CubeWorld */,
 				3D91C3781C3B1FF700BA748A /* SwiftGL */,
+				3D28E9F61C3B34B90091E013 /* SwiftGLUtil */,
 				3D91C39F1C3B210500BA748A /* SwiftGLmath */,
 				3D91C3BA1C3B21BE00BA748A /* SwiftGLmathTests */,
-				3D28E9F61C3B34B90091E013 /* SwiftGLUtil */,
 				3D28EA051C3B35D90091E013 /* SwiftGLmathUtil */,
+				3DE88EBA1C6417B90096145C /* SwiftGLres */,
+				3DE88EC31C6417BA0096145C /* SwiftGLresTests */,
 			);
 		};
 /* End PBXProject section */
@@ -561,6 +666,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3D91C3B91C3B21BE00BA748A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DE88EB91C6417B90096145C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DE88EC21C6417BA0096145C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -664,6 +783,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DE88EB61C6417B90096145C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D12884C1C646A9F00A909A0 /* ImageBMP.swift in Sources */,
+				3DE88ED51C6465280096145C /* Image.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DE88EC01C6417BA0096145C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D5E1EF81C685865004CB9AC /* SwiftGLresImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -671,6 +807,11 @@
 			isa = PBXTargetDependency;
 			target = 3D91C39F1C3B210500BA748A /* SwiftGLmath */;
 			targetProxy = 3D91C3C11C3B21BE00BA748A /* PBXContainerItemProxy */;
+		};
+		3DE88EC71C6417BA0096145C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DE88EBA1C6417B90096145C /* SwiftGLres */;
+			targetProxy = 3DE88EC61C6417BA0096145C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -974,6 +1115,76 @@
 			};
 			name = Release;
 		};
+		3DE88ECC1C6417BA0096145C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLres;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3DE88ECD1C6417BA0096145C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLres;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3DE88ECE1C6417BA0096145C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLresTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3DE88ECF1C6417BA0096145C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLresTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1045,6 +1256,24 @@
 			buildConfigurations = (
 				3D91C3C41C3B21BE00BA748A /* Debug */,
 				3D91C3C51C3B21BE00BA748A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DE88ED01C6417BA0096145C /* Build configuration list for PBXNativeTarget "SwiftGLres" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DE88ECC1C6417BA0096145C /* Debug */,
+				3DE88ECD1C6417BA0096145C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DE88ED11C6417BA0096145C /* Build configuration list for PBXNativeTarget "SwiftGLresTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DE88ECE1C6417BA0096145C /* Debug */,
+				3DE88ECF1C6417BA0096145C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

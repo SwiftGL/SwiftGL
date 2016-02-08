@@ -6,6 +6,8 @@ let package = Package(
             Target(
                 name: "SwiftGL"),
             Target(
-                name: "SwiftGLmath")
+                name: "SwiftGLmath"),
+            Target(
+                name: "SwiftGLres")
         ]
 )

@@ -1,6 +1,6 @@
-# Swifty OpenGL
+# Swift Graphics Libraries
 
-SwiftGL is an OpenGL loader and math library that's 100% Swift.
+SwiftGL is libraries for graphics programming that's 100% Swift.
 
 To use, include dependency in your `Package.swift`:
 ```swift
@@ -16,7 +16,7 @@ The `Demo` folder contains example programs to get you started.
 Start there if you want to validate your system is compatible.
 The rest of this README will explain what each of the modules do.
 
-## SwiftGL loader
+## SwiftGL OpenGL loader
 
 You can't use OpenGL until you can call its functions. The SwiftGL loader imports
 all the functions up to OpenGL 4.5. Platform differences are abstracted away.

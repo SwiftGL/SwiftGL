@@ -218,6 +218,7 @@ glBindVertexArray(0)
 var texture:GLuint = 0
 glGenTextures(1, &texture)
 glBindTexture(GL_TEXTURE_2D, texture)
+glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
 image.withUnsafeMutableBufferPointer() {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
         Int32(image.width),

@@ -48,11 +48,6 @@ final public class SGLImageDecoderBMP : SGLImageDecoder {
 
     override public func load<T:SGLImageType>(img:T)
     {
-        if flipVertical {
-            // Account for flip requested in loader
-            flipVerticalBMP = !flipVerticalBMP
-        }
-
         if (bpp <= 8) {
             loadPalletized(img)
         } else {
@@ -227,14 +222,14 @@ final public class SGLImageDecoderBMP : SGLImageDecoder {
         }
 
         var pal:Array<(r:T.Element,g:T.Element,b:T.Element,a:T.Element)> = Array<(r:T.Element,g:T.Element,b:T.Element,a:T.Element)>(
-            count: psize, repeatedValue: (cast(UInt8(0)),cast(UInt8(0)),cast(UInt8(0)),cast(UInt8(255)))
+            count: psize, repeatedValue: (cast(UInt8(0)),cast(UInt8(0)),cast(UInt8(0)),castAlpha(UInt8(255)))
         )
 
         for i in 0 ..< psize {
             let b:T.Element = cast(UInt8(read8()))
             let g:T.Element = cast(UInt8(read8()))
             let r:T.Element = cast(UInt8(read8()))
-            pal[i] = (r,g,b,cast(UInt8(255)))
+            pal[i] = (r,g,b,castAlpha(UInt8(255)))
             if hsize != 12 {
                 read8()
             }

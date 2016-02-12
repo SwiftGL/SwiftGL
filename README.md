@@ -95,18 +95,18 @@ tutorial to be easily followed with Swift instead of C++.
 
 ## SwiftGL resource management
 
-Currently, only BMP importing is working. But the framework for this is comprehensive
+Currently, BMP and GIF importing is working. But the framework for this is comprehensive
 so adding more decoders is straightforward.
 ```
 import SwiftGLres
-let loader = SGLImageLoader(fromFile: "/Users/dturnbull/Desktop/buildingtex.bmp")
+let loader = SGLImageLoader(fromFile: "/path/to/file.bmp")
 assert(loader.error == nil, loader.error!)
 // You can inspect info like loader.decoder!.channels here.
 // Images are automatically converted to fit any SGLImageType provided.
 let image = SGLImageRGB<UInt8>(loader)
 assert(loader.error == nil, loader.error!)
 ```
-Future decoders will include: GIF, HDR, JPEG, PIC, PNG, PNM, PSD, TGA.
+Future decoders will include: HDR, JPEG, PIC, PNG, PNM, PSD, TGA.
 
 ## Performance Considerations
 
@@ -114,15 +114,14 @@ Everything in the loader is a direct call to the OpenGL functions. There's no tr
 layer required to provide the syntactical sugar. Because Swift has first-class support
 for working with C, all OpenGL functions are as fast as they can possibly be.
 
-The math libraries have the potential to be as fast as C code having SIMD intrinsics.
-To get this performance you must use whole-module-optimization (WMO).
+Everything else has the potential to be as fast as C code. The math library even uses
+SIMD where available. To get this performance you must use whole-module-optimization (WMO).
 
 ## Acknowledgements
 
-Some of the more difficult problems were modeled after solutions in glm. In particular,
+Some of the math problems were modeled after solutions in glm. In particular,
 the matrix transformation API. Christophe Riccio manages the glm project which is
 available here: http://glm.g-truc.net/
 
 Image importing was bootstrapped from Sean Barrett's stb library:
 https://github.com/nothings/stb
-

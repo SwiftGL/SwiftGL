@@ -34,7 +34,7 @@ public protocol SGLImageType {
     var channels:Int {get}
     // If using Array<Element>.withUnsafeMutableBufferPointer
     // to implement this, everything is safe.
-    func withUnsafeMutableBufferPointer(@noescape body: (UnsafeMutableBufferPointer<Element>) -> Void)
+    func withUnsafeMutableBufferPointer(@noescape body: (UnsafeMutableBufferPointer<Element>) throws -> Void) rethrows
 }
 
 
@@ -58,11 +58,11 @@ final public class SGLImageRGBA8 : SGLImageType {
         loader.load(self)
     }
 
-    public func withUnsafeMutableBufferPointer(@noescape body: (UnsafeMutableBufferPointer<UInt8>) -> Void) {
-        array.withUnsafeMutableBufferPointer(){
+    public func withUnsafeMutableBufferPointer(@noescape body: (UnsafeMutableBufferPointer<UInt8>) throws -> Void) rethrows {
+        try array.withUnsafeMutableBufferPointer(){
             // This is unsafe reinterpret cast. Be careful here.
             let st = UnsafeMutablePointer<UInt8>($0.baseAddress)
-            body(UnsafeMutableBufferPointer<UInt8>(start: st, count: $0.count*channels))
+            try body(UnsafeMutableBufferPointer<UInt8>(start: st, count: $0.count*channels))
         }
     }
 
@@ -105,8 +105,8 @@ public class SGLImage<T> : SGLImageType {
         buffer.baseAddress.dealloc(buffer.count)
     }
 
-    public func withUnsafeMutableBufferPointer(@noescape body: (UnsafeMutableBufferPointer<T>) -> Void) {
-        body(buffer)
+    public func withUnsafeMutableBufferPointer(@noescape body: (UnsafeMutableBufferPointer<T>) throws -> Void) rethrows {
+        try withExtendedLifetime(self) { try body(buffer) }
     }
 
     public subscript(x:Int, y:Int, channel:Int) -> T {
@@ -197,7 +197,8 @@ final public class SGLImageLoader {
 
     // Default list of decoders. API user may change this.
     public static var decoders:[SGLImageDecoder.Type] = [
-        SGLImageDecoderBMP.self
+        SGLImageDecoderBMP.self,
+        SGLImageDecoderGIF.self
     ]
 
     // Gamma for Float conversion. Float is linear color space.
@@ -284,7 +285,6 @@ final public class SGLImageLoader {
         let length = min(bufSize, input.length - inputPos)
         if length <= 0 {
             // all eof errors come here
-            // can we handle this better?
             fatalError()
         }
         if length > buf.count {
@@ -550,7 +550,8 @@ public class SGLImageDecoder {
             precondition(row<img.height)
             precondition(xsize==img.width)
             img.withUnsafeMutableBufferPointer { (ptr) in
-                var p = img.width * img.channels * row
+                let r = flipVertical ? img.height-row-1 : row
+                var p = img.width * img.channels * r
                 switch(img.channels) {
                 case 1:
                     for _ in 0 ..< img.width {
@@ -596,7 +597,8 @@ public class SGLImageDecoder {
             precondition(row<img.height)
             precondition(xsize==img.width)
             img.withUnsafeMutableBufferPointer { (ptr) in
-                var p = img.width * img.channels * row
+                let r = flipVertical ? img.height-row-1 : row
+                var p = img.width * img.channels * r
                 switch(img.channels) {
                 case 1:
                     for _ in 0 ..< img.width {

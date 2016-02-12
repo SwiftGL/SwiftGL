@@ -25,6 +25,7 @@
 		3D3C73371C3CEFE6007FD4F9 /* Matrix3x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73361C3CEFE6007FD4F9 /* Matrix3x4.swift */; };
 		3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */; };
 		3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */; };
+		3D43C11E1C6AE77700AC13CF /* ImageGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D43C11D1C6AE77700AC13CF /* ImageGIF.swift */; };
 		3D5E1EF81C685865004CB9AC /* SwiftGLresImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE88ED61C64655C0096145C /* SwiftGLresImage.swift */; };
 		3D632E5F1C6A764F00FEF61B /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
 		3D632E601C6A765300FEF61B /* SwiftGLres.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE88EBB1C6417B90096145C /* SwiftGLres.framework */; };
@@ -123,6 +124,7 @@
 		3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x4.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3D412D581C3EE71800044962 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Operators.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		3D43C11D1C6AE77700AC13CF /* ImageGIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGIF.swift; sourceTree = "<group>"; };
 		3D7BF88C1C5EC5CF006B5373 /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
 		3D8F3D081C3B2892007C49E7 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8F3D151C3B28B1007C49E7 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 			children = (
 				3DE88ED41C6465280096145C /* Image.swift */,
 				3D12884B1C646A9F00A909A0 /* ImageBMP.swift */,
+				3D43C11D1C6AE77700AC13CF /* ImageGIF.swift */,
 			);
 			name = SwiftGLres;
 			path = Sources/SwiftGLres;
@@ -849,6 +852,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D12884C1C646A9F00A909A0 /* ImageBMP.swift in Sources */,
+				3D43C11E1C6AE77700AC13CF /* ImageGIF.swift in Sources */,
 				3DE88ED51C6465280096145C /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

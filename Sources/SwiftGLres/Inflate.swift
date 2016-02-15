@@ -326,12 +326,16 @@ private final class Huffman
     var fast = [UInt16](count: 1 << FASTBITS, repeatedValue: 0)
     var first = [Int](count: MAXBITS+1, repeatedValue: 0)
     var maxcode = [Int](count: MAXBITS+2, repeatedValue: 0)
-    var value = [UInt16](count: FIXLCODES, repeatedValue: 0)
+    var value = [UInt16]()
 
     func construct(length:[Int]) throws
     {
         var next_code = [Int](count: MAXBITS+1, repeatedValue: 0)
         var sizes = [Int](count: MAXBITS+1, repeatedValue: 0)
+
+        if value.count < length.count {
+            value = [UInt16](count: length.count, repeatedValue: 0)
+        }
 
         for i in 0 ..< fast.count {
             fast[i] = 0

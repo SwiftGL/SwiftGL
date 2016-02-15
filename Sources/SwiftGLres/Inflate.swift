@@ -77,7 +77,7 @@ private let CodeOrder = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5,
 
 // http://graphics.stanford.edu/~seander/bithacks.html
 private func bitReverse16(value:Int) -> Int {
-    var v = UInt16(value)
+    var v = UInt16(truncatingBitPattern: value)
     v = ((v & 0xAAAA) >> 1) | ((v & 0x5555) << 1)
     v = ((v & 0xCCCC) >> 2) | ((v & 0x3333) << 2)
     v = ((v & 0xF0F0) >> 4) | ((v & 0x0F0F) << 4)

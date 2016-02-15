@@ -40,8 +40,10 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
     private var chunk_length = 0
     private var chunk_type = 0
     private var pal = [(r:UInt8,g:UInt8,b:UInt8,a:UInt8)]()
+    private var depth = 0
     private var color = 0
     private var trans:(r:Int,g:Int,b:Int)? = nil
+    private var interlaced = false
 
 
     override public func info()
@@ -113,31 +115,207 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
 
     override public func load<T:SGLImageType>(img:T)
     {
+        // discard gzip header bytes
         if (!crushed) {
             read8() // discard cmf
             read8() // discard flag
             chunk_length -= 2
         }
-
+        prepare()
         do {
-            try inflate({
-                if self.chunk_length == 0 {
-                    try self.nextChunk(self.chars("IDAT"))
-                }
-                self.chunk_length -= 1
-                return self.readUInt8()
-            }){
-                byte in
-                //TODO
-            }
+            // inflate IDAT blocks into the png filter
+            try inflate(source, filter(img))
+            // discard IDAT checksum
             if (!crushed) {
-                read32be() // discard IDAT checksum
+                read32be()
             }
+            // ensure all blocks are good to the end
             try nextChunk(self.chars("IEND"))
         } catch {
             self.error = "\(error)"
         }
     }
+
+
+    private func source() throws -> UInt8 {
+        if self.chunk_length == 0 {
+            try self.nextChunk(self.chars("IDAT"))
+        }
+        self.chunk_length -= 1
+        return self.readUInt8()
+    }
+
+
+    var filter = 0
+    var lineBuf = [UInt8]()
+    var linePos = 0
+    var filterStride = 0
+    var prevPos = 0
+    var curRow = 0
+
+
+    private func prepare() {
+        if (interlaced) {
+            fatalError("//TODO interlaced")
+        }
+        var filterChannels = 1
+        if color != 3 {
+            filterChannels += color & 2
+            filterChannels += (color & 4) >> 2
+        }
+        let bytesWidth = ((filterChannels * xsize * depth) + 7) >> 3
+        if depth < 8 {
+            filterStride = 1
+        } else if depth == 8 {
+            filterStride = filterChannels
+        } else { // depth == 16
+            filterStride = filterChannels * 6
+        }
+        // The first lineStride bytes of a buffer are used in the
+        // filter calculation. It's a little weird to follow, but
+        // it's very efficient and eliminates exceptions for
+        // first rows and first columns.
+        lineBuf = [UInt8](count: bytesWidth+filterStride, repeatedValue: 0)
+    }
+
+
+    private func filter<T:SGLImageType>(img:T)(byteImut:UInt8)
+    {
+        var byte = byteImut
+        if linePos == 0 {
+            filter = Int(byte)
+            linePos = filterStride
+            prevPos = 0
+            for i in 0 ..< filterStride {
+                lineBuf[i] = 0
+            }
+            return
+        }
+        switch filter {
+        case 0: // none
+            break
+        case 1: // sub
+            byte = byte &+ lineBuf[prevPos]
+        case 2: // up
+            byte = byte &+ lineBuf[linePos]
+        case 3: // average
+            byte = byte &+ UInt8((Int(lineBuf[prevPos]) + Int(lineBuf[linePos])) >> 1)
+        case 4: // paeth
+            let a = Int(lineBuf[prevPos])
+            let b = Int(lineBuf[linePos])
+            let c = Int(lineBuf[linePos-filterStride])
+            let p = a + b - c
+            let pa = abs(p-a)
+            let pb = abs(p-b)
+            let pc = abs(p-c)
+            if pa <= pb && pa <= pc {
+                byte = byte &+ UInt8(a)
+            } else if pb <= pc {
+                byte = byte &+ UInt8(b)
+            } else {
+                byte = byte &+ UInt8(c)
+            }
+        default:
+            preconditionFailure()
+        }
+
+        lineBuf[linePos-filterStride] = lineBuf[prevPos]
+        lineBuf[prevPos] = byte
+        prevPos += 1
+        if prevPos >= filterStride {
+            prevPos = 0
+        }
+
+        linePos += 1
+        if linePos >= lineBuf.count {
+            linePos -= filterStride
+            for i in 0 ..< filterStride {
+                lineBuf[linePos+i] = lineBuf[i]
+            }
+            linePos = 0
+            // successful line
+            line(img)
+        }
+    }
+
+
+    private func line<T:SGLImageType>(img:T)
+    {
+        // Skip the filter work area
+        var i = filterStride
+
+        if (color == 2 || color == 6) && depth == 8 {
+            // 8-bit RGB or RGBA
+            fill(img, row:curRow) { () -> (T.Element,T.Element,T.Element,T.Element) in
+                let r = lineBuf[i]
+                let g = lineBuf[i+1]
+                let b = lineBuf[i+2]
+                let a:UInt8
+                if (color == 6) {
+                    a = lineBuf[i+3]
+                    i += 4
+                } else {
+                    a = 0xFF
+                    i += 3
+                }
+                return (cast(r), cast(g), cast(b), castAlpha(a))
+            }
+        }
+        else if (color == 2 || color == 6) && depth == 16 {
+            // 16-bit RGB or RGBA
+            fill(img, row:curRow) { () -> (T.Element,T.Element,T.Element,T.Element) in
+                let r = (UInt16(lineBuf[i]) << 8) | UInt16(lineBuf[i+1])
+                let g = (UInt16(lineBuf[i+2]) << 8) | UInt16(lineBuf[i+3])
+                let b = (UInt16(lineBuf[i+4]) << 8) | UInt16(lineBuf[i+5])
+                let a:UInt16
+                if (color == 6) {
+                    a = (UInt16(lineBuf[i+6]) << 8) | UInt16(lineBuf[i+7])
+                    i += 8
+                } else {
+                    a = 0xFFFF
+                    i += 6
+                }
+                return (cast(r), cast(g), cast(b), castAlpha(a))
+            }
+        }
+        else if (color == 0 || color == 4) && depth == 8 {
+            // 8-bit greyscale with optional alpha
+            fill(img, row:curRow) { () -> (T.Element,T.Element) in
+                let y = lineBuf[i]
+                let a:UInt8
+                if (color == 4) {
+                    a = lineBuf[i+1]
+                    i += 2
+                } else {
+                    a = 0xFF
+                    i += 1
+                }
+                return (cast(y), castAlpha(a))
+            }
+        }
+        else if (color == 0 || color == 4) && depth == 16 {
+            // 16-bit greyscale with optional alpha
+            fill(img, row:curRow) { () -> (T.Element,T.Element) in
+                let y = (UInt16(lineBuf[i]) << 8) | UInt16(lineBuf[i+1])
+                let a:UInt16
+                if (color == 4) {
+                    a = (UInt16(lineBuf[i+2]) << 8) | UInt16(lineBuf[i+3])
+                    i += 4
+                } else {
+                    a = 0xFFFF
+                    i += 2
+                }
+                return (cast(y), castAlpha(a))
+            }
+        }
+        else {
+            fatalError("//TODO color+depth type not implemented yet")
+            //TODO indexed and 1/2/4bit greyscale
+        }
+
+        curRow += 1
+    }
+
 
     private func nextChunk(type:Int) throws
     {
@@ -196,15 +374,18 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
             error = "bad PNG"
             return
         }
-        let depth = read8()
-        if depth != 1 && depth != 2 && depth != 4 && depth != 8 && depth != 16 {
-            error = "Unsupported bit depth: \(depth)"
-            return
-        }
+        depth = read8()
         color = read8()
         if color < 0 || color == 1 || color == 5 || color > 6 {
             error = "bad PNG"
             return
+        }
+        if (depth != 1 && depth != 2 && depth != 4 && depth != 8 && depth != 16) ||
+            (color == 3 && depth > 8) ||
+            ((color == 2 || color == 4 || color == 6) && depth > 8) {
+                // invalid color and depth combination
+                error = "bad PNG"
+                return
         }
         let comp = read8()
         if comp != 0 {
@@ -217,6 +398,7 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
             return
         }
         let interlace = read8()
+        interlaced = interlace != 0
         if interlace < 0 || interlace > 1 {
             error = "bad PNG"
             return

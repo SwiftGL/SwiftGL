@@ -56,23 +56,7 @@ final public class SGLImageDecoderBMP : SGLImageDecoder {
 
         if (aZero == 0) {
             // buggy file where alpha is fully transparent
-            fill(img, alpha: cast(UInt16(0xffff)))
-        }
-    }
-
-
-    public func fill<T:SGLImageType>(img:T, alpha a:T.Element) {
-        if img.channels == 1 || img.channels == 3 {
-            return // no alpha
-        }
-        img.withUnsafeMutableBufferPointer { (ptr) in
-            var p = img.channels - 1
-            for _ in 0 ..< img.width {
-                for _ in 0 ..< img.width {
-                    ptr[p] = a; p += channels
-                }
-            }
-
+            fill(img, alpha: castAlpha(UInt16(0xffff)))
         }
     }
 

@@ -147,7 +147,6 @@ final public class SGLImageLoader {
         }
         if length < buf.count {
             buf.removeRange(length ..< buf.count)
-//            buf.replaceRange(length ..< buf.count , with: [])
         }
         buf.withUnsafeMutableBufferPointer(){
             let r = NSRange(location: start, length: length)
@@ -158,9 +157,6 @@ final public class SGLImageLoader {
     private func skip(len:Int) {
         inputPos += len
         bufPos += len
-//        if bufPos >= buf.count {
-//            getNextBuffer()
-//        }
     }
 
     private func read(buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) {
@@ -415,7 +411,6 @@ public class SGLImageDecoder {
                         let y = luminanceY(r:r, g:g, b:b)
                         ptr[p] = y; p += 1
                     }
-                    break
                 case 2:
                     for _ in 0 ..< img.width {
                         let (r, g, b, a) = fn()
@@ -423,7 +418,6 @@ public class SGLImageDecoder {
                         ptr[p] = y; p += 1
                         ptr[p] = a; p += 1
                     }
-                    break
                 case 3:
                     for _ in 0 ..< img.width {
                         let (r, g, b, _) = fn()
@@ -431,7 +425,6 @@ public class SGLImageDecoder {
                         ptr[p] = g; p += 1
                         ptr[p] = b; p += 1
                     }
-                    break
                 case 4:
                     for _ in 0 ..< img.width {
                         let (r, g, b, a) = fn()
@@ -440,7 +433,6 @@ public class SGLImageDecoder {
                         ptr[p] = b; p += 1
                         ptr[p] = a; p += 1
                     }
-                    break
                 default:
                     preconditionFailure()
                 }
@@ -449,7 +441,7 @@ public class SGLImageDecoder {
 
     // Fill an entire line all at once from a greyscale source.
     final public func fill<T:SGLImageType>
-        (img:T, row:Int, @noescape ga fn:() -> (y:T.Element, a:T.Element) ) {
+        (img:T, row:Int, @noescape ya fn:() -> (y:T.Element, a:T.Element) ) {
             precondition(row<img.height)
             precondition(xsize==img.width)
             img.withUnsafeMutableBufferPointer { (ptr) in
@@ -461,14 +453,12 @@ public class SGLImageDecoder {
                         let (y, _) = fn()
                         ptr[p] = y; p += 1
                     }
-                    break
                 case 2:
                     for _ in 0 ..< img.width {
                         let (y, a) = fn()
                         ptr[p] = y; p += 1
                         ptr[p] = a; p += 1
                     }
-                    break
                 case 3:
                     for _ in 0 ..< img.width {
                         let (y, _) = fn()
@@ -476,7 +466,6 @@ public class SGLImageDecoder {
                         ptr[p] = y; p += 1
                         ptr[p] = y; p += 1
                     }
-                    break
                 case 4:
                     for _ in 0 ..< img.width {
                         let (y, a) = fn()
@@ -485,12 +474,31 @@ public class SGLImageDecoder {
                         ptr[p] = y; p += 1
                         ptr[p] = a; p += 1
                     }
-                    break
                 default:
                     preconditionFailure()
                 }
             }
     }
+
+
+    // Sometimes the alpha channel needs to be fixed up with
+    // data that we don't have until after decoding.
+    public func fill<T:SGLImageType>(img:T, alpha a:T.Element) {
+        if img.channels == 1 || img.channels == 3 {
+            return // no alpha
+        }
+        img.withUnsafeMutableBufferPointer { (ptr) in
+            var p = img.channels - 1
+            for _ in 0 ..< img.width {
+                for _ in 0 ..< img.width {
+                    ptr[p] = a
+                    p += img.channels
+                }
+            }
+
+        }
+    }
+
 
     // Convenience connections to loader functions.
     weak private var loader:SGLImageLoader? = nil

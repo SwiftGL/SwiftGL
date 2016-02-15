@@ -178,7 +178,7 @@ final public class SGLImageLoader {
         }
     }
 
-    private func readUInt8() -> UInt8 {
+    func readUInt8() -> UInt8 {
         if bufPos >= buf.count {
             getNextBuffer()
         }
@@ -501,28 +501,27 @@ public class SGLImageDecoder {
 
 
     // Convenience connections to loader functions.
-    weak private var loader:SGLImageLoader? = nil
+    // To use readUInt8() call loader.readUInt8()
+    weak var loader:SGLImageLoader! = nil
     public var error:String? {
-        get { return loader!.error }
-        set { loader!.error = newValue }
+        get { return loader.error }
+        set { loader.error = newValue }
     }
     public var gamma:Float {
-        get { return loader!.gamma }
-        set { loader!.gamma = newValue }
+        get { return loader.gamma }
+        set { loader.gamma = newValue }
     }
     public class func skip(loader:SGLImageLoader, len:Int) { loader.skip(len) }
-    public class func readUInt8(loader:SGLImageLoader) -> UInt8 { return loader.readUInt8() }
     public class func read8(loader:SGLImageLoader) -> Int { return loader.read8() }
     public class func read16be(loader:SGLImageLoader) -> Int { return loader.read16be() }
     public class func read32be(loader:SGLImageLoader) -> Int { return loader.read32be() }
     public class func read16le(loader:SGLImageLoader) -> Int { return loader.read16le() }
     public class func read32le(loader:SGLImageLoader) -> Int { return loader.read32le() }
-    final public func skip(len:Int) { loader!.skip(len) }
-    final public func readUInt8() -> UInt8 { return loader!.readUInt8() }
-    final public func read8() -> Int { return loader!.read8() }
-    final public func read16be() -> Int { return loader!.read16be() }
-    final public func read32be() -> Int { return loader!.read32be() }
-    final public func read16le() -> Int { return loader!.read16le() }
-    final public func read32le() -> Int { return loader!.read32le() }
+    final public func skip(len:Int) { loader.skip(len) }
+    final public func read8() -> Int { return loader.read8() }
+    final public func read16be() -> Int { return loader.read16be() }
+    final public func read32be() -> Int { return loader.read32be() }
+    final public func read16le() -> Int { return loader.read16le() }
+    final public func read32le() -> Int { return loader.read32le() }
 
 }

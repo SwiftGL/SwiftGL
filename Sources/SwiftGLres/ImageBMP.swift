@@ -287,10 +287,10 @@ final public class SGLImageDecoderBMP : SGLImageDecoder {
             for j in 0 ..< ysize {
                 let row = flipVerticalBMP ? ysize-j-1 : j
                 fill(img, row:row) { () -> (T.Element,T.Element,T.Element,T.Element) in
-                    let b = readUInt8()
-                    let g = readUInt8()
-                    let r = readUInt8()
-                    let a =  hasAlpha ? readUInt8() : UInt8(0xFF)
+                    let b = loader.readUInt8()
+                    let g = loader.readUInt8()
+                    let r = loader.readUInt8()
+                    let a =  hasAlpha ? loader.readUInt8() : UInt8(0xFF)
                     aZero |= UInt16(a)
                     return (cast(r), cast(g), cast(b), castAlpha(a))
                 }

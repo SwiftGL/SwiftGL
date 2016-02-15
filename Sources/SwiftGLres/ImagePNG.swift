@@ -112,7 +112,6 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
 
     }
 
-
     override public func load<T:SGLImageType>(img:T)
     {
         // discard gzip header bytes
@@ -124,7 +123,14 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
         prepare()
         do {
             // inflate IDAT blocks into the png filter
-            try inflate(source, filter(img))
+            try inflate({
+                if self.chunk_length == 0 {
+                    try self.nextChunk(self.chars("IDAT"))
+                }
+                self.chunk_length -= 1
+                return self.loader.readUInt8()
+                }, filter(img)
+            )
             // discard IDAT checksum
             if (!crushed) {
                 read32be()
@@ -134,15 +140,6 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
         } catch {
             self.error = "\(error)"
         }
-    }
-
-
-    private func source() throws -> UInt8 {
-        if self.chunk_length == 0 {
-            try self.nextChunk(self.chars("IDAT"))
-        }
-        self.chunk_length -= 1
-        return self.readUInt8()
     }
 
 
@@ -421,9 +418,9 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
         }
         pal.reserveCapacity(entries)
         for _ in 0 ..< entries {
-            let r = readUInt8()
-            let g = readUInt8()
-            let b = readUInt8()
+            let r = loader.readUInt8()
+            let g = loader.readUInt8()
+            let b = loader.readUInt8()
             pal.append((r,g,b,255))
         }
     }
@@ -445,7 +442,7 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
             }
             for i in 0 ..< chunk_length {
                 let c = pal[i]
-                let a = readUInt8()
+                let a = loader.readUInt8()
                 pal[i] = (c.r, c.g, c.b, a)
             }
         } else {

@@ -204,9 +204,9 @@ final public class SGLImageDecoderGIF : SGLImageDecoder {
         pal.removeAll(keepCapacity: true)
         pal.reserveCapacity(count)
         for _ in 0 ..< count {
-            let r = readUInt8()
-            let g = readUInt8()
-            let b = readUInt8()
+            let r = loader.readUInt8()
+            let g = loader.readUInt8()
+            let b = loader.readUInt8()
             pal.append((r: r, g: g, b: b, a: 255))
         }
     }

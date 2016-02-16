@@ -140,59 +140,81 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                 read32be()
             }
             // ensure all blocks are good to the end
-            try nextChunk(self.chars("IEND"))
+            // well, some error here with "END?", so skip for now
+            //try nextChunk(self.chars("IEND"))
         } catch {
             self.error = "\(error)"
         }
     }
 
 
-    var filter = 0
-    var lineBuf = [UInt8]()
-    var linePos = 0
-    var filterStride = 0
-    var prevPos = 0
-    var curRow = 0
-    private var trans8:(r:UInt8,g:UInt8,b:UInt8)? = nil
-    private var trans16:(r:UInt16,g:UInt16,b:UInt16)? = nil
+    private var filter = 0
+    private var filterChannels = 0
+    private var filterStride = 0
+    private var lineBuf = [UInt8]()
+    private var linePos = 0
+    private var prevPos = 0
+    private var curRow = 0
+    private var curPass = -1
+    private var curStart = 0
+    private var curStep = 1
 
 
-    private func prepare() {
-        if (interlaced) {
-            fatalError("//TODO interlaced")
-        }
-
-        if (trans != nil) {
-            trans8 = (
-                r:UInt8(truncatingBitPattern: trans!.r),
-                g:UInt8(truncatingBitPattern: trans!.g),
-                b:UInt8(truncatingBitPattern: trans!.b)
-            )
-            trans16 = (
-                r:UInt16(truncatingBitPattern: trans!.r),
-                g:UInt16(truncatingBitPattern: trans!.g),
-                b:UInt16(truncatingBitPattern: trans!.b)
-            )
-        }
-
-        var filterChannels = 1
+    private func prepare()
+    {
+        filterChannels = 1
         if color != 3 {
             filterChannels += color & 2
             filterChannels += (color & 4) >> 2
         }
-        let bytesWidth = ((filterChannels * xsize * depth) + 7) >> 3
         if depth < 8 {
             filterStride = 1
         } else if depth == 8 {
             filterStride = filterChannels
         } else { // depth == 16
-            filterStride = filterChannels * 6
+            filterStride = filterChannels * 2
         }
-        // The first lineStride bytes of a buffer are used in the
-        // filter calculation. It's a little weird to follow, but
-        // it's very efficient and eliminates exceptions for
-        // first rows and first columns.
-        lineBuf = [UInt8](count: bytesWidth+filterStride, repeatedValue: 0)
+        if (interlaced) {
+            curRow = ysize
+            nextInterlacedRow()
+        } else {
+            let bytesWidth = ((filterChannels * xsize * depth) + 7) >> 3
+            lineBuf = [UInt8](count: bytesWidth+filterStride, repeatedValue: 0)
+        }
+    }
+
+
+    private func nextInterlacedRow()
+    {
+        let xorig = [ 0,4,0,2,0,1,0 ]
+        let yorig = [ 0,0,4,0,2,0,1 ]
+        let xspc  = [ 8,8,4,4,2,2,1 ]
+        let yspc  = [ 8,8,8,4,4,2,2 ]
+        if curPass > 6 {
+            // bad PNG if here
+            return
+        }
+        if curPass >= 0 {
+            // curPass < 0 means we're doing initial setup
+            curRow += yspc[curPass]
+        }
+        // while here handles empty passes
+        while curRow >= ysize {
+            curPass += 1
+            if curPass > 6 {
+                // normal end of stream reaches here
+                return
+            }
+            curRow = yorig[curPass]
+            let y = (ysize - yorig[curPass] + yspc[curPass]-1) / yspc[curPass]
+            let x = (xsize - xorig[curPass] + xspc[curPass]-1) / xspc[curPass]
+            assert(x != 0)
+            assert(y != 0)
+            let bytesWidth = ((filterChannels * x * depth) + 7) >> 3
+            lineBuf = [UInt8](count: bytesWidth+filterStride, repeatedValue: 0)
+        }
+        curStart = xorig[curPass]
+        curStep = xspc[curPass]
     }
 
 
@@ -203,6 +225,9 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
             filter = Int(byte)
             linePos = filterStride
             prevPos = 0
+            // Zeroing lineBuf eliminates a special case for the first column.
+            // The first filterStride bytes of a buffer are also used to cache the
+            // previous pixel. We have zero wasted bytes using this technique.
             for i in 0 ..< filterStride {
                 lineBuf[i] = 0
             }
@@ -263,7 +288,8 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
 
         if (color == 2 || color == 6) && depth == 8 {
             // 8-bit RGB or RGBA
-            fill(img, row:curRow) { () -> (T.Element,T.Element,T.Element,T.Element) in
+            fill(img, row:curRow, start: curStart, step: curStep) {
+                () -> (T.Element,T.Element,T.Element,T.Element) in
                 let r = lineBuf[i]
                 let g = lineBuf[i+1]
                 let b = lineBuf[i+2]
@@ -272,8 +298,8 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                     a = lineBuf[i+3]
                     i += 4
                 } else {
-                    if trans8 != nil && r == trans8!.r &&
-                        g == trans8!.g && b == trans8!.b {
+                    if trans != nil && Int(r) == trans!.r &&
+                        Int(g) == trans!.g && Int(b) == trans!.b {
                             a = 0x00
                     } else {
                         a = 0xFF
@@ -285,7 +311,8 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
         }
         else if (color == 2 || color == 6) && depth == 16 {
             // 16-bit RGB or RGBA
-            fill(img, row:curRow) { () -> (T.Element,T.Element,T.Element,T.Element) in
+            fill(img, row:curRow, start: curStart, step: curStep) {
+                () -> (T.Element,T.Element,T.Element,T.Element) in
                 let r = (UInt16(lineBuf[i]) << 8) | UInt16(lineBuf[i+1])
                 let g = (UInt16(lineBuf[i+2]) << 8) | UInt16(lineBuf[i+3])
                 let b = (UInt16(lineBuf[i+4]) << 8) | UInt16(lineBuf[i+5])
@@ -294,8 +321,8 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                     a = (UInt16(lineBuf[i+6]) << 8) | UInt16(lineBuf[i+7])
                     i += 8
                 } else {
-                    if trans16 != nil && r == trans16!.r &&
-                        g == trans16!.g && b == trans16!.b {
+                    if trans != nil && Int(r) == trans!.r &&
+                        Int(g) == trans!.g && Int(b) == trans!.b {
                             a = 0x0000
                     } else {
                         a = 0xFFFF
@@ -307,14 +334,15 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
         }
         else if (color == 0 || color == 4) && depth == 8 {
             // 8-bit greyscale with optional alpha
-            fill(img, row:curRow) { () -> (T.Element,T.Element) in
+            fill(img, row:curRow, start: curStart, step: curStep) {
+                () -> (T.Element,T.Element) in
                 let y = lineBuf[i]
                 let a:UInt8
                 if (color == 4) {
                     a = lineBuf[i+1]
                     i += 2
                 } else {
-                    if trans8 != nil && y == trans8!.g {
+                    if trans != nil && Int(y) == trans!.g {
                         a = 0x00
                     } else {
                         a = 0xFF
@@ -326,14 +354,15 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
         }
         else if (color == 0 || color == 4) && depth == 16 {
             // 16-bit greyscale with optional alpha
-            fill(img, row:curRow) { () -> (T.Element,T.Element) in
+            fill(img, row:curRow, start: curStart, step: curStep) {
+                () -> (T.Element,T.Element) in
                 let y = (UInt16(lineBuf[i]) << 8) | UInt16(lineBuf[i+1])
                 let a:UInt16
                 if (color == 4) {
                     a = (UInt16(lineBuf[i+2]) << 8) | UInt16(lineBuf[i+3])
                     i += 4
                 } else {
-                    if trans16 != nil && y == trans16!.g {
+                    if trans != nil && Int(y) == trans!.g {
                         a = 0x0000
                     } else {
                         a = 0xFFFF
@@ -358,7 +387,7 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                     lineBuf[i] = lineBuf[i] >> UInt8(depth)
                 }
                 let a:UInt8
-                if trans8 != nil && y == trans8!.g {
+                if trans != nil && Int(y) == trans!.g {
                     a = 0x00
                 } else {
                     a = 0xFF
@@ -370,7 +399,8 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
             // Palleted
             let mask = UInt8((1 << depth) - 1)
             var bits = 8
-            fill(img, row:curRow) { () -> (T.Element,T.Element,T.Element,T.Element) in
+            fill(img, row:curRow, start: curStart, step: curStep) {
+                () -> (T.Element,T.Element,T.Element,T.Element) in
                 let pos = Int(lineBuf[i] & mask)
                 bits -= depth
                 if bits == 0 {
@@ -388,7 +418,11 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
             fatalError()
         }
 
-        curRow += 1
+        if (interlaced) {
+            nextInterlacedRow()
+        } else {
+            curRow += 1
+        }
     }
 
 

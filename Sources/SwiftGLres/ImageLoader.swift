@@ -393,45 +393,54 @@ public class SGLImageDecoder {
         }
     }
 
-    // Fill an entire line all at once.
-    // Convert channels as necessary.
-    // Greyscale uses luminance from RGB.
+
+    // Fill an entire line all at once from a color source.
     final public func fill<T:SGLImageType>
         (img:T, row:Int, @noescape rgba fn:() ->
+        (r:T.Element, g:T.Element, b:T.Element, a:T.Element) ) {
+            fill(img, row: row, start: 0, step: 1, rgba: fn)
+    }
+
+
+    // Interlaced version of color fill.
+    final public func fill<T:SGLImageType>
+        (img:T, row:Int, start:Int, step:Int, @noescape rgba fn:() ->
         (r:T.Element, g:T.Element, b:T.Element, a:T.Element) ) {
             precondition(row<img.height)
             precondition(xsize==img.width)
             img.withUnsafeMutableBufferPointer { (ptr) in
-                let r = loader!.flipVertical ? img.height-row-1 : row
-                var p = img.rowsize * r
+                let adjustedRow = loader!.flipVertical ? img.height-row-1 : row
+                let rowPtr = img.rowsize * adjustedRow
+                let from = rowPtr + img.channels * start
+                let to = rowPtr + img.width * img.channels
                 switch(img.channels) {
                 case 1:
-                    for _ in 0 ..< img.width {
+                    for i in from.stride(to: to, by: step) {
                         let (r, g, b, _) = fn()
                         let y = luminanceY(r:r, g:g, b:b)
-                        ptr[p] = y; p += 1
+                        ptr[i] = y
                     }
                 case 2:
-                    for _ in 0 ..< img.width {
+                    for i in from.stride(to: to, by: step * 2) {
                         let (r, g, b, a) = fn()
                         let y = luminanceY(r:r, g:g, b:b)
-                        ptr[p] = y; p += 1
-                        ptr[p] = a; p += 1
+                        ptr[i+0] = y
+                        ptr[i+1] = a
                     }
                 case 3:
-                    for _ in 0 ..< img.width {
+                    for i in from.stride(to: to, by: step * 3) {
                         let (r, g, b, _) = fn()
-                        ptr[p] = r; p += 1
-                        ptr[p] = g; p += 1
-                        ptr[p] = b; p += 1
+                        ptr[i+0] = r
+                        ptr[i+1] = g
+                        ptr[i+2] = b
                     }
                 case 4:
-                    for _ in 0 ..< img.width {
+                    for i in from.stride(to: to, by: step * 4) {
                         let (r, g, b, a) = fn()
-                        ptr[p] = r; p += 1
-                        ptr[p] = g; p += 1
-                        ptr[p] = b; p += 1
-                        ptr[p] = a; p += 1
+                        ptr[i+0] = r
+                        ptr[i+1] = g
+                        ptr[i+2] = b
+                        ptr[i+3] = a
                     }
                 default:
                     preconditionFailure()
@@ -439,40 +448,50 @@ public class SGLImageDecoder {
             }
     }
 
+
     // Fill an entire line all at once from a greyscale source.
     final public func fill<T:SGLImageType>
         (img:T, row:Int, @noescape ya fn:() -> (y:T.Element, a:T.Element) ) {
+            fill(img, row: row, start: 0, step: 1, ya: fn)
+    }
+
+
+    // Interlaced version of greyscale fill.
+    final public func fill<T:SGLImageType>
+        (img:T, row:Int, start:Int, step:Int, @noescape ya fn:() -> (y:T.Element, a:T.Element) ) {
             precondition(row<img.height)
             precondition(xsize==img.width)
             img.withUnsafeMutableBufferPointer { (ptr) in
-                let r = loader!.flipVertical ? img.height-row-1 : row
-                var p = img.rowsize * r
+                let adjustedRow = loader!.flipVertical ? img.height-row-1 : row
+                let rowPtr = img.rowsize * adjustedRow
+                let from = rowPtr + img.channels * start
+                let to = rowPtr + img.width * img.channels
                 switch(img.channels) {
                 case 1:
-                    for _ in 0 ..< img.width {
+                    for i in from.stride(to: to, by: step) {
                         let (y, _) = fn()
-                        ptr[p] = y; p += 1
+                        ptr[i] = y
                     }
                 case 2:
-                    for _ in 0 ..< img.width {
+                    for i in from.stride(to: to, by: step) {
                         let (y, a) = fn()
-                        ptr[p] = y; p += 1
-                        ptr[p] = a; p += 1
+                        ptr[i+0] = y
+                        ptr[i+1] = a
                     }
                 case 3:
-                    for _ in 0 ..< img.width {
+                    for i in from.stride(to: to, by: step) {
                         let (y, _) = fn()
-                        ptr[p] = y; p += 1
-                        ptr[p] = y; p += 1
-                        ptr[p] = y; p += 1
+                        ptr[i+0] = y
+                        ptr[i+1] = y
+                        ptr[i+2] = y
                     }
                 case 4:
-                    for _ in 0 ..< img.width {
+                    for i in from.stride(to: to, by: step) {
                         let (y, a) = fn()
-                        ptr[p] = y; p += 1
-                        ptr[p] = y; p += 1
-                        ptr[p] = y; p += 1
-                        ptr[p] = a; p += 1
+                        ptr[i+0] = y
+                        ptr[i+1] = y
+                        ptr[i+2] = y
+                        ptr[i+3] = a
                     }
                 default:
                     preconditionFailure()

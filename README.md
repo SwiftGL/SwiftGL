@@ -95,8 +95,8 @@ tutorial to be easily followed with Swift instead of C++.
 
 ## SwiftGL resource management
 
-Currently, BMP and GIF importing is working. But the framework for this is comprehensive
-so adding more decoders is straightforward.
+Currently, BMP, PNG and GIF importing are working. This is all 100% Swift, there are no
+bindings to any external code at all.
 ```
 import SwiftGLres
 let loader = SGLImageLoader(fromFile: "/path/to/file.bmp")
@@ -106,7 +106,10 @@ assert(loader.error == nil, loader.error!)
 let image = SGLImageRGB<UInt8>(loader)
 assert(loader.error == nil, loader.error!)
 ```
-Future decoders will include: HDR, JPEG, PIC, PNG, PNM, PSD, TGA.
+Loading into floats will make the color channels linear by applying a gamma of 2.2. You can
+change the gamma in the loader. If the image specifies a gamma, it will set the loader to match.
+
+There's also an inflate (gzip) algorithm you can use.
 
 ## Performance Considerations
 

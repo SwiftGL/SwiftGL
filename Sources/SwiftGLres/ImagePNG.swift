@@ -68,7 +68,11 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
             read32be() // discard CRC
             chunk_length = read32be()
             chunk_type = read32be()
-            fatalError() //TODO make this work
+
+            //TODO find possible color+depth combos
+            //     I think it's only 8-bit RGB and RGBA
+            error = "CgBI format not fully supported"
+            return
         }
 
         if chunk_type != chars("IHDR") {
@@ -149,12 +153,28 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
     var filterStride = 0
     var prevPos = 0
     var curRow = 0
+    private var trans8:(r:UInt8,g:UInt8,b:UInt8)? = nil
+    private var trans16:(r:UInt16,g:UInt16,b:UInt16)? = nil
 
 
     private func prepare() {
         if (interlaced) {
             fatalError("//TODO interlaced")
         }
+
+        if (trans != nil) {
+            trans8 = (
+                r:UInt8(truncatingBitPattern: trans!.r),
+                g:UInt8(truncatingBitPattern: trans!.g),
+                b:UInt8(truncatingBitPattern: trans!.b)
+            )
+            trans16 = (
+                r:UInt16(truncatingBitPattern: trans!.r),
+                g:UInt16(truncatingBitPattern: trans!.g),
+                b:UInt16(truncatingBitPattern: trans!.b)
+            )
+        }
+
         var filterChannels = 1
         if color != 3 {
             filterChannels += color & 2
@@ -252,7 +272,12 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                     a = lineBuf[i+3]
                     i += 4
                 } else {
-                    a = 0xFF
+                    if trans8 != nil && r == trans8!.r &&
+                        g == trans8!.g && b == trans8!.b {
+                            a = 0x00
+                    } else {
+                        a = 0xFF
+                    }
                     i += 3
                 }
                 return (cast(r), cast(g), cast(b), castAlpha(a))
@@ -269,7 +294,12 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                     a = (UInt16(lineBuf[i+6]) << 8) | UInt16(lineBuf[i+7])
                     i += 8
                 } else {
-                    a = 0xFFFF
+                    if trans16 != nil && r == trans16!.r &&
+                        g == trans16!.g && b == trans16!.b {
+                            a = 0x0000
+                    } else {
+                        a = 0xFFFF
+                    }
                     i += 6
                 }
                 return (cast(r), cast(g), cast(b), castAlpha(a))
@@ -284,7 +314,11 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                     a = lineBuf[i+1]
                     i += 2
                 } else {
-                    a = 0xFF
+                    if trans8 != nil && y == trans8!.g {
+                        a = 0x00
+                    } else {
+                        a = 0xFF
+                    }
                     i += 1
                 }
                 return (cast(y), castAlpha(a))
@@ -299,15 +333,59 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                     a = (UInt16(lineBuf[i+2]) << 8) | UInt16(lineBuf[i+3])
                     i += 4
                 } else {
-                    a = 0xFFFF
+                    if trans16 != nil && y == trans16!.g {
+                        a = 0x0000
+                    } else {
+                        a = 0xFFFF
+                    }
                     i += 2
                 }
                 return (cast(y), castAlpha(a))
             }
         }
+        else if color == 0 {
+            // 1/2/4-bit greyscale
+            let mask = UInt8((1 << depth) - 1)
+            let shift = UInt8(8 - depth)
+            var bits = 8
+            fill(img, row:curRow) { () -> (T.Element,T.Element) in
+                let y = (lineBuf[i] & mask) << shift
+                bits -= depth
+                if bits == 0 {
+                    bits = 8
+                    i += 1
+                } else {
+                    lineBuf[i] = lineBuf[i] >> UInt8(depth)
+                }
+                let a:UInt8
+                if trans8 != nil && y == trans8!.g {
+                    a = 0x00
+                } else {
+                    a = 0xFF
+                }
+                return (cast(y), castAlpha(a))
+            }
+        }
+        else if color == 3 {
+            // Palleted
+            let mask = UInt8((1 << depth) - 1)
+            var bits = 8
+            fill(img, row:curRow) { () -> (T.Element,T.Element,T.Element,T.Element) in
+                let pos = Int(lineBuf[i] & mask)
+                bits -= depth
+                if bits == 0 {
+                    bits = 8
+                    i += 1
+                } else {
+                    lineBuf[i] = lineBuf[i] >> UInt8(depth)
+                }
+                let p = pal[pos]
+                return (cast(p.r), cast(p.g), cast(p.b), castAlpha(p.a))
+            }
+        }
         else {
-            fatalError("//TODO color+depth type not implemented yet")
-            //TODO indexed and 1/2/4bit greyscale
+            // IHDR should validate enough to never get here.
+            fatalError()
         }
 
         curRow += 1
@@ -379,7 +457,7 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
         }
         if (depth != 1 && depth != 2 && depth != 4 && depth != 8 && depth != 16) ||
             (color == 3 && depth > 8) ||
-            ((color == 2 || color == 4 || color == 6) && depth > 8) {
+            ((color == 2 || color == 4 || color == 6) && depth < 8) {
                 // invalid color and depth combination
                 error = "bad PNG"
                 return
@@ -446,12 +524,12 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
                 pal[i] = (c.r, c.g, c.b, a)
             }
         } else {
-            if channels & 1 == 0 {
+            if color & 4 != 0 {
                 // but we have alpha
                 error = "bad PNG"
                 return
             }
-            if channels == 1 {
+            if color == 0 {
                 let y = read16be()
                 trans = (y,y,y)
             } else {

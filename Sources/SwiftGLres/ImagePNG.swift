@@ -375,10 +375,19 @@ final public class SGLImageDecoderPNG : SGLImageDecoder {
         else if color == 0 {
             // 1/2/4-bit greyscale
             let mask = UInt8((1 << depth) - 1)
-            let shift = UInt8(8 - depth)
             var bits = 8
             fill(img, row:curRow) { () -> (T.Element,T.Element) in
-                let y = (lineBuf[i] & mask) << shift
+                var y = lineBuf[i] & mask
+                y <<= UInt8(depth)
+                y |= y
+                if depth < 4 {
+                    y <<= UInt8(depth)
+                    y |= y
+                }
+                if depth < 2 {
+                    y <<= UInt8(depth)
+                    y |= y
+                }
                 bits -= depth
                 if bits == 0 {
                     bits = 8

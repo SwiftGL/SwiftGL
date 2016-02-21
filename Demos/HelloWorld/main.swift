@@ -20,48 +20,47 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-import SwiftGL
-import SwiftGLres
+import SGLOpenGL
 import CGLFW3
-#if os(Linux)
-    import Glibc
-#else
-    import Darwin.C
-#endif
 
+
+let WIDTH:GLsizei = 800, HEIGHT:GLsizei = 600
 
 let vertexShaderSource =
     "#version 110\n" +
     "attribute vec3 position;\n" +
-    "varying vec2 texPos;\n" +
     "void main()\n" +
     "{\n" +
-    "texPos = vec2(position.x / 2.0 + 0.5, position.y / 2.0 + 0.5); \n" +
     "gl_Position = vec4(position.x, position.y, position.z, 1.0);\n" +
     "}\n"
 
 let fragmentShaderSource =
     "#version 110\n" +
-    "uniform sampler2D imgTex;" +
-    "varying vec2 texPos;\n" +
     "void main()\n" +
     "{\n" +
-    "gl_FragColor = texture2D(imgTex, texPos);" +
+    "gl_FragColor = vec4(0.3, 0.6, 0.6, 1.0);\n" +
     "}\n"
 
 typealias vec3 = (x:Float, y:Float, z:Float)
 
 let vertices:[vec3] = [
-    vec3(1, 1, 0.0),
-    vec3(1, -1, 0.0),
-    vec3(-1, -1, 0.0),
-    vec3(-1, 1, 0.0),
+    vec3(0.5, 0.5, 0.0),
+    vec3(0.5, -0.5, 0.0),
+    vec3(-0.5, -0.5, 0.0),
+    vec3(-0.5, 0.5, 0.0),
 ]
 
 let indices:[GLuint] = [
     0, 1, 2,
     2, 3, 0,
 ]
+
+func keyCallback(window: COpaquePointer, key: Int32, scancode: Int32, action: Int32, mode: Int32)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, GL_TRUE)
+    }
+}
 
 func getShaderInfoLog(shader: GLuint) -> String
 {
@@ -122,31 +121,6 @@ func validateProgram(program: GLuint)  -> String?
     return nil
 }
 
-if (Process.argc < 2) {
-    // Got this from Xcode? Add an argument to the scheme.
-    print("\nusage: main.swift path_to_image\n")
-    exit(1)
-}
-
-let loader = SGLImageLoader(fromFile: Process.arguments[1])
-if (loader.error != nil) { fatalError(loader.error!) }
-loader.flipVertical = true
-let image = SGLImageRGB<UInt8>(loader)
-if (loader.error != nil) { fatalError(loader.error!) }
-
-let startWidth:Float
-let startHeight:Float
-if image.width > 800 || image.height > 800 {
-    let f:Float = (image.width > image.height) ?
-        800 / Float(image.width) :
-        800 / Float(image.height)
-    startWidth = Float(image.width) * f
-    startHeight = Float(image.height) * f
-} else {
-    startWidth = Float(image.width)
-    startHeight = Float(image.height)
-}
-
 if glfwInit() != GL_TRUE {
     fatalError("glfwInit() failed")
 }
@@ -155,16 +129,17 @@ defer { glfwTerminate() }
 glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2)
 glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0)
 glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE)
-glfwWindowHint(GLFW_RESIZABLE, GL_TRUE)
+glfwWindowHint(GLFW_RESIZABLE, GL_FALSE)
 
-let window = glfwCreateWindow(Int32(startWidth), Int32(startHeight), Process.arguments[1], nil, nil)
+let window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World", nil, nil)
 if (window == nil) {
     fatalError("glfwCreateWindow failed")
 }
 
 glfwMakeContextCurrent(window)
+glfwSetKeyCallback(window, keyCallback)
 
-glViewport(x: 0, y: 0, width: Int32(startWidth), height: Int32(startHeight))
+glViewport(x: 0, y: 0, width: WIDTH, height: HEIGHT)
 
 let vertexShader = glCreateShader(type: GL_VERTEX_SHADER)
 if let errorMessage = compileShader(vertexShader, source: vertexShaderSource) {
@@ -215,70 +190,21 @@ glBindBuffer(target: GL_ARRAY_BUFFER, buffer: 0)
 
 glBindVertexArray(0)
 
-var texture:GLuint = 0
-glGenTextures(1, &texture)
-glBindTexture(GL_TEXTURE_2D, texture)
-glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
-image.withUnsafeMutableBufferPointer() {
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
-        Int32(image.width),
-        Int32(image.height),
-        0, GL_RGB, GL_UNSIGNED_BYTE,
-        $0.baseAddress)
-}
-glGenerateMipmap(GL_TEXTURE_2D)
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR)
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
-glBindTexture(GL_TEXTURE_2D, 0)
+// Uncomment this to see wireframe
+// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)
 
-func draw(window: COpaquePointer) {
+while (glfwWindowShouldClose(window) == 0)
+{
+    glfwPollEvents()
+
     glClearColor(0.4, 0.3, 0.3, 1.0)
     glClear(GL_COLOR_BUFFER_BIT)
 
     glUseProgram(shaderProgram)
-    glBindTexture(GL_TEXTURE_2D, texture);
     glBindVertexArray(VAO)
     glDrawElements(mode: GL_TRIANGLES, count: GLsizei(indices.count),
         type: GL_UNSIGNED_INT, indices: nil)
     glBindVertexArray(0)
 
     glfwSwapBuffers(window)
-}
-
-func keyCallback(window: COpaquePointer, key: Int32, scancode: Int32, action: Int32, mode: Int32)
-{
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
-        glfwSetWindowShouldClose(window, GL_TRUE)
-    }
-}
-
-func windowSizeCallback(window: COpaquePointer, width: Int32, height: Int32)
-{
-    let w = startWidth * (Float(height) / Float(startHeight))
-    glfwSetWindowSize(window, Int32(w), height);
-    draw(window)
-}
-
-glfwSetKeyCallback(window, keyCallback)
-glfwSetWindowRefreshCallback(window, draw);
-#if !os(Linux)
-glfwSetWindowSizeCallback(window, windowSizeCallback);
-#endif
-
-while (glfwWindowShouldClose(window) == 0)
-{
-    #if os(Linux)
-        var w:Int32 = 0
-        var h:Int32 = 0
-        glfwGetWindowSize(window, &w, &h)
-
-        let newW = Int32(startWidth * (Float(h) / Float(startHeight)))
-        if newW != w {
-            glfwSetWindowSize(window, newW, h);
-        }
-    #endif
-
-    glfwPollEvents()
-    draw(window)
-    usleep(50000)
 }

@@ -21,8 +21,8 @@
 
 
 import CGLFW3
-import SwiftGL
-import SwiftGLmath
+import SGLOpenGL
+import SGLMath
 #if os(Linux)
     import Glibc
 #else

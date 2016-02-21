@@ -7,67 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D1053AF1C6DB5DE007A27E3 /* ImagePNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1053AE1C6DB5DE007A27E3 /* ImagePNG.swift */; };
-		3D12884C1C646A9F00A909A0 /* ImageBMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12884B1C646A9F00A909A0 /* ImageBMP.swift */; };
-		3D1B873F1C5EB9B200FC10A5 /* glm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B873E1C5EB9B200FC10A5 /* glm.swift */; };
-		3D1B87411C5EB9BD00FC10A5 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B87401C5EB9BD00FC10A5 /* Quaternion.swift */; };
-		3D1B87421C5EBA3300FC10A5 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B873C1C5EB87200FC10A5 /* Protocols.swift */; };
-		3D1B87441C5EBAA700FC10A5 /* glmMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B87431C5EBAA700FC10A5 /* glmMatrixTests.swift */; };
-		3D1B87451C5EBF7800FC10A5 /* glsl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB284381C475DEB008D46E6 /* glsl.swift */; };
-		3D214CDE1C44378A000DE32E /* Vector4b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D214CDD1C44378A000DE32E /* Vector4b.swift */; };
-		3D28E9F01C3B2D600091E013 /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
-		3D28E9F21C3B2D7A0091E013 /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
-		3D28E9FF1C3B34ED0091E013 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28E9FE1C3B34ED0091E013 /* main.swift */; };
-		3D28EA0E1C3B35F30091E013 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28EA0D1C3B35F30091E013 /* main.swift */; };
-		3D319BD91C4EDDF600781256 /* Pinwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D319BD81C4EDDF600781256 /* Pinwheel.swift */; };
-		3D3C73311C3CEB9A007FD4F9 /* Matrix4x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73301C3CEB9A007FD4F9 /* Matrix4x3.swift */; };
-		3D3C73331C3CEC67007FD4F9 /* Matrix4x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73321C3CEC67007FD4F9 /* Matrix4x2.swift */; };
-		3D3C73351C3CEE2F007FD4F9 /* Matrix3x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73341C3CEE2F007FD4F9 /* Matrix3x2.swift */; };
-		3D3C73371C3CEFE6007FD4F9 /* Matrix3x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73361C3CEFE6007FD4F9 /* Matrix3x4.swift */; };
-		3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */; };
-		3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */; };
-		3D43C11E1C6AE77700AC13CF /* ImageGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D43C11D1C6AE77700AC13CF /* ImageGIF.swift */; };
-		3D5D8A5F1C6F14E5009C7303 /* Inflate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D8A5E1C6F14E5009C7303 /* Inflate.swift */; };
-		3D5E1EF81C685865004CB9AC /* SwiftGLresImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE88ED61C64655C0096145C /* SwiftGLresImage.swift */; };
-		3D632E5F1C6A764F00FEF61B /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
-		3D632E601C6A765300FEF61B /* SwiftGLres.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE88EBB1C6417B90096145C /* SwiftGLres.framework */; };
-		3D7BF88D1C5EC5CF006B5373 /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7BF88C1C5EC5CF006B5373 /* Complex.swift */; };
-		3D8A72AF1C6E465500FAC9FF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A72AE1C6E465500FAC9FF /* ImageLoader.swift */; };
-		3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F3D151C3B28B1007C49E7 /* main.swift */; };
-		3D90F4981C489B2100229A4F /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
-		3D90F4991C489B2600229A4F /* SwiftGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */; };
-		3D90F49D1C489BF100229A4F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F49C1C489BF100229A4F /* main.swift */; };
-		3D90F49F1C48BA6300229A4F /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F49E1C48BA6300229A4F /* Shader.swift */; };
-		3D90F4A11C4972B700229A4F /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F4A01C4972B700229A4F /* Camera.swift */; };
-		3D91C3961C3B20C600BA748A /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3911C3B20C600BA748A /* Commands.swift */; };
-		3D91C3971C3B20C600BA748A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3921C3B20C600BA748A /* Constants.swift */; };
-		3D91C3991C3B20C600BA748A /* Loaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3941C3B20C600BA748A /* Loaders.swift */; };
-		3D91C39A1C3B20C600BA748A /* SwiftGL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3951C3B20C600BA748A /* SwiftGL.swift */; };
-		3D91C3C01C3B21BE00BA748A /* SwiftGLmath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */; };
-		3D91C3CF1C3B220E00BA748A /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3C61C3B220E00BA748A /* Internal.swift */; };
-		3D91C3D01C3B220E00BA748A /* Matrix2x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3C71C3B220E00BA748A /* Matrix2x2.swift */; };
-		3D91C3D11C3B220E00BA748A /* Matrix3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3C81C3B220E00BA748A /* Matrix3x3.swift */; };
-		3D91C3D21C3B220E00BA748A /* Matrix4x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3C91C3B220E00BA748A /* Matrix4x4.swift */; };
-		3D91C3D51C3B220E00BA748A /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3CC1C3B220E00BA748A /* Vector2.swift */; };
-		3D91C3D61C3B220E00BA748A /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3CD1C3B220E00BA748A /* Vector3.swift */; };
-		3D91C3D71C3B220E00BA748A /* Vector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3CE1C3B220E00BA748A /* Vector4.swift */; };
-		3D91C3DE1C3B224500BA748A /* EqualWithAccuracy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3D81C3B224500BA748A /* EqualWithAccuracy.swift */; };
-		3D91C3DF1C3B224500BA748A /* Matrix2x2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3D91C3B224500BA748A /* Matrix2x2Tests.swift */; };
-		3D91C3E01C3B224500BA748A /* Matrix3x3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DA1C3B224500BA748A /* Matrix3x3Tests.swift */; };
-		3D91C3E11C3B224500BA748A /* Matrix4x4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */; };
-		3D91C3E21C3B224500BA748A /* SwizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */; };
-		3D91C3E31C3B224500BA748A /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */; };
-		3D99A8B81C6A7476009B7529 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D99A8B71C6A7476009B7529 /* main.swift */; };
-		3DAE99541C4E24B700440741 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91C3CA1C3B220E00BA748A /* Swizzle.swift */; };
-		3DB2843B1C481396008D46E6 /* FunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB2843A1C481396008D46E6 /* FunctionsTests.swift */; };
-		3DB90A111C5C826300E1576F /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D412D581C3EE71800044962 /* Operators.swift */; };
-		3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */; };
-		3DE88EC51C6417BA0096145C /* SwiftGLres.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE88EBB1C6417B90096145C /* SwiftGLres.framework */; };
-		3DE88ED51C6465280096145C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE88ED41C6465280096145C /* Image.swift */; };
-		3DFD6ECB1C49E3A500E26222 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECA1C49E3A500E26222 /* Player.swift */; };
-		3DFD6ECD1C49FA3C00E26222 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD6ECC1C49FA3C00E26222 /* Cube.swift */; };
-		3DFFC9891C447AC000EF48B4 /* Vector3b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFC9881C447AC000EF48B4 /* Vector3b.swift */; };
-		3DFFC98B1C447B6600EF48B4 /* Vector2b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFC98A1C447B6600EF48B4 /* Vector2b.swift */; };
+		3D632E5F1C6A764F00FEF61B /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */; };
+		3D632E601C6A765300FEF61B /* SGLImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE88EBB1C6417B90096145C /* SGLImage.framework */; };
+		3D90F4981C489B2100229A4F /* SGLMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SGLMath.framework */; };
+		3D90F4991C489B2600229A4F /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */; };
+		3D91C3C01C3B21BE00BA748A /* SGLMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SGLMath.framework */; };
+		3DE88EC51C6417BA0096145C /* SGLImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE88EBB1C6417B90096145C /* SGLImage.framework */; };
+		3DFFFD011C793C7400D96E85 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB01C793BE800D96E85 /* Camera.swift */; };
+		3DFFFD021C793C7400D96E85 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB11C793BE800D96E85 /* Cube.swift */; };
+		3DFFFD031C793C7400D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB21C793BE800D96E85 /* main.swift */; };
+		3DFFFD051C793C7400D96E85 /* Pinwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB41C793BE800D96E85 /* Pinwheel.swift */; };
+		3DFFFD061C793C7400D96E85 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB51C793BE800D96E85 /* Player.swift */; };
+		3DFFFD071C793C7400D96E85 /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB71C793BE800D96E85 /* Shader.swift */; };
+		3DFFFD081C793C9600D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB91C793BE800D96E85 /* main.swift */; };
+		3DFFFD091C793C9D00D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCBD1C793BE800D96E85 /* main.swift */; };
+		3DFFFD0A1C793CB000D96E85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC51C793BF100D96E85 /* Image.swift */; };
+		3DFFFD0B1C793CB000D96E85 /* ImageBMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC61C793BF100D96E85 /* ImageBMP.swift */; };
+		3DFFFD0C1C793CB000D96E85 /* ImageGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC71C793BF100D96E85 /* ImageGIF.swift */; };
+		3DFFFD0D1C793CB000D96E85 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC81C793BF100D96E85 /* ImageLoader.swift */; };
+		3DFFFD0E1C793CB000D96E85 /* ImagePNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC91C793BF100D96E85 /* ImagePNG.swift */; };
+		3DFFFD0F1C793CB000D96E85 /* Inflate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCCA1C793BF100D96E85 /* Inflate.swift */; };
+		3DFFFD101C793CBD00D96E85 /* SwiftGLresImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCCC1C793BF100D96E85 /* SwiftGLresImage.swift */; };
+		3DFFFD111C793CC700D96E85 /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD21C793C1F00D96E85 /* Complex.swift */; };
+		3DFFFD121C793CC700D96E85 /* glm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD31C793C1F00D96E85 /* glm.swift */; };
+		3DFFFD131C793CC700D96E85 /* glsl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD41C793C1F00D96E85 /* glsl.swift */; };
+		3DFFFD141C793CC700D96E85 /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD51C793C1F00D96E85 /* Internal.swift */; };
+		3DFFFD151C793CC700D96E85 /* Matrix2x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD61C793C1F00D96E85 /* Matrix2x2.swift */; };
+		3DFFFD161C793CC700D96E85 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD71C793C1F00D96E85 /* Matrix2x3.swift */; };
+		3DFFFD171C793CC700D96E85 /* Matrix2x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD81C793C1F00D96E85 /* Matrix2x4.swift */; };
+		3DFFFD181C793CC700D96E85 /* Matrix3x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD91C793C1F00D96E85 /* Matrix3x2.swift */; };
+		3DFFFD191C793CC700D96E85 /* Matrix3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDA1C793C1F00D96E85 /* Matrix3x3.swift */; };
+		3DFFFD1A1C793CC700D96E85 /* Matrix3x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDB1C793C1F00D96E85 /* Matrix3x4.swift */; };
+		3DFFFD1B1C793CC700D96E85 /* Matrix4x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDC1C793C1F00D96E85 /* Matrix4x2.swift */; };
+		3DFFFD1C1C793CC700D96E85 /* Matrix4x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDD1C793C1F00D96E85 /* Matrix4x3.swift */; };
+		3DFFFD1D1C793CC700D96E85 /* Matrix4x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDE1C793C1F00D96E85 /* Matrix4x4.swift */; };
+		3DFFFD1E1C793CC700D96E85 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDF1C793C1F00D96E85 /* Operators.swift */; };
+		3DFFFD1F1C793CC700D96E85 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE01C793C1F00D96E85 /* Protocols.swift */; };
+		3DFFFD201C793CC700D96E85 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE11C793C1F00D96E85 /* Quaternion.swift */; };
+		3DFFFD211C793CC700D96E85 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE21C793C1F00D96E85 /* Swizzle.swift */; };
+		3DFFFD221C793CC700D96E85 /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE31C793C1F00D96E85 /* Vector2.swift */; };
+		3DFFFD231C793CC700D96E85 /* Vector2b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE41C793C1F00D96E85 /* Vector2b.swift */; };
+		3DFFFD241C793CC700D96E85 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE51C793C1F00D96E85 /* Vector3.swift */; };
+		3DFFFD251C793CC700D96E85 /* Vector3b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE61C793C1F00D96E85 /* Vector3b.swift */; };
+		3DFFFD261C793CC700D96E85 /* Vector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE71C793C1F00D96E85 /* Vector4.swift */; };
+		3DFFFD271C793CC700D96E85 /* Vector4b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE81C793C1F00D96E85 /* Vector4b.swift */; };
+		3DFFFD281C793CCF00D96E85 /* EqualWithAccuracy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEA1C793C1F00D96E85 /* EqualWithAccuracy.swift */; };
+		3DFFFD291C793CCF00D96E85 /* FunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEB1C793C1F00D96E85 /* FunctionsTests.swift */; };
+		3DFFFD2A1C793CCF00D96E85 /* glmMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEC1C793C1F00D96E85 /* glmMatrixTests.swift */; };
+		3DFFFD2B1C793CCF00D96E85 /* Matrix2x2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCED1C793C1F00D96E85 /* Matrix2x2Tests.swift */; };
+		3DFFFD2C1C793CCF00D96E85 /* Matrix3x3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEE1C793C1F00D96E85 /* Matrix3x3Tests.swift */; };
+		3DFFFD2D1C793CCF00D96E85 /* Matrix4x4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEF1C793C1F00D96E85 /* Matrix4x4Tests.swift */; };
+		3DFFFD2E1C793CCF00D96E85 /* SwizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCF01C793C1F00D96E85 /* SwizzleTests.swift */; };
+		3DFFFD2F1C793CCF00D96E85 /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCF11C793C1F00D96E85 /* Vector2Tests.swift */; };
+		3DFFFD301C793CCF00D96E85 /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCF21C793C1F00D96E85 /* Vector4Tests.swift */; };
+		3DFFFD311C793CE600D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCF41C793C1F00D96E85 /* main.swift */; };
+		3DFFFD321C793CF900D96E85 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFA1C793C2B00D96E85 /* Commands.swift */; };
+		3DFFFD331C793CF900D96E85 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFB1C793C2B00D96E85 /* Constants.swift */; };
+		3DFFFD341C793CF900D96E85 /* Loaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFC1C793C2B00D96E85 /* Loaders.swift */; };
+		3DFFFD351C793CF900D96E85 /* SwiftGL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFD1C793C2B00D96E85 /* SwiftGL.swift */; };
+		3DFFFD361C793D1200D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFD001C793C2B00D96E85 /* main.swift */; };
+		3DFFFD371C793EA500D96E85 /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,14 +75,14 @@
 			containerPortal = 3D91C35C1C3B1FB400BA748A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3D91C39F1C3B210500BA748A;
-			remoteInfo = SwiftGLmath;
+			remoteInfo = SGLMath;
 		};
 		3DE88EC61C6417BA0096145C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3D91C35C1C3B1FB400BA748A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3DE88EBA1C6417B90096145C;
-			remoteInfo = SwiftGLres;
+			remoteInfo = SGLImage;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -109,69 +108,69 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3D1053AE1C6DB5DE007A27E3 /* ImagePNG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePNG.swift; sourceTree = "<group>"; };
-		3D12884B1C646A9F00A909A0 /* ImageBMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBMP.swift; sourceTree = "<group>"; };
-		3D1B873C1C5EB87200FC10A5 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		3D1B873E1C5EB9B200FC10A5 /* glm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = glm.swift; sourceTree = "<group>"; };
-		3D1B87401C5EB9BD00FC10A5 /* Quaternion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
-		3D1B87431C5EBAA700FC10A5 /* glmMatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = glmMatrixTests.swift; sourceTree = "<group>"; };
-		3D214CDD1C44378A000DE32E /* Vector4b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector4b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D28E9F71C3B34B90091E013 /* SwiftGLUtil */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGLUtil; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D28E9FE1C3B34ED0091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		3D28EA061C3B35D90091E013 /* SwiftGLmathUtil */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGLmathUtil; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D28EA0D1C3B35F30091E013 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		3D319BD81C4EDDF600781256 /* Pinwheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pinwheel.swift; sourceTree = "<group>"; };
-		3D3C73301C3CEB9A007FD4F9 /* Matrix4x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix4x3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D3C73321C3CEC67007FD4F9 /* Matrix4x2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix4x2.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D3C73341C3CEE2F007FD4F9 /* Matrix3x2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix3x2.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D3C73361C3CEFE6007FD4F9 /* Matrix3x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix3x4.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x4.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D412D581C3EE71800044962 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Operators.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D43C11D1C6AE77700AC13CF /* ImageGIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGIF.swift; sourceTree = "<group>"; };
-		3D5D8A5E1C6F14E5009C7303 /* Inflate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inflate.swift; sourceTree = "<group>"; };
-		3D7BF88C1C5EC5CF006B5373 /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
-		3D8A72AE1C6E465500FAC9FF /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		3D28E9F71C3B34B90091E013 /* SGLOpenGL-Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "SGLOpenGL-Tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D28EA061C3B35D90091E013 /* SGLMath-Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "SGLMath-Tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8F3D081C3B2892007C49E7 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D8F3D151C3B28B1007C49E7 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3D90F48B1C489AED00229A4F /* CubeWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CubeWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D90F49C1C489BF100229A4F /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		3D90F49E1C48BA6300229A4F /* Shader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
-		3D90F4A01C4972B700229A4F /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		3D91C3791C3B1FF700BA748A /* SwiftGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D91C3911C3B20C600BA748A /* Commands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
-		3D91C3921C3B20C600BA748A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3D91C3941C3B20C600BA748A /* Loaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaders.swift; sourceTree = "<group>"; };
-		3D91C3951C3B20C600BA748A /* SwiftGL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGL.swift; sourceTree = "<group>"; };
-		3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGLmath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D91C3BB1C3B21BE00BA748A /* SwiftGLmathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGLmathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D91C3C61C3B220E00BA748A /* Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Internal.swift; sourceTree = "<group>"; };
-		3D91C3C71C3B220E00BA748A /* Matrix2x2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix2x2.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D91C3C81C3B220E00BA748A /* Matrix3x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix3x3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D91C3C91C3B220E00BA748A /* Matrix4x4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Matrix4x4.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D91C3CA1C3B220E00BA748A /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
-		3D91C3CC1C3B220E00BA748A /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector2.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D91C3CD1C3B220E00BA748A /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector3.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D91C3CE1C3B220E00BA748A /* Vector4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector4.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D91C3D81C3B224500BA748A /* EqualWithAccuracy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EqualWithAccuracy.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3D91C3D91C3B224500BA748A /* Matrix2x2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix2x2Tests.swift; sourceTree = "<group>"; };
-		3D91C3DA1C3B224500BA748A /* Matrix3x3Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix3x3Tests.swift; sourceTree = "<group>"; };
-		3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix4x4Tests.swift; sourceTree = "<group>"; };
-		3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwizzleTests.swift; sourceTree = "<group>"; };
-		3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2Tests.swift; sourceTree = "<group>"; };
+		3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGLOpenGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D91C3A01C3B210500BA748A /* SGLMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGLMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D91C3BB1C3B21BE00BA748A /* SGLMath-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SGLMath-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D99A8AA1C6A7408009B7529 /* ImgView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D99A8B71C6A7476009B7529 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		3DB284381C475DEB008D46E6 /* glsl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = glsl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3DB2843A1C481396008D46E6 /* FunctionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsTests.swift; sourceTree = "<group>"; };
-		3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector4Tests.swift; sourceTree = "<group>"; };
-		3DE88EBB1C6417B90096145C /* SwiftGLres.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGLres.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DE88EC41C6417BA0096145C /* SwiftGLresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGLresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DE88ED41C6465280096145C /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		3DE88ED61C64655C0096145C /* SwiftGLresImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGLresImage.swift; sourceTree = "<group>"; };
-		3DFD6ECA1C49E3A500E26222 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		3DFD6ECC1C49FA3C00E26222 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
-		3DFFC9881C447AC000EF48B4 /* Vector3b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector3b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3DFFC98A1C447B6600EF48B4 /* Vector2b.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Vector2b.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		3DE88EBB1C6417B90096145C /* SGLImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGLImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DE88EC41C6417BA0096145C /* SGLImage-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SGLImage-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DFFFCB01C793BE800D96E85 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		3DFFFCB11C793BE800D96E85 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		3DFFFCB21C793BE800D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3DFFFCB41C793BE800D96E85 /* Pinwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinwheel.swift; sourceTree = "<group>"; };
+		3DFFFCB51C793BE800D96E85 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3DFFFCB71C793BE800D96E85 /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
+		3DFFFCB91C793BE800D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3DFFFCBD1C793BE800D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3DFFFCC51C793BF100D96E85 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		3DFFFCC61C793BF100D96E85 /* ImageBMP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBMP.swift; sourceTree = "<group>"; };
+		3DFFFCC71C793BF100D96E85 /* ImageGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGIF.swift; sourceTree = "<group>"; };
+		3DFFFCC81C793BF100D96E85 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		3DFFFCC91C793BF100D96E85 /* ImagePNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePNG.swift; sourceTree = "<group>"; };
+		3DFFFCCA1C793BF100D96E85 /* Inflate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inflate.swift; sourceTree = "<group>"; };
+		3DFFFCCC1C793BF100D96E85 /* SwiftGLresImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGLresImage.swift; sourceTree = "<group>"; };
+		3DFFFCD21C793C1F00D96E85 /* Complex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
+		3DFFFCD31C793C1F00D96E85 /* glm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glm.swift; sourceTree = "<group>"; };
+		3DFFFCD41C793C1F00D96E85 /* glsl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glsl.swift; sourceTree = "<group>"; };
+		3DFFFCD51C793C1F00D96E85 /* Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internal.swift; sourceTree = "<group>"; };
+		3DFFFCD61C793C1F00D96E85 /* Matrix2x2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix2x2.swift; sourceTree = "<group>"; };
+		3DFFFCD71C793C1F00D96E85 /* Matrix2x3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix2x3.swift; sourceTree = "<group>"; };
+		3DFFFCD81C793C1F00D96E85 /* Matrix2x4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix2x4.swift; sourceTree = "<group>"; };
+		3DFFFCD91C793C1F00D96E85 /* Matrix3x2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3x2.swift; sourceTree = "<group>"; };
+		3DFFFCDA1C793C1F00D96E85 /* Matrix3x3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3x3.swift; sourceTree = "<group>"; };
+		3DFFFCDB1C793C1F00D96E85 /* Matrix3x4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3x4.swift; sourceTree = "<group>"; };
+		3DFFFCDC1C793C1F00D96E85 /* Matrix4x2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4x2.swift; sourceTree = "<group>"; };
+		3DFFFCDD1C793C1F00D96E85 /* Matrix4x3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4x3.swift; sourceTree = "<group>"; };
+		3DFFFCDE1C793C1F00D96E85 /* Matrix4x4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4x4.swift; sourceTree = "<group>"; };
+		3DFFFCDF1C793C1F00D96E85 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		3DFFFCE01C793C1F00D96E85 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		3DFFFCE11C793C1F00D96E85 /* Quaternion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
+		3DFFFCE21C793C1F00D96E85 /* Swizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
+		3DFFFCE31C793C1F00D96E85 /* Vector2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
+		3DFFFCE41C793C1F00D96E85 /* Vector2b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2b.swift; sourceTree = "<group>"; };
+		3DFFFCE51C793C1F00D96E85 /* Vector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
+		3DFFFCE61C793C1F00D96E85 /* Vector3b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3b.swift; sourceTree = "<group>"; };
+		3DFFFCE71C793C1F00D96E85 /* Vector4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector4.swift; sourceTree = "<group>"; };
+		3DFFFCE81C793C1F00D96E85 /* Vector4b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector4b.swift; sourceTree = "<group>"; };
+		3DFFFCEA1C793C1F00D96E85 /* EqualWithAccuracy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualWithAccuracy.swift; sourceTree = "<group>"; };
+		3DFFFCEB1C793C1F00D96E85 /* FunctionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionsTests.swift; sourceTree = "<group>"; };
+		3DFFFCEC1C793C1F00D96E85 /* glmMatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glmMatrixTests.swift; sourceTree = "<group>"; };
+		3DFFFCED1C793C1F00D96E85 /* Matrix2x2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix2x2Tests.swift; sourceTree = "<group>"; };
+		3DFFFCEE1C793C1F00D96E85 /* Matrix3x3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3x3Tests.swift; sourceTree = "<group>"; };
+		3DFFFCEF1C793C1F00D96E85 /* Matrix4x4Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4x4Tests.swift; sourceTree = "<group>"; };
+		3DFFFCF01C793C1F00D96E85 /* SwizzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwizzleTests.swift; sourceTree = "<group>"; };
+		3DFFFCF11C793C1F00D96E85 /* Vector2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2Tests.swift; sourceTree = "<group>"; };
+		3DFFFCF21C793C1F00D96E85 /* Vector4Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector4Tests.swift; sourceTree = "<group>"; };
+		3DFFFCF41C793C1F00D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3DFFFCFA1C793C2B00D96E85 /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
+		3DFFFCFB1C793C2B00D96E85 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3DFFFCFC1C793C2B00D96E85 /* Loaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loaders.swift; sourceTree = "<group>"; };
+		3DFFFCFD1C793C2B00D96E85 /* SwiftGL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGL.swift; sourceTree = "<group>"; };
+		3DFFFD001C793C2B00D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,8 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D28E9F01C3B2D600091E013 /* SwiftGL.framework in Frameworks */,
-				3D28E9F21C3B2D7A0091E013 /* SwiftGLmath.framework in Frameworks */,
+				3DFFFD371C793EA500D96E85 /* SGLOpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +200,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D90F4981C489B2100229A4F /* SwiftGLmath.framework in Frameworks */,
-				3D90F4991C489B2600229A4F /* SwiftGL.framework in Frameworks */,
+				3D90F4981C489B2100229A4F /* SGLMath.framework in Frameworks */,
+				3D90F4991C489B2600229A4F /* SGLOpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D91C3C01C3B21BE00BA748A /* SwiftGLmath.framework in Frameworks */,
+				3D91C3C01C3B21BE00BA748A /* SGLMath.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,8 +231,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D632E601C6A765300FEF61B /* SwiftGLres.framework in Frameworks */,
-				3D632E5F1C6A764F00FEF61B /* SwiftGL.framework in Frameworks */,
+				3D632E601C6A765300FEF61B /* SGLImage.framework in Frameworks */,
+				3D632E5F1C6A764F00FEF61B /* SGLOpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,67 +247,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DE88EC51C6417BA0096145C /* SwiftGLres.framework in Frameworks */,
+				3DE88EC51C6417BA0096145C /* SGLImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D28E9F81C3B34B90091E013 /* SwiftGLUtil */ = {
-			isa = PBXGroup;
-			children = (
-				3D28E9FE1C3B34ED0091E013 /* main.swift */,
-			);
-			name = SwiftGLUtil;
-			path = Utility/SwiftGL;
-			sourceTree = "<group>";
-		};
-		3D28EA071C3B35D90091E013 /* SwiftGLmathUtil */ = {
-			isa = PBXGroup;
-			children = (
-				3D28EA0D1C3B35F30091E013 /* main.swift */,
-			);
-			name = SwiftGLmathUtil;
-			path = Utility/SwiftGLmath;
-			sourceTree = "<group>";
-		};
-		3D8F3D091C3B2892007C49E7 /* HelloWorld */ = {
-			isa = PBXGroup;
-			children = (
-				3D8F3D151C3B28B1007C49E7 /* main.swift */,
-			);
-			name = HelloWorld;
-			path = Demo/HelloWorld;
-			sourceTree = "<group>";
-		};
-		3D90F48C1C489AEE00229A4F /* CubeWorld */ = {
-			isa = PBXGroup;
-			children = (
-				3D90F49C1C489BF100229A4F /* main.swift */,
-				3D90F49E1C48BA6300229A4F /* Shader.swift */,
-				3D90F4A01C4972B700229A4F /* Camera.swift */,
-				3DFD6ECA1C49E3A500E26222 /* Player.swift */,
-				3DFD6ECC1C49FA3C00E26222 /* Cube.swift */,
-				3D319BD81C4EDDF600781256 /* Pinwheel.swift */,
-			);
-			name = CubeWorld;
-			path = Demo/CubeWorld;
-			sourceTree = "<group>";
-		};
 		3D91C35B1C3B1FB400BA748A = {
 			isa = PBXGroup;
 			children = (
-				3D8F3D091C3B2892007C49E7 /* HelloWorld */,
-				3D90F48C1C489AEE00229A4F /* CubeWorld */,
-				3D99A8AB1C6A7408009B7529 /* ImgView */,
-				3D91C37A1C3B1FF700BA748A /* SwiftGL */,
-				3D91C3A11C3B210500BA748A /* SwiftGLmath */,
-				3D91C3BC1C3B21BE00BA748A /* SwiftGLmathTests */,
-				3D28E9F81C3B34B90091E013 /* SwiftGLUtil */,
-				3D28EA071C3B35D90091E013 /* SwiftGLmathUtil */,
-				3DE88EBC1C6417BA0096145C /* SwiftGLres */,
-				3DE88EC81C6417BA0096145C /* SwiftGLresTests */,
+				3DFFFCAE1C793BE800D96E85 /* Demos */,
+				3DFFFCF51C793C2B00D96E85 /* SGLOpenGL */,
+				3DFFFCCD1C793C1F00D96E85 /* SGLMath */,
+				3DFFFCC01C793BF100D96E85 /* SGLImage */,
 				3D91C3651C3B1FB400BA748A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -317,110 +268,182 @@
 		3D91C3651C3B1FB400BA748A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D91C3791C3B1FF700BA748A /* SwiftGL.framework */,
-				3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */,
-				3D91C3BB1C3B21BE00BA748A /* SwiftGLmathTests.xctest */,
+				3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */,
+				3D91C3A01C3B210500BA748A /* SGLMath.framework */,
+				3D91C3BB1C3B21BE00BA748A /* SGLMath-Tests.xctest */,
 				3D8F3D081C3B2892007C49E7 /* HelloWorld.app */,
-				3D28E9F71C3B34B90091E013 /* SwiftGLUtil */,
-				3D28EA061C3B35D90091E013 /* SwiftGLmathUtil */,
+				3D28E9F71C3B34B90091E013 /* SGLOpenGL-Tool */,
+				3D28EA061C3B35D90091E013 /* SGLMath-Tool */,
 				3D90F48B1C489AED00229A4F /* CubeWorld.app */,
-				3DE88EBB1C6417B90096145C /* SwiftGLres.framework */,
-				3DE88EC41C6417BA0096145C /* SwiftGLresTests.xctest */,
+				3DE88EBB1C6417B90096145C /* SGLImage.framework */,
+				3DE88EC41C6417BA0096145C /* SGLImage-Tests.xctest */,
 				3D99A8AA1C6A7408009B7529 /* ImgView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3D91C37A1C3B1FF700BA748A /* SwiftGL */ = {
+		3DFFFCAE1C793BE800D96E85 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
-				3D91C3911C3B20C600BA748A /* Commands.swift */,
-				3D91C3921C3B20C600BA748A /* Constants.swift */,
-				3D91C3941C3B20C600BA748A /* Loaders.swift */,
-				3D91C3951C3B20C600BA748A /* SwiftGL.swift */,
+				3DFFFCB81C793BE800D96E85 /* HelloWorld */,
+				3DFFFCAF1C793BE800D96E85 /* CubeWorld */,
+				3DFFFCBC1C793BE800D96E85 /* ImgView */,
 			);
-			name = SwiftGL;
-			path = Sources/SwiftGL;
+			path = Demos;
 			sourceTree = "<group>";
 		};
-		3D91C3A11C3B210500BA748A /* SwiftGLmath */ = {
+		3DFFFCAF1C793BE800D96E85 /* CubeWorld */ = {
 			isa = PBXGroup;
 			children = (
-				3D1B873E1C5EB9B200FC10A5 /* glm.swift */,
-				3DB284381C475DEB008D46E6 /* glsl.swift */,
-				3D1B873C1C5EB87200FC10A5 /* Protocols.swift */,
-				3D412D581C3EE71800044962 /* Operators.swift */,
-				3D91C3C61C3B220E00BA748A /* Internal.swift */,
-				3D7BF88C1C5EC5CF006B5373 /* Complex.swift */,
-				3D1B87401C5EB9BD00FC10A5 /* Quaternion.swift */,
-				3D91C3C71C3B220E00BA748A /* Matrix2x2.swift */,
-				3D3C733A1C3CF493007FD4F9 /* Matrix2x3.swift */,
-				3D3C73381C3CF177007FD4F9 /* Matrix2x4.swift */,
-				3D3C73341C3CEE2F007FD4F9 /* Matrix3x2.swift */,
-				3D91C3C81C3B220E00BA748A /* Matrix3x3.swift */,
-				3D3C73361C3CEFE6007FD4F9 /* Matrix3x4.swift */,
-				3D3C73321C3CEC67007FD4F9 /* Matrix4x2.swift */,
-				3D3C73301C3CEB9A007FD4F9 /* Matrix4x3.swift */,
-				3D91C3C91C3B220E00BA748A /* Matrix4x4.swift */,
-				3D91C3CC1C3B220E00BA748A /* Vector2.swift */,
-				3DFFC98A1C447B6600EF48B4 /* Vector2b.swift */,
-				3D91C3CD1C3B220E00BA748A /* Vector3.swift */,
-				3DFFC9881C447AC000EF48B4 /* Vector3b.swift */,
-				3D91C3CE1C3B220E00BA748A /* Vector4.swift */,
-				3D214CDD1C44378A000DE32E /* Vector4b.swift */,
-				3D91C3CA1C3B220E00BA748A /* Swizzle.swift */,
+				3DFFFCB01C793BE800D96E85 /* Camera.swift */,
+				3DFFFCB11C793BE800D96E85 /* Cube.swift */,
+				3DFFFCB21C793BE800D96E85 /* main.swift */,
+				3DFFFCB41C793BE800D96E85 /* Pinwheel.swift */,
+				3DFFFCB51C793BE800D96E85 /* Player.swift */,
+				3DFFFCB71C793BE800D96E85 /* Shader.swift */,
 			);
-			name = SwiftGLmath;
-			path = Sources/SwiftGLmath;
+			path = CubeWorld;
 			sourceTree = "<group>";
 		};
-		3D91C3BC1C3B21BE00BA748A /* SwiftGLmathTests */ = {
+		3DFFFCB81C793BE800D96E85 /* HelloWorld */ = {
 			isa = PBXGroup;
 			children = (
-				3D91C3D81C3B224500BA748A /* EqualWithAccuracy.swift */,
-				3D91C3D91C3B224500BA748A /* Matrix2x2Tests.swift */,
-				3D91C3DA1C3B224500BA748A /* Matrix3x3Tests.swift */,
-				3D91C3DB1C3B224500BA748A /* Matrix4x4Tests.swift */,
-				3D91C3DC1C3B224500BA748A /* SwizzleTests.swift */,
-				3D91C3DD1C3B224500BA748A /* Vector2Tests.swift */,
-				3DBBEBE61C418DA9003E88ED /* Vector4Tests.swift */,
-				3DB2843A1C481396008D46E6 /* FunctionsTests.swift */,
-				3D1B87431C5EBAA700FC10A5 /* glmMatrixTests.swift */,
+				3DFFFCB91C793BE800D96E85 /* main.swift */,
 			);
-			name = SwiftGLmathTests;
-			path = Tests/SwiftGLmath;
+			path = HelloWorld;
 			sourceTree = "<group>";
 		};
-		3D99A8AB1C6A7408009B7529 /* ImgView */ = {
+		3DFFFCBC1C793BE800D96E85 /* ImgView */ = {
 			isa = PBXGroup;
 			children = (
-				3D99A8B71C6A7476009B7529 /* main.swift */,
+				3DFFFCBD1C793BE800D96E85 /* main.swift */,
 			);
-			name = ImgView;
-			path = Demo/ImgView;
+			path = ImgView;
 			sourceTree = "<group>";
 		};
-		3DE88EBC1C6417BA0096145C /* SwiftGLres */ = {
+		3DFFFCC01C793BF100D96E85 /* SGLImage */ = {
 			isa = PBXGroup;
 			children = (
-				3DE88ED41C6465280096145C /* Image.swift */,
-				3D8A72AE1C6E465500FAC9FF /* ImageLoader.swift */,
-				3D12884B1C646A9F00A909A0 /* ImageBMP.swift */,
-				3D43C11D1C6AE77700AC13CF /* ImageGIF.swift */,
-				3D1053AE1C6DB5DE007A27E3 /* ImagePNG.swift */,
-				3D5D8A5E1C6F14E5009C7303 /* Inflate.swift */,
+				3DFFFCC41C793BF100D96E85 /* Sources */,
+				3DFFFCCB1C793BF100D96E85 /* Tests */,
 			);
-			name = SwiftGLres;
-			path = Sources/SwiftGLres;
+			name = SGLImage;
+			path = Image;
+			sourceTree = SOURCE_ROOT;
+		};
+		3DFFFCC41C793BF100D96E85 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3DFFFCC51C793BF100D96E85 /* Image.swift */,
+				3DFFFCC61C793BF100D96E85 /* ImageBMP.swift */,
+				3DFFFCC71C793BF100D96E85 /* ImageGIF.swift */,
+				3DFFFCC81C793BF100D96E85 /* ImageLoader.swift */,
+				3DFFFCC91C793BF100D96E85 /* ImagePNG.swift */,
+				3DFFFCCA1C793BF100D96E85 /* Inflate.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		3DE88EC81C6417BA0096145C /* SwiftGLresTests */ = {
+		3DFFFCCB1C793BF100D96E85 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3DE88ED61C64655C0096145C /* SwiftGLresImage.swift */,
+				3DFFFCCC1C793BF100D96E85 /* SwiftGLresImage.swift */,
 			);
-			name = SwiftGLresTests;
-			path = Tests/SwiftGLres;
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		3DFFFCCD1C793C1F00D96E85 /* SGLMath */ = {
+			isa = PBXGroup;
+			children = (
+				3DFFFCD11C793C1F00D96E85 /* Sources */,
+				3DFFFCE91C793C1F00D96E85 /* Tests */,
+				3DFFFCF31C793C1F00D96E85 /* Tools */,
+			);
+			name = SGLMath;
+			path = Math;
+			sourceTree = "<group>";
+		};
+		3DFFFCD11C793C1F00D96E85 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3DFFFCD21C793C1F00D96E85 /* Complex.swift */,
+				3DFFFCD31C793C1F00D96E85 /* glm.swift */,
+				3DFFFCD41C793C1F00D96E85 /* glsl.swift */,
+				3DFFFCD51C793C1F00D96E85 /* Internal.swift */,
+				3DFFFCD61C793C1F00D96E85 /* Matrix2x2.swift */,
+				3DFFFCD71C793C1F00D96E85 /* Matrix2x3.swift */,
+				3DFFFCD81C793C1F00D96E85 /* Matrix2x4.swift */,
+				3DFFFCD91C793C1F00D96E85 /* Matrix3x2.swift */,
+				3DFFFCDA1C793C1F00D96E85 /* Matrix3x3.swift */,
+				3DFFFCDB1C793C1F00D96E85 /* Matrix3x4.swift */,
+				3DFFFCDC1C793C1F00D96E85 /* Matrix4x2.swift */,
+				3DFFFCDD1C793C1F00D96E85 /* Matrix4x3.swift */,
+				3DFFFCDE1C793C1F00D96E85 /* Matrix4x4.swift */,
+				3DFFFCDF1C793C1F00D96E85 /* Operators.swift */,
+				3DFFFCE01C793C1F00D96E85 /* Protocols.swift */,
+				3DFFFCE11C793C1F00D96E85 /* Quaternion.swift */,
+				3DFFFCE21C793C1F00D96E85 /* Swizzle.swift */,
+				3DFFFCE31C793C1F00D96E85 /* Vector2.swift */,
+				3DFFFCE41C793C1F00D96E85 /* Vector2b.swift */,
+				3DFFFCE51C793C1F00D96E85 /* Vector3.swift */,
+				3DFFFCE61C793C1F00D96E85 /* Vector3b.swift */,
+				3DFFFCE71C793C1F00D96E85 /* Vector4.swift */,
+				3DFFFCE81C793C1F00D96E85 /* Vector4b.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3DFFFCE91C793C1F00D96E85 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3DFFFCEA1C793C1F00D96E85 /* EqualWithAccuracy.swift */,
+				3DFFFCEB1C793C1F00D96E85 /* FunctionsTests.swift */,
+				3DFFFCEC1C793C1F00D96E85 /* glmMatrixTests.swift */,
+				3DFFFCED1C793C1F00D96E85 /* Matrix2x2Tests.swift */,
+				3DFFFCEE1C793C1F00D96E85 /* Matrix3x3Tests.swift */,
+				3DFFFCEF1C793C1F00D96E85 /* Matrix4x4Tests.swift */,
+				3DFFFCF01C793C1F00D96E85 /* SwizzleTests.swift */,
+				3DFFFCF11C793C1F00D96E85 /* Vector2Tests.swift */,
+				3DFFFCF21C793C1F00D96E85 /* Vector4Tests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		3DFFFCF31C793C1F00D96E85 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				3DFFFCF41C793C1F00D96E85 /* main.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		3DFFFCF51C793C2B00D96E85 /* SGLOpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				3DFFFCF91C793C2B00D96E85 /* Sources */,
+				3DFFFCFE1C793C2B00D96E85 /* Tools */,
+			);
+			name = SGLOpenGL;
+			path = OpenGL;
+			sourceTree = "<group>";
+		};
+		3DFFFCF91C793C2B00D96E85 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3DFFFCFA1C793C2B00D96E85 /* Commands.swift */,
+				3DFFFCFB1C793C2B00D96E85 /* Constants.swift */,
+				3DFFFCFC1C793C2B00D96E85 /* Loaders.swift */,
+				3DFFFCFD1C793C2B00D96E85 /* SwiftGL.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3DFFFCFE1C793C2B00D96E85 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				3DFFFD001C793C2B00D96E85 /* main.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,9 +473,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3D28E9F61C3B34B90091E013 /* SwiftGLUtil */ = {
+		3D28E9F61C3B34B90091E013 /* SGLOpenGL-Tool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D28E9FB1C3B34B90091E013 /* Build configuration list for PBXNativeTarget "SwiftGLUtil" */;
+			buildConfigurationList = 3D28E9FB1C3B34B90091E013 /* Build configuration list for PBXNativeTarget "SGLOpenGL-Tool" */;
 			buildPhases = (
 				3D28E9F31C3B34B90091E013 /* Sources */,
 				3D28E9F41C3B34B90091E013 /* Frameworks */,
@@ -462,14 +485,14 @@
 			);
 			dependencies = (
 			);
-			name = SwiftGLUtil;
-			productName = SwiftGLUtil;
-			productReference = 3D28E9F71C3B34B90091E013 /* SwiftGLUtil */;
+			name = "SGLOpenGL-Tool";
+			productName = SGLOpenGL-Tool;
+			productReference = 3D28E9F71C3B34B90091E013 /* SGLOpenGL-Tool */;
 			productType = "com.apple.product-type.tool";
 		};
-		3D28EA051C3B35D90091E013 /* SwiftGLmathUtil */ = {
+		3D28EA051C3B35D90091E013 /* SGLMath-Tool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D28EA0A1C3B35D90091E013 /* Build configuration list for PBXNativeTarget "SwiftGLmathUtil" */;
+			buildConfigurationList = 3D28EA0A1C3B35D90091E013 /* Build configuration list for PBXNativeTarget "SGLMath-Tool" */;
 			buildPhases = (
 				3D28EA021C3B35D90091E013 /* Sources */,
 				3D28EA031C3B35D90091E013 /* Frameworks */,
@@ -479,9 +502,9 @@
 			);
 			dependencies = (
 			);
-			name = SwiftGLmathUtil;
-			productName = SwiftGLmathUtil;
-			productReference = 3D28EA061C3B35D90091E013 /* SwiftGLmathUtil */;
+			name = "SGLMath-Tool";
+			productName = SGLMath-Tool;
+			productReference = 3D28EA061C3B35D90091E013 /* SGLMath-Tool */;
 			productType = "com.apple.product-type.tool";
 		};
 		3D8F3D071C3B2892007C49E7 /* HelloWorld */ = {
@@ -518,9 +541,9 @@
 			productReference = 3D90F48B1C489AED00229A4F /* CubeWorld.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3D91C3781C3B1FF700BA748A /* SwiftGL */ = {
+		3D91C3781C3B1FF700BA748A /* SGLOpenGL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D91C38A1C3B1FF700BA748A /* Build configuration list for PBXNativeTarget "SwiftGL" */;
+			buildConfigurationList = 3D91C38A1C3B1FF700BA748A /* Build configuration list for PBXNativeTarget "SGLOpenGL" */;
 			buildPhases = (
 				3D91C3741C3B1FF700BA748A /* Sources */,
 				3D91C3751C3B1FF700BA748A /* Frameworks */,
@@ -531,14 +554,14 @@
 			);
 			dependencies = (
 			);
-			name = SwiftGL;
-			productName = SwiftGL;
-			productReference = 3D91C3791C3B1FF700BA748A /* SwiftGL.framework */;
+			name = SGLOpenGL;
+			productName = SGLOpenGL;
+			productReference = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3D91C39F1C3B210500BA748A /* SwiftGLmath */ = {
+		3D91C39F1C3B210500BA748A /* SGLMath */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D91C3B11C3B210600BA748A /* Build configuration list for PBXNativeTarget "SwiftGLmath" */;
+			buildConfigurationList = 3D91C3B11C3B210600BA748A /* Build configuration list for PBXNativeTarget "SGLMath" */;
 			buildPhases = (
 				3D91C39B1C3B210500BA748A /* Sources */,
 				3D91C39C1C3B210500BA748A /* Frameworks */,
@@ -549,14 +572,14 @@
 			);
 			dependencies = (
 			);
-			name = SwiftGLmath;
-			productName = SwiftGLmath;
-			productReference = 3D91C3A01C3B210500BA748A /* SwiftGLmath.framework */;
+			name = SGLMath;
+			productName = SGLMath;
+			productReference = 3D91C3A01C3B210500BA748A /* SGLMath.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3D91C3BA1C3B21BE00BA748A /* SwiftGLmathTests */ = {
+		3D91C3BA1C3B21BE00BA748A /* SGLMath-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D91C3C31C3B21BE00BA748A /* Build configuration list for PBXNativeTarget "SwiftGLmathTests" */;
+			buildConfigurationList = 3D91C3C31C3B21BE00BA748A /* Build configuration list for PBXNativeTarget "SGLMath-Tests" */;
 			buildPhases = (
 				3D91C3B71C3B21BE00BA748A /* Sources */,
 				3D91C3B81C3B21BE00BA748A /* Frameworks */,
@@ -567,9 +590,9 @@
 			dependencies = (
 				3D91C3C21C3B21BE00BA748A /* PBXTargetDependency */,
 			);
-			name = SwiftGLmathTests;
-			productName = SwiftGLmathTests;
-			productReference = 3D91C3BB1C3B21BE00BA748A /* SwiftGLmathTests.xctest */;
+			name = "SGLMath-Tests";
+			productName = SGLMath-Tests;
+			productReference = 3D91C3BB1C3B21BE00BA748A /* SGLMath-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3D99A8A91C6A7408009B7529 /* ImgView */ = {
@@ -589,9 +612,9 @@
 			productReference = 3D99A8AA1C6A7408009B7529 /* ImgView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3DE88EBA1C6417B90096145C /* SwiftGLres */ = {
+		3DE88EBA1C6417B90096145C /* SGLImage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3DE88ED01C6417BA0096145C /* Build configuration list for PBXNativeTarget "SwiftGLres" */;
+			buildConfigurationList = 3DE88ED01C6417BA0096145C /* Build configuration list for PBXNativeTarget "SGLImage" */;
 			buildPhases = (
 				3DE88EB61C6417B90096145C /* Sources */,
 				3DE88EB71C6417B90096145C /* Frameworks */,
@@ -602,14 +625,14 @@
 			);
 			dependencies = (
 			);
-			name = SwiftGLres;
-			productName = SwiftGLres;
-			productReference = 3DE88EBB1C6417B90096145C /* SwiftGLres.framework */;
+			name = SGLImage;
+			productName = SGLImage;
+			productReference = 3DE88EBB1C6417B90096145C /* SGLImage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3DE88EC31C6417BA0096145C /* SwiftGLresTests */ = {
+		3DE88EC31C6417BA0096145C /* SGLImage-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3DE88ED11C6417BA0096145C /* Build configuration list for PBXNativeTarget "SwiftGLresTests" */;
+			buildConfigurationList = 3DE88ED11C6417BA0096145C /* Build configuration list for PBXNativeTarget "SGLImage-Tests" */;
 			buildPhases = (
 				3DE88EC01C6417BA0096145C /* Sources */,
 				3DE88EC11C6417BA0096145C /* Frameworks */,
@@ -620,9 +643,9 @@
 			dependencies = (
 				3DE88EC71C6417BA0096145C /* PBXTargetDependency */,
 			);
-			name = SwiftGLresTests;
-			productName = SwiftGLresTests;
-			productReference = 3DE88EC41C6417BA0096145C /* SwiftGLresTests.xctest */;
+			name = "SGLImage-Tests";
+			productName = SGLImage-Tests;
+			productReference = 3DE88EC41C6417BA0096145C /* SGLImage-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -683,13 +706,13 @@
 				3D8F3D071C3B2892007C49E7 /* HelloWorld */,
 				3D90F48A1C489AED00229A4F /* CubeWorld */,
 				3D99A8A91C6A7408009B7529 /* ImgView */,
-				3D91C3781C3B1FF700BA748A /* SwiftGL */,
-				3D28E9F61C3B34B90091E013 /* SwiftGLUtil */,
-				3D91C39F1C3B210500BA748A /* SwiftGLmath */,
-				3D91C3BA1C3B21BE00BA748A /* SwiftGLmathTests */,
-				3D28EA051C3B35D90091E013 /* SwiftGLmathUtil */,
-				3DE88EBA1C6417B90096145C /* SwiftGLres */,
-				3DE88EC31C6417BA0096145C /* SwiftGLresTests */,
+				3D91C3781C3B1FF700BA748A /* SGLOpenGL */,
+				3D28E9F61C3B34B90091E013 /* SGLOpenGL-Tool */,
+				3D91C39F1C3B210500BA748A /* SGLMath */,
+				3D91C3BA1C3B21BE00BA748A /* SGLMath-Tests */,
+				3D28EA051C3B35D90091E013 /* SGLMath-Tool */,
+				3DE88EBA1C6417B90096145C /* SGLImage */,
+				3DE88EC31C6417BA0096145C /* SGLImage-Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -758,7 +781,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D28E9FF1C3B34ED0091E013 /* main.swift in Sources */,
+				3DFFFD361C793D1200D96E85 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,7 +789,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D28EA0E1C3B35F30091E013 /* main.swift in Sources */,
+				3DFFFD311C793CE600D96E85 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,7 +797,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D8F3D161C3B28B1007C49E7 /* main.swift in Sources */,
+				3DFFFD081C793C9600D96E85 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,12 +805,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DFD6ECB1C49E3A500E26222 /* Player.swift in Sources */,
-				3D319BD91C4EDDF600781256 /* Pinwheel.swift in Sources */,
-				3DFD6ECD1C49FA3C00E26222 /* Cube.swift in Sources */,
-				3D90F49D1C489BF100229A4F /* main.swift in Sources */,
-				3D90F49F1C48BA6300229A4F /* Shader.swift in Sources */,
-				3D90F4A11C4972B700229A4F /* Camera.swift in Sources */,
+				3DFFFD071C793C7400D96E85 /* Shader.swift in Sources */,
+				3DFFFD021C793C7400D96E85 /* Cube.swift in Sources */,
+				3DFFFD011C793C7400D96E85 /* Camera.swift in Sources */,
+				3DFFFD031C793C7400D96E85 /* main.swift in Sources */,
+				3DFFFD061C793C7400D96E85 /* Player.swift in Sources */,
+				3DFFFD051C793C7400D96E85 /* Pinwheel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,10 +818,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D91C39A1C3B20C600BA748A /* SwiftGL.swift in Sources */,
-				3D91C3991C3B20C600BA748A /* Loaders.swift in Sources */,
-				3D91C3961C3B20C600BA748A /* Commands.swift in Sources */,
-				3D91C3971C3B20C600BA748A /* Constants.swift in Sources */,
+				3DFFFD351C793CF900D96E85 /* SwiftGL.swift in Sources */,
+				3DFFFD341C793CF900D96E85 /* Loaders.swift in Sources */,
+				3DFFFD321C793CF900D96E85 /* Commands.swift in Sources */,
+				3DFFFD331C793CF900D96E85 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,29 +829,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D3C73311C3CEB9A007FD4F9 /* Matrix4x3.swift in Sources */,
-				3D1B87421C5EBA3300FC10A5 /* Protocols.swift in Sources */,
-				3DFFC9891C447AC000EF48B4 /* Vector3b.swift in Sources */,
-				3D91C3CF1C3B220E00BA748A /* Internal.swift in Sources */,
-				3D91C3D01C3B220E00BA748A /* Matrix2x2.swift in Sources */,
-				3D3C73391C3CF177007FD4F9 /* Matrix2x4.swift in Sources */,
-				3D91C3D51C3B220E00BA748A /* Vector2.swift in Sources */,
-				3DB90A111C5C826300E1576F /* Operators.swift in Sources */,
-				3D3C73371C3CEFE6007FD4F9 /* Matrix3x4.swift in Sources */,
-				3D214CDE1C44378A000DE32E /* Vector4b.swift in Sources */,
-				3D3C73331C3CEC67007FD4F9 /* Matrix4x2.swift in Sources */,
-				3D1B87411C5EB9BD00FC10A5 /* Quaternion.swift in Sources */,
-				3DAE99541C4E24B700440741 /* Swizzle.swift in Sources */,
-				3D91C3D11C3B220E00BA748A /* Matrix3x3.swift in Sources */,
-				3D1B87451C5EBF7800FC10A5 /* glsl.swift in Sources */,
-				3D7BF88D1C5EC5CF006B5373 /* Complex.swift in Sources */,
-				3D1B873F1C5EB9B200FC10A5 /* glm.swift in Sources */,
-				3D3C73351C3CEE2F007FD4F9 /* Matrix3x2.swift in Sources */,
-				3DFFC98B1C447B6600EF48B4 /* Vector2b.swift in Sources */,
-				3D91C3D61C3B220E00BA748A /* Vector3.swift in Sources */,
-				3D3C733B1C3CF493007FD4F9 /* Matrix2x3.swift in Sources */,
-				3D91C3D71C3B220E00BA748A /* Vector4.swift in Sources */,
-				3D91C3D21C3B220E00BA748A /* Matrix4x4.swift in Sources */,
+				3DFFFD1F1C793CC700D96E85 /* Protocols.swift in Sources */,
+				3DFFFD201C793CC700D96E85 /* Quaternion.swift in Sources */,
+				3DFFFD1A1C793CC700D96E85 /* Matrix3x4.swift in Sources */,
+				3DFFFD251C793CC700D96E85 /* Vector3b.swift in Sources */,
+				3DFFFD161C793CC700D96E85 /* Matrix2x3.swift in Sources */,
+				3DFFFD171C793CC700D96E85 /* Matrix2x4.swift in Sources */,
+				3DFFFD131C793CC700D96E85 /* glsl.swift in Sources */,
+				3DFFFD121C793CC700D96E85 /* glm.swift in Sources */,
+				3DFFFD231C793CC700D96E85 /* Vector2b.swift in Sources */,
+				3DFFFD271C793CC700D96E85 /* Vector4b.swift in Sources */,
+				3DFFFD221C793CC700D96E85 /* Vector2.swift in Sources */,
+				3DFFFD1B1C793CC700D96E85 /* Matrix4x2.swift in Sources */,
+				3DFFFD181C793CC700D96E85 /* Matrix3x2.swift in Sources */,
+				3DFFFD151C793CC700D96E85 /* Matrix2x2.swift in Sources */,
+				3DFFFD1D1C793CC700D96E85 /* Matrix4x4.swift in Sources */,
+				3DFFFD211C793CC700D96E85 /* Swizzle.swift in Sources */,
+				3DFFFD1E1C793CC700D96E85 /* Operators.swift in Sources */,
+				3DFFFD141C793CC700D96E85 /* Internal.swift in Sources */,
+				3DFFFD111C793CC700D96E85 /* Complex.swift in Sources */,
+				3DFFFD1C1C793CC700D96E85 /* Matrix4x3.swift in Sources */,
+				3DFFFD241C793CC700D96E85 /* Vector3.swift in Sources */,
+				3DFFFD191C793CC700D96E85 /* Matrix3x3.swift in Sources */,
+				3DFFFD261C793CC700D96E85 /* Vector4.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,15 +859,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D91C3DE1C3B224500BA748A /* EqualWithAccuracy.swift in Sources */,
-				3D91C3E21C3B224500BA748A /* SwizzleTests.swift in Sources */,
-				3D91C3E01C3B224500BA748A /* Matrix3x3Tests.swift in Sources */,
-				3D1B87441C5EBAA700FC10A5 /* glmMatrixTests.swift in Sources */,
-				3DB2843B1C481396008D46E6 /* FunctionsTests.swift in Sources */,
-				3D91C3DF1C3B224500BA748A /* Matrix2x2Tests.swift in Sources */,
-				3D91C3E11C3B224500BA748A /* Matrix4x4Tests.swift in Sources */,
-				3D91C3E31C3B224500BA748A /* Vector2Tests.swift in Sources */,
-				3DBBEBE71C418DA9003E88ED /* Vector4Tests.swift in Sources */,
+				3DFFFD2A1C793CCF00D96E85 /* glmMatrixTests.swift in Sources */,
+				3DFFFD281C793CCF00D96E85 /* EqualWithAccuracy.swift in Sources */,
+				3DFFFD291C793CCF00D96E85 /* FunctionsTests.swift in Sources */,
+				3DFFFD2B1C793CCF00D96E85 /* Matrix2x2Tests.swift in Sources */,
+				3DFFFD2C1C793CCF00D96E85 /* Matrix3x3Tests.swift in Sources */,
+				3DFFFD2F1C793CCF00D96E85 /* Vector2Tests.swift in Sources */,
+				3DFFFD2D1C793CCF00D96E85 /* Matrix4x4Tests.swift in Sources */,
+				3DFFFD2E1C793CCF00D96E85 /* SwizzleTests.swift in Sources */,
+				3DFFFD301C793CCF00D96E85 /* Vector4Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,7 +875,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D99A8B81C6A7476009B7529 /* main.swift in Sources */,
+				3DFFFD091C793C9D00D96E85 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,12 +883,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D12884C1C646A9F00A909A0 /* ImageBMP.swift in Sources */,
-				3D8A72AF1C6E465500FAC9FF /* ImageLoader.swift in Sources */,
-				3D1053AF1C6DB5DE007A27E3 /* ImagePNG.swift in Sources */,
-				3D43C11E1C6AE77700AC13CF /* ImageGIF.swift in Sources */,
-				3D5D8A5F1C6F14E5009C7303 /* Inflate.swift in Sources */,
-				3DE88ED51C6465280096145C /* Image.swift in Sources */,
+				3DFFFD0A1C793CB000D96E85 /* Image.swift in Sources */,
+				3DFFFD0B1C793CB000D96E85 /* ImageBMP.swift in Sources */,
+				3DFFFD0E1C793CB000D96E85 /* ImagePNG.swift in Sources */,
+				3DFFFD0F1C793CB000D96E85 /* Inflate.swift in Sources */,
+				3DFFFD0D1C793CB000D96E85 /* ImageLoader.swift in Sources */,
+				3DFFFD0C1C793CB000D96E85 /* ImageGIF.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,7 +896,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D5E1EF81C685865004CB9AC /* SwiftGLresImage.swift in Sources */,
+				3DFFFD101C793CBD00D96E85 /* SwiftGLresImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,12 +905,12 @@
 /* Begin PBXTargetDependency section */
 		3D91C3C21C3B21BE00BA748A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3D91C39F1C3B210500BA748A /* SwiftGLmath */;
+			target = 3D91C39F1C3B210500BA748A /* SGLMath */;
 			targetProxy = 3D91C3C11C3B21BE00BA748A /* PBXContainerItemProxy */;
 		};
 		3DE88EC71C6417BA0096145C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3DE88EBA1C6417B90096145C /* SwiftGLres */;
+			target = 3DE88EBA1C6417B90096145C /* SGLImage */;
 			targetProxy = 3DE88EC61C6417BA0096145C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -940,7 +963,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.HelloWorld;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.HelloWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -956,7 +979,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.HelloWorld;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.HelloWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 			};
@@ -972,7 +995,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.CubeWorld;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.CubeWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -989,7 +1012,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.CubeWorld;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.CubeWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 			};
@@ -1089,7 +1112,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGL;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.OpenGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1112,7 +1135,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGL;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.OpenGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1134,7 +1157,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLmath;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.Math;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1158,7 +1181,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLmath;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.Math;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1174,7 +1197,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLmathTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.SGLMath-Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1187,7 +1210,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLmathTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.SGLMath-Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1202,7 +1225,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.ImgView;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.ImgView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1219,7 +1242,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.ImgView;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.ImgView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 			};
@@ -1239,7 +1262,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLres;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.Image;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_DISABLE_SAFETY_CHECKS = YES;
@@ -1263,7 +1286,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLres;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.Image;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_DISABLE_SAFETY_CHECKS = YES;
@@ -1279,7 +1302,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLresTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.GLImage-Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1290,7 +1313,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.AE9RB.SwiftGLresTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.SGLImage-Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1298,7 +1321,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3D28E9FB1C3B34B90091E013 /* Build configuration list for PBXNativeTarget "SwiftGLUtil" */ = {
+		3D28E9FB1C3B34B90091E013 /* Build configuration list for PBXNativeTarget "SGLOpenGL-Tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D28E9FC1C3B34B90091E013 /* Debug */,
@@ -1307,7 +1330,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D28EA0A1C3B35D90091E013 /* Build configuration list for PBXNativeTarget "SwiftGLmathUtil" */ = {
+		3D28EA0A1C3B35D90091E013 /* Build configuration list for PBXNativeTarget "SGLMath-Tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D28EA0B1C3B35D90091E013 /* Debug */,
@@ -1343,7 +1366,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D91C38A1C3B1FF700BA748A /* Build configuration list for PBXNativeTarget "SwiftGL" */ = {
+		3D91C38A1C3B1FF700BA748A /* Build configuration list for PBXNativeTarget "SGLOpenGL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D91C38B1C3B1FF700BA748A /* Debug */,
@@ -1352,7 +1375,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D91C3B11C3B210600BA748A /* Build configuration list for PBXNativeTarget "SwiftGLmath" */ = {
+		3D91C3B11C3B210600BA748A /* Build configuration list for PBXNativeTarget "SGLMath" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D91C3B21C3B210600BA748A /* Debug */,
@@ -1361,7 +1384,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D91C3C31C3B21BE00BA748A /* Build configuration list for PBXNativeTarget "SwiftGLmathTests" */ = {
+		3D91C3C31C3B21BE00BA748A /* Build configuration list for PBXNativeTarget "SGLMath-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D91C3C41C3B21BE00BA748A /* Debug */,
@@ -1379,7 +1402,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3DE88ED01C6417BA0096145C /* Build configuration list for PBXNativeTarget "SwiftGLres" */ = {
+		3DE88ED01C6417BA0096145C /* Build configuration list for PBXNativeTarget "SGLImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3DE88ECC1C6417BA0096145C /* Debug */,
@@ -1388,7 +1411,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3DE88ED11C6417BA0096145C /* Build configuration list for PBXNativeTarget "SwiftGLresTests" */ = {
+		3DE88ED11C6417BA0096145C /* Build configuration list for PBXNativeTarget "SGLImage-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3DE88ECE1C6417BA0096145C /* Debug */,

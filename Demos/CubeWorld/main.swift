@@ -20,8 +20,8 @@
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
 
-import SwiftGL
-import SwiftGLmath
+import SGLOpenGL
+import SGLMath
 import CGLFW3
 
 

@@ -1,0 +1,9 @@
+[submodule "Image"]
+	path = Image
+	url = git@github.com:SwiftGL/Image.git
+[submodule "Math"]
+	path = Math
+	url = git@github.com:SwiftGL/Math.git
+[submodule "OpenGL"]
+	path = OpenGL
+	url = git@github.com:SwiftGL/OpenGL.git

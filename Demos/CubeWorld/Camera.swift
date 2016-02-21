@@ -119,7 +119,7 @@ public class Camera {
     private var projectionValid = false
     public var projection:mat4 {
         if !projectionValid {
-            projectionCache = perspective(fov, aspect, clip.near, clip.far)
+            projectionCache = SGLMath.perspective(fov, aspect, clip.near, clip.far)
             projectionValid = true
         }
         return projectionCache

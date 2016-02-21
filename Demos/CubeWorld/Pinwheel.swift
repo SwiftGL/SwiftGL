@@ -55,8 +55,8 @@ class Pinwheel {
                 let rotSpeed = Float(c + time * (5/r))
 
                 var model = mat4()
-                model = translate(model, pos)
-                model = rotate(model, rotSpeed, vec3(0, 1, 0))
+                model = SGLMath.translate(model, pos)
+                model = SGLMath.rotate(model, rotSpeed, vec3(0, 1, 0))
 
                 let color = vec3(
                     Float(abs(cos(c))),

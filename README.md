@@ -8,4 +8,4 @@ There are also [tutorials](http://swiftgl.org)
 to get you started.
 
 To use this Xcode project you must have GLFW3 installed. For homebrew,
-`brew glfw3` does the trick.
+`brew install --static --HEAD glfw3` does the trick. Currently due to a bug in GLFW 3.2.1 on macos, you have to use the master branch to get the bug fix. Also, and I haven't researched why, static libraries are all that will compile.

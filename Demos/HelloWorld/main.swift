@@ -55,34 +55,34 @@ let indices:[GLuint] = [
     2, 3, 0,
 ]
 
-func keyCallback(window: COpaquePointer, key: Int32, scancode: Int32, action: Int32, mode: Int32)
+func keyCallback(_ window: OpaquePointer!, _ key: Int32, _ scancode: Int32, _ action: Int32, _ mode: Int32)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, GL_TRUE)
     }
 }
 
-func getShaderInfoLog(shader: GLuint) -> String
+func getShaderInfoLog(_ shader: GLuint) -> String
 {
     var logSize:GLint = 0
     glGetShaderiv(shader: shader, pname: GL_INFO_LOG_LENGTH, params: &logSize)
     if logSize == 0 { return "" }
-    var infoLog = [GLchar](count: Int(logSize), repeatedValue: 0)
+    var infoLog = [GLchar](repeating: 0, count: Int(logSize))
     glGetShaderInfoLog(shader: shader, bufSize: logSize, length: nil, infoLog: &infoLog)
-    return String.fromCString(infoLog)!
+    return String(cString:infoLog)
 }
 
-func getProgramInfoLog(program: GLuint) -> String
+func getProgramInfoLog(_ program: GLuint) -> String
 {
     var logSize:GLint = 0
     glGetProgramiv(program: program, pname: GL_INFO_LOG_LENGTH, params: &logSize)
     if logSize == 0 { return "" }
-    var infoLog = [GLchar](count: Int(logSize), repeatedValue: 0)
+    var infoLog = [GLchar](repeating: 0, count: Int(logSize))
     glGetProgramInfoLog(program: program, bufSize: logSize, length: nil, infoLog: &infoLog)
-    return String.fromCString(infoLog)!
+    return String(cString:infoLog)
 }
 
-func compileShader(shader: GLuint, source: String) -> String?
+func compileShader(_ shader: GLuint, source: String) -> String?
 {
     source.withCString {
         var s = UnsafePointer<Int8>($0)
@@ -97,7 +97,7 @@ func compileShader(shader: GLuint, source: String) -> String?
     return nil
 }
 
-func linkProgram(program: GLuint, vertex: GLuint, fragment: GLuint) -> String?
+func linkProgram(_ program: GLuint, vertex: GLuint, fragment: GLuint) -> String?
 {
     glAttachShader(program, vertex)
     glAttachShader(program, fragment)
@@ -110,7 +110,7 @@ func linkProgram(program: GLuint, vertex: GLuint, fragment: GLuint) -> String?
     return nil
 }
 
-func validateProgram(program: GLuint)  -> String?
+func validateProgram(_ program: GLuint)  -> String?
 {
     glValidateProgram(program)
     var success:GLint = 0
@@ -137,7 +137,7 @@ if (window == nil) {
 }
 
 glfwMakeContextCurrent(window)
-glfwSetKeyCallback(window, keyCallback)
+glfwSetKeyCallback(window, keyCallback as GLFWkeyfun)
 
 glViewport(x: 0, y: 0, width: WIDTH, height: HEIGHT)
 
@@ -175,15 +175,15 @@ if let errorMessage = validateProgram(shaderProgram) {
 }
 
 glBindBuffer(target: GL_ARRAY_BUFFER, buffer: VBO)
-glBufferData(target: GL_ARRAY_BUFFER, size: strideof(vec3) * vertices.count,
+glBufferData(target: GL_ARRAY_BUFFER, size: MemoryLayout<vec3>.stride * vertices.count,
     data: vertices, usage: GL_STATIC_DRAW)
 
 glBindBuffer(target: GL_ELEMENT_ARRAY_BUFFER, buffer: EBO)
-glBufferData(target: GL_ELEMENT_ARRAY_BUFFER, size: strideof(GLuint) * indices.count,
+glBufferData(target: GL_ELEMENT_ARRAY_BUFFER, size: MemoryLayout<GLuint>.stride * indices.count,
     data: indices, usage: GL_STATIC_DRAW)
 
 glVertexAttribPointer(index: 0, size: 3, type: GL_FLOAT,
-    normalized: false, stride: GLsizei(strideof(vec3)), pointer: nil)
+    normalized: false, stride: GLsizei(MemoryLayout<vec3>.stride), pointer: nil)
 glEnableVertexAttribArray(index: 0)
 
 glBindBuffer(target: GL_ARRAY_BUFFER, buffer: 0)

@@ -29,49 +29,49 @@ import SGLMath
 #endif
 
 
-public class Camera {
+open class Camera {
 
     /// pitch and yaw are relative to this up
-    public var worldUp = vec3(0, 1, 0)
+    open var worldUp = vec3(0, 1, 0)
         { didSet { normalsValid = false } }
 
 
     /// pitch in degrees (look up/down)
-    public var pitch:Float = 0
+    open var pitch:Float = 0
         { didSet { normalsValid = false } }
 
 
     /// yaw in degrees (look left/right)
-    public var yaw:Float = -90
+    open var yaw:Float = -90
         { didSet { normalsValid = false } }
 
 
     /// position of camera lens (or eye)
-    public var position:vec3 = vec3()
+    open var position:vec3 = vec3()
         { didSet { viewValid = false } }
 
 
     /// field of view in Y direction radians
-    public var fov:Float = radians(45)
+    open var fov:Float = radians(45)
         { didSet { projectionValid = false } }
 
 
     /// viewport width / height
-    public var aspect:Float = 1
+    open var aspect:Float = 1
         { didSet { projectionValid = false } }
 
 
     /// camera frustum clipping
-    public var clip:ClippingPlaneType = (0.1, 100.0)
+    open var clip:ClippingPlaneType = (0.1, 100.0)
         { didSet { projectionValid = false } }
     public typealias ClippingPlaneType = (near:Float, far:Float)
 
 
     /// normals from camera rotation
     public typealias NormalsType = (forward:vec3, right:vec3, up:vec3)
-    private var normalsCache:NormalsType = (vec3(), vec3(), vec3())
-    private var normalsValid = false
-    public var normals:NormalsType {
+    fileprivate var normalsCache:NormalsType = (vec3(), vec3(), vec3())
+    fileprivate var normalsValid = false
+    open var normals:NormalsType {
         if !normalsValid {
             let radiansPitch = radians(pitch)
             let radiansYaw = radians(yaw)
@@ -91,9 +91,9 @@ public class Camera {
 
 
     /// view matrix for the shader
-    private var viewCache = mat4(1)
-    private var viewValid = false
-    public var view:mat4 {
+    fileprivate var viewCache = mat4(1)
+    fileprivate var viewValid = false
+    open var view:mat4 {
         if !viewValid || !normalsValid {
             let n = normals
             viewCache[0][0] = n.right.x
@@ -115,9 +115,9 @@ public class Camera {
 
 
     /// projection matrix for the shader
-    private var projectionCache = mat4(0)
-    private var projectionValid = false
-    public var projection:mat4 {
+    fileprivate var projectionCache = mat4(0)
+    fileprivate var projectionValid = false
+    open var projection:mat4 {
         if !projectionValid {
             projectionCache = SGLMath.perspective(fov, aspect, clip.near, clip.far)
             projectionValid = true

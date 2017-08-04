@@ -35,11 +35,11 @@ class Player {
     var runSpeed:Float = 4
     var lookSpeed:Float = 0.2
 
-    private var camera:Camera
-    private var keys = [Bool](count: Int(GLFW_KEY_LAST)+1, repeatedValue: false)
-    private var prevTime = Double(0)
-    private var mouseInitialized = false
-    private var mouse = dvec2()
+    fileprivate var camera:Camera
+    fileprivate var keys = [Bool](repeating: false, count: Int(GLFW_KEY_LAST)+1)
+    fileprivate var prevTime = Double(0)
+    fileprivate var mouseInitialized = false
+    fileprivate var mouse = dvec2()
 
 
     init(camera:Camera)
@@ -74,7 +74,7 @@ class Player {
     }
 
 
-    func keyCallback(window: COpaquePointer, _ key: Int32, _ scancode: Int32, _ action: Int32, _ mode: Int32)
+    func keyCallback(_ window: OpaquePointer!, _ key: Int32, _ scancode: Int32, _ action: Int32, _ mode: Int32)
     {
         if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, GL_TRUE)
@@ -94,7 +94,7 @@ class Player {
     }
 
 
-    func cursorCallback(window: COpaquePointer, _ xpos:Double, _ ypos:Double)
+    func cursorCallback(_ window: OpaquePointer!, _ xpos:Double, _ ypos:Double)
     {
         if !mouseInitialized {
             mouse = dvec2(xpos, ypos)

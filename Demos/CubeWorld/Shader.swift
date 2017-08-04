@@ -24,11 +24,11 @@ import SGLOpenGL
 import SGLMath
 
 
-public class Shader {
+open class Shader {
 
-    public private(set) var vertex:GLuint = 0
-    public private(set) var fragment:GLuint = 0
-    public private(set) var program:GLuint = 0
+    open fileprivate(set) var vertex:GLuint = 0
+    open fileprivate(set) var fragment:GLuint = 0
+    open fileprivate(set) var program:GLuint = 0
 
 
     public init(vertex:String, fragment:String)
@@ -56,7 +56,7 @@ public class Shader {
     }
 
 
-    public func validate()
+    open func validate()
     {
         if let errorMessage = Shader.validateProgram(program) {
             fatalError(errorMessage)
@@ -64,7 +64,7 @@ public class Shader {
     }
 
 
-    public func use()
+    open func use()
     {
         glUseProgram(program)
     }
@@ -73,7 +73,7 @@ public class Shader {
     /// get uniform location;
     /// set uniform by string:
     ///   shader["model"] = mat4();
-    public subscript(uniform:String) -> Any
+    open subscript(uniform:String) -> Any
     {
         get {
             let loc = glGetUniformLocation(program, uniform)
@@ -89,7 +89,7 @@ public class Shader {
     /// set uniform by location:
     ///   let modelLoc = shader["model"] as! GLint;
     ///   shader[modelLoc] = mat4();
-    public subscript(uniform:GLint) -> Any
+    open subscript(uniform:GLint) -> Any
     {
         get {
             return uniform
@@ -111,18 +111,24 @@ public class Shader {
                 glUniform4f(uniform, value.x, value.y, value.z, value.w)
             case is mat2:
                 var value = newValue as! mat2
-                withUnsafePointer(&value, {
-                    glUniformMatrix2fv(uniform, 1, false, UnsafePointer($0))
+                withUnsafePointer(to: &value, {
+                    $0.withMemoryRebound(to: Float.self, capacity: 2 * 2, {
+                        glUniformMatrix2fv(uniform, 1, false, $0)
+                    })
                 })
             case is mat3:
                 var value = newValue as! mat3
-                withUnsafePointer(&value, {
-                    glUniformMatrix3fv(uniform, 1, false, UnsafePointer($0))
+                withUnsafePointer(to: &value, {
+                    $0.withMemoryRebound(to: Float.self, capacity: 3 * 3, {
+                        glUniformMatrix3fv(uniform, 1, false, $0)
+                    })
                 })
             case is mat4:
                 var value = newValue as! mat4
-                withUnsafePointer(&value, {
-                    glUniformMatrix4fv(uniform, 1, false, UnsafePointer($0))
+                withUnsafePointer(to: &value, {
+                    $0.withMemoryRebound(to: Float.self, capacity: 4 * 4, {
+                        glUniformMatrix4fv(uniform, 1, false, $0)
+                    })
                 })
             default:
                 preconditionFailure()
@@ -132,29 +138,29 @@ public class Shader {
     }
 
 
-    static func getShaderInfoLog(shader: GLuint) -> String
+    static func getShaderInfoLog(_ shader: GLuint) -> String
     {
         var logSize:GLint = 0
         glGetShaderiv(shader: shader, pname: GL_INFO_LOG_LENGTH, params: &logSize)
         if logSize == 0 { return "" }
-        var infoLog = [GLchar](count: Int(logSize), repeatedValue: 0)
+        var infoLog = [GLchar](repeating: 0, count: Int(logSize))
         glGetShaderInfoLog(shader: shader, bufSize: logSize, length: nil, infoLog: &infoLog)
-        return String.fromCString(infoLog)!
+        return String(cString: infoLog)
     }
 
 
-    static func getProgramInfoLog(program: GLuint) -> String
+    static func getProgramInfoLog(_ program: GLuint) -> String
     {
         var logSize:GLint = 0
         glGetProgramiv(program: program, pname: GL_INFO_LOG_LENGTH, params: &logSize)
         if logSize == 0 { return "" }
-        var infoLog = [GLchar](count: Int(logSize), repeatedValue: 0)
+        var infoLog = [GLchar](repeating: 0, count: Int(logSize))
         glGetProgramInfoLog(program: program, bufSize: logSize, length: nil, infoLog: &infoLog)
-        return String.fromCString(infoLog)!
+        return String(cString: infoLog)
     }
 
 
-    static func compileShader(shader: GLuint, source: String) -> String?
+    static func compileShader(_ shader: GLuint, source: String) -> String?
     {
         source.withCString {
             var s = UnsafePointer<Int8>($0)
@@ -170,7 +176,7 @@ public class Shader {
     }
 
 
-    static func linkProgram(program: GLuint, vertex: GLuint, fragment: GLuint) -> String?
+    static func linkProgram(_ program: GLuint, vertex: GLuint, fragment: GLuint) -> String?
     {
         glAttachShader(program, vertex)
         glAttachShader(program, fragment)
@@ -184,7 +190,7 @@ public class Shader {
     }
 
     
-    static func validateProgram(program: GLuint)  -> String?
+    static func validateProgram(_ program: GLuint)  -> String?
     {
         glValidateProgram(program)
         var success:GLint = 0

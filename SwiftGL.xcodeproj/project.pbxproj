@@ -67,6 +67,10 @@
 		3DFFFD351C793CF900D96E85 /* SwiftGL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFD1C793C2B00D96E85 /* SwiftGL.swift */; };
 		3DFFFD361C793D1200D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFD001C793C2B00D96E85 /* main.swift */; };
 		3DFFFD371C793EA500D96E85 /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */; };
+		E54FE8F41F34AEBF00E195B0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E71BB81F32C449000858EB /* IOKit.framework */; };
+		E54FE8F51F34AEC800E195B0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E71BB41F32C3DB000858EB /* CoreVideo.framework */; };
+		E54FE8F61F34AECF00E195B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E71BB21F32C3A1000858EB /* CoreGraphics.framework */; };
+		E54FE8F71F34AEDC00E195B0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E71BB01F32C399000858EB /* AppKit.framework */; };
 		E5E71BB11F32C399000858EB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E71BB01F32C399000858EB /* AppKit.framework */; };
 		E5E71BB31F32C3A1000858EB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E71BB21F32C3A1000858EB /* CoreGraphics.framework */; };
 		E5E71BB51F32C3DB000858EB /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E71BB41F32C3DB000858EB /* CoreVideo.framework */; };
@@ -213,6 +217,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E54FE8F71F34AEDC00E195B0 /* AppKit.framework in Frameworks */,
+				E54FE8F61F34AECF00E195B0 /* CoreGraphics.framework in Frameworks */,
+				E54FE8F51F34AEC800E195B0 /* CoreVideo.framework in Frameworks */,
+				E54FE8F41F34AEBF00E195B0 /* IOKit.framework in Frameworks */,
 				3D90F4981C489B2100229A4F /* SGLMath.framework in Frameworks */,
 				3D90F4991C489B2600229A4F /* SGLOpenGL.framework in Frameworks */,
 			);
@@ -696,6 +704,7 @@
 					};
 					3D90F48A1C489AED00229A4F = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0830;
 					};
 					3D91C3781C3B1FF700BA748A = {
 						CreatedOnToolsVersion = 7.2;
@@ -1028,6 +1037,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1044,6 +1054,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.CubeWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

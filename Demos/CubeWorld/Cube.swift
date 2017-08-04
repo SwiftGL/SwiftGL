@@ -30,10 +30,10 @@ import CGLFW3
 #endif
 
 
-public class Cube {
+open class Cube {
 
-    public private(set) var VAO:GLuint = 0
-    public private(set) var VBO:GLuint = 0
+    open fileprivate(set) var VAO:GLuint = 0
+    open fileprivate(set) var VBO:GLuint = 0
 
 
     public init()
@@ -41,7 +41,9 @@ public class Cube {
         glGenVertexArrays(n: 1, arrays: &VAO)
         glGenBuffers(n: 1, buffers: &VBO)
 
-        let stride = strideof(Cube.vertices.dynamicType.Element.self)
+        // Will not compile on MacOS using Xcode 8.3.3
+//        let stride = MemoryLayout<type(of: Cube.vertices).Element>.stride
+        let stride = MemoryLayout.stride(ofValue: Cube.vertices.first!)
 
         glBindBuffer(target: GL_ARRAY_BUFFER, buffer: VBO)
         glBufferData(target: GL_ARRAY_BUFFER, size: stride * Cube.vertices.count,
@@ -49,12 +51,12 @@ public class Cube {
 
         glBindVertexArray(VAO)
 
-        var pointer = UnsafePointer<Void>(bitPattern: 0)
+        var pointer = UnsafeRawPointer(bitPattern: 0)
         glVertexAttribPointer(index: 0, size: 3, type: GL_FLOAT,
             normalized: false, stride: GLsizei(stride), pointer: pointer)
         glEnableVertexAttribArray(index: 0)
 
-        pointer = UnsafePointer<Void>(bitPattern: 12)
+        pointer = UnsafeRawPointer(bitPattern: 12)
         glVertexAttribPointer(index: 1, size: 3, type: GL_FLOAT,
             normalized: false, stride: GLsizei(stride), pointer: pointer)
         glEnableVertexAttribArray(index: 1)
@@ -70,7 +72,7 @@ public class Cube {
     }
 
 
-    public func draw()
+    open func draw()
     {
         glBindVertexArray(VAO)
         glDrawArrays(GL_TRIANGLES, 0, GLsizei(Cube.vertices.count))

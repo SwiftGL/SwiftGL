@@ -40,9 +40,9 @@ class Pinwheel {
         let lightColorLoc = shader["lightColor"] as! GLint
         let modelLoc = shader["model"] as! GLint
 
-        for r:Double in 2.stride(to: 15, by: 3) {
+        for r:Double in stride(from: 2, to: 15, by: 3) {
 
-            for c in (0.0001).stride(to: 2*M_PI, by: 2*M_PI/(4 * r)) {
+            for c in stride(from: (0.0001), to: 2*Double.pi, by: 2*Double.pi/(4 * r)) {
 
                 var x = cos(c + time/r*3)
                     x *= r
@@ -61,7 +61,7 @@ class Pinwheel {
                 let color = vec3(
                     Float(abs(cos(c))),
                     Float(abs(sin(c))),
-                    Float(c / M_PI / 2)
+                    Float(c / Double.pi / 2)
                 )
 
                 shader[lightColorLoc] = color

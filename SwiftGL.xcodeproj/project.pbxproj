@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D632E5F1C6A764F00FEF61B /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */; };
-		3D632E601C6A765300FEF61B /* SGLImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE88EBB1C6417B90096145C /* SGLImage.framework */; };
-		3D90F4981C489B2100229A4F /* SGLMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SGLMath.framework */; };
-		3D90F4991C489B2600229A4F /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */; };
-		3D91C3C01C3B21BE00BA748A /* SGLMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3A01C3B210500BA748A /* SGLMath.framework */; };
-		3DE88EC51C6417BA0096145C /* SGLImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE88EBB1C6417B90096145C /* SGLImage.framework */; };
 		3DFFFD011C793C7400D96E85 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB01C793BE800D96E85 /* Camera.swift */; };
 		3DFFFD021C793C7400D96E85 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB11C793BE800D96E85 /* Cube.swift */; };
 		3DFFFD031C793C7400D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB21C793BE800D96E85 /* main.swift */; };
@@ -21,103 +15,147 @@
 		3DFFFD071C793C7400D96E85 /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB71C793BE800D96E85 /* Shader.swift */; };
 		3DFFFD081C793C9600D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCB91C793BE800D96E85 /* main.swift */; };
 		3DFFFD091C793C9D00D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCBD1C793BE800D96E85 /* main.swift */; };
-		3DFFFD0A1C793CB000D96E85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC51C793BF100D96E85 /* Image.swift */; };
-		3DFFFD0B1C793CB000D96E85 /* ImageBMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC61C793BF100D96E85 /* ImageBMP.swift */; };
-		3DFFFD0C1C793CB000D96E85 /* ImageGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC71C793BF100D96E85 /* ImageGIF.swift */; };
-		3DFFFD0D1C793CB000D96E85 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC81C793BF100D96E85 /* ImageLoader.swift */; };
-		3DFFFD0E1C793CB000D96E85 /* ImagePNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCC91C793BF100D96E85 /* ImagePNG.swift */; };
-		3DFFFD0F1C793CB000D96E85 /* Inflate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCCA1C793BF100D96E85 /* Inflate.swift */; };
-		3DFFFD101C793CBD00D96E85 /* SwiftGLresImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCCC1C793BF100D96E85 /* SwiftGLresImage.swift */; };
-		3DFFFD111C793CC700D96E85 /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD21C793C1F00D96E85 /* Complex.swift */; };
-		3DFFFD121C793CC700D96E85 /* glm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD31C793C1F00D96E85 /* glm.swift */; };
-		3DFFFD131C793CC700D96E85 /* glsl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD41C793C1F00D96E85 /* glsl.swift */; };
-		3DFFFD141C793CC700D96E85 /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD51C793C1F00D96E85 /* Internal.swift */; };
-		3DFFFD151C793CC700D96E85 /* Matrix2x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD61C793C1F00D96E85 /* Matrix2x2.swift */; };
-		3DFFFD161C793CC700D96E85 /* Matrix2x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD71C793C1F00D96E85 /* Matrix2x3.swift */; };
-		3DFFFD171C793CC700D96E85 /* Matrix2x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD81C793C1F00D96E85 /* Matrix2x4.swift */; };
-		3DFFFD181C793CC700D96E85 /* Matrix3x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCD91C793C1F00D96E85 /* Matrix3x2.swift */; };
-		3DFFFD191C793CC700D96E85 /* Matrix3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDA1C793C1F00D96E85 /* Matrix3x3.swift */; };
-		3DFFFD1A1C793CC700D96E85 /* Matrix3x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDB1C793C1F00D96E85 /* Matrix3x4.swift */; };
-		3DFFFD1B1C793CC700D96E85 /* Matrix4x2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDC1C793C1F00D96E85 /* Matrix4x2.swift */; };
-		3DFFFD1C1C793CC700D96E85 /* Matrix4x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDD1C793C1F00D96E85 /* Matrix4x3.swift */; };
-		3DFFFD1D1C793CC700D96E85 /* Matrix4x4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDE1C793C1F00D96E85 /* Matrix4x4.swift */; };
-		3DFFFD1E1C793CC700D96E85 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCDF1C793C1F00D96E85 /* Operators.swift */; };
-		3DFFFD1F1C793CC700D96E85 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE01C793C1F00D96E85 /* Protocols.swift */; };
-		3DFFFD201C793CC700D96E85 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE11C793C1F00D96E85 /* Quaternion.swift */; };
-		3DFFFD211C793CC700D96E85 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE21C793C1F00D96E85 /* Swizzle.swift */; };
-		3DFFFD221C793CC700D96E85 /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE31C793C1F00D96E85 /* Vector2.swift */; };
-		3DFFFD231C793CC700D96E85 /* Vector2b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE41C793C1F00D96E85 /* Vector2b.swift */; };
-		3DFFFD241C793CC700D96E85 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE51C793C1F00D96E85 /* Vector3.swift */; };
-		3DFFFD251C793CC700D96E85 /* Vector3b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE61C793C1F00D96E85 /* Vector3b.swift */; };
-		3DFFFD261C793CC700D96E85 /* Vector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE71C793C1F00D96E85 /* Vector4.swift */; };
-		3DFFFD271C793CC700D96E85 /* Vector4b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCE81C793C1F00D96E85 /* Vector4b.swift */; };
-		3DFFFD281C793CCF00D96E85 /* EqualWithAccuracy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEA1C793C1F00D96E85 /* EqualWithAccuracy.swift */; };
-		3DFFFD291C793CCF00D96E85 /* FunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEB1C793C1F00D96E85 /* FunctionsTests.swift */; };
-		3DFFFD2A1C793CCF00D96E85 /* glmMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEC1C793C1F00D96E85 /* glmMatrixTests.swift */; };
-		3DFFFD2B1C793CCF00D96E85 /* Matrix2x2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCED1C793C1F00D96E85 /* Matrix2x2Tests.swift */; };
-		3DFFFD2C1C793CCF00D96E85 /* Matrix3x3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEE1C793C1F00D96E85 /* Matrix3x3Tests.swift */; };
-		3DFFFD2D1C793CCF00D96E85 /* Matrix4x4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCEF1C793C1F00D96E85 /* Matrix4x4Tests.swift */; };
-		3DFFFD2E1C793CCF00D96E85 /* SwizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCF01C793C1F00D96E85 /* SwizzleTests.swift */; };
-		3DFFFD2F1C793CCF00D96E85 /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCF11C793C1F00D96E85 /* Vector2Tests.swift */; };
-		3DFFFD301C793CCF00D96E85 /* Vector4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCF21C793C1F00D96E85 /* Vector4Tests.swift */; };
-		3DFFFD311C793CE600D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCF41C793C1F00D96E85 /* main.swift */; };
-		3DFFFD321C793CF900D96E85 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFA1C793C2B00D96E85 /* Commands.swift */; };
-		3DFFFD331C793CF900D96E85 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFB1C793C2B00D96E85 /* Constants.swift */; };
-		3DFFFD341C793CF900D96E85 /* Loaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFC1C793C2B00D96E85 /* Loaders.swift */; };
-		3DFFFD351C793CF900D96E85 /* SwiftGL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFCFD1C793C2B00D96E85 /* SwiftGL.swift */; };
-		3DFFFD361C793D1200D96E85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFFD001C793C2B00D96E85 /* main.swift */; };
-		3DFFFD371C793EA500D96E85 /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */; };
+		E5B620F51F76B83F00448E51 /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620DF1F76B50200448E51 /* SGLOpenGL.framework */; };
+		E5B620F61F76B83F00448E51 /* SGLOpenGL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620DF1F76B50200448E51 /* SGLOpenGL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5B620FA1F76B8A400448E51 /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620DF1F76B50200448E51 /* SGLOpenGL.framework */; };
+		E5B620FB1F76B8A400448E51 /* SGLOpenGL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620DF1F76B50200448E51 /* SGLOpenGL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5B620FE1F76B8A400448E51 /* SGLImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620C21F76B4FA00448E51 /* SGLImage.framework */; };
+		E5B620FF1F76B8A400448E51 /* SGLImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620C21F76B4FA00448E51 /* SGLImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5B621051F76BBCA00448E51 /* SGLOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620DF1F76B50200448E51 /* SGLOpenGL.framework */; };
+		E5B621061F76BBCA00448E51 /* SGLOpenGL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620DF1F76B50200448E51 /* SGLOpenGL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5B621091F76BBCA00448E51 /* SGLMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620D11F76B4FF00448E51 /* SGLMath.framework */; };
+		E5B6210A1F76BBCA00448E51 /* SGLMath.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5B620D11F76B4FF00448E51 /* SGLMath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3D91C3C11C3B21BE00BA748A /* PBXContainerItemProxy */ = {
+		E5B620BF1F76B4FA00448E51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3D91C35C1C3B1FB400BA748A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D91C39F1C3B210500BA748A;
+			containerPortal = E5B620B81F76B4FA00448E51 /* SGLImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SGLImage::SGLImageTests::Product";
+			remoteInfo = SGLImageTests;
+		};
+		E5B620C11F76B4FA00448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620B81F76B4FA00448E51 /* SGLImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SGLImage::SGLImage::Product";
+			remoteInfo = SGLImage;
+		};
+		E5B620CE1F76B4FF00448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620C51F76B4FE00448E51 /* SGLMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SGLMath::SGLMathTests::Product";
+			remoteInfo = SGLMathTests;
+		};
+		E5B620D01F76B4FF00448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620C51F76B4FE00448E51 /* SGLMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SGLMath::SGLMath::Product";
 			remoteInfo = SGLMath;
 		};
-		3DE88EC61C6417BA0096145C /* PBXContainerItemProxy */ = {
+		E5B620D21F76B4FF00448E51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3D91C35C1C3B1FB400BA748A /* Project object */;
+			containerPortal = E5B620C51F76B4FE00448E51 /* SGLMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SGLMath::Tools::Product";
+			remoteInfo = Tools;
+		};
+		E5B620DE1F76B50200448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620D71F76B50200448E51 /* SGLOpenGL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SGLOpenGL::SGLOpenGL::Product";
+			remoteInfo = SGLOpenGL;
+		};
+		E5B620E01F76B50200448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620D71F76B50200448E51 /* SGLOpenGL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SGLOpenGL::Tools::Product";
+			remoteInfo = Tools;
+		};
+		E5B620F71F76B83F00448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620D71F76B50200448E51 /* SGLOpenGL.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 3DE88EBA1C6417B90096145C;
+			remoteGlobalIDString = "SGLOpenGL::SGLOpenGL";
+			remoteInfo = SGLOpenGL;
+		};
+		E5B620FC1F76B8A400448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620D71F76B50200448E51 /* SGLOpenGL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "SGLOpenGL::SGLOpenGL";
+			remoteInfo = SGLOpenGL;
+		};
+		E5B621001F76B8A400448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620B81F76B4FA00448E51 /* SGLImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "SGLImage::SGLImage";
 			remoteInfo = SGLImage;
+		};
+		E5B621071F76BBCA00448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620D71F76B50200448E51 /* SGLOpenGL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "SGLOpenGL::SGLOpenGL";
+			remoteInfo = SGLOpenGL;
+		};
+		E5B6210B1F76BBCA00448E51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B620C51F76B4FE00448E51 /* SGLMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "SGLMath::SGLMath";
+			remoteInfo = SGLMath;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3D28E9F51C3B34B90091E013 /* CopyFiles */ = {
+		E5B620F91F76B83F00448E51 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 10;
 			files = (
+				E5B620F61F76B83F00448E51 /* SGLOpenGL.framework in Embed Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D28EA041C3B35D90091E013 /* CopyFiles */ = {
+		E5B621021F76B8A400448E51 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 10;
 			files = (
+				E5B620FB1F76B8A400448E51 /* SGLOpenGL.framework in Embed Frameworks */,
+				E5B620FF1F76B8A400448E51 /* SGLImage.framework in Embed Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B6210D1F76BBCB00448E51 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E5B621061F76BBCA00448E51 /* SGLOpenGL.framework in Embed Frameworks */,
+				E5B6210A1F76BBCA00448E51 /* SGLMath.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3D28E9F71C3B34B90091E013 /* SGLOpenGL-Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "SGLOpenGL-Tool"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D28EA061C3B35D90091E013 /* SGLMath-Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "SGLMath-Tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8F3D081C3B2892007C49E7 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D90F48B1C489AED00229A4F /* CubeWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CubeWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGLOpenGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D91C3A01C3B210500BA748A /* SGLMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGLMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D91C3BB1C3B21BE00BA748A /* SGLMath-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SGLMath-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D99A8AA1C6A7408009B7529 /* ImgView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DE88EBB1C6417B90096145C /* SGLImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGLImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DE88EC41C6417BA0096145C /* SGLImage-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SGLImage-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DFFFCB01C793BE800D96E85 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		3DFFFCB11C793BE800D96E85 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		3DFFFCB21C793BE800D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -126,51 +164,10 @@
 		3DFFFCB71C793BE800D96E85 /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		3DFFFCB91C793BE800D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3DFFFCBD1C793BE800D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		3DFFFCC51C793BF100D96E85 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		3DFFFCC61C793BF100D96E85 /* ImageBMP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBMP.swift; sourceTree = "<group>"; };
-		3DFFFCC71C793BF100D96E85 /* ImageGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGIF.swift; sourceTree = "<group>"; };
-		3DFFFCC81C793BF100D96E85 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		3DFFFCC91C793BF100D96E85 /* ImagePNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePNG.swift; sourceTree = "<group>"; };
-		3DFFFCCA1C793BF100D96E85 /* Inflate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inflate.swift; sourceTree = "<group>"; };
-		3DFFFCCC1C793BF100D96E85 /* SwiftGLresImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGLresImage.swift; sourceTree = "<group>"; };
-		3DFFFCD21C793C1F00D96E85 /* Complex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
-		3DFFFCD31C793C1F00D96E85 /* glm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glm.swift; sourceTree = "<group>"; };
-		3DFFFCD41C793C1F00D96E85 /* glsl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glsl.swift; sourceTree = "<group>"; };
-		3DFFFCD51C793C1F00D96E85 /* Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internal.swift; sourceTree = "<group>"; };
-		3DFFFCD61C793C1F00D96E85 /* Matrix2x2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix2x2.swift; sourceTree = "<group>"; };
-		3DFFFCD71C793C1F00D96E85 /* Matrix2x3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix2x3.swift; sourceTree = "<group>"; };
-		3DFFFCD81C793C1F00D96E85 /* Matrix2x4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix2x4.swift; sourceTree = "<group>"; };
-		3DFFFCD91C793C1F00D96E85 /* Matrix3x2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3x2.swift; sourceTree = "<group>"; };
-		3DFFFCDA1C793C1F00D96E85 /* Matrix3x3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3x3.swift; sourceTree = "<group>"; };
-		3DFFFCDB1C793C1F00D96E85 /* Matrix3x4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3x4.swift; sourceTree = "<group>"; };
-		3DFFFCDC1C793C1F00D96E85 /* Matrix4x2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4x2.swift; sourceTree = "<group>"; };
-		3DFFFCDD1C793C1F00D96E85 /* Matrix4x3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4x3.swift; sourceTree = "<group>"; };
-		3DFFFCDE1C793C1F00D96E85 /* Matrix4x4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4x4.swift; sourceTree = "<group>"; };
-		3DFFFCDF1C793C1F00D96E85 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
-		3DFFFCE01C793C1F00D96E85 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		3DFFFCE11C793C1F00D96E85 /* Quaternion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
-		3DFFFCE21C793C1F00D96E85 /* Swizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
-		3DFFFCE31C793C1F00D96E85 /* Vector2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
-		3DFFFCE41C793C1F00D96E85 /* Vector2b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2b.swift; sourceTree = "<group>"; };
-		3DFFFCE51C793C1F00D96E85 /* Vector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
-		3DFFFCE61C793C1F00D96E85 /* Vector3b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3b.swift; sourceTree = "<group>"; };
-		3DFFFCE71C793C1F00D96E85 /* Vector4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector4.swift; sourceTree = "<group>"; };
-		3DFFFCE81C793C1F00D96E85 /* Vector4b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector4b.swift; sourceTree = "<group>"; };
-		3DFFFCEA1C793C1F00D96E85 /* EqualWithAccuracy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualWithAccuracy.swift; sourceTree = "<group>"; };
-		3DFFFCEB1C793C1F00D96E85 /* FunctionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionsTests.swift; sourceTree = "<group>"; };
-		3DFFFCEC1C793C1F00D96E85 /* glmMatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glmMatrixTests.swift; sourceTree = "<group>"; };
-		3DFFFCED1C793C1F00D96E85 /* Matrix2x2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix2x2Tests.swift; sourceTree = "<group>"; };
-		3DFFFCEE1C793C1F00D96E85 /* Matrix3x3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3x3Tests.swift; sourceTree = "<group>"; };
-		3DFFFCEF1C793C1F00D96E85 /* Matrix4x4Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix4x4Tests.swift; sourceTree = "<group>"; };
-		3DFFFCF01C793C1F00D96E85 /* SwizzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwizzleTests.swift; sourceTree = "<group>"; };
-		3DFFFCF11C793C1F00D96E85 /* Vector2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2Tests.swift; sourceTree = "<group>"; };
-		3DFFFCF21C793C1F00D96E85 /* Vector4Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector4Tests.swift; sourceTree = "<group>"; };
-		3DFFFCF41C793C1F00D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		3DFFFCFA1C793C2B00D96E85 /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
-		3DFFFCFB1C793C2B00D96E85 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3DFFFCFC1C793C2B00D96E85 /* Loaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loaders.swift; sourceTree = "<group>"; };
-		3DFFFCFD1C793C2B00D96E85 /* SwiftGL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGL.swift; sourceTree = "<group>"; };
-		3DFFFD001C793C2B00D96E85 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		E5B620B81F76B4FA00448E51 /* SGLImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SGLImage.xcodeproj; sourceTree = "<group>"; };
+		E5B620C51F76B4FE00448E51 /* SGLMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SGLMath.xcodeproj; sourceTree = "<group>"; };
+		E5B620D71F76B50200448E51 /* SGLOpenGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SGLOpenGL.xcodeproj; sourceTree = "<group>"; };
+		E5B620F31F76B73000448E51 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		E5E71BB01F32C399000858EB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		E5E71BB21F32C3A1000858EB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E5E71BB41F32C3DB000858EB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -179,25 +176,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3D28E9F41C3B34B90091E013 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D28EA031C3B35D90091E013 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D8F3D051C3B2892007C49E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DFFFD371C793EA500D96E85 /* SGLOpenGL.framework in Frameworks */,
+				E5B620F51F76B83F00448E51 /* SGLOpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,30 +188,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D90F4981C489B2100229A4F /* SGLMath.framework in Frameworks */,
-				3D90F4991C489B2600229A4F /* SGLOpenGL.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D91C3751C3B1FF700BA748A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D91C39C1C3B210500BA748A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D91C3B81C3B21BE00BA748A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D91C3C01C3B21BE00BA748A /* SGLMath.framework in Frameworks */,
+				E5B621051F76BBCA00448E51 /* SGLOpenGL.framework in Frameworks */,
+				E5B621091F76BBCA00448E51 /* SGLMath.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,23 +197,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D632E601C6A765300FEF61B /* SGLImage.framework in Frameworks */,
-				3D632E5F1C6A764F00FEF61B /* SGLOpenGL.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DE88EB71C6417B90096145C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DE88EC11C6417BA0096145C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DE88EC51C6417BA0096145C /* SGLImage.framework in Frameworks */,
+				E5B620FA1F76B8A400448E51 /* SGLOpenGL.framework in Frameworks */,
+				E5B620FE1F76B8A400448E51 /* SGLImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,10 +208,10 @@
 		3D91C35B1C3B1FB400BA748A = {
 			isa = PBXGroup;
 			children = (
+				E5B620D71F76B50200448E51 /* SGLOpenGL.xcodeproj */,
+				E5B620C51F76B4FE00448E51 /* SGLMath.xcodeproj */,
+				E5B620B81F76B4FA00448E51 /* SGLImage.xcodeproj */,
 				3DFFFCAE1C793BE800D96E85 /* Demos */,
-				3DFFFCF51C793C2B00D96E85 /* SGLOpenGL */,
-				3DFFFCCD1C793C1F00D96E85 /* SGLMath */,
-				3DFFFCC01C793BF100D96E85 /* SGLImage */,
 				3D91C3651C3B1FB400BA748A /* Products */,
 				E5E71BAF1F32C399000858EB /* Frameworks */,
 			);
@@ -274,15 +220,8 @@
 		3D91C3651C3B1FB400BA748A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */,
-				3D91C3A01C3B210500BA748A /* SGLMath.framework */,
-				3D91C3BB1C3B21BE00BA748A /* SGLMath-Tests.xctest */,
 				3D8F3D081C3B2892007C49E7 /* HelloWorld.app */,
-				3D28E9F71C3B34B90091E013 /* SGLOpenGL-Tool */,
-				3D28EA061C3B35D90091E013 /* SGLMath-Tool */,
 				3D90F48B1C489AED00229A4F /* CubeWorld.app */,
-				3DE88EBB1C6417B90096145C /* SGLImage.framework */,
-				3DE88EC41C6417BA0096145C /* SGLImage-Tests.xctest */,
 				3D99A8AA1C6A7408009B7529 /* ImgView.app */,
 			);
 			name = Products;
@@ -327,134 +266,38 @@
 			path = ImgView;
 			sourceTree = "<group>";
 		};
-		3DFFFCC01C793BF100D96E85 /* SGLImage */ = {
+		E5B620B91F76B4FA00448E51 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3DFFFCC41C793BF100D96E85 /* Sources */,
-				3DFFFCCB1C793BF100D96E85 /* Tests */,
+				E5B620C01F76B4FA00448E51 /* SGLImageTests.xctest */,
+				E5B620C21F76B4FA00448E51 /* SGLImage.framework */,
 			);
-			name = SGLImage;
-			path = Image;
-			sourceTree = SOURCE_ROOT;
-		};
-		3DFFFCC41C793BF100D96E85 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				3DFFFCC51C793BF100D96E85 /* Image.swift */,
-				3DFFFCC61C793BF100D96E85 /* ImageBMP.swift */,
-				3DFFFCC71C793BF100D96E85 /* ImageGIF.swift */,
-				3DFFFCC81C793BF100D96E85 /* ImageLoader.swift */,
-				3DFFFCC91C793BF100D96E85 /* ImagePNG.swift */,
-				3DFFFCCA1C793BF100D96E85 /* Inflate.swift */,
-			);
-			path = Sources;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		3DFFFCCB1C793BF100D96E85 /* Tests */ = {
+		E5B620C61F76B4FE00448E51 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3DFFFCCC1C793BF100D96E85 /* SwiftGLresImage.swift */,
+				E5B620CF1F76B4FF00448E51 /* SGLMathTests.xctest */,
+				E5B620D11F76B4FF00448E51 /* SGLMath.framework */,
+				E5B620D31F76B4FF00448E51 /* Tools */,
 			);
-			path = Tests;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		3DFFFCCD1C793C1F00D96E85 /* SGLMath */ = {
+		E5B620D81F76B50200448E51 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3DFFFCD11C793C1F00D96E85 /* Sources */,
-				3DFFFCE91C793C1F00D96E85 /* Tests */,
-				3DFFFCF31C793C1F00D96E85 /* Tools */,
+				E5B620DF1F76B50200448E51 /* SGLOpenGL.framework */,
+				E5B620E11F76B50200448E51 /* Tools */,
 			);
-			name = SGLMath;
-			path = Math;
-			sourceTree = "<group>";
-		};
-		3DFFFCD11C793C1F00D96E85 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				3DFFFCD21C793C1F00D96E85 /* Complex.swift */,
-				3DFFFCD31C793C1F00D96E85 /* glm.swift */,
-				3DFFFCD41C793C1F00D96E85 /* glsl.swift */,
-				3DFFFCD51C793C1F00D96E85 /* Internal.swift */,
-				3DFFFCD61C793C1F00D96E85 /* Matrix2x2.swift */,
-				3DFFFCD71C793C1F00D96E85 /* Matrix2x3.swift */,
-				3DFFFCD81C793C1F00D96E85 /* Matrix2x4.swift */,
-				3DFFFCD91C793C1F00D96E85 /* Matrix3x2.swift */,
-				3DFFFCDA1C793C1F00D96E85 /* Matrix3x3.swift */,
-				3DFFFCDB1C793C1F00D96E85 /* Matrix3x4.swift */,
-				3DFFFCDC1C793C1F00D96E85 /* Matrix4x2.swift */,
-				3DFFFCDD1C793C1F00D96E85 /* Matrix4x3.swift */,
-				3DFFFCDE1C793C1F00D96E85 /* Matrix4x4.swift */,
-				3DFFFCDF1C793C1F00D96E85 /* Operators.swift */,
-				3DFFFCE01C793C1F00D96E85 /* Protocols.swift */,
-				3DFFFCE11C793C1F00D96E85 /* Quaternion.swift */,
-				3DFFFCE21C793C1F00D96E85 /* Swizzle.swift */,
-				3DFFFCE31C793C1F00D96E85 /* Vector2.swift */,
-				3DFFFCE41C793C1F00D96E85 /* Vector2b.swift */,
-				3DFFFCE51C793C1F00D96E85 /* Vector3.swift */,
-				3DFFFCE61C793C1F00D96E85 /* Vector3b.swift */,
-				3DFFFCE71C793C1F00D96E85 /* Vector4.swift */,
-				3DFFFCE81C793C1F00D96E85 /* Vector4b.swift */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		3DFFFCE91C793C1F00D96E85 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				3DFFFCEA1C793C1F00D96E85 /* EqualWithAccuracy.swift */,
-				3DFFFCEB1C793C1F00D96E85 /* FunctionsTests.swift */,
-				3DFFFCEC1C793C1F00D96E85 /* glmMatrixTests.swift */,
-				3DFFFCED1C793C1F00D96E85 /* Matrix2x2Tests.swift */,
-				3DFFFCEE1C793C1F00D96E85 /* Matrix3x3Tests.swift */,
-				3DFFFCEF1C793C1F00D96E85 /* Matrix4x4Tests.swift */,
-				3DFFFCF01C793C1F00D96E85 /* SwizzleTests.swift */,
-				3DFFFCF11C793C1F00D96E85 /* Vector2Tests.swift */,
-				3DFFFCF21C793C1F00D96E85 /* Vector4Tests.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		3DFFFCF31C793C1F00D96E85 /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				3DFFFCF41C793C1F00D96E85 /* main.swift */,
-			);
-			path = Tools;
-			sourceTree = "<group>";
-		};
-		3DFFFCF51C793C2B00D96E85 /* SGLOpenGL */ = {
-			isa = PBXGroup;
-			children = (
-				3DFFFCF91C793C2B00D96E85 /* Sources */,
-				3DFFFCFE1C793C2B00D96E85 /* Tools */,
-			);
-			name = SGLOpenGL;
-			path = OpenGL;
-			sourceTree = "<group>";
-		};
-		3DFFFCF91C793C2B00D96E85 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				3DFFFCFA1C793C2B00D96E85 /* Commands.swift */,
-				3DFFFCFB1C793C2B00D96E85 /* Constants.swift */,
-				3DFFFCFC1C793C2B00D96E85 /* Loaders.swift */,
-				3DFFFCFD1C793C2B00D96E85 /* SwiftGL.swift */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		3DFFFCFE1C793C2B00D96E85 /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				3DFFFD001C793C2B00D96E85 /* main.swift */,
-			);
-			path = Tools;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E5E71BAF1F32C399000858EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5B620F31F76B73000448E51 /* OpenGL.framework */,
 				E5E71BB81F32C449000858EB /* IOKit.framework */,
 				E5E71BB61F32C415000858EB /* Kernel.framework */,
 				E5E71BB41F32C3DB000858EB /* CoreVideo.framework */,
@@ -466,65 +309,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		3D91C3761C3B1FF700BA748A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D91C39D1C3B210500BA748A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DE88EB81C6417B90096145C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		3D28E9F61C3B34B90091E013 /* SGLOpenGL-Tool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D28E9FB1C3B34B90091E013 /* Build configuration list for PBXNativeTarget "SGLOpenGL-Tool" */;
-			buildPhases = (
-				3D28E9F31C3B34B90091E013 /* Sources */,
-				3D28E9F41C3B34B90091E013 /* Frameworks */,
-				3D28E9F51C3B34B90091E013 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "SGLOpenGL-Tool";
-			productName = "SGLOpenGL-Tool";
-			productReference = 3D28E9F71C3B34B90091E013 /* SGLOpenGL-Tool */;
-			productType = "com.apple.product-type.tool";
-		};
-		3D28EA051C3B35D90091E013 /* SGLMath-Tool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D28EA0A1C3B35D90091E013 /* Build configuration list for PBXNativeTarget "SGLMath-Tool" */;
-			buildPhases = (
-				3D28EA021C3B35D90091E013 /* Sources */,
-				3D28EA031C3B35D90091E013 /* Frameworks */,
-				3D28EA041C3B35D90091E013 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "SGLMath-Tool";
-			productName = "SGLMath-Tool";
-			productReference = 3D28EA061C3B35D90091E013 /* SGLMath-Tool */;
-			productType = "com.apple.product-type.tool";
-		};
 		3D8F3D071C3B2892007C49E7 /* HelloWorld */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D8F3D141C3B2892007C49E7 /* Build configuration list for PBXNativeTarget "HelloWorld" */;
@@ -532,10 +317,12 @@
 				3D8F3D041C3B2892007C49E7 /* Sources */,
 				3D8F3D051C3B2892007C49E7 /* Frameworks */,
 				3D8F3D061C3B2892007C49E7 /* Resources */,
+				E5B620F91F76B83F00448E51 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E5B620F81F76B83F00448E51 /* PBXTargetDependency */,
 			);
 			name = HelloWorld;
 			productName = HelloWorld;
@@ -549,69 +336,18 @@
 				3D90F4871C489AED00229A4F /* Sources */,
 				3D90F4881C489AED00229A4F /* Frameworks */,
 				3D90F4891C489AED00229A4F /* Resources */,
+				E5B6210D1F76BBCB00448E51 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E5B621081F76BBCA00448E51 /* PBXTargetDependency */,
+				E5B6210C1F76BBCA00448E51 /* PBXTargetDependency */,
 			);
 			name = CubeWorld;
 			productName = CubeWorld;
 			productReference = 3D90F48B1C489AED00229A4F /* CubeWorld.app */;
 			productType = "com.apple.product-type.application";
-		};
-		3D91C3781C3B1FF700BA748A /* SGLOpenGL */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D91C38A1C3B1FF700BA748A /* Build configuration list for PBXNativeTarget "SGLOpenGL" */;
-			buildPhases = (
-				3D91C3741C3B1FF700BA748A /* Sources */,
-				3D91C3751C3B1FF700BA748A /* Frameworks */,
-				3D91C3761C3B1FF700BA748A /* Headers */,
-				3D91C3771C3B1FF700BA748A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SGLOpenGL;
-			productName = SGLOpenGL;
-			productReference = 3D91C3791C3B1FF700BA748A /* SGLOpenGL.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		3D91C39F1C3B210500BA748A /* SGLMath */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D91C3B11C3B210600BA748A /* Build configuration list for PBXNativeTarget "SGLMath" */;
-			buildPhases = (
-				3D91C39B1C3B210500BA748A /* Sources */,
-				3D91C39C1C3B210500BA748A /* Frameworks */,
-				3D91C39D1C3B210500BA748A /* Headers */,
-				3D91C39E1C3B210500BA748A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SGLMath;
-			productName = SGLMath;
-			productReference = 3D91C3A01C3B210500BA748A /* SGLMath.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		3D91C3BA1C3B21BE00BA748A /* SGLMath-Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D91C3C31C3B21BE00BA748A /* Build configuration list for PBXNativeTarget "SGLMath-Tests" */;
-			buildPhases = (
-				3D91C3B71C3B21BE00BA748A /* Sources */,
-				3D91C3B81C3B21BE00BA748A /* Frameworks */,
-				3D91C3B91C3B21BE00BA748A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3D91C3C21C3B21BE00BA748A /* PBXTargetDependency */,
-			);
-			name = "SGLMath-Tests";
-			productName = "SGLMath-Tests";
-			productReference = 3D91C3BB1C3B21BE00BA748A /* SGLMath-Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3D99A8A91C6A7408009B7529 /* ImgView */ = {
 			isa = PBXNativeTarget;
@@ -620,51 +356,18 @@
 				3D99A8A61C6A7408009B7529 /* Sources */,
 				3D99A8A71C6A7408009B7529 /* Frameworks */,
 				3D99A8A81C6A7408009B7529 /* Resources */,
+				E5B621021F76B8A400448E51 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E5B620FD1F76B8A400448E51 /* PBXTargetDependency */,
+				E5B621011F76B8A400448E51 /* PBXTargetDependency */,
 			);
 			name = ImgView;
 			productName = ImgView;
 			productReference = 3D99A8AA1C6A7408009B7529 /* ImgView.app */;
 			productType = "com.apple.product-type.application";
-		};
-		3DE88EBA1C6417B90096145C /* SGLImage */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3DE88ED01C6417BA0096145C /* Build configuration list for PBXNativeTarget "SGLImage" */;
-			buildPhases = (
-				3DE88EB61C6417B90096145C /* Sources */,
-				3DE88EB71C6417B90096145C /* Frameworks */,
-				3DE88EB81C6417B90096145C /* Headers */,
-				3DE88EB91C6417B90096145C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SGLImage;
-			productName = SGLImage;
-			productReference = 3DE88EBB1C6417B90096145C /* SGLImage.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		3DE88EC31C6417BA0096145C /* SGLImage-Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3DE88ED11C6417BA0096145C /* Build configuration list for PBXNativeTarget "SGLImage-Tests" */;
-			buildPhases = (
-				3DE88EC01C6417BA0096145C /* Sources */,
-				3DE88EC11C6417BA0096145C /* Frameworks */,
-				3DE88EC21C6417BA0096145C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3DE88EC71C6417BA0096145C /* PBXTargetDependency */,
-			);
-			name = "SGLImage-Tests";
-			productName = "SGLImage-Tests";
-			productReference = 3DE88EC41C6417BA0096145C /* SGLImage-Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -673,41 +376,20 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "David Turnbull";
 				TargetAttributes = {
-					3D28E9F61C3B34B90091E013 = {
-						CreatedOnToolsVersion = 7.2;
-					};
-					3D28EA051C3B35D90091E013 = {
-						CreatedOnToolsVersion = 7.2;
-					};
 					3D8F3D071C3B2892007C49E7 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0900;
 					};
 					3D90F48A1C489AED00229A4F = {
 						CreatedOnToolsVersion = 7.2;
 						LastSwiftMigration = 0830;
 					};
-					3D91C3781C3B1FF700BA748A = {
-						CreatedOnToolsVersion = 7.2;
-					};
-					3D91C39F1C3B210500BA748A = {
-						CreatedOnToolsVersion = 7.2;
-					};
-					3D91C3BA1C3B21BE00BA748A = {
-						CreatedOnToolsVersion = 7.2;
-					};
 					3D99A8A91C6A7408009B7529 = {
 						CreatedOnToolsVersion = 7.2.1;
 						LastSwiftMigration = 0830;
-					};
-					3DE88EBA1C6417B90096145C = {
-						CreatedOnToolsVersion = 7.2.1;
-					};
-					3DE88EC31C6417BA0096145C = {
-						CreatedOnToolsVersion = 7.2.1;
 					};
 				};
 			};
@@ -722,21 +404,80 @@
 			mainGroup = 3D91C35B1C3B1FB400BA748A;
 			productRefGroup = 3D91C3651C3B1FB400BA748A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E5B620B91F76B4FA00448E51 /* Products */;
+					ProjectRef = E5B620B81F76B4FA00448E51 /* SGLImage.xcodeproj */;
+				},
+				{
+					ProductGroup = E5B620C61F76B4FE00448E51 /* Products */;
+					ProjectRef = E5B620C51F76B4FE00448E51 /* SGLMath.xcodeproj */;
+				},
+				{
+					ProductGroup = E5B620D81F76B50200448E51 /* Products */;
+					ProjectRef = E5B620D71F76B50200448E51 /* SGLOpenGL.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3D8F3D071C3B2892007C49E7 /* HelloWorld */,
 				3D90F48A1C489AED00229A4F /* CubeWorld */,
 				3D99A8A91C6A7408009B7529 /* ImgView */,
-				3D91C3781C3B1FF700BA748A /* SGLOpenGL */,
-				3D28E9F61C3B34B90091E013 /* SGLOpenGL-Tool */,
-				3D91C39F1C3B210500BA748A /* SGLMath */,
-				3D91C3BA1C3B21BE00BA748A /* SGLMath-Tests */,
-				3D28EA051C3B35D90091E013 /* SGLMath-Tool */,
-				3DE88EBA1C6417B90096145C /* SGLImage */,
-				3DE88EC31C6417BA0096145C /* SGLImage-Tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E5B620C01F76B4FA00448E51 /* SGLImageTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			path = SGLImageTests.xctest;
+			remoteRef = E5B620BF1F76B4FA00448E51 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E5B620C21F76B4FA00448E51 /* SGLImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SGLImage.framework;
+			remoteRef = E5B620C11F76B4FA00448E51 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E5B620CF1F76B4FF00448E51 /* SGLMathTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			path = SGLMathTests.xctest;
+			remoteRef = E5B620CE1F76B4FF00448E51 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E5B620D11F76B4FF00448E51 /* SGLMath.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SGLMath.framework;
+			remoteRef = E5B620D01F76B4FF00448E51 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E5B620D31F76B4FF00448E51 /* Tools */ = {
+			isa = PBXReferenceProxy;
+			fileType = text;
+			path = Tools;
+			remoteRef = E5B620D21F76B4FF00448E51 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E5B620DF1F76B50200448E51 /* SGLOpenGL.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SGLOpenGL.framework;
+			remoteRef = E5B620DE1F76B50200448E51 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E5B620E11F76B50200448E51 /* Tools */ = {
+			isa = PBXReferenceProxy;
+			fileType = text;
+			path = Tools;
+			remoteRef = E5B620E01F76B50200448E51 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3D8F3D061C3B2892007C49E7 /* Resources */ = {
@@ -753,42 +494,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D91C3771C3B1FF700BA748A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D91C39E1C3B210500BA748A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D91C3B91C3B21BE00BA748A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D99A8A81C6A7408009B7529 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DE88EB91C6417B90096145C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DE88EC21C6417BA0096145C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -798,22 +504,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3D28E9F31C3B34B90091E013 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DFFFD361C793D1200D96E85 /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D28EA021C3B35D90091E013 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DFFFD311C793CE600D96E85 /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D8F3D041C3B2892007C49E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -835,63 +525,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D91C3741C3B1FF700BA748A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DFFFD351C793CF900D96E85 /* SwiftGL.swift in Sources */,
-				3DFFFD341C793CF900D96E85 /* Loaders.swift in Sources */,
-				3DFFFD321C793CF900D96E85 /* Commands.swift in Sources */,
-				3DFFFD331C793CF900D96E85 /* Constants.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D91C39B1C3B210500BA748A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DFFFD1F1C793CC700D96E85 /* Protocols.swift in Sources */,
-				3DFFFD201C793CC700D96E85 /* Quaternion.swift in Sources */,
-				3DFFFD1A1C793CC700D96E85 /* Matrix3x4.swift in Sources */,
-				3DFFFD251C793CC700D96E85 /* Vector3b.swift in Sources */,
-				3DFFFD161C793CC700D96E85 /* Matrix2x3.swift in Sources */,
-				3DFFFD171C793CC700D96E85 /* Matrix2x4.swift in Sources */,
-				3DFFFD131C793CC700D96E85 /* glsl.swift in Sources */,
-				3DFFFD121C793CC700D96E85 /* glm.swift in Sources */,
-				3DFFFD231C793CC700D96E85 /* Vector2b.swift in Sources */,
-				3DFFFD271C793CC700D96E85 /* Vector4b.swift in Sources */,
-				3DFFFD221C793CC700D96E85 /* Vector2.swift in Sources */,
-				3DFFFD1B1C793CC700D96E85 /* Matrix4x2.swift in Sources */,
-				3DFFFD181C793CC700D96E85 /* Matrix3x2.swift in Sources */,
-				3DFFFD151C793CC700D96E85 /* Matrix2x2.swift in Sources */,
-				3DFFFD1D1C793CC700D96E85 /* Matrix4x4.swift in Sources */,
-				3DFFFD211C793CC700D96E85 /* Swizzle.swift in Sources */,
-				3DFFFD1E1C793CC700D96E85 /* Operators.swift in Sources */,
-				3DFFFD141C793CC700D96E85 /* Internal.swift in Sources */,
-				3DFFFD111C793CC700D96E85 /* Complex.swift in Sources */,
-				3DFFFD1C1C793CC700D96E85 /* Matrix4x3.swift in Sources */,
-				3DFFFD241C793CC700D96E85 /* Vector3.swift in Sources */,
-				3DFFFD191C793CC700D96E85 /* Matrix3x3.swift in Sources */,
-				3DFFFD261C793CC700D96E85 /* Vector4.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D91C3B71C3B21BE00BA748A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DFFFD2A1C793CCF00D96E85 /* glmMatrixTests.swift in Sources */,
-				3DFFFD281C793CCF00D96E85 /* EqualWithAccuracy.swift in Sources */,
-				3DFFFD291C793CCF00D96E85 /* FunctionsTests.swift in Sources */,
-				3DFFFD2B1C793CCF00D96E85 /* Matrix2x2Tests.swift in Sources */,
-				3DFFFD2C1C793CCF00D96E85 /* Matrix3x3Tests.swift in Sources */,
-				3DFFFD2F1C793CCF00D96E85 /* Vector2Tests.swift in Sources */,
-				3DFFFD2D1C793CCF00D96E85 /* Matrix4x4Tests.swift in Sources */,
-				3DFFFD2E1C793CCF00D96E85 /* SwizzleTests.swift in Sources */,
-				3DFFFD301C793CCF00D96E85 /* Vector4Tests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D99A8A61C6A7408009B7529 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -900,84 +533,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3DE88EB61C6417B90096145C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DFFFD0A1C793CB000D96E85 /* Image.swift in Sources */,
-				3DFFFD0B1C793CB000D96E85 /* ImageBMP.swift in Sources */,
-				3DFFFD0E1C793CB000D96E85 /* ImagePNG.swift in Sources */,
-				3DFFFD0F1C793CB000D96E85 /* Inflate.swift in Sources */,
-				3DFFFD0D1C793CB000D96E85 /* ImageLoader.swift in Sources */,
-				3DFFFD0C1C793CB000D96E85 /* ImageGIF.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DE88EC01C6417BA0096145C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DFFFD101C793CBD00D96E85 /* SwiftGLresImage.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3D91C3C21C3B21BE00BA748A /* PBXTargetDependency */ = {
+		E5B620F81F76B83F00448E51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3D91C39F1C3B210500BA748A /* SGLMath */;
-			targetProxy = 3D91C3C11C3B21BE00BA748A /* PBXContainerItemProxy */;
+			name = SGLOpenGL;
+			targetProxy = E5B620F71F76B83F00448E51 /* PBXContainerItemProxy */;
 		};
-		3DE88EC71C6417BA0096145C /* PBXTargetDependency */ = {
+		E5B620FD1F76B8A400448E51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3DE88EBA1C6417B90096145C /* SGLImage */;
-			targetProxy = 3DE88EC61C6417BA0096145C /* PBXContainerItemProxy */;
+			name = SGLOpenGL;
+			targetProxy = E5B620FC1F76B8A400448E51 /* PBXContainerItemProxy */;
+		};
+		E5B621011F76B8A400448E51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SGLImage;
+			targetProxy = E5B621001F76B8A400448E51 /* PBXContainerItemProxy */;
+		};
+		E5B621081F76BBCA00448E51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SGLOpenGL;
+			targetProxy = E5B621071F76BBCA00448E51 /* PBXContainerItemProxy */;
+		};
+		E5B6210C1F76BBCA00448E51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SGLMath;
+			targetProxy = E5B6210B1F76BBCA00448E51 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3D28E9FC1C3B34B90091E013 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		3D28E9FD1C3B34B90091E013 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		3D28EA0B1C3B35D90091E013 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		3D28EA0C1C3B35D90091E013 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		3D8F3D121C3B2892007C49E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
@@ -988,13 +578,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		3D8F3D131C3B2892007C49E7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
@@ -1004,13 +594,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.HelloWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		3D90F4951C489AEE00229A4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1022,13 +612,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		3D90F4961C489AEE00229A4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1039,7 +629,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.CubeWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1051,14 +640,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1086,7 +681,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1098,14 +693,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1126,130 +727,14 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		3D91C38B1C3B1FF700BA748A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.OpenGL;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3D91C38C1C3B1FF700BA748A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.OpenGL;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3D91C3B21C3B210600BA748A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.Math;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3D91C3B31C3B210600BA748A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.Math;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3D91C3C41C3B21BE00BA748A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.SwiftGL.SGLMath-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		3D91C3C51C3B21BE00BA748A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.SwiftGL.SGLMath-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		3D99A8B41C6A7408009B7529 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1261,13 +746,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		3D99A8B51C6A7408009B7529 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1278,101 +763,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.ImgView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftGL.xcodeproj";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		3DE88ECC1C6417BA0096145C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.Image;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_DISABLE_SAFETY_CHECKS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3DE88ECD1C6417BA0096145C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.SwiftGL.Image;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_DISABLE_SAFETY_CHECKS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3DE88ECE1C6417BA0096145C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.SwiftGL.GLImage-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3DE88ECF1C6417BA0096145C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftGL.xcodeproj/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.SwiftGL.SGLImage-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3D28E9FB1C3B34B90091E013 /* Build configuration list for PBXNativeTarget "SGLOpenGL-Tool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D28E9FC1C3B34B90091E013 /* Debug */,
-				3D28E9FD1C3B34B90091E013 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D28EA0A1C3B35D90091E013 /* Build configuration list for PBXNativeTarget "SGLMath-Tool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D28EA0B1C3B35D90091E013 /* Debug */,
-				3D28EA0C1C3B35D90091E013 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3D8F3D141C3B2892007C49E7 /* Build configuration list for PBXNativeTarget "HelloWorld" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1400,56 +796,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D91C38A1C3B1FF700BA748A /* Build configuration list for PBXNativeTarget "SGLOpenGL" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D91C38B1C3B1FF700BA748A /* Debug */,
-				3D91C38C1C3B1FF700BA748A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D91C3B11C3B210600BA748A /* Build configuration list for PBXNativeTarget "SGLMath" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D91C3B21C3B210600BA748A /* Debug */,
-				3D91C3B31C3B210600BA748A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D91C3C31C3B21BE00BA748A /* Build configuration list for PBXNativeTarget "SGLMath-Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D91C3C41C3B21BE00BA748A /* Debug */,
-				3D91C3C51C3B21BE00BA748A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3D99A8B61C6A7408009B7529 /* Build configuration list for PBXNativeTarget "ImgView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D99A8B41C6A7408009B7529 /* Debug */,
 				3D99A8B51C6A7408009B7529 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3DE88ED01C6417BA0096145C /* Build configuration list for PBXNativeTarget "SGLImage" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3DE88ECC1C6417BA0096145C /* Debug */,
-				3DE88ECD1C6417BA0096145C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3DE88ED11C6417BA0096145C /* Build configuration list for PBXNativeTarget "SGLImage-Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3DE88ECE1C6417BA0096145C /* Debug */,
-				3DE88ECF1C6417BA0096145C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
